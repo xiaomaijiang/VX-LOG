@@ -24,11 +24,16 @@
 #define IM_FILE_DEFAULT_POLL_INTERVAL 1 /* The number of seconds to check the files for new data */
 #define IM_FILE_MAX_READ 50				/* The max number of logs to read in a single iteration */
 #define IM_FILE_DEFAULT_ACTIVE_FILES 10 /* The number of files which will be open at a time */
+#define MAX_LINENUMBER_SIZE ~(sizeof(int64_t) * 8 - 1)
 
 static void im_file_input_get_filepos(nx_module_t *module, nx_im_file_input_t *file);
 
 static void im_file_linenumber_recorder(nx_im_file_conf_t *imconf, nx_logdata_t *logdata)
 {
+	if (imconf->currsrc->current_line_number >= MAX_LINENUMBER_SIZE)
+	{
+		imconf->currsrc->current_line_number = 0;
+	}
 	imconf->currsrc->current_line_number = imconf->currsrc->current_line_number + 1;
 	nx_logdata_set_integer(logdata, "LineNumber", imconf->currsrc->current_line_number);
 }
