@@ -27,3 +27,6 @@ test/common/value-serialize
 test/common/value-test
 test/coresrc/event
 test/coresrc/exception_test
+
+
+autom4te.cache

@@ -94,6 +94,15 @@ if ! test "x$LIBDBI" = "x"; then
 fi
 AM_CONDITIONAL([HAVE_LIBDBI], [test x$LIBDBI != x])
 
+# KAFKA
+AC_CHECK_LIB([rdkafka], [rd_kafka_conf_new], [LIBKAFKA="-lrdkafka -lrt -lz"], [AC_MSG_WARN([librdkafka not found - not building rdkafka modules])])
+if ! test "x$LIBKAFKA" = "x"; then
+   AC_CHECK_HEADERS(librdkafka/rdkafka.h, , AC_MSG_ERROR([please install header files for librdkafka]))
+    SAVED_LIBS=$LIBS
+    LIBS="$SAVED_LIBS $LIBKAFKA"
+fi
+AM_CONDITIONAL([HAVE_LIBKAFKA], [test x$LIBKAFKA != x])
+
 AC_HEADER_STDC
 AC_CHECK_HEADERS(syslog.h)
 AC_CHECK_HEADERS(pcre.h, , AC_MSG_ERROR([please install pcre-dev]))
@@ -419,6 +428,7 @@ AC_OUTPUT(Makefile
 	        src/modules/output/uds/Makefile
 	        src/modules/output/exec/Makefile
 	        src/modules/output/http/Makefile
+			src/modules/output/kafka/Makefile
 	      src/modules/extension/Makefile
 	        src/modules/extension/syslog/Makefile
 	        src/modules/extension/exec/Makefile

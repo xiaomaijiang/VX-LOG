@@ -1,0 +1,18 @@
+```
+sudo apt-get install autogen autoconf libtool
+```
+when you want to autoreconf ,you should run `aclocal` first and parse `m4_include([macros.m4])` to 
+the botton of aclocal.m4
+
+```
+m4_define([LT_PACKAGE_VERSION], [2.4.2])
+m4_define([LT_PACKAGE_REVISION], [1.3337])
+
+[macro_version='2.4.2'
+macro_revision='1.3337'
+```
+
+run `autoconf -f&&automake -a`
+
+
+

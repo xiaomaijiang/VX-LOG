@@ -84,6 +84,9 @@
 /* Define to 1 if you have the `crypto' library (-lcrypto). */
 #undef HAVE_LIBCRYPTO
 
+/* Define to 1 if you have the <librdkafka/rdkafka.h> header file. */
+#undef HAVE_LIBRDKAFKA_RDKAFKA_H
+
 /* Define to 1 if you have the `ssl' library (-lssl). */
 #undef HAVE_LIBSSL
 
@@ -162,8 +165,7 @@
 /* Define to 1 if you have the <winevt.h> header file. */
 #undef HAVE_WINEVT_H
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
 
 /* Name of package */

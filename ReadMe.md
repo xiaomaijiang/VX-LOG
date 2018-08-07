@@ -4,4 +4,36 @@ VX-LOG is a data acquisition client based on Nxlog,and it will has some useful f
 
 # VX-Log Features
 
-* line-number Info:line-number is a useful info when we collect data from file.we can use line-number info to do something like `search log arround n line`
+## File Line Number
+
+line-number Info:line-number is a useful info when we collect data from file.we can use line-number info to do something like `search log arround n line`
+
+## Kafka Input&&Kafka Output
+
+Thanks `https://github.com/filipealmeida/nxlog-kafka-output-module` provide Kafka Output Module,VX-Log integrate nxlog-kafka-output-module default.
+
+Download and install librdkafka,and Compile VX-LOG
+```
+	git clone https://github.com/edenhill/librdkafka.git
+	cd librdkafka
+	./configure
+	make
+	sudo make install
+```
+###Config Sample
+
+Kafka Output
+
+```
+	<Output outKafka>
+	  Module      om_kafka
+	  BrokerList  localhost:9092,otherhost.example.com:9092
+	  Topic       test
+	  #-- Partition   <number> - defaults to RD_KAFKA_PARTITION_UA
+	  #-- Compression, one of none, gzip, snappy
+	  Compression gzip
+	</Output>
+```
+
+
+
