@@ -1,0 +1,6 @@
+$success = TRUE;
+
+$subject = "--ab--";
+$subject =~ /(a)(.)/;
+if $1 != "a" $success = FALSE;
+if $2 != "b" $success = FALSE;

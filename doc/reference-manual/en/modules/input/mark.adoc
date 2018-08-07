@@ -1,0 +1,52 @@
+[[im_mark]]
+==== Mark (im_mark)
+
+Mark messages are used to indicate periodic activity to assure that
+the logger is running when there are no log messages coming in from
+other sources.
+
+By default, if no module-specific directives are set, a log message
+will be generated every 30 minutes containing `-- MARK --`.
+
+NOTE: The <<im_mark_field_raw_event,$raw_event>> field is not
+      generated in Syslog format. If mark messages are required in
+      Syslog format, they must be explicitly converted with the
+      <<xm_syslog_proc_to_syslog_bsd,to_syslog_bsd()>> procedure.
+
+NOTE: The functionality of the _im_mark_ module can be also achieved
+      using the <<config_module_schedule,Schedule>> block with a
+      <<core_proc_log_info,log_info("--MARK--")>> Exec statement,
+      which would insert the messages via the
+      <<im_internal,im_internal>> module into a route. Using a single
+      module for this task can simplify configuration.
+
+[[im_mark_config]]
+===== Configuration
+
+The _im_mark_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_mark_config_mark]]
+Mark:: This optional directive sets the string for the mark
+  message. The default is `-- MARK --`.
+
+[[im_mark_config_markinterval]]
+MarkInterval:: This optional directive sets the interval for mark
+  messages, in minutes. The default is 30 minutes.
+
+include::../../fields-im_mark.adoc[]
+
+[[im_mark_config_examples]]
+===== Examples
+
+.Using the im_mark Module
+====
+Here, {productName} will write the specified string to file every
+minute.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_mark.conf[lines=2..-1]
+----
+====

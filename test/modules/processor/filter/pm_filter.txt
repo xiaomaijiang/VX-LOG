@@ -1,0 +1,18 @@
+REMOVE: tmp/input
+REMOVE: tmp/output
+WRITELINE: file:tmp/input <6> Oct 12 12:49:06 host app[12345]: kernel message
+WRITELINE: file:tmp/input <30> Oct 12 12:49:06 host app[12345]: daemon.info
+WRITELINE: file:tmp/input <27> Oct 12 12:49:06 host app[12345]: daemon.error
+RUNPROCESSOR: modules/processor/filter/test.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output modules/processor/filter/testoutput1.txt
+REMOVE: tmp/output
+
+TRUNCATE: tmp/input
+WRITELINE: file:tmp/input <30> Oct 12 12:49:06 host app[12345]: regexp test filtered out
+WRITELINE: file:tmp/input <30> Oct 12 12:49:06 host app[12345]: regexp test ok
+RUNPROCESSOR: modules/processor/filter/test.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output modules/processor/filter/testoutput2.txt
+REMOVE: tmp/output
+

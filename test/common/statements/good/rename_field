@@ -1,0 +1,18 @@
+$success = TRUE;
+$Testfield = 'testvalue';
+rename_field('Testfield', 'Newfield');
+if defined $Testfield $success = FALSE;
+if not defined $Newfield $success = FALSE;
+if $Newfield != 'testvalue' $success = FALSE;
+
+rename_field("Newfield", "newfield");
+if not defined $newfield $success = FALSE;
+if $newfield != 'testvalue' $success = FALSE;
+if $Newfield != 'testvalue' $success = FALSE;
+
+# The field should not be removed if both are the same
+rename_field("newfield", "newfield");
+if not defined $newfield $success = FALSE;
+if $newfield != 'testvalue' $success = FALSE;
+
+

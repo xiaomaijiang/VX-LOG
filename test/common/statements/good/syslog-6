@@ -1,0 +1,12 @@
+$EventTime = parsedate("2014-01-01 00:00:00+0000");
+$SourceName = undef;
+$ProcessID = undef;
+$Hostname = 'testhost';
+$Message = undef;
+$raw_event = 'test message';
+to_syslog_ietf();
+#log_info($raw_event);
+
+$success = TRUE;
+if $raw_event != '<13>1 2014-01-01T00:00:00.000000Z testhost - - - - test message' $success = FALSE;
+

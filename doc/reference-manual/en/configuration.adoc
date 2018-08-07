@@ -1,0 +1,565 @@
+[[config]]
+== Configuration
+
+An {productName} configuration consists of global directives, module
+instances, and routes. The following sections list the core {productName}
+directives provided. Additional directives are provided at the module level.
+A valid configuration must contain at least one input module instance and at
+least one output module instance.
+
+=== General Directives
+
+The following directives can be used throughout the configuration
+file. These directives are handled by the configuration parser, and
+substitutions occur before the configuration check.
+
+[[config_general_define]]
+define:: Use this directive to configure a constant or macro to be
+  used later. Refer to a `define` by surrounding the name with percent
+  signs (`%`). Enclose a group of statements with curly braces (`{}`).
++
+[[using_define]]
+.Using the define Directive
+====
+This configuration shows three example defines: `BASEDIR` is a
+constant, `IMPORTANT` is a statement, and `WARN_DROP` is a group of
+statements.
+
+.nxlog.conf
+[source,config]
+----
+include::../config-examples/define.conf[lines=2..19]
+----
+====
+
+[[config_general_include]]
+include:: This directive allows a specified file to be included in the
+  current configuration file. Wildcarded filenames are supported.
++
+--
+NOTE: The <<config_global_spooldir,SpoolDir>> directive only takes
+      effect after the configuration is parsed, so relative paths
+      specified with the *include* directive must be relative to the
+      working directory {productName} was started from.
+
+.Using the include Directive
+====
+This example includes a file relative to the directory {productName}
+is started from:
+
+----
+include modules/module1.conf
+----
+
+This example includes all matching files and uses an absolute path:
+
+----
+include /etc/nxlog.d/*.conf
+----
+====
+--
+
+[[config_global]]
+=== Global Directives
+
+[[config_global_cachedir]]
+CacheDir:: This directive specifies a directory where the cache file
+  (`configcache.dat`) should be written. This directive has a
+  compiled-in value which is used by default.
+
+[[config_global_flowcontrol]]
+FlowControl:: This optional boolean directive specifies whether all
+  input and processor modules should use flow control. This defaults
+  to TRUE. See the description of the module level
+  <<config_module_flowcontrol,FlowControl>> directive for more
+  information.
+
+[[config_global_group]]
+Group:: Similar to <<config_global_user,User>>, {productName} will set
+  the group ID to run under. The group can be specified by name or
+  numeric ID. This directive has no effect when running on the Windows
+  platform or with <<nxlog-processor-8>>.
+
+[[config_global_ignoreerrors]]
+IgnoreErrors:: If set to FALSE, {productName} will stop when it
+  encounters a problem with the configuration file (such as an invalid
+  module directive) or if there is any other problem which would
+  prevent all modules functioning correctly. If set to TRUE,
+  {productName} will start after logging the problem. The default
+  value is TRUE.
+
+[[config_global_logfile]]
+LogFile:: {productName} will write its internal log to this file. If
+  this directive is not specified, self logging is disabled. Note that
+  the <<im_internal,im_internal>> module can also be used to direct
+  internal log messages to files or different output destinations, but
+  this does not support log level below `INFO`. This *LogFile*
+  directive is especially useful for debugging.
+
+[[config_global_loglevel]]
+LogLevel:: This directive has five possible values: `CRITICAL`,
+  `ERROR`, `WARNING`, `INFO`, and `DEBUG`. It will set both the
+  logging level used for <<config_global_logfile,LogFile>> and the
+  standard output if {productName} is started in the foreground. The
+  default *LogLevel* is `INFO`.
+
+[[config_global_moduledir]]
+ModuleDir:: By default the {productName} binaries have a compiled-in
+  value for the directory to search for loadable modules. This can be
+  overridden with this directive. The module directory contains
+  sub-directories for each module type (extension, input, output, and
+  processor), and the module binaries are located in those.
+
+[[config_global_nocache]]
+NoCache:: Some modules save data to a cache file which is persisted
+  across a shutdown/restart. Modules such as <<im_file,im_file>> will
+  save the file position in order to continue reading from the same
+  position after a restart as before. This caching mechanism can be
+  explicitly turned off with this directive. This is mostly useful
+  with <<nxlog-processor-8>> in offline mode. If
+  this boolean directive is not specified, it defaults to FALSE
+  (caching is enabled).
+
+[[config_global_nofreeonexit]]
+NoFreeOnExit:: This directive is for debugging. When set to TRUE,
+  {productName} will not free module resources on exit, allowing
+  valgrind to show proper stack trace locations in module function
+  calls. The default value is FALSE.
+
+[[config_global_panic]]
+Panic:: A panic condition is a critical state which usually indicates
+  a bug. Assertions are used in {productName} code for checking
+  conditions where the code will not work unless the asserted
+  condition is satisfied, and for security. Failing assertions result
+  in a panic and suggest a bug in the code. A typical case is checking
+  for NULL pointers before pointer dereference. This directive can
+  take three different values: `HARD`, `SOFT`, or `OFF`. `HARD` will
+  cause an abort in case the assertion fails. This is how most C based
+  programs work. `SOFT` will cause an exception to be thrown at the
+  place of the panic/assertion. In case of NULL pointer checks this is
+  identical to a NullPointerException in Java. It is possible that
+  {productName} can recover from exceptions and can continue to
+  process log messages, or at least the other modules can. In case of
+  assertion failure the location and the condition is printed at
+  `CRITICAL` log level in `HARD` mode and `ERROR` log level in `SOFT`
+  mode. If *Panic* is set to `OFF`, the failing condition is printed
+  in the logs but the execution will continue on the normal code
+  path. Most of the time this will result in a segmentation fault or
+  other undefined behavior, though in some cases turning off a buggy
+  assertion or panic will solve the problems caused by it in
+  `HARD`/`SOFT` mode. The default value for *Panic* is `SOFT`.
+
+[[config_global_pidfile]]
+PidFile:: Under Unix operating systems, {productName} writes a PID
+  file as other system daemons do. The default PID file can be
+  overridden with this directive in case multiple daemon instances
+  need to be running. This directive has no effect when running on the
+  Windows platform or with <<nxlog-processor-8>>.
+
+[[config_global_rootdir]]
+RootDir:: {productName} will set its root directory to the value
+  specified with this directive. If
+  <<config_global_spooldir,SpoolDir>> is also set, this will be
+  relative to the value of *RootDir* (chroot() is called first). This
+  directive has no effect when running on the Windows platform or with
+  the <<nxlog-processor-8>>.
+
+[[config_global_spooldir]]
+SpoolDir:: {productName} will change its working directory to the
+  value specified with this directive. This is useful with files
+  created through relative filenames (for example, with
+  <<om_file,om_file>>) and in case of core dumps. This directive has
+  no effect with the <<nxlog-processor-8>>.
+
+[[config_global_suppressrepeatinglogs]]
+SuppressRepeatingLogs:: Under some circumstances it is possible for
+  {productName} to generate an extreme amount of internal logs
+  consisting of the same message due to an incorrect configuration or a
+  software bug. In this case, the <<config_global_logfile,LogFile>>
+  can quickly consume the available disk space. With this directive,
+  {productName} will write at most 2 lines per second if the same
+  message is generated successively, by logging "last message repeated
+  n times" messages. If this boolean directive is not specified, it
+  defaults to TRUE (suppression of repeating messages is enabled).
+
+[[config_global_threads]]
+Threads:: This directive specifies the number of worker threads
+  to use. The number of the worker threads is calculated and set to an
+  optimal value if this directive is not defined. Do not set this
+  unless you know what you are doing.
+
+[[config_global_user]]
+User:: {productName} will drop to the user specified with this
+  directive. This is useful if {productName} needs privileged access
+  to some system resources (such as kernel messages or to bind a port
+  below 1024). On Linux systems {productName} will use capabilities to
+  access these resources. In this case {productName} must be started
+  as root. The user can be specified by name or numeric ID. This
+  directive has no effect when running on the Windows platform or with
+  <<nxlog-processor-8>>.
+
+[[config_module_common]]
+=== Common Module Directives
+
+The following directives are common to all modules. The
+<<config_module_module,Module>> directive is mandatory.
+
+[[config_module_module]]
+Module::
+This mandatory directive specifies which binary should be
+loaded. The module binary has a `.so` extension on Unix and a `.dll`
+on Windows platforms and resides under the
+<<config_global_moduledir,ModuleDir>> location. Each module binary
+name is prefixed with `im_`, `pm_`, `om_`, or `xm_` (for _input_,
+_processor_, _output_, and _extension_, respectively).
+It is possible for multiple instances to use the same loadable
+binary. In this case the binary is only loaded once but instantiated
+multiple times. Different module instances may have different
+configurations.
+
+'''
+
+[[config_module_flowcontrol]]
+FlowControl::
++
+--
+This optional boolean directive specifies whether the module should use flow
+control. This can only be used in Input and Processor modules. By default,
+*FlowControl* is TRUE (enabled). This module-level directive can be used to
+override the global <<config_global_flowcontrol,FlowControl>> directive.
+
+When flow control is in effect, a module (Input or Processor) which tries to
+forward log data to the next module in the route will be suspended if the next
+module cannot accept more data. For example, if a network module (such as
+<<om_tcp,om_tcp>>) cannot forward logs because of a network error, the
+preceding module in the route will be paused. When flow control is disabled,
+the module will drop the log record if the queue of the next module in the
+route is full.
+
+Disabling flow control can be useful when multiple output modules are
+configured to store or forward log data. When flow control is enabled, the
+output modules will only process log data if all outputs are
+functional. Consider the case where log data is stored in a file using
+<<om_file,om_file>> and also forwarded over the network using
+<<om_tcp,om_tcp>>. When flow control is enabled, a network disconnection will
+make the data flow stall and log data will not be written into the local file
+either. With flow control disabled, {productName} will write log data to the
+file and will drop messages that cannot be forwarded over the network.
+
+WARNING: When using the <<im_uds,im_uds>> module to collect local Syslog
+         messages from the /dev/log Unix domain socket, *FlowControl* should
+         be disabled. Otherwise, if the corresponding Output queue becomes
+         full, the syslog() system call will block in any programs trying to
+         write to the system log and an unresponsive system may result.
+--
+
+[[config_inputtype]]
+InputType::
++
+--
+This directive specifies the name of the registered input reader function to
+be used for parsing raw events from input data. Names are treated case
+insensitively.  This directive is only available for stream oriented input
+modules: <<im_file,im_file>>, <<im_exec,im_exec>>, <<im_ssl,im_ssl>>,
+<<im_tcp,im_tcp>>, <<im_udp,im_udp>>, and <<im_uds,im_uds>>. These modules
+work by filling an input buffer with data read from the source. If the read
+operation was successful (there was data coming from the source), the module
+calls the specified callback function. If this is not explicitly specified,
+the module default will be used. Note that im_udp may only work properly if
+log messages do not span multiple packets and are within the UDP message size
+limit. Otherwise the loss of a packet may lead to parsing errors.
+
+Modules may provide custom input reader functions. Once these are registered
+into the {productName} core, the modules listed above will be capable of using
+these. This makes it easier to implement custom protocols because these can be
+developed without concern for the transport layer.
+
+The following input reader functions are provided by the {productName} core:
+
+[[config_inputtype_binary]]
+Binary:: The input is parsed in the {productName} binary format, which
+  preserves the parsed fields of the event records. The
+  <<config_inputtype_linebased,LineBased>> reader will automatically
+  detect event records in the binary {productName} format, so it is
+  only recommended to configure InputType to *Binary* if compatibility
+  with other logging software is not required.
+
+[[config_inputtype_dgram]]
+Dgram:: Once the buffer is filled with data, it is considered to be
+  one event record. This is the default for the <<im_udp,im_udp>>
+  input module, since UDP Syslog messages arrive in separate packets.
+
+[[config_inputtype_linebased]]
+LineBased:: The input is assumed to contain event records separated by
+  newlines. It can handle both CRLF (Windows) and LF (Unix)
+  line-breaks. Thus if an LF (`\n`) or CRLF (`\r\n`) is found, the
+  function assumes that it has reached the end of the event record.
+
+.TCP Input Assuming {productName} Format
+====
+This configuration explicitly specifies the <<config_inputtype_binary,Binary>>
+InputType.
+
+.nxlog.conf
+[source,config]
+----
+include::../config-examples/inputtype.conf[tags=manual_include]
+----
+====
+--
+
+[[config_outputtype]]
+OutputType::
++
+--
+This directive specifies the name of the registered output writer function to
+be used for formatting raw events when storing or forwarding output. Names are
+treated case insensitively. This directive is only available for stream
+oriented output modules: <<om_file,om_file>>, <<om_exec,om_exec>>,
+<<om_ssl,om_ssl>>, <<om_tcp,om_tcp>>, <<om_udp,om_udp>>, and
+<<om_uds,om_uds>>. These modules work by filling the output buffer with data
+to be written to the destination. The specified callback function is called
+before the write operation. If this is not explicitly specified, the module
+default will be used.
+
+Modules may provide custom output formatter functions. Once these are
+registered into the {productName} core, the modules listed above will
+be capable of using these. This makes it easier to implement custom
+protocols because these can be developed without concern for the
+transport layer.
+
+The following output writer functions are provided by the {productName} core:
+
+[[config_outputtype_binary]]
+Binary:: The output is written in the {productName} binary format
+  which preserves parsed fields of the event records.
+
+[[config_outputtype_dgram]]
+Dgram:: Once the buffer is filled with data, it is considered to be
+  one event record. This is the default for the <<om_udp,om_udp>>
+  output module, since UDP Syslog messages are sent in separate
+  packets.
+
+[[config_outputtype_linebased]]
+LineBased:: The output will contain event records separated by
+  newlines. The record terminator is CRLF (`\r\n`).
+
+.TCP Output Sending Messages in {productName} Format
+====
+This configuration explicitly specifies the
+<<config_outputtype_binary,Binary>> OutputType.
+
+.nxlog.conf
+[source,config]
+----
+include::../config-examples/outputtype.conf[tags=manual_include]
+----
+====
+--
+
+[[config_module_exec]]
+==== Exec
+
+The *Exec* directive/block contains <<lang_statements,statements>> in
+the <<lang,{productName} language>> which are executed when a module
+receives a log message. This directive is available in all
+<<modules_input,input>>, <<modules_processor,processor>>, and
+<<modules_output,output>> modules.  It is not available in most
+<<modules_extension,extension>> modules because these do not handle
+log messages directly (the <<xm_multiline,xm_multiline>> and
+<<xm_rewrite,xm_rewrite>> modules do provide *Exec* directives).
+
+.Simple Exec Statement
+====
+This statement assigns a value to the `$Hostname` field in the event
+record.
+
+----
+include::../config-examples/exec.conf[lines=4]
+----
+====
+
+Each directive must be on one line unless it contains a trailing
+backslash (`\`) character.
+
+[[exec-statement-spanning-multiple-lines]]
+.Exec Statement Spanning Multiple Lines
+====
+This <<lang_statement_if,if>> statement uses line continuation to span
+multiple lines.
+
+----
+include::../config-examples/exec.conf[lines=6..9]
+----
+====
+
+More than one *Exec* directive or block may be specified. They are
+executed in the order of appearance. Each *Exec* directive must
+contain a full statement. Therefore it is not possible to split the
+lines in the previous example into multiple *Exec* directives. It is
+only possible to split the *Exec* directive if it contains multiple
+statements.
+
+.Equivalent Use of Statements in Exec
+====
+This example shows two equivalent uses of the *Exec* directive.
+
+----
+include::../config-examples/exec.conf[lines=11..12]
+----
+
+This produces identical behavior:
+
+----
+include::../config-examples/exec.conf[lines=14..15]
+----
+====
+
+The *Exec* directive can also be used as a block. To use multiple
+statements spanning more than one line, it is recommended to use the
+`<Exec>` block instead. When using a block, it is not necessary to use
+the backslash (`\`) character for line continuation.
+
+.Using the Exec Block
+====
+This example shows two equivalent uses of *Exec*, first as a
+_directive_, then as a _block_.
+
+----
+include::../config-examples/exec.conf[lines=11..12]
+----
+
+The following *Exec* _block_ is equivalent. Notice the backslash (`\`)
+is omitted.
+
+[source,config]
+----
+include::../config-examples/exec.conf[lines=20..23]
+----
+====
+
+[[config_module_schedule]]
+==== Schedule
+
+The Schedule block can be used to execute periodic jobs, such as log
+rotation or any other task. Scheduled jobs have the same priority as
+the module. The Schedule block has the following directives:
+
+[[config_module_schedule_every]]
+Every:: In addition to the crontab format it is possible to schedule
+  execution at periodic intervals. With the crontab format it is not
+  possible to run a job every five days for example, but this
+  directive enables it in a simple way. It takes an integer value with
+  an optional unit. The unit can be one of the following: `sec`,
+  `min`, `hour`, `day`, or `week`. If the unit is not specified, the
+  value is assumed to be in seconds.
+
+[[config_module_schedule_exec]]
+Exec:: The mandatory *Exec* directive takes one or more {productName}
+  <<lang_statements,statements>>. This is the code which is actually
+  being scheduled. Multiple *Exec* directives can be specified within
+  one *Schedule* block. See the module-level
+  <<config_module_exec,Exec>> directive, this behaves the same. Note
+  that it is not possible to use <<lang_fields,fields>> in statements
+  here because execution is not triggered by log messages.
+
+[[config_module_schedule_first]]
+First:: This directive sets the first execution time. If the value is
+  in the past, the next execution time is calculated as if
+  {productName} has been running since and jobs will not be run to
+  make up for missed events in the past. The directive takes a
+  <<lang_literal_datetime,datetime>> literal value.
+
+[[config_module_schedule_when]]
+When:: This directive takes a value similar to a crontab entry: five
+  space-separated definitions for minute, hour, day, month, and
+  weekday. See the crontab(5) manual for the field definitions. It
+  supports lists as comma separated values and/or ranges. Step values
+  are also supported with the slash. Month and week days are not
+  supported, these must be defined with numeric values. The following
+  extensions are also supported:
++
+----
+@yearly        Run once a year, "0 0 1 1 *".
+@annually      (same as @yearly)
+@monthly       Run once a month, "0 0 1 * *".
+@weekly        Run once a week, "0 0 * * 0".
+@daily         Run once a day, "0 0 * * *".
+@midnight      (same as @daily)
+@hourly        Run once an hour, "0 * * * *".
+----
+
+.Scheduled Exec Statements
+====
+This example shows two scheduled <<config_module_schedule_exec,Exec>>
+statements in a <<im_tcp,im_tcp>> module instance. The first is
+executed every second, while the second uses a crontab(5) style value.
+
+.nxlog.conf
+[source,config]
+----
+include::../config-examples/schedule.conf[lines=6..-1]
+----
+====
+
+=== Route Directives
+
+The following directives can be used in Route blocks. The
+<<config_route_path,Path>> directive is mandatory.
+
+[[config_route_path]]
+Path::
++
+--
+The data flow is defined by the *Path* directive. First the instance names of
+Input modules are specified. If more than one Input reads log messages which
+feed data into the route, then these must be separated by commas. The list of
+Input modules is followed by an arrow (`\=>`). Either processor modules or
+output modules follow. Processor modules must be separated by arrows, not
+commas, because they operate in series, unlike Input and Output modules which
+work in parallel. Output modules are separated by commas. The *Path* must
+specify at least an Input and an Output. The syntax is illustrated by the
+following:
+
+`Path INPUT1[, INPUT2\...] \=> [PROCESSOR1 [\=> PROCESSOR2\...] \=>]
+OUTPUT1[, OUTPUT2\...]`
+
+[[config_example_routes]]
+.Specifying Routes
+====
+The following configuration shows modules being used in three
+different routes.
+
+.nxlog.conf
+[source,config]
+----
+include::../config-examples/routes.conf[tags=manual_include]
+----
+====
+--
+
+'''
+
+[[config_route_priority]]
+Priority::
++
+--
+This directive takes an integer value in the range of 1-100 as a parameter,
+and the default is `10`. Log messages in routes with a lower *Priority* value
+will be processed before others. Internally, this value is assigned to each
+module part of the route. The events of the modules are processed in priority
+order by the {productName} engine. Modules of a route with a lower *Priority*
+value (higher priority) will process log messages first.
+
+.Prioritized Processing
+====
+This configuration prioritizes the UDP route over the TCP route in order to
+minimize loss of UDP Syslog messages when the system is busy.
+
+.nxlog.conf
+[source,config]
+----
+include::../config-examples/route_priority.conf[tags=manual_include]
+----
+====
+--

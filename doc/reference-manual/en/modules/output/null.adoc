@@ -1,0 +1,9 @@
+[[om_null]]
+==== Null (om_null)
+
+Log messages sent to the _om_null_ module instance are discarded, this
+module does not write its output anywhere. It can be useful for
+creating a dummy route, for testing purposes, or for
+<<config_module_schedule,Scheduled>> {productName} code execution. The
+_om_null_ module accepts only the <<config_module_common,common module
+directives>>. See <<config_example_routes,this example>> for usage.

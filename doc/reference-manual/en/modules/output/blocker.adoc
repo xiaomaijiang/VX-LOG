@@ -1,0 +1,31 @@
+[[om_blocker]]
+==== Blocker (om_blocker)
+
+This module is mostly for testing purposes. It will block log messages
+in order to simulate a blocked route, like when a network transport
+output module such as <<om_tcp,om_tcp>> blocks because of a network
+problem.
+
+The <<core_proc_sleep,sleep()>> procedure can also be used for testing
+by simulating log message delays.
+
+[[om_blocker_config]]
+===== Configuration
+
+The _om_blocker_ module accepts only the <<config_module_common,common module
+directives>>.
+
+[[om_blocker_config_examples]]
+===== Examples
+
+.Testing Buffering With the om_blocker Module
+====
+Because the route in this configuration is blocked, this will test the
+behavior of the configured memory-based buffer.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_blocker.conf[lines=2..-1]
+----
+====

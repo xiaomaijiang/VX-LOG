@@ -1,0 +1,57 @@
+[[im_internal]]
+==== Internal (im_internal)
+
+{productName} produces its own logs about its operations, including
+errors and debug messages. This module makes it possible to insert
+those internal log messages into a route. Internal messages can also
+be generated from the {productName} language using the
+<<core_proc_log_info,log_info()>>,
+<<core_proc_log_warning,log_warning()>>, and
+<<core_proc_log_error,log_error()>> procedures.
+
+NOTE: Only messages with log level INFO and above are supported. Debug
+      messages are ignored due to technical reasons. For debugging
+      purposes the direct logging facility should be used: see the
+      global <<config_global_logfile,LogFile>> and
+      <<config_global_loglevel,LogLevel>> directives.
+
+WARNING: One must be careful about the use of the _im_internal_ module
+         because it is easy to cause message loops. For example,
+         consider the situation when internal log messages are sent to
+         a database. If the database is experiencing errors which
+         result in internal error messages, then these are again
+         routed to the database and this will trigger further error
+         messages, resulting in a loop. In order to avoid a resource
+         exhaustion, the _im_internal_ module will drop its messages
+         when the queue of the next module in the route is full. It is
+         recommended to always put the _im_internal_ module instance in
+         a separate route.
+
+NOTE: If internal messages are required in Syslog format, they must be
+      explicitly converted with <<pm_transformer,pm_transformer>> or
+      the <<xm_syslog_proc_to_syslog_bsd,to_syslog_bsd()>> procedure
+      of the <<xm_syslog,xm_syslog>> module, because the
+      <<im_internal_field_raw_event,$raw_event>> field is not
+      generated in Syslog format.
+
+===== Configuration
+
+The _im_internal_ module accepts only the <<config_module_common,common
+module directives>>.
+
+include::../../fields-im_internal.adoc[]
+
+[[im_internal_config_examples]]
+===== Examples
+
+.Forwarding Internal Messages over Syslog UDP
+====
+This configuration collects {productName} internal messages, adds BSD
+Syslog headers, and forwards via UDP.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_internal.conf[lines=2..-1]
+----
+====

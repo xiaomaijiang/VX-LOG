@@ -1,0 +1,38 @@
+[[xm_charconv]]
+==== Character Set Conversion (xm_charconv)
+
+This module provides tools for converting strings between different character
+sets (codepages). All the encodings available to _iconv_ are supported. See
+`iconv -l` for a list of encoding names.
+
+[[xm_charconv_config]]
+===== Configuration
+
+The _xm_charconv_ module accepts the following directives in addition to
+the <<config_module_common,common module directives>>.
+
+[[xm_charconv_config_autodetectcharsets]]
+AutodetectCharsets:: This optional directive accepts a comma-separated
+  list of character set names. When `auto` is specified as the source
+  encoding for <<xm_charconv_func_convert,convert()>> or
+  <<xm_charconv_proc_convert_fields,convert_fields()>>, these character sets
+  will be tried for conversion.
+
+include::../../apidoc-xm_charconv.adoc[]
+
+[[xm_charconv_config_examples]]
+===== Examples
+
+[[xm_charconv_example_proc]]
+.Character set auto-detection of various input encodings
+====
+This configuration shows an example of character set
+auto-detection. The input file can contain differently encoded lines,
+and the module normalizes output to UTF-8.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_charconv.conf[lines=2..-1]
+----
+====

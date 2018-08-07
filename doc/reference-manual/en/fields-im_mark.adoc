@@ -1,0 +1,56 @@
+[[im_mark_fields]]
+===== Fields
+
+The following fields are used by im_mark.
+
+[[im_mark_field_raw_event]]
+`$raw_event` (type: <<lang_type_string,string>>)::
++
+--
+The value defined by the
+	<<im_mark_config_mark,Mark>> directive, `-- MARK
+	--` by default.
+--
+
+[[im_mark_field_EventTime]]
+`$EventTime` (type: <<lang_type_datetime,datetime>>)::
++
+--
+The current time.
+--
+
+[[im_mark_field_Message]]
+`$Message` (type: <<lang_type_string,string>>)::
++
+--
+The same value as <<im_mark_field_raw_event,$raw_event>>.
+--
+
+[[im_mark_field_ProcessID]]
+`$ProcessID` (type: <<lang_type_integer,integer>>)::
++
+--
+The process ID of the {productName} process.
+--
+
+[[im_mark_field_Severity]]
+`$Severity` (type: <<lang_type_string,string>>)::
++
+--
+The severity name: `INFO`.
+--
+
+[[im_mark_field_SeverityValue]]
+`$SeverityValue` (type: <<lang_type_integer,integer>>)::
++
+--
+The INFO severity level value: `2`.
+--
+
+[[im_mark_field_SourceName]]
+`$SourceName` (type: <<lang_type_string,string>>)::
++
+--
+Set to `nxlog`.
+--
+

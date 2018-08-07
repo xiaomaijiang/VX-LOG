@@ -1,0 +1,61 @@
+$success = TRUE;
+$raw_event = "<30>Oct 12 12:49:06 host app[12345]: daemon.info";
+parse_syslog_bsd($raw_event);
+if ($SyslogFacilityValue != syslog_facility_value('DAEMON')) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value('INFO')) $success = FALSE;
+if $SyslogFacility != 'DAEMON' $success = FALSE;
+if $SyslogSeverity != 'INFO' $success = FALSE;
+if $SourceName != 'app' $success = FALSE;
+if $Hostname != 'host' $success = FALSE;
+if $ProcessID != '12345' $success = FALSE;
+if $Message != "daemon.info" $success = FALSE;
+
+$raw_event = '';
+to_syslog_bsd();
+if $raw_event != "<30>Oct 12 12:49:06 host app[12345]: daemon.info" $success = FALSE;
+$SourceName = "app 1";
+to_syslog_bsd();
+if $raw_event != "<30>Oct 12 12:49:06 host app_1[12345]: daemon.info" $success = FALSE;
+#log_info($raw_event);
+
+$SourceName = undef;
+$ProcessID = undef;
+$Hostname = undef;
+$Message = undef;
+$raw_event = "<30>Oct 12 12:49:06 host app: daemon.info";
+parse_syslog_bsd($raw_event);
+if (not defined $SourceName) or ($SourceName != 'app') $success = FALSE;
+if not defined $Hostname or $Hostname != 'host' $success = FALSE;
+if defined $ProcessID $success = FALSE;
+if not defined $Message or $Message != "daemon.info" $success = FALSE;
+
+$SourceName = undef;
+$ProcessID = undef;
+$Hostname = undef;
+$Message = undef;
+$raw_event = "<30>Oct 12 12:49:06 host app[: daemon.info";
+parse_syslog_bsd($raw_event);
+if defined $SourceName $success = FALSE;
+if not defined $Hostname or $Hostname != 'host' $success = FALSE;
+if defined $ProcessID $success = FALSE;
+if not defined $Message or $Message != "app[: daemon.info" $success = FALSE;
+
+$SourceName = undef;
+$ProcessID = undef;
+$Hostname = undef;
+$Message = undef;
+$raw_event = "<30>Oct 12 12:49:06 host app[]: daemon.info";
+parse_syslog_bsd($raw_event);
+if (not defined $SourceName) or ($SourceName != 'app') $success = FALSE;
+if not defined $Hostname or $Hostname != 'host' $success = FALSE;
+if defined $ProcessID $success = FALSE;
+if not defined $Message or $Message != "daemon.info" $success = FALSE;
+
+$EventTime = 2014-01-01 00:00:00;
+$SourceName = undef;
+$ProcessID = undef;
+$Hostname = 'testhost';
+$Message = undef;
+$raw_event = 'test message';
+to_syslog_bsd();
+if $raw_event != '<30>Jan  1 00:00:00 testhost test message' $success = FALSE;

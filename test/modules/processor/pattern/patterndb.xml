@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<patterndb>
+ <created>2010-01-01 01:02:03</created>
+ <version>42</version>
+ 
+ <group>
+   <name>ssh</name>
+   <id>42</id>
+   <matchfield>
+    <name>SourceName</name>
+    <type>exact</type>
+    <value>sshd</value>
+   </matchfield>
+
+   <pattern>
+    <id>1</id>
+    <name>ssh auth success</name>
+
+    <matchfield>
+     <name>Message</name>
+     <type>regexp</type>
+        <!-- Accepted publickey for nxlogfan from 192.168.1.1 port 4242 ssh2 -->
+     <value>^Accepted (\S+) for (\S+) from (\S+) port \d+ ssh2</value>
+     <capturedfield>
+	<name>AuthMethod</name>
+	<type>string</type>
+     </capturedfield>
+     <capturedfield>
+	<name>AccountName</name>
+	<type>string</type>
+     </capturedfield>
+     <capturedfield>
+	<name>SourceIP4Address</name>
+        <type>string</type>
+     </capturedfield>
+    </matchfield>
+
+    <set>
+     <field>
+       <name>TaxonomyStatus</name>
+       <value>success</value>
+       <type>string</type>
+     </field>
+     <field>
+       <name>TaxonomyAction</name>
+       <value>authenticate</value>
+       <type>string</type>
+     </field>
+    </set>
+   </pattern>
+
+   <pattern>
+    <id>2</id>
+    <name>ssh auth failure</name>
+
+    <matchfield>
+     <name>Message</name>
+     <type>regexp</type>
+     <value>^Failed (\S+) for invalid user (\S+) from (\S+) port \d+ ssh2</value>
+
+     <capturedfield>
+	<name>AuthMethod</name>
+	<type>string</type>
+     </capturedfield>
+     <capturedfield>
+	<name>AccountName</name>
+	<type>string</type>
+     </capturedfield>
+     <capturedfield>
+	<name>SourceIP4Address</name>
+        <type>string</type>
+     </capturedfield>
+    </matchfield>
+
+    <set>
+     <field>
+       <name>TaxonomyStatus</name>
+       <value>failure</value>
+       <type>string</type>
+     </field>
+     <field>
+       <name>TaxonomyAction</name>
+       <value>authenticate</value>
+       <type>string</type>
+     </field>
+    </set>
+
+    <exec>
+      $TestField = 'test';
+    </exec>
+    <exec>
+      $TestField = $Testfield + 'value';
+    </exec>
+   </pattern>
+
+ </group>
+
+</patterndb>

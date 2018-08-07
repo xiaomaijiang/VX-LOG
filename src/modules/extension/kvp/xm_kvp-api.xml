@@ -1,0 +1,66 @@
+<declarations>
+ <module>xm_kvp</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>parse_kvp</name>
+   <type>public</type>
+   <cb>nx_expr_proc__parse_kvp</cb>
+   <description>
+     <en>Parse the `$raw_event` field as key-value pairs and populate
+     the internal fields using the key names.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>parse_kvp</name>
+   <type>public</type>
+   <cb>nx_expr_proc__parse_kvp</cb>
+   <arg>
+    <name>source</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>Parse the given string key-value pairs and populate the
+     internal fields using the key names.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>to_kvp</name>
+   <type>public</type>
+   <cb>nx_expr_proc__to_kvp</cb>
+   <description>
+     <en>Format the internal fields as key-value pairs and put this
+     into the `$raw_event` field.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>reset_kvp</name>
+   <type>public</type>
+   <cb>nx_expr_proc__reset_kvp</cb>
+   <description>
+     <en>Reset the KVP parser so that the autodetected
+     &lt;&lt;xm_kvp_config_keyquotechar,KeyQuoteChar&gt;&gt;,
+     &lt;&lt;xm_kvp_config_valuequotechar,ValueQuoteChar&gt;&gt;,
+     &lt;&lt;xm_kvp_config_kvdelimiter,KVDelimiter&gt;&gt;, and
+     &lt;&lt;xm_kvp_config_kvpdelimiter,KVPDelimiter&gt;&gt;
+     characters can be detected again.</en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>to_kvp</name>
+   <type>public</type>
+   <cb>nx_expr_func__to_kvp</cb>
+   <rettype>string</rettype>
+   <description>
+     <en>Convert the internal fields to a single key-value pair
+     formatted string.</en>
+   </description>
+ </function>
+
+</declarations>

@@ -1,0 +1,110 @@
+<fields>
+  <module>im_internal</module>
+  <field>
+    <name>raw_event</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The string passed to the
+	&lt;&lt;core_proc_log_info,log_info()&gt;&gt; or other log_*
+	procedure.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Message</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The same value as &lt;&lt;im_internal_field_raw_event,$raw_event&gt;&gt;.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SeverityValue</name>
+    <type>integer</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	Depending on the log level of the internal message, the value
+	corresponding to "debug", "info", "warning", "error", or
+	"critical".
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Severity</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The severity name of the event.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>EventTime</name>
+    <type>datetime</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The current time.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SourceName</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	Set to `nxlog`.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>ProcessID</name>
+    <type>integer</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The process ID of the {productName} process.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Hostname</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The hostname where the log was produced.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>ErrorCode</name>
+    <type>integer</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The error number provided by the Apache portable runtime
+	library, if an error is logged resulting from an operating
+	system error.
+      </en>
+    </description>
+  </field>
+
+</fields>

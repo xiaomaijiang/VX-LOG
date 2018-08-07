@@ -1,0 +1,73 @@
+[[om_tcp]]
+==== TCP (om_tcp)
+
+This module initiates a TCP connection to a remote host and transfers
+log messages.
+Or, in <<om_tcp_config_listen,Listen>> mode, this module accepts
+client connections and multiplexes data to all connected clients.
+The TCP transfer protocol provides more reliable log
+transmission than UDP. If security is a concern, consider using the
+<<om_ssl,om_ssl>> module instead.
+
+[[om_tcp_config]]
+===== Configuration
+
+The _om_tcp_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+The <<om_tcp_config_host,Host>> directive is required.
+
+[[om_tcp_config_host]]
+Host:: The module will connect to this IP address or DNS hostname.
+  Or, if <<om_tcp_config_listen,Listen>> is set to TRUE, the module will
+  listen for connections on this address.
+
+[[om_tcp_config_port]]
+Port:: The module will connect to this port number on the remote
+  host.
+  Or, if <<om_tcp_config_listen,Listen>> is set to TRUE, the module will
+  listen for connections on this port.
+  The default is port 514.
+
+'''
+
+[[om_tcp_config_listen]]
+Listen:: If TRUE, this boolean directive specifies that _om_tcp_ should listen
+  for connections at the local address specified by the
+  <<om_tcp_config_host,Host>> directive rather than opening a connection to
+  the address. The default is FALSE: _om_tcp_ will connect to the specified
+  address.
+
+[[om_tcp_config_outputtype]]
+OutputType:: See the <<config_outputtype,OutputType>> directive in the
+  list of common module directives.
+
+[[om_tcp_config_queueinlistenmode]]
+QueueInListenMode:: If set to TRUE, this boolean directive specifies that
+  events should be queued if no client is connected. If this module's buffer
+  becomes full, the preceding module in the route will be paused or events
+  will be dropped, depending on whether
+  <<config_module_flowcontrol,FlowControl>> is enabled. This directive only
+  applies if <<om_tcp_config_listen,Listen>> is set to TRUE. The default is
+  FALSE: _om_tcp_ will discard events if no client is connected.
+
+[[om_tcp_config_reconnect]]
+Reconnect:: This directive has been deprecated as of version 2.4. The
+  module will try to reconnect automatically at increasing intervals
+  on all errors.
+
+include::../../apidoc-om_tcp.adoc[]
+
+[[om_tcp_config_examples]]
+===== Examples
+
+.Transferring Raw Logs over TCP
+====
+With this configuration, {productName} will read log messages from
+socket and forward them via TCP.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_tcp.conf[lines=2..-1]
+----
+====

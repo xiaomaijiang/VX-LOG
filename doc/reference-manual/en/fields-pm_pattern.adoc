@@ -1,0 +1,19 @@
+[[pm_pattern_fields]]
+===== Fields
+
+The following fields are used by pm_pattern.
+
+[[pm_pattern_field_PatternID]]
+`$PatternID` (type: <<lang_type_integer,integer>>)::
++
+--
+The ID number of the pattern which matched the message.
+--
+
+[[pm_pattern_field_PatternName]]
+`$PatternName` (type: <<lang_type_string,string>>)::
++
+--
+The name of the pattern which matched the message.
+--
+

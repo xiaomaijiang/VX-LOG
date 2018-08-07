@@ -1,0 +1,80 @@
+[[xm_json]]
+==== JSON (xm_json)
+
+This module provides functions and procedures for processing data
+formatted as http://json.org[JSON]. JSON can be generated from log
+data, or JSON can be parsed into
+<<lang_fields,fields>>. Unfortunately, the JSON specification does not
+define a type for datetime values so these are represented as JSON
+strings. The JSON parser in _xm_json_ can automatically detect datetime
+values, so it is not necessary to explicitly use
+<<core_func_parsedate,parsedate()>>.
+
+[[xm_json_config]]
+===== Configuration
+
+The _xm_json_ module accepts only the <<config_module_common,common
+module directives>>.
+
+include::../../apidoc-xm_json.adoc[]
+
+[[xm_json_config_examples]]
+===== Examples
+
+[[xm_json_example1]]
+.Syslog to JSON Format Conversion
+====
+The following configuration accepts Syslog (both BSD and IETF) via TCP
+and converts it to JSON.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/syslog2json.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,log]
+----
+<30>Sep 30 15:45:43 host44.localdomain.hu acpid: 1 client rule loaded
+----
+
+.Output Sample
+[source,json]
+----
+{
+  "MessageSourceAddress":"127.0.0.1",
+  "EventReceivedTime":"2011-03-08 14:22:41",
+  "SyslogFacilityValue":1,
+  "SyslogFacility":"DAEMON",
+  "SyslogSeverityValue":5,
+  "SyslogSeverity":"INFO",
+  "SeverityValue":2,
+  "Severity":"INFO",
+  "Hostname":"host44.localdomain.hu",
+  "EventTime":"2011-09-30 14:45:43",
+  "SourceName":"acpid",
+  "Message":"1 client rule loaded "
+}
+----
+====
+
+[[xm_json_example2]]
+.Converting Windows EventLog to Syslog-Encapsulated JSON
+====
+The following configuration reads the Windows EventLog and converts it
+to the BSD Syslog format, with the message part containing the fields
+in JSON.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_json.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,log]
+----
+<14>Mar  8 14:40:11 WIN-OUNNPISDHIG Service_Control_Manager: {"EventTime":"2012-03-08 14:40:11","EventTimeWritten":"2012-03-08 14:40:11","Hostname":"WIN-OUNNPISDHIG","EventType":"INFO","SeverityValue":2,"Severity":"INFO","SourceName":"Service Control Manager","FileName":"System","EventID":7036,"CategoryNumber":0,"RecordNumber":6788,"Message":"The nxlog service entered the running state. ","EventReceivedTime":"2012-03-08 14:40:12"}
+----
+====

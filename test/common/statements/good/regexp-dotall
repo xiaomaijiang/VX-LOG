@@ -1,0 +1,13 @@
+$success = TRUE;
+$value = "1\n2\r\n3";
+if $value =~ /(^.+)/s
+{
+   if $1 != $value $success = FALSE;
+}
+else $success = FALSE;
+
+if $value =~ /(^.+)/
+{
+   if $1 != "1" $success = FALSE;
+}
+else $success = FALSE;

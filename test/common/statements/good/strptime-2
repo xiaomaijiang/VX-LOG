@@ -1,0 +1,11 @@
+$success = TRUE;
+$raw_event = "2011-5-29	0:3:2 GMT	192.168.111.111	server.domain.hu	-	SERVER1	192.168.111.111	gaz.geza@domain.hu	1019	20110334667447.B484556BA21F@s23.domain.hu	0	0	36097	1	2011-5-29 0:3:2 GMT	0	Version: 6.0.3790.4675	-	 Level 2011.05.29.	vicc@napivicc.hu	-";
+if $raw_event =~ /^(\d+-\d+-\d+)\t(\d+:\d+:\d+) GMT/
+{ 
+    log_info($1);
+    $EventTime = strptime($1+' '+$2,'%Y-%m-%d %H:%M:%S');
+#    $EventTime = parsedate($1+' '+$2);
+    log_info('date_parser_test' + $EventTime);
+}
+if ($raw_event == undef or $raw_event == '') drop();
+

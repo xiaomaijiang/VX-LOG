@@ -1,0 +1,141 @@
+[[pm_transformer]]
+==== Message Format Converter (pm_transformer)
+
+The _pm_transformer_ module provides parsers for BSD Syslog, IETF
+Syslog, CSV, JSON, and XML formatted data and can also convert
+between. This module is now obsoleted by the functions and procedures
+provided by the following modules: <<xm_syslog,xm_syslog>>,
+<<xm_csv,xm_csv>>, <<xm_json,xm_json>>, and <<xm_xml,xm_xml>>. Using
+this module can be slightly faster than calling these procedures from
+an <<config_module_exec,Exec>> directive.
+
+[[pm_transformer_config]]
+===== Configuration
+
+The _pm_transformer_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>. For conversion to occur,
+the <<pm_transformer_config_inputformat,InputFormat>> and
+<<pm_transformer_config_outputformat,OutputFormat>> directives must be
+specified.
+
+[[pm_transformer_config_inputformat]]
+InputFormat:: This directive specifies the input format of the
+  `$raw_event` field so that it is further parsed into fields. If this
+  directive is not specified, no parsing will be performed.
++
+--
+[[pm_transformer_config_inputformat_csv]]
+CSV::: Input is parsed as a comma-separated list of values. See
+  <<xm_csv,xm_csv>> for similar functionality. The input fields must be
+  defined by <<pm_transformer_config_csvinputfields,CSVInputFields>>.
+
+[[pm_transformer_config_inputformat_json]]
+JSON::: Input is parsed as JSON. This does the same as the
+  <<xm_json_proc_parse_json,parse_json()>> procedure.
+
+[[pm_transformer_config_inputformat_syslog_bsd]]
+syslog_bsd::: Same as
+  <<pm_transformer_config_inputformat_syslog_rfc3164,syslog_rfc3164>>.
+
+[[pm_transformer_config_inputformat_syslog_ietf]]
+syslog_ietf::: Same as
+  <<pm_transformer_config_inputformat_syslog_rfc5424,syslog_rfc5424>>.
+
+[[pm_transformer_config_inputformat_syslog_rfc3164]]
+syslog_rfc3164::: Input is parsed in the BSD Syslog format as defined by
+  RFC 3164. This does the same as the
+  <<xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()>> procedure.
+
+[[pm_transformer_config_inputformat_syslog_rfc5424]]
+syslog_rfc5424::: Input is parsed in the IETF Syslog format as defined by
+  RFC 5424. This does the same as the
+  <<xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()>> procedure.
+
+[[pm_transformer_config_inputformat_xml]]
+XML::: Input is parsed as XML. This does the same as the
+  <<xm_xml_proc_parse_xml,parse_xml()>> procedure.
+--
+
+[[pm_transformer_config_outputformat]]
+OutputFormat:: This directive specifies the output transformation. If
+  this directive is not specified, fields are not converted and
+  `$raw_event` is left unmodified.
++
+--
+[[pm_transformer_config_outputformat_csv]]
+CSV::: Output in `$raw_event` is formatted as a comma-separated list of
+  values. See <<xm_csv,xm_csv>> for similar functionality.
+
+[[pm_transformer_config_outputformat_json]]
+JSON::: Output in `$raw_event` is formatted as JSON. This does the same as the
+  <<xm_json_proc_to_json,to_json()>> procedure.
+
+[[pm_transformer_config_outputformat_syslog_bsd]]
+syslog_bsd::: Same as
+  <<pm_transformer_config_outputformat_syslog_rfc3164,syslog_rfc3164>>.
+
+[[pm_transformer_config_outputformat_syslog_ietf]]
+syslog_ietf::: Same as
+  <<pm_transformer_config_outputformat_syslog_rfc5424,syslog_rfc5424>>.
+
+[[pm_transformer_config_outputformat_syslog_rfc3164]]
+syslog_rfc3164::: Output in `$raw_event` is formatted in the BSD Syslog format
+  as defined by RFC 3164. This does the same as the
+  <<xm_syslog_proc_to_syslog_bsd,to_syslog_bsd()>> procedure.
+
+[[pm_transformer_config_outputformat_syslog_rfc5424]]
+syslog_rfc5424::: Output in `$raw_event` is formatted in the IETF Syslog
+  format as defined by RFC 5424. This does the same as the
+  <<xm_syslog_proc_to_syslog_ietf,to_syslog_ietf()>> procedure.
+
+[[pm_transformer_config_outputformat_syslog_snare]]
+syslog_snare::: Output in `$raw_event` is formatted in the SNARE Syslog
+  format. This does the same as the
+  <<xm_syslog_proc_to_syslog_snare,to_syslog_snare()>> procedure. This should
+  be used in conjunction with the <<im_mseventlog,im_mseventlog>> or
+  <<im_msvistalog,im_msvistalog>> module to produce an output compatible with
+  https://www.intersectalliance.com/our-product/snare-agent/operating-system-agents/snare-agent-for-windows/[Snare
+  Agent for Windows].
+
+[[pm_transformer_config_outputformat_xml]]
+XML::: Output in `$raw_event` is formatted in XML. This does the same as the
+  <<xm_xml_proc_to_xml,to_xml()>> procedure.
+--
+
+'''
+
+[[pm_transformer_config_csvinputfields]]
+CSVInputFields:: This is a comma-separated list of fields which will
+  be set from the input parsed. The field names must have the dollar
+  sign (`$`) prepended.
+
+[[pm_transformer_config_csvinputfieldtypes]]
+CSVInputFieldTypes:: This optional directive specifies the list of
+  types corresponding to the field names defined in
+  <<pm_transformer_config_csvinputfields,CSVInputFields>>. If
+  specified, the number of types must match the number of field names
+  specified with
+  <<pm_transformer_config_csvinputfields,CSVInputFields>>. If this
+  directive is omitted, all fields will be stored as
+  <<lang_type_string,strings>>. This directive has no effect on the
+  fields-to-CSV conversion.
+
+[[pm_transformer_config_csvoutputfields]]
+CSVOutputFields:: This is a comma-separated list of message fields
+  which are placed in the CSV lines. The field names must have the
+  dollar sign (`$`) prepended.
+
+[[pm_transformer_config_examples]]
+===== Examples
+
+.Using the pm_transformer Module
+====
+This configuration reads BSD Syslog messages from file and writes them
+to another file in CSV format.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/pm_transformer.conf[lines=2..-1]
+----
+====

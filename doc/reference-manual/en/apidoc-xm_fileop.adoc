@@ -1,0 +1,306 @@
+[[xm_fileop_funcs]]
+===== Functions
+
+The following functions are exported by xm_fileop.
+
+[[xm_fileop_func_dir_exists]]
+<<lang_type_boolean,boolean>> `dir_exists(<<lang_type_string,string>> path)`::
++
+--
+
+Return TRUE if _path_ exists and is a directory. On error undef is
+returned and an error is logged.
+     
+--
+
+[[xm_fileop_func_dir_temp_get]]
+<<lang_type_string,string>> `dir_temp_get()`::
++
+--
+
+Return the name of a directory suitable as a temporary storage
+location.
+     
+--
+
+[[xm_fileop_func_file_basename]]
+<<lang_type_string,string>> `file_basename(<<lang_type_string,string>> file)`::
++
+--
+
+Strip the directory name from the full _file_ path. For example,
+`basename('/var/log/app.log')` will return `app.log`.
+     
+--
+
+[[xm_fileop_func_file_ctime]]
+<<lang_type_datetime,datetime>> `file_ctime(<<lang_type_string,string>> file)`::
++
+--
+
+Return the creation or inode-changed time of _file_. On error undef is
+returned and an error is logged.
+     
+--
+
+[[xm_fileop_func_file_dirname]]
+<<lang_type_string,string>> `file_dirname(<<lang_type_string,string>> file)`::
++
+--
+
+Return the directory name of the full _file_ path. For example,
+`basename('/var/log/app.log')` will return `/var/log`. Returns an
+empty string if _file_ does not contain any directory separators.
+     
+--
+
+[[xm_fileop_func_file_exists]]
+<<lang_type_boolean,boolean>> `file_exists(<<lang_type_string,string>> file)`::
++
+--
+Return TRUE if _file_ exists and is a regular file.
+--
+
+[[xm_fileop_func_file_inode]]
+<<lang_type_integer,integer>> `file_inode(<<lang_type_string,string>> file)`::
++
+--
+
+Return the inode number of _file_. On error undef is returned and an
+error is logged.
+     
+--
+
+[[xm_fileop_func_file_mtime]]
+<<lang_type_datetime,datetime>> `file_mtime(<<lang_type_string,string>> file)`::
++
+--
+
+Return the last modification time of _file_. On error undef is
+returned and an error is logged.
+     
+--
+
+[[xm_fileop_func_file_read]]
+<<lang_type_string,string>> `file_read(<<lang_type_string,string>> file)`::
++
+--
+
+Return the contents of _file_ as a string value. On error undef is
+returned and an error is logged.
+     
+--
+
+[[xm_fileop_func_file_size]]
+<<lang_type_integer,integer>> `file_size(<<lang_type_string,string>> file)`::
++
+--
+
+Return the size of _file_, in bytes. On error undef is returned and an
+error is logged.
+     
+--
+
+[[xm_fileop_func_file_type]]
+<<lang_type_string,string>> `file_type(<<lang_type_string,string>> file)`::
++
+--
+
+Return the type of _file_. The following string values can be
+returned: FILE, DIR, CHAR, BLOCK, PIPE, LINK, SOCKET, and UNKNOWN. On
+error undef is returned and an error is logged.
+     
+--
+
+
+[[xm_fileop_procs]]
+===== Procedures
+
+The following procedures are exported by xm_fileop.
+
+[[xm_fileop_proc_dir_make]]
+`dir_make(<<lang_type_string,string>> path);`::
++
+--
+
+Create a directory recursively (like `mkdir -p`). It succeeds if the
+directory already exists. An error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_dir_remove]]
+`dir_remove(<<lang_type_string,string>> file);`::
++
+--
+
+Remove the directory from the filesystem.
+     
+--
+
+[[xm_fileop_proc_file_append]]
+`file_append(<<lang_type_string,string>> src, <<lang_type_string,string>> dst);`::
++
+--
+
+Append the contents of the file _src_ to _dst_. The _dst_ file will be
+created if it does not exist. An error is logged if the operation
+fails.
+     
+--
+
+[[xm_fileop_proc_file_chmod]]
+`file_chmod(<<lang_type_string,string>> file, <<lang_type_integer,integer>> mode);`::
++
+--
+
+Change the permissions of _file_. This function is only implemented on
+POSIX systems where chmod() is available in the underlying operating
+system. An error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_file_chown]]
+`file_chown(<<lang_type_string,string>> file, <<lang_type_integer,integer>> uid, <<lang_type_integer,integer>> gid);`::
++
+--
+
+Change the ownership of _file_. This function is only implemented on
+POSIX systems where chown() is available in the underlying operating
+system. An error is logged if the operation fails.
+     
+--
+
+`file_chown(<<lang_type_string,string>> file, <<lang_type_string,string>> user, <<lang_type_string,string>> group);`::
++
+--
+
+Change the ownership of _file_. This function is only implemented on
+POSIX systems where chown() is available in the underlying operating
+system. An error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_file_copy]]
+`file_copy(<<lang_type_string,string>> src, <<lang_type_string,string>> dst);`::
++
+--
+
+Copy the file _src_ to _dst_. If file _dst_ already exists, its
+contents will be overwritten. An error is logged if the operation
+fails.
+     
+--
+
+[[xm_fileop_proc_file_cycle]]
+`file_cycle(<<lang_type_string,string>> file);`::
++
+--
+
+Do a cyclic rotation on _file_. The _file_ will be moved to
+"_file_.1". If "_file_.1" already exists it will be moved to
+"_file_.2", and so on. This procedure will reopen the LogFile if it is
+cycled. An error is logged if the operation fails.
+     
+--
+
+`file_cycle(<<lang_type_string,string>> file, <<lang_type_integer,integer>> max);`::
++
+--
+
+Do a cyclic rotation on _file_. The _file_ will be moved to
+"_file_.1". If "_file_.1" already exists it will be moved to
+"_file_.2", and so on. The _max_ argument specifies the maximum number
+of files to keep. For example, if _max_ is `5`, "_file_.6" will be
+deleted. This procedure will reopen the LogFile if it is cycled. An
+error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_file_link]]
+`file_link(<<lang_type_string,string>> src, <<lang_type_string,string>> dst);`::
++
+--
+
+Create a hardlink from _src_ to _dst_. An error is logged if the
+operation fails.
+     
+--
+
+[[xm_fileop_proc_file_remove]]
+`file_remove(<<lang_type_string,string>> file);`::
++
+--
+
+Remove _file_. It is possible to specify a wildcard in the filename
+(but not in the path). The backslash (`\`) must be escaped if used as
+the directory separator with wildcards (for example,
+`C:\\test\\*.log`). This procedure will reopen the LogFile if it is
+removed. An error is logged if the operation fails.
+     
+--
+
+`file_remove(<<lang_type_string,string>> file, <<lang_type_datetime,datetime>> older);`::
++
+--
+
+Remove _file_ if its creation time is older than the value specified
+in _older_. It is possible to specify a wildcard in the filename (but
+not in the path). The backslash (`\`) must be escaped if used as the
+directory separator with wildcards (for example,
+`C:\\test\\*.log`). This procedure will reopen the LogFile if it is
+removed. An error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_file_rename]]
+`file_rename(<<lang_type_string,string>> old, <<lang_type_string,string>> new);`::
++
+--
+
+Rename the file _old_ to _new_. If the file _new_ exists, it will be
+overwritten. Moving files or directories across devices may not be
+possible. This procedure will reopen the LogFile if it is renamed. An
+error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_file_touch]]
+`file_touch(<<lang_type_string,string>> file);`::
++
+--
+
+Update the last modification time of _file_ or create the _file_ if it
+does not exist. An error is logged if the operation fails.
+     
+--
+
+[[xm_fileop_proc_file_truncate]]
+`file_truncate(<<lang_type_string,string>> file);`::
++
+--
+
+Truncate _file_ to zero length. If the _file_ does not exist, it will
+be created. An error is logged if the operation fails.
+     
+--
+
+`file_truncate(<<lang_type_string,string>> file, <<lang_type_integer,integer>> offset);`::
++
+--
+
+Truncate _file_ to the size specified in _offset_. If the _file_ does
+not exist, it will be created. An error is logged if the operation
+fails.
+     
+--
+
+[[xm_fileop_proc_file_write]]
+`file_write(<<lang_type_string,string>> file, <<lang_type_string,string>> value);`::
++
+--
+
+Write _value_ into _file_. The _file_ will be created if it does not
+exist. An error is logged if the operation fails.
+     
+--
+

@@ -1,0 +1,25 @@
+# Test characters that need to be escaped
+$success = TRUE;
+$test = ' . ^ $ * + ? ( ) [ { \ | ';
+if $test !~ /\./ $success = FALSE;
+if $test !~ /\^/ $success = FALSE;
+if $test !~ /\$/ $success = FALSE;
+if $test !~ /\*/ $success = FALSE;
+if $test !~ /\+/ $success = FALSE;
+if $test !~ /\?/ $success = FALSE;
+if $test !~ /\(/ $success = FALSE;
+if $test !~ /\)/ $success = FALSE;
+if $test !~ /\[/ $success = FALSE;
+if $test !~ /\{/ $success = FALSE;
+if $test !~ /\\/ $success = FALSE;
+if $test !~ /\|/ $success = FALSE;
+if $test !~ /^ \. \^ \$ \* \+ \? \( \) \[ \{ \\ \| / $success = FALSE;
+
+# test escaped character-class characters
+$test = ' ^ - ] \ ';
+if $test !~ /[\^]/ $success = FALSE;
+if $test !~ /[\-]/ $success = FALSE;
+if $test !~ /[\]]/ $success = FALSE;
+if $test !~ /[\\]/ $success = FALSE;
+
+if $test =~ s/^([(\\|\/)])+//g;

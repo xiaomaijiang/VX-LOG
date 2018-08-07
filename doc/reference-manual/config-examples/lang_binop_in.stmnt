@@ -1,0 +1,1 @@
+if $EventID IN (1000, 1001, 1004, 4001) log_info("EventID found");

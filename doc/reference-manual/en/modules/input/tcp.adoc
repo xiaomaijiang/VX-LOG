@@ -1,0 +1,45 @@
+[[im_tcp]]
+==== TCP (im_tcp)
+
+This module accepts TCP connections on the configured address and
+port. It can handle multiple simultaneous connections. The TCP
+transfer protocol provides more reliable log transmission than UDP.
+If security is a concern, consider using the <<im_ssl,im_ssl>> module
+instead.
+
+NOTE: This module provides no access control. Firewall rules can be
+      used to deny connections from certain hosts.
+
+[[im_tcp_config]]
+===== Configuration
+
+The _im_tcp_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_tcp_config_host]]
+Host:: The module will accept connections on this IP address or DNS
+  hostname. For security, the default listen address is `localhost` (the
+  _localhost_ loopback address is not accessible from the outside). To receive
+  logs from remote hosts, the address specified here must be accessible. The
+  _any_ address `0.0.0.0` is commonly used here.
+
+[[im_tcp_config_port]]
+Port:: The module will listen for incoming connections on this port
+  number. The default port is 514 if this directive is not specified.
+
+include::../../fields-im_tcp.adoc[]
+
+[[im_tcp_config_examples]]
+===== Examples
+
+.Using the im_tcp Module
+====
+With this configuration, {productName} will listen for TCP connections
+on port 1514 and write received log messages to file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_tcp.conf[lines=2..-1]
+----
+====

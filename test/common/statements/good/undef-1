@@ -1,0 +1,6 @@
+$success = TRUE;
+if defined $field $success = FALSE;
+$field = "test";
+if not defined $field $success = FALSE;
+$field = undef;
+if defined $field $success = FALSE;

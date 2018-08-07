@@ -1,0 +1,226 @@
+[[xm_multiline]]
+==== Multi-Line Message Parser (xm_multiline)
+
+This module can be used for parsing log messages that span multiple lines. All
+lines in an event are joined to form a single {productName} event record,
+which can be further processed as required. Each multi-line event is detected
+through some combination of header lines, footer lines, and fixed line counts,
+as configured. The name of the _xm_multiline_ module instance is specified by
+the input module's <<config_inputtype,InputType>> directive.
+
+The module maintains a separate context for each input source, allowing
+multi-line messages to be processed correctly even when coming from multiple
+sources (specifically, multiple files or multiple network connections).
+
+WARNING: UDP is treated as a single source and all logs are processed under
+         the same context. It is therefore not recommended to use this module
+         with <<im_udp,im_udp>> if messages will be received by multiple UDP
+         senders (such as Syslog).
+
+[[xm_multiline_config]]
+===== Configuration
+
+The _xm_multiline_ module accepts the following directives in addition
+to the <<config_module_common,common module directives>>. One of
+<<xm_multiline_config_fixedlinecount,FixedLineCount>> and
+<<xm_multiline_config_headerline,HeaderLine>> must be specified.
+
+[[xm_multiline_config_fixedlinecount]]
+FixedLineCount:: This directive takes a positive integer number
+  defining the number of lines to concatenate. This is useful
+  when receiving log messages spanning a fixed number of lines. When this number
+  is defined, the module knows where the event message ends and will
+  not hold a message in the buffers until the next message arrives.
+
+[[xm_multiline_config_headerline]]
+HeaderLine:: This directive takes a <<lang_literal_string,string>> or
+  a <<lang_regexp,regular expression>> literal. This will be matched
+  against each line. When the match is successful, the successive
+  lines are appended until the next header line is read. This
+  directive is mandatory unless
+  <<xm_multiline_config_fixedlinecount,FixedLineCount>> is used.
++
+NOTE: Until a new message arrives with its associated header, the
+      previous message is stored in the buffers because the module
+      does not know where the message ends. The <<im_file,im_file>>
+      module will forcibly flush this buffer after the configured
+      <<im_file_config_pollinterval,PollInterval>> timeout. If this
+      behavior is unacceptable,
+      use an end marker with <<xm_multiline_config_endline,EndLine>>
+      or switch to an encapsulation method (such as JSON).
+
+'''
+
+[[xm_multiline_config_endline]]
+EndLine:: This is similar to the
+  <<xm_multiline_config_headerline,HeaderLine>> directive. This
+  optional directive also takes a <<lang_literal_string,string>> or a
+  <<lang_regexp,regular expression>> literal to be matched against
+  each line. When the match is successful the message is considered
+  complete.
+
+[[xm_multiline_config_exec]]
+Exec:: This directive is almost identical to the behavior of the
+  <<config_module_exec,Exec>> directive used by the other modules with
+  the following differences:
++
+--
+* each line is passed in `$raw_event` as it is read, and the line
+  terminator in included; and
+* other fields cannot be used, and captured strings can not be stored
+  as separate fields.
+--
++
+This is mostly useful for rewriting lines or filtering out certain
+lines with the <<core_proc_drop,drop()>> procedure.
+
+////
+The process_multiline() function/procedures are disabled in
+src/modules/extension/multiline/Makefile.am
+
+include::../../apidoc-xm_multiline.adoc[]
+////
+
+[[xm_multiline_config_examples]]
+===== Examples
+
+[[xm_multiline_example_5]]
+.Parsing multi-line XML logs and converting to JSON
+====
+XML is commonly formatted as indented multi-line to make it more
+readable. In the following configuration file the
+<<xm_multiline_config_headerline,HeaderLine>> and
+<<xm_multiline_config_endline,EndLine>> directives are used to parse
+the events. The events are then converted to JSON after some timestamp
+normalization.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_multiline5.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,xml]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline5.in[]
+----
+
+.Output Sample
+[source,json]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline5.out[]
+----
+====
+
+[[xm_multiline_example_4]]
+.Parsing DICOM Logs
+====
+Each log message has a header (TIMESTAMP INTEGER SEVERITY) which is
+used as the message boundary. A regular expression is defined for this
+with the <<xm_multiline_config_headerline,HeaderLine>> directive. Each
+log message is prepended with an additional line containing dashes and
+is written to a file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_multiline4.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline4.in[]
+----
+
+.Output Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline4.out[]
+----
+====
+
+[[xm_multiline_example_1]]
+.Multi-line messages with a fixed string header
+====
+The following configuration will process messages having a fixed
+string header containing dashes. Each event is then prepended with a
+hash mark (`#`) and written to a file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_multiline1.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline1.in[]
+----
+
+.Output Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline1.out[]
+----
+====
+
+[[xm_multiline_example_2]]
+.Multi-line messages with fixed line count
+====
+The following configuration will process messages having a fixed line
+count of four. Lines containing only whitespace are ignored and
+removed. Each event is then prepended with a hash mark (`#`) and
+written to a file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_multiline2.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline2.in[]
+----
+
+.Output Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline2.out[]
+----
+====
+
+[[xm_multiline_example_3]]
+.Multi-line messages with a Syslog header
+====
+Often, multi-line messages are logged over Syslog and each line is
+processed as an event, with its own Syslog header. It is commonly
+necessary to merge these back into a single event message.
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline3.in[]
+----
+
+The following configuration strips the Syslog header from the netstat
+output stored in the traditional Syslog formatted file, and each
+message is then printed again with a line of dashes used as a
+separator.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_multiline3.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/multiline/xm_multiline3.out[]
+----
+====

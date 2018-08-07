@@ -1,0 +1,30 @@
+<declarations>
+ <module>pm_buffer</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <function>
+   <name>buffer_size</name>
+   <type>private</type>
+   <cb>nx_expr_func__pm_buffer_buffer_size</cb>
+   <rettype>integer</rettype>
+   <description>
+     <en>
+Return the size of the memory buffer in bytes.
+     </en>
+   </description>
+ </function>
+
+ <function>
+   <name>buffer_count</name>
+   <type>private</type>
+   <cb>nx_expr_func__pm_buffer_buffer_count</cb>
+   <rettype>integer</rettype>
+   <description>
+     <en>
+Return the number of log messages held in the memory buffer.
+     </en>
+   </description>
+ </function>
+
+</declarations>

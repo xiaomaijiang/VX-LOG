@@ -1,0 +1,10 @@
+$success = TRUE;
+
+$raw_event = "TESTThis event is generated AAAAAAA aaaaaaaaaaaaaa aaaaaaaaaaaaaaaaa  aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa/";
+if $raw_event =~ s/This event is generated [\S\s]+$// {}
+
+if $raw_event != "TEST" {
+    $success = FALSE;
+    log_error($raw_event);
+}
+else $success = TRUE;

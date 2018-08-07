@@ -1,0 +1,87 @@
+$success = TRUE;
+file_remove("../tmp/testfile.txt*");
+
+file_touch("../tmp/testfile.txt");
+if not file_exists("../tmp/testfile.txt") $success = FALSE;
+if file_exists("../tmp/invalidfile.txt") $success = FALSE;
+
+file_rename("../tmp/testfile.txt", "../tmp/testfile2.txt");
+if not file_exists("../tmp/testfile2.txt") $success = FALSE;
+
+file_copy("../tmp/testfile2.txt", "../tmp/testfile.txt");
+if not file_exists("../tmp/testfile.txt") $success = FALSE;
+file_remove("../tmp/testfile2.txt");
+if file_exists("../tmp/testfile2.txt") $success = FALSE;
+
+file_link("../tmp/testfile.txt", "../tmp/testfile2.txt");
+if not file_exists("../tmp/testfile2.txt") $success = FALSE;
+file_remove("../tmp/testfile2.txt");
+
+file_write("../tmp/testfile.txt", "test1");
+$test = file_read("../tmp/testfile.txt");
+if not defined $test $success = FALSE;
+if $test != "test1" $success = FALSE;
+
+file_touch("../tmp/testfile2.txt");
+file_append("../tmp/testfile.txt", "../tmp/testfile2.txt");
+$test = file_read("../tmp/testfile2.txt");
+if not defined $test $success = FALSE;
+if $test != "test1" $success = FALSE;
+
+file_truncate("../tmp/testfile2.txt", 4);
+$test = file_read("../tmp/testfile2.txt");
+if not defined $test $success = FALSE;
+if $test != "test" $success = FALSE;
+
+file_truncate("../tmp/testfile2.txt");
+if file_size("../tmp/testfile2.txt") != 0 $success = FALSE;
+
+dir_make("../tmp/testdir");
+if dir_exists("../tmp/testdir") != TRUE $success = FALSE;
+if file_type("../tmp/testdir") != 'DIR' $success = FALSE;
+
+dir_remove("../tmp/testdir");
+if dir_exists("../tmp/testdir") == TRUE $success = FALSE;
+
+if file_basename("../tmp/testfile2.txt") != "testfile2.txt" $success = FALSE;
+if file_basename("testfile2.txt") != "testfile2.txt" $success = FALSE;
+if file_basename("../tmp/") != "" $success = FALSE;
+#The following works on windows only
+#if file_basename('C:\Program Files\nxlog\nxlog.log') != "nxlog.log" $success = FALSE;
+
+if file_dirname("../tmp/testfile2.txt") != "../tmp" $success = FALSE;
+if file_dirname("testfile2.txt") != "" $success = FALSE;
+
+if not defined file_mtime("../tmp/testfile2.txt") $success = FALSE;
+if not defined file_ctime("../tmp/testfile2.txt") $success = FALSE;
+
+if file_type("../tmp/testfile2.txt") != 'FILE' $success = FALSE;
+if not defined file_inode("../tmp/testfile2.txt") $success = FALSE;
+if not defined dir_temp_get() $success = FALSE;
+
+#file_touch("../tmp/testfile1.txt");
+#file_touch("../tmp/testfile42.txt");
+#file_remove("../tmp/testfile*.txt");
+
+file_touch("../tmp/testfile1.txt");
+file_touch("../tmp/testfile42.txt");
+file_remove("../tmp/testfile*.txt", now() + 1000);
+
+file_touch("../tmp/testfile.txt");
+file_cycle("../tmp/testfile.txt");
+if not file_exists("../tmp/testfile.txt.1") $success = FALSE;
+
+file_touch("../tmp/testfile.txt");
+file_cycle("../tmp/testfile.txt");
+if not file_exists("../tmp/testfile.txt.1") $success = FALSE;
+if not file_exists("../tmp/testfile.txt.2") $success = FALSE;
+
+file_touch("../tmp/testfile.txt");
+file_cycle("../tmp/testfile.txt", 2);
+if not file_exists("../tmp/testfile.txt.1") $success = FALSE;
+if not file_exists("../tmp/testfile.txt.2") $success = FALSE;
+if file_exists("../tmp/testfile.txt.3") $success = FALSE;
+if file_exists("../tmp/testfile.txt.4") $success = FALSE;
+
+file_remove("../tmp/testfile.txt*");
+

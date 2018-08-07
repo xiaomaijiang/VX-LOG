@@ -1,0 +1,32 @@
+<declarations>
+ <module>xm_perl</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>call</name>
+   <type>public</type>
+   <cb>nx_expr_proc__xm_perl_call</cb>
+   <arg>
+    <name>subroutine</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>Call the given Perl _subroutine_.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>perl_call</name>
+   <type>global</type>
+   <cb>nx_expr_proc__xm_perl_perl_call</cb>
+   <arg>
+    <name>subroutine</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>Call the given Perl _subroutine_.</en>
+   </description>
+ </procedure>
+
+</declarations>

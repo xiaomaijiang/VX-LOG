@@ -1,0 +1,8 @@
+$success = TRUE;
+$TRUE = TRUE;
+if string($TRUE) != "TRUE" $success = FALSE;
+if string(TRUE) != "TRUE" $success = FALSE;
+if string(FALSE) != "FALSE" $success = FALSE;
+if string(2010-01-02 03:04:05) != "2010-01-02 03:04:05" $success = FALSE;
+if string(1) != "1" $success = FALSE;
+if string("string") != "string" $success = FALSE;

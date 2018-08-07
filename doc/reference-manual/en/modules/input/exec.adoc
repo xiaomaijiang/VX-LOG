@@ -1,0 +1,65 @@
+[[im_exec]]
+==== Program (im_exec)
+
+This module will execute a program or script on startup and read its
+standard output. It can be used to easily integrate with exotic log
+sources which can be read only with the help of an external script or
+program.
+
+WARNING: If you are using a Perl script, consider
+         turning on _Autoflush_ with `$| = 1;`, otherwise _im_exec_
+         might not receive data immediately due to Perl's internal
+         buffering. See the http://perldoc.perl.org/perlvar.html[Perl language
+         reference] for more information about `$|`.
+
+[[im_exec_config]]
+===== Configuration
+
+The _im_exec_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>. The
+<<im_exec_config_command,Command>> directive is required.
+
+[[im_exec_config_command]]
+Command:: This mandatory directive specifies the name of the program or script
+  to be executed.
+
+'''
+
+[[im_exec_config_arg]]
+Arg:: This is an optional parameter. *Arg* can be specified multiple
+  times, once for each argument that needs to be passed to the
+  <<im_exec_config_command,Command>>. Note that specifying multiple
+  arguments with one *Arg* directive, with arguments separated by
+  spaces, will not work (the <<im_exec_config_command,Command>> would
+  receive it as one argument).
+
+[[im_exec_config_inputtype]]
+InputType:: See the <<config_inputtype,InputType>> description in the
+  global module configuration section.
+
+[[im_exec_config_restart]]
+Restart:: Restart the process if it exits. There is a one second delay
+  before it is restarted to avoid a denial-of-service when a process
+  is not behaving. Looping should be implemented in the script itself,
+  this directive is only to provide some safety against malfunctioning
+  scripts and programs. This boolean directive defaults to FALSE: the
+  <<im_exec_config_command,Command>> will not be restarted if it
+  exits.
+
+[[im_exec_config_examples]]
+===== Examples
+
+.Emulating im_file
+====
+This configuration uses the tail command to read from a file.
+
+NOTE: The <<im_file,im_file>> module should be used to read log
+      messages from files. This example only demonstrates the use of
+      the _im_exec_ module.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_exec.conf[lines=2..-1]
+----
+====

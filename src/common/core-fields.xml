@@ -1,0 +1,52 @@
+<fields>
+  <module>core</module>
+  <field>
+    <name>raw_event</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The data received from stream modules (im_file, im_tcp, etc.).
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>EventReceivedTime</name>
+    <type>datetime</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The time when the event is received. The value is not modified
+	if the field already exists.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SourceModuleName</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The name of the module instance, for input modules. The value
+	is not modified if the field already exists.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SourceModuleType</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The type of module instance (such as `im_file`), for input
+	modules. The value is not modified if the field already
+	exists.
+      </en>
+    </description>
+  </field>
+
+</fields>

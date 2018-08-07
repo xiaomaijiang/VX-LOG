@@ -1,0 +1,14 @@
+$success = TRUE;
+if "\r\n" =~ /\r\n/ 
+{
+}
+else $success = FALSE;
+if 'TEST/' =~ /^TEST\// 
+{
+}
+else $success = FALSE;
+
+if ('TEST' =~ /^TEST/)
+{
+}
+else $success = FALSE;

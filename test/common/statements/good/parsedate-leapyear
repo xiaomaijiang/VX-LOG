@@ -1,0 +1,16 @@
+$success = TRUE;
+
+# 2016 is a leap year where we have Feb 29
+# There was a leap-year bug where this was parsed as March 1.
+if (year(now()) == 2016)
+{
+    $EventTime = parsedate("Feb 29 12:49:06");
+    if year($EventTime) != 2016 $success = FALSE;
+    if day($EventTime) != 29 $success = FALSE;
+    if month($EventTime) != 2 $success = FALSE;
+}
+
+if day(2016-02-29 03:04:05) != 29 $success = FALSE;
+if month(2016-02-29 03:04:05) != 2 $success = FALSE;
+
+

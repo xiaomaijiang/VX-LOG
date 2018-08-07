@@ -1,0 +1,238 @@
+:module: xm_kvp
+[[xm_kvp]]
+==== Key-Value Pairs (xm_kvp)
+
+This module provides functions and procedures for processing data
+formatted as key-value pairs (KVPs), also commonly called "name-value
+pairs". The module can both parse and generate key-value formatted
+data.
+
+It is quite common to have a different set of keys in each log line
+when accepting key-value formatted input messages. Extracting values
+from such logs using regular expressions can be quite cumbersome. The
+_xm_kvp_ extension module automates this process.
+
+Log messages containing key-value pairs typically look like one the
+following:
+
+* `key1: value1, key2: value2, key42: value42`
+* `key1="value 1"; key2="value 2"`
+* `Application=smtp, Event='Protocol Conversation', status='Client
+  Request', ClientRequest='HELO 1.2.3.4'`
+
+Keys are usually separated from the value using an equal sign (`=`) or
+a colon (`:`); and the key-value pairs are delimited with a comma
+(`,`), a semicolon (`;`), or a space. In addition, values and keys may
+be quoted and may contain escaping. The module will try to guess the
+format, or the format can be explicitly specified using the
+configuration directives below.
+
+NOTE: It is possible to use more than one _xm_kvp_ module instance with
+      different options in order to support different KVP formats at
+      the same time. For this reason, functions and procedures
+      exported by the module are public and must be referenced by the
+      module instance name.
+
+[[xm_kvp_config]]
+===== Configuration
+
+The _xm_kvp_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[xm_kvp_config_escapechar]]
+EscapeChar:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument. It specifies the
+  character used for escaping special characters. The escape character
+  is used to prefix the following characters: the *EscapeChar* itself,
+  the <<xm_kvp_config_keyquotechar,KeyQuoteChar>>, and the
+  <<xm_kvp_config_valuequotechar,ValueQuoteChar>>. If
+  <<xm_kvp_config_escapecontrol,EscapeControl>> is TRUE, the newline
+  (`\n`), carriage return (`\r`), tab (`\t`), and backspace (`\b`)
+  control characters are also escaped. The default escape character is
+  the backslash (`\`).
+
+[[xm_kvp_config_escapecontrol]]
+EscapeControl:: If this optional boolean directive is set to TRUE,
+  control characters are also escaped. See the
+  <<xm_kvp_config_escapechar,EscapeChar>> directive for details. The
+  default is TRUE (control characters are escaped). Note that this is
+  necessary in order to support single-line KVP field lists containing
+  line-breaks.
+
+[[xm_kvp_config_keyquotechar]]
+KeyQuoteChar:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument. It specifies the
+  quote character for enclosing key names. If this directive is not
+  specified, the module will accept single-quoted keys, double-quoted
+  keys, and unquoted keys.
+
+[[xm_kvp_config_kvdelimiter]]
+KVDelimiter:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument. It specifies the
+  delimiter character used to separate the key from the value. If this
+  directive is not set and the <<xm_kvp_proc_parse_kvp,parse_kvp()>>
+  procedure is used, the module will try to guess the delimiter from
+  the following: the colon (`:`) or the equal-sign (`=`).
+
+[[xm_kvp_config_kvpdelimiter]]
+KVPDelimiter:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument. It specifies the
+  delimiter character used to separate the key-value pairs. If this
+  directive is not set and the <<xm_kvp_proc_parse_kvp,parse_kvp()>>
+  procedure is used, the module will try to guess the delimiter from
+  the following: the comma (`,`), the semicolon (`;`), or the space.
+
+[[xm_kvp_config_valuequotechar]]
+ValueQuoteChar:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument. It specifies the
+  quote character for enclosing key values. If this directive is not
+  specified, the module will accept single-quoted values,
+  double-quoted values, and unquoted values. Normally, quotation is
+  used when the value contains a space or the
+  <<xm_kvp_config_kvdelimiter,KVDelimiter>> character.
+
+[[xm_kvp_config_char]]
+====== Specifying Quote, Escape, and Delimiter Characters
+
+The <<xm_kvp_config_keyquotechar,KeyQuoteChar>>,
+<<xm_kvp_config_valuequotechar,ValueQuoteChar>>,
+<<xm_kvp_config_escapechar,EscapeChar>>,
+<<xm_kvp_config_kvdelimiter,KVDelimiter>>, and
+<<xm_kvp_config_kvpdelimiter,KVPDelimiter>> directives can be
+specified in several ways.
+
+include::../config_char.adoc[]
+
+include::../../apidoc-xm_kvp.adoc[]
+
+[[xm_kvp_config_examples]]
+===== Examples
+
+The following examples illustrate various scenarios for parsing KVPs,
+whether embedded, encapsulated (in Syslog, for example), or alone. In
+each case, the logs are converted from KVP input files to JSON output
+files, though obviously there are many other possibilities.
+
+[[xm_kvp_example_simple]]
+.Simple KVP Parsing
+====
+The following two lines of input are in a simple KVP format where each
+line consists of various keys with values assigned to them.
+
+.Input Sample
+----
+include::../../../../../test/modules/extension/kvp/xm_kvp5.in[]
+----
+
+This input can be parsed with the following configuration. The parsed
+fields can be used in {productName} expressions: a new field named
+`$Overweight` is added and set to TRUE if the conditions
+are met. Finally a few automatically added fields are removed, and the
+log is then converted to JSON.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_kvp5.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,json]
+----
+include::../../../../../test/modules/extension/kvp/xm_kvp5.out[]
+----
+====
+
+[[xm_kvp_example_cisco_acs]]
+.Parsing KVPs in Cisco ACS Syslog
+====
+The following lines are from a Cisco ACS source.
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/kvp/cisco_acs.in[]
+----
+
+These logs are in Syslog format with a set of values present in each
+record and an additional set of KVPs. The following configuration can
+be used to process this and convert it to JSON.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/cisco_acs.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,json]
+----
+include::../../../../../test/modules/extension/kvp/cisco_acs.out[]
+----
+====
+
+[[xm_kvp_example_sidewinder]]
+.Parsing KVPs in Sidewinder Logs
+====
+The following line is from a Sidewinder log source.
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/kvp/sidewinder.in[]
+----
+
+This can be parsed and converted to JSON with the following
+configuration.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/sidewinder.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,json]
+----
+include::../../../../../test/modules/extension/kvp/sidewinder.out[]
+----
+====
+
+[[xm_kvp_example_apache_url]]
+.Parsing URL Request Parameters in Apache Access Logs
+====
+URLs in HTTP requests frequently contain URL parameters which are a
+special kind of key-value pairs delimited by the ampersand (`&`). Here
+is an example of two HTTP requests logged by the Apache web server in
+the Combined Log Format.
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/kvp/apache_url.in[]
+----
+
+The following configuration file parses the access log and extracts
+all the fields. The request parameters are extracted into the
+$HTTPParams field using a regular expression, and then this field is
+further parsed using the KVP parser. At the end of the processing all
+fields are converted to KVP format using the
+<<xm_kvp_proc_to_kvp,to_kvp()>> procedure of the _kvp2_ instance.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/apache_url.conf[lines=2..-1]
+----
+
+The two request parameters _action_ and _obj_id_ then appear at the end
+of the KVP formatted lines.
+
+.Output Sample
+[source,log]
+----
+include::../../../../../test/modules/extension/kvp/apache_url.out[]
+----
+
+NOTE: URL escaping is not handled.
+====

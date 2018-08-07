@@ -1,0 +1,16 @@
+[[man_pages]]
+= Man Pages
+
+== nxlog(8)
+
+[manpage]
+--
+include::man_nxlog.adoc[tag=manual_include, leveloffset=+1]
+--
+
+== nxlog-processor(8)
+
+[manpage]
+--
+include::man_nxlog-processor.adoc[tag=manual_include, leveloffset=+1]
+--

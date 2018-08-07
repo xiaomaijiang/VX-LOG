@@ -1,0 +1,121 @@
+[[xm_syslog_funcs]]
+===== Functions
+
+The following functions are exported by xm_syslog.
+
+[[xm_syslog_func_syslog_facility_string]]
+<<lang_type_string,string>> `syslog_facility_string(<<lang_type_integer,integer>> arg)`::
++
+--
+Convert a Syslog facility value to a string.
+--
+
+[[xm_syslog_func_syslog_facility_value]]
+<<lang_type_integer,integer>> `syslog_facility_value(<<lang_type_string,string>> arg)`::
++
+--
+Convert a Syslog facility string to an integer.
+--
+
+[[xm_syslog_func_syslog_severity_string]]
+<<lang_type_string,string>> `syslog_severity_string(<<lang_type_integer,integer>> arg)`::
++
+--
+Convert a Syslog severity value to a string.
+--
+
+[[xm_syslog_func_syslog_severity_value]]
+<<lang_type_integer,integer>> `syslog_severity_value(<<lang_type_string,string>> arg)`::
++
+--
+Convert a Syslog severity string to an integer.
+--
+
+
+[[xm_syslog_procs]]
+===== Procedures
+
+The following procedures are exported by xm_syslog.
+
+[[xm_syslog_proc_parse_syslog]]
+`parse_syslog();`::
++
+--
+Parse the <<xm_syslog_field_raw_event,$raw_event>> field as either BSD Syslog (RFC 3164)
+     or IETF Syslog (RFC 5424) format.
+--
+
+`parse_syslog(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string as either BSD Syslog (RFC 3164) or IETF
+     Syslog (RFC 5424) format.
+--
+
+[[xm_syslog_proc_parse_syslog_bsd]]
+`parse_syslog_bsd();`::
++
+--
+Parse the <<xm_syslog_field_raw_event,$raw_event>> field as BSD Syslog (RFC 3164)
+     format.
+--
+
+`parse_syslog_bsd(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string as BSD Syslog (RFC 3164) format.
+--
+
+[[xm_syslog_proc_parse_syslog_ietf]]
+`parse_syslog_ietf();`::
++
+--
+Parse the <<xm_syslog_field_raw_event,$raw_event>> field as IETF Syslog (RFC 5424)
+     format.
+--
+
+`parse_syslog_ietf(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string as IETF Syslog (RFC 5424) format.
+--
+
+[[xm_syslog_proc_to_syslog_bsd]]
+`to_syslog_bsd();`::
++
+--
+Create a BSD Syslog formatted log message in <<xm_syslog_field_raw_event,$raw_event>>
+     from the fields of the event. The following fields are used to
+     construct the <<xm_syslog_field_raw_event,$raw_event>> field: <<xm_syslog_field_EventTime,$EventTime>>; <<xm_syslog_field_Hostname,$Hostname>>;
+     <<xm_syslog_field_SourceName,$SourceName>>; <<xm_syslog_field_ProcessID,$ProcessID>>; <<xm_syslog_field_Message,$Message>> or <<xm_syslog_field_raw_event,$raw_event>>;
+     <<xm_syslog_field_SyslogSeverity,$SyslogSeverity>>, <<xm_syslog_field_SyslogSeverityValue,$SyslogSeverityValue>>, <<xm_syslog_field_Severity,$Severity>>, or
+     <<xm_syslog_field_SeverityValue,$SeverityValue>>; and <<xm_syslog_field_SyslogFacility,$SyslogFacility>> or
+     <<xm_syslog_field_SyslogFacilityValue,$SyslogFacilityValue>>. If the fields are not present, a sensible
+     default is used.
+--
+
+[[xm_syslog_proc_to_syslog_ietf]]
+`to_syslog_ietf();`::
++
+--
+Create an IETF Syslog (RFC 5424) formatted log message in
+     <<xm_syslog_field_raw_event,$raw_event>> from the fields of the event. The following fields
+     are used to construct the <<xm_syslog_field_raw_event,$raw_event>> field: <<xm_syslog_field_EventTime,$EventTime>>;
+     <<xm_syslog_field_Hostname,$Hostname>>; <<xm_syslog_field_SourceName,$SourceName>>; <<xm_syslog_field_ProcessID,$ProcessID>>; <<xm_syslog_field_Message,$Message>> or
+     <<xm_syslog_field_raw_event,$raw_event>>; <<xm_syslog_field_SyslogSeverity,$SyslogSeverity>>, <<xm_syslog_field_SyslogSeverityValue,$SyslogSeverityValue>>,
+     <<xm_syslog_field_Severity,$Severity>>, or <<xm_syslog_field_SeverityValue,$SeverityValue>>; and <<xm_syslog_field_SyslogFacility,$SyslogFacility>> or
+     <<xm_syslog_field_SyslogFacilityValue,$SyslogFacilityValue>>. If the fields are not present, a sensible
+     default is used.
+--
+
+[[xm_syslog_proc_to_syslog_snare]]
+`to_syslog_snare();`::
++
+--
+Create a SNARE Syslog formatted log message in
+     <<xm_syslog_field_raw_event,$raw_event>>. The following fields are used to construct the
+     <<xm_syslog_field_raw_event,$raw_event>> field: <<xm_syslog_field_EventTime,$EventTime>>, <<xm_syslog_field_Hostname,$Hostname>>, <<xm_syslog_field_SeverityValue,$SeverityValue>>,
+     `$FileName`, `$EventID`, <<xm_syslog_field_SourceName,$SourceName>>,`$AccountName`, 
+     `$AccountType`, `$EventType`, `$Category` and <<xm_syslog_field_Message,$Message>>.
+--
+

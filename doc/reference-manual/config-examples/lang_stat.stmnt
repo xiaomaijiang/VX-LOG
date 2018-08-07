@@ -1,0 +1,8 @@
+if $Message =~ /login failure/
+{
+   # create will not do anything if the counter already exists
+   create_stat('login_failures', 'RATE', 45, $EventTime);
+   add_stat('login_failures', 1, $EventTime);
+   if get_stat('login_failures', $EventTime) >= 3
+      log_warning(">= 3 login failures detected within 45 seconds");
+}

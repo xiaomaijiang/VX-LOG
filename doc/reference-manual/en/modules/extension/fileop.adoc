@@ -1,0 +1,39 @@
+[[xm_fileop]]
+==== File Operations (xm_fileop)
+
+This module provides functions and procedures to manipulate files.
+Coupled with a <<config_module_schedule,Schedule>> block, this module
+allows various log rotation and retention policies to be implemented,
+including:
+
+* log file retention based on file size,
+* log file retention based on file age, and
+* cyclic log file rotation and retention.
+
+NOTE: Rotating, renaming, or removing the file written by
+      <<om_file,om_file>> is also supported with the help of the
+      _om_file_ <<om_file_proc_reopen,reopen()>> procedure.
+
+[[xm_fileop_config]]
+===== Configuration
+
+The _xm_fileop_ module accepts only the <<config_module_common,common
+module directives>>.
+
+include::../../apidoc-xm_fileop.adoc[]
+
+[[xm_fileop_config_examples]]
+===== Examples
+
+[[xm_fileop_example1]]
+.Rotation of the Internal LogFile
+====
+In this example, the internal log file is rotated based on time and
+size.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_fileop-logfile-rotate.conf[lines=2..-1]
+----
+====

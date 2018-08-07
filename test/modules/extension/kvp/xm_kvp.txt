@@ -1,0 +1,33 @@
+REMOVE: tmp/output
+RUNPROCESSOR: modules/extension/kvp/xm_kvp1.conf
+COMPAREFILE: tmp/output modules/extension/kvp/xm_kvp1.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/xm_kvp2.conf
+COMPAREFILE: tmp/output modules/extension/kvp/xm_kvp2.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/xm_kvp3.conf
+COMPAREFILE: tmp/output modules/extension/kvp/xm_kvp3.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/xm_kvp4.conf
+COMPAREFILE: tmp/output modules/extension/kvp/xm_kvp4.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/cisco_acs.conf
+COMPAREFILE: tmp/output modules/extension/kvp/cisco_acs.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/xm_kvp5.conf
+COMPAREFILE: tmp/output modules/extension/kvp/xm_kvp5.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/sidewinder.conf
+COMPAREFILE: tmp/output modules/extension/kvp/sidewinder.out
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/extension/kvp/apache_url.conf
+COMPAREFILE: tmp/output modules/extension/kvp/apache_url.out
+REMOVE: tmp/output
+

@@ -1,0 +1,74 @@
+[[im_internal_fields]]
+===== Fields
+
+The following fields are used by im_internal.
+
+[[im_internal_field_raw_event]]
+`$raw_event` (type: <<lang_type_string,string>>)::
++
+--
+The string passed to the
+	<<core_proc_log_info,log_info()>> or other log_*
+	procedure.
+--
+
+[[im_internal_field_ErrorCode]]
+`$ErrorCode` (type: <<lang_type_integer,integer>>)::
++
+--
+The error number provided by the Apache portable runtime
+	library, if an error is logged resulting from an operating
+	system error.
+--
+
+[[im_internal_field_EventTime]]
+`$EventTime` (type: <<lang_type_datetime,datetime>>)::
++
+--
+The current time.
+--
+
+[[im_internal_field_Hostname]]
+`$Hostname` (type: <<lang_type_string,string>>)::
++
+--
+The hostname where the log was produced.
+--
+
+[[im_internal_field_Message]]
+`$Message` (type: <<lang_type_string,string>>)::
++
+--
+The same value as <<im_internal_field_raw_event,$raw_event>>.
+--
+
+[[im_internal_field_ProcessID]]
+`$ProcessID` (type: <<lang_type_integer,integer>>)::
++
+--
+The process ID of the {productName} process.
+--
+
+[[im_internal_field_Severity]]
+`$Severity` (type: <<lang_type_string,string>>)::
++
+--
+The severity name of the event.
+--
+
+[[im_internal_field_SeverityValue]]
+`$SeverityValue` (type: <<lang_type_integer,integer>>)::
++
+--
+Depending on the log level of the internal message, the value
+	corresponding to "debug", "info", "warning", "error", or
+	"critical".
+--
+
+[[im_internal_field_SourceName]]
+`$SourceName` (type: <<lang_type_string,string>>)::
++
+--
+Set to `nxlog`.
+--
+

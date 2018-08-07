@@ -1,0 +1,17 @@
+$success = TRUE;
+if microsecond(2010-01-02 03:04:05) != 0 $success = FALSE;
+if second(2010-01-02 03:04:05) != 5 $success = FALSE;
+if minute(2010-01-02 03:04:05) != 4 $success = FALSE;
+if hour(2010-01-02 03:04:05) != 3 $success = FALSE;
+if day(2010-01-02 03:04:05) != 2 $success = FALSE;
+if month(2010-01-02 03:04:05) != 1 $success = FALSE;
+if dayofyear(2010-01-22 03:04:05) != 22 $success = FALSE;
+if dayofweek(2010-01-02 03:04:05) != 7 $success = FALSE;
+if parsedate("2010-01-02 03:04:05") != 2010-01-02 03:04:05 $success = FALSE;
+if parsedate("2010-01-02 03:04:05.000") != 2010-01-02 03:04:05 $success = FALSE;
+if parsedate("2010-10-12 12:49:06") != 2010-10-12 12:49:06 $success = FALSE;
+if parsedate("Oct 12 2010 12:49:06") != 2010-10-12 12:49:06 $success = FALSE;
+if parsedate("Oct 2 2010 12:49:06") != 2010-10-02 12:49:06 $success = FALSE;
+if parsedate("Oct  2 2010 12:49:06") != 2010-10-02 12:49:06 $success = FALSE;
+if parsedate("Oct 02 2010 12:49:06") != 2010-10-02 12:49:06 $success = FALSE;
+if defined(parsedate("sadfdsfds")) $success = FALSE;

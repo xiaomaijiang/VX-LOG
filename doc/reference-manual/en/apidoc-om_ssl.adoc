@@ -1,0 +1,15 @@
+[[om_ssl_procs]]
+===== Procedures
+
+The following procedures are exported by om_ssl.
+
+[[om_ssl_proc_reconnect]]
+`reconnect();`::
++
+--
+
+Force a reconnection. This can be used from a Schedule block to
+periodically reconnect to the server.
+     
+--
+

@@ -1,0 +1,1 @@
+if 9 / 4 == 2 log_info("9 divided by 4 is 2");

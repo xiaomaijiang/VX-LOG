@@ -1,0 +1,56 @@
+<declarations>
+ <module>xm_json</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>parse_json</name>
+   <type>global</type>
+   <cb>nx_expr_proc__parse_json</cb>
+   <description>
+     <en>Parse the `$raw_event` field as JSON input.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>parse_json</name>
+   <type>global</type>
+   <cb>nx_expr_proc__parse_json</cb>
+   <arg>
+    <name>source</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>Parse the given string as JSON format.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>to_json</name>
+   <type>global</type>
+   <cb>nx_expr_proc__to_json</cb>
+   <description>
+     <en>
+Convert the fields to JSON and put this into the `$raw_event`
+field. The `$raw_event` field and any field having a leading dot (`.`)
+or underscore (`_`) will be automatically excluded.
+     </en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>to_json</name>
+   <type>global</type>
+   <cb>nx_expr_func__to_json</cb>
+   <rettype>string</rettype>
+   <description>
+     <en>
+Convert the fields to JSON and return this as a string value.  The
+`$raw_event` field and any field having a leading dot (`.`) or
+underscore (`_`) will be automatically excluded.
+     </en>
+   </description>
+ </function>
+
+</declarations>

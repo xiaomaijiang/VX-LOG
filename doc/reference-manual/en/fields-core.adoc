@@ -1,0 +1,37 @@
+[[core_fields]]
+==== Fields
+
+The following fields are used by core.
+
+[[core_field_raw_event]]
+`$raw_event` (type: <<lang_type_string,string>>)::
++
+--
+The data received from stream modules (im_file, im_tcp, etc.).
+--
+
+[[core_field_EventReceivedTime]]
+`$EventReceivedTime` (type: <<lang_type_datetime,datetime>>)::
++
+--
+The time when the event is received. The value is not modified
+	if the field already exists.
+--
+
+[[core_field_SourceModuleName]]
+`$SourceModuleName` (type: <<lang_type_string,string>>)::
++
+--
+The name of the module instance, for input modules. The value
+	is not modified if the field already exists.
+--
+
+[[core_field_SourceModuleType]]
+`$SourceModuleType` (type: <<lang_type_string,string>>)::
++
+--
+The type of module instance (such as `im_file`), for input
+	modules. The value is not modified if the field already
+	exists.
+--
+

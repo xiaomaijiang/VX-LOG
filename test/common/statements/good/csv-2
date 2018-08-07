@@ -1,0 +1,16 @@
+$success = TRUE;
+
+$raw_event = '"one", twenty ""two"", "thirty ""three""", forty "four"';
+csv->parse_csv();
+#log_info($one);
+#log_info($two);
+#log_info($three);
+
+if not defined $one $success = FALSE;
+if $one != 'one' $success = FALSE;
+if not defined $two $success = FALSE;
+if $two != 'twenty ""two""' $success = FALSE;
+if not defined $three $success = FALSE;
+if $three != 'thirty "three"' $success = FALSE;
+if not defined $four $success = FALSE;
+if $four != 'forty "four"' $success = FALSE;

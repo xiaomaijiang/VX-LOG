@@ -1,0 +1,11 @@
+[[pm_null]]
+==== Null (pm_null)
+
+This module does not do any special processing, so basically it does
+nothing. Yet it can be used with the <<config_module_exec,Exec>> and
+<<config_module_schedule,Schedule>> directives, like any other module.
+
+The _pm_null_ module accepts only the <<config_module_common,common
+module directives>>.
+
+See <<xm_syslog_example2,this example>> for usage.

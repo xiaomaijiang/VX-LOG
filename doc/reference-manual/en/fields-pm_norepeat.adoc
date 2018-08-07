@@ -1,0 +1,56 @@
+[[pm_norepeat_fields]]
+===== Fields
+
+The following fields are used by pm_norepeat.
+
+[[pm_norepeat_field_raw_event]]
+`$raw_event` (type: <<lang_type_string,string>>)::
++
+--
+A string containing the `last message repeated n times`
+	message.
+--
+
+[[pm_norepeat_field_EventTime]]
+`$EventTime` (type: <<lang_type_datetime,datetime>>)::
++
+--
+The time of the last event or the current time if EventTime
+	was not present in the last event.
+--
+
+[[pm_norepeat_field_Message]]
+`$Message` (type: <<lang_type_string,string>>)::
++
+--
+The same value as <<pm_norepeat_field_raw_event,$raw_event>>.
+--
+
+[[pm_norepeat_field_ProcessID]]
+`$ProcessID` (type: <<lang_type_integer,integer>>)::
++
+--
+The process ID of the {productName} process.
+--
+
+[[pm_norepeat_field_Severity]]
+`$Severity` (type: <<lang_type_string,string>>)::
++
+--
+The severity name: `INFO`.
+--
+
+[[pm_norepeat_field_SeverityValue]]
+`$SeverityValue` (type: <<lang_type_integer,integer>>)::
++
+--
+The INFO severity level value: `2`.
+--
+
+[[pm_norepeat_field_SourceName]]
+`$SourceName` (type: <<lang_type_string,string>>)::
++
+--
+Set to `nxlog`.
+--
+

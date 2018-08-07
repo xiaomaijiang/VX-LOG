@@ -1,0 +1,79 @@
+[[pm_buffer]]
+==== Buffer (pm_buffer)
+
+Messages received over UDP may be dropped by the operating system if
+packets are not read from the message buffer fast enough. Some logging
+subsystems using a small circular buffer can overwrite old logs in the
+buffer if it is not read, also resulting in loss of log
+data. Buffering can help in such situations.
+
+The _pm_buffer_ module supports disk- and memory-based log message
+buffering. If both are required, multiple _pm_buffer_ instances can be
+used with different settings. Because a memory buffer can be faster,
+though its size is limited, combining memory and disk based buffering
+can be a good idea if buffering is frequently used.
+
+The disk-based buffering mode stores the log message data in chunks.
+When all the data is successfully forwarded from a chunk, it is then
+deleted in order to save disk space.
+
+NOTE: Using _pm_buffer_ is only recommended when there is a chance of
+      message loss. The built-in flow control in {productName} ensures
+      that messages will not be read by the input module until the
+      output side can send, store, or forward. When reading from files
+      (with <<im_file,im_file>>) or the Windows EventLog (with
+      <<im_mseventlog,im_mseventlog>> or
+      <<im_msvistalog,im_msvistalog>>) it is rarely necessary to use
+      the _pm_buffer_ module unless log rotation is used. During a
+      rotation, there is a possibility of dropping some data while the
+      output module (<<im_tcp,im_tcp>>, for example) is being blocked.
+
+[[pm_buffer_config]]
+===== Configuration
+
+The _pm_buffer_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.  The
+<<pm_buffer_config_maxsize,MaxSize>> and <<pm_buffer_config_type,Type>>
+directives are required.
+
+[[pm_buffer_config_maxsize]]
+MaxSize:: This mandatory directive specifies the size of the buffer in
+  kilobytes.
+
+[[pm_buffer_config_type]]
+Type:: This directive can be set to either `Mem` or `Disk` to select
+  memory- or disk-based buffering.
+
+'''
+
+[[pm_buffer_config_directory]]
+Directory:: This directory will be used to store the disk buffer file
+  chunks. This is only valid if <<pm_buffer_config_type,Type>> is set
+  to `Disk`.
+
+[[pm_buffer_config_warnlimit]]
+WarnLimit:: This directive specifies an optional limit, smaller than
+  <<pm_buffer_config_maxsize,MaxSize>>, which will trigger a warning
+  message when reached. The log message will not be generated again
+  until the buffer size drops to half of *WarnLimit* and reaches it
+  again in order to protect against a warning message flood.
+
+include::../../apidoc-pm_buffer.adoc[]
+
+[[pm_buffer_config_examples]]
+===== Examples
+
+.Using a Memory Buffer to Protect Against UDP Message Loss
+====
+This configuration accepts log messages via UDP and forwards them
+via TCP. An intermediate memory-based buffer allows the
+<<im_udp,im_udp>> module instance to continue accepting messages even
+if the <<om_tcp,om_tcp>> output stops working (caused by downtime of
+the remote host or network issues, for example).
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/pm_buffer.conf[lines=2..-1]
+----
+====

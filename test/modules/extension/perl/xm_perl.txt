@@ -1,0 +1,6 @@
+REMOVE: tmp/output
+RUNPROCESSOR: modules/extension/perl/xm_perl.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+
+

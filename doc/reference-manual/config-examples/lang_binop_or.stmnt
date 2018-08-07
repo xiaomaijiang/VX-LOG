@@ -1,0 +1,1 @@
+if $SeverityValue == 1 or $SeverityValue == 2 log_info("1 or 2");

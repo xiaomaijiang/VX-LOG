@@ -1,0 +1,153 @@
+:module: xm_csv
+[[xm_csv]]
+==== CSV (xm_csv)
+
+This module provides functions and procedures for working with data
+formatted as comma-separated values (CSV). CSV input can be parsed
+into <<lang_fields,fields>> and CSV output can be generated.
+
+The <<pm_transformer,pm_transformer>> module provides a simple
+interface to parse and generate CSV format, but the _xm_csv_ module
+exports an API that can be used to solve more complex tasks involving
+CSV formatted data.
+
+NOTE: It is possible to use more than one _xm_csv_ module instance with
+      different options in order to support different CSV formats at
+      the same time. For this reason, functions and procedures
+      exported by the module are public and must be referenced by the
+      module instance name.
+
+[[xm_csv_config]]
+===== Configuration
+
+The _xm_csv_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>. The
+<<xm_csv_config_fields,Fields>> directive is required.
+
+[[xm_csv_config_fields]]
+Fields:: This mandatory directive accepts a comma-separated list of
+  fields which will be filled from the input parsed. Field names with
+  or without the dollar sign (`$`) are accepted. The fields will be
+  stored as <<lang_type_string,strings>> unless their types are
+  explicitly specified with the
+  <<xm_csv_config_fieldtypes,FieldTypes>> directive.
+
+'''
+
+[[xm_csv_config_delimiter]]
+Delimiter:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument to specify the
+  delimiter character used to separate fields. The default delimiter
+  character is the comma (`,`). Note that there is no delimiter after
+  the last field.
+
+[[xm_csv_config_escapechar]]
+EscapeChar:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument to specify the escape
+  character used to escape special characters. The escape character is
+  used to prefix the following characters: the escape character
+  itself, the <<xm_csv_config_quotechar,quote character>>, and the
+  <<xm_csv_config_delimiter,delimiter character>>. If
+  <<xm_csv_config_escapecontrol,EscapeControl>> is TRUE, the newline
+  (`\n`), carriage return (`\r`), tab (`\t`), and backspace (`\b`)
+  control characters are also escaped. The default escape character is
+  the backslash character (`\`).
+
+[[xm_csv_config_escapecontrol]]
+EscapeControl:: If this optional boolean directive is set to TRUE,
+  control characters are also escaped. See the
+  <<xm_csv_config_escapechar,EscapeChar>> directive for details. The
+  default is TRUE: control characters are escaped. Note that this is
+  necessary to allow single line CSV field lists which contain
+  line-breaks.
+
+[[xm_csv_config_fieldtypes]]
+FieldTypes:: This optional directive specifies the list of types
+  corresponding to the field names defined in
+  <<xm_csv_config_fields,Fields>>. If specified, the number of types
+  must match the number of field names specified with
+  <<xm_csv_config_fields,Fields>>. If this directive is omitted, all
+  fields will be stored as <<lang_type_string,strings>>. This
+  directive has no effect on the fields-to-CSV conversion.
+
+[[xm_csv_config_quotechar]]
+QuoteChar:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument to specify the quote
+  character used to enclose fields. If
+  <<xm_csv_config_quoteoptional,QuoteOptional>> is TRUE, then only
+  <<lang_type_string,string>> type fields are quoted. The default is
+  the double-quote character (`"`).
+
+[[xm_csv_config_quotemethod]]
+QuoteMethod:: This optional directive can take the following values:
++
+--
+  All::: All fields will be quoted.
+  None::: Nothing will be quoted. This can be problematic if a field
+    value (typically text that can contain any character) contains the
+    delimiter character. Make sure that this is escaped or replaced
+    with something else.
+  String::: Only <<lang_type_string,string>> type fields will be
+    quoted. This has the same effect as
+    <<xm_csv_config_quoteoptional,QuoteOptional>> set to TRUE and is
+    the default behavior if the *QuoteMethod* directive is not
+    specified.
+--
++
+Note that this directive only effects CSV generation when using
+<<xm_csv_func_to_csv,to_csv()>>. The CSV parser can automatically
+detect the quotation.
+
+[[xm_csv_config_quoteoptional]]
+QuoteOptional:: This directive has been deprecated in favor of
+  <<xm_csv_config_quotemethod,QuoteMethod>>, which should be used
+  instead.
+
+[[xm_csv_config_undefvalue]]
+UndefValue:: This optional directive specifies a string which will be
+  treated as an undefined value. This is particularly useful when
+  parsing the W3C format where the dash (`-`) marks an omitted field.
+
+[[xm_csv_config_char]]
+====== Specifying Quote, Escape, and Delimiter Characters
+
+The <<xm_csv_config_quotechar,QuoteChar>>,
+<<xm_csv_config_escapechar,EscapeChar>>, and
+<<xm_csv_config_delimiter,Delimiter>> directives can be specified in
+several ways.
+
+include::../config_char.adoc[]
+
+include::../../apidoc-xm_csv.adoc[]
+
+[[xm_csv_config_examples]]
+===== Examples
+
+[[xm_csv_example1]]
+.Complex CSV Format Conversion
+====
+This example shows that the _xm_csv_ module can not only parse and
+create CSV formatted input and output, but with multiple _xm_csv_
+modules it is also possible to reorder, add, remove, or modify fields
+before outputting to a different CSV format.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_csv.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,csv]
+----
+1, "John K.", 42
+2, "Joe F.", 43
+----
+
+.Output Sample
+[source,csv]
+----
+1;42;"John K.";2011-01-15 23:45:20
+2;43;"Joe F.";2011-01-15 23:45:20
+----
+====

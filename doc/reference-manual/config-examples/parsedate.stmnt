@@ -1,0 +1,7 @@
+$raw_event = "2020-02-03 04:05:06 ......";
+if $raw_event =~ /^(\S+)\s+(\S+)/
+{
+   $EventTime = parsedate($1 + " " + $2);
+}
+# making sure $EventTime doesn't stay empty
+if not defined($EventTime) $EventTime = now();

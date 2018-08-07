@@ -1,0 +1,2 @@
+$success = TRUE;
+if 4 / 2 != 2 $success = FALSE;

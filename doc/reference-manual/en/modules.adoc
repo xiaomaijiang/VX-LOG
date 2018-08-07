@@ -1,0 +1,118 @@
+[[modules_extension]]
+=== Extension Modules
+
+Extension modules do not process log messages directly, and for this
+reason their instances cannot be part of a route.
+These modules enhance the features of {productName} in various ways,
+such as exporting new functions and procedures or registering
+additional I/O reader and writer functions (to be used with modules
+supporting the <<config_inputtype,InputType>> and
+<<config_outputtype,OutputType>> directives). There are many ways to
+hook an extension module into the {productName} engine, as the
+following modules illustrate.
+
+include::modules/extension/charconv.adoc[]
+
+include::modules/extension/csv.adoc[]
+
+include::modules/extension/exec.adoc[]
+
+include::modules/extension/fileop.adoc[]
+
+include::modules/extension/gelf.adoc[]
+
+include::modules/extension/json.adoc[]
+
+include::modules/extension/kvp.adoc[]
+
+include::modules/extension/multiline.adoc[]
+
+include::modules/extension/perl.adoc[]
+
+include::modules/extension/syslog.adoc[]
+
+include::modules/extension/wtmp.adoc[]
+
+include::modules/extension/xml.adoc[]
+
+[[modules_input]]
+=== Input Modules
+
+Input modules are responsible for collecting event log data from
+various sources.
+
+Each module provides a set of fields for each log message, these are
+documented in the corresponding sections below. The {productName} core
+will add to this set the fields listed in the following section.
+
+include::fields-core.adoc[]
+
+include::modules/input/dbi.adoc[]
+
+include::modules/input/exec.adoc[]
+
+include::modules/input/file.adoc[]
+
+include::modules/input/internal.adoc[]
+
+include::modules/input/kernel.adoc[]
+
+include::modules/input/mark.adoc[]
+
+include::modules/input/null.adoc[]
+
+include::modules/input/ssl.adoc[]
+
+include::modules/input/tcp.adoc[]
+
+include::modules/input/udp.adoc[]
+
+include::modules/input/uds.adoc[]
+
+[[modules_processor]]
+=== Processor Modules
+
+Processor modules can be used to process log messages in the log
+message path between configured Input and Output modules.
+
+include::modules/processor/blocker.adoc[]
+
+include::modules/processor/buffer.adoc[]
+
+include::modules/processor/evcorr.adoc[]
+
+include::modules/processor/filter.adoc[]
+
+include::modules/processor/norepeat.adoc[]
+
+include::modules/processor/null.adoc[]
+
+include::modules/processor/pattern.adoc[]
+
+include::modules/processor/transformer.adoc[]
+
+[[modules_output]]
+=== Output Modules
+
+Output modules are responsible for writing event log data to various
+destinations.
+
+include::modules/output/blocker.adoc[]
+
+include::modules/output/dbi.adoc[]
+
+include::modules/output/exec.adoc[]
+
+include::modules/output/file.adoc[]
+
+include::modules/output/http.adoc[]
+
+include::modules/output/null.adoc[]
+
+include::modules/output/ssl.adoc[]
+
+include::modules/output/tcp.adoc[]
+
+include::modules/output/udp.adoc[]
+
+include::modules/output/uds.adoc[]

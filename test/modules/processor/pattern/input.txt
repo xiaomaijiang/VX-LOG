@@ -1,0 +1,2 @@
+<38>Nov 21 11:40:27 log4ensics sshd[26459]: Accepted publickey for log4ensics from 178.21.50.190 port 41193 ssh2
+<38>Nov 21 11:40:27 log4ensics sshd[26459]: Failed none for invalid user hacker from 178.21.50.190 port 36900 ssh2

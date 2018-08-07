@@ -1,0 +1,25 @@
+<declarations>
+ <module>om_http</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>set_http_request_path</name>
+   <type>private</type>
+   <cb>nx_expr_proc__om_http_set_http_request_path</cb>
+   <arg>
+    <name>path</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>
+Set the _path_ in the HTTP request to the string specified. This is
+useful if the URL is dynamic and parameters such as event ID need to
+be included in the URL. Note that the string must be URL encoded if it
+contains reserved characters.
+     </en>
+   </description>
+ </procedure>
+
+
+</declarations>

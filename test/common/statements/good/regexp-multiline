@@ -1,0 +1,15 @@
+$success = TRUE;
+$value = "1\n2\r\n3";
+
+# dot does not match \n and the whole string is treated as a single line
+if $value =~ /^(.+)$/
+{
+   $success = FALSE;
+}
+
+if $value =~ /^(.+)$/m
+{
+   if $1 != "1" $success = FALSE;
+}
+else $success = FALSE;
+

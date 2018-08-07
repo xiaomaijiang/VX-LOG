@@ -1,0 +1,12 @@
+TRUNCATE: tmp/input
+REMOVE: tmp/output1
+REMOVE: tmp/output2
+STARTDAEMON: modules/core/test1.conf
+WRITEFILE: file:tmp/input test.log
+STOPDAEMON: modules/core/test1.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output1 test.log
+COMPAREFILE: tmp/output2 test.log
+REMOVE: tmp/output1
+REMOVE: tmp/output2
+

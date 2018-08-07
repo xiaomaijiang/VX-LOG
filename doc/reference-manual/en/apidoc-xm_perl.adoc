@@ -1,0 +1,19 @@
+[[xm_perl_procs]]
+===== Procedures
+
+The following procedures are exported by xm_perl.
+
+[[xm_perl_proc_call]]
+`call(<<lang_type_string,string>> subroutine);`::
++
+--
+Call the given Perl _subroutine_.
+--
+
+[[xm_perl_proc_perl_call]]
+`perl_call(<<lang_type_string,string>> subroutine);`::
++
+--
+Call the given Perl _subroutine_.
+--
+

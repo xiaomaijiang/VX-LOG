@@ -1,0 +1,5 @@
+if now() > 2000-01-01 00:00:00
+{
+   log_info("we are in the");
+   log_info("21st century");
+}

@@ -1,0 +1,58 @@
+Source: nxlog-ce
+Section: admin
+Priority: optional
+Maintainer: Botond Botyanszki <boti@nxlog.org>
+Build-Depends: debhelper (>= 7.0.50), automake, libapr1-dev, libpcre3-dev, libssl-dev, libdbi-dev, libcap-dev, libexpat1-dev, libtool, libperl-dev, autotools-dev, xmlto, dblatex
+Standards-Version: 3.9.4
+
+Package: nxlog-ce
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, adduser, openssl, lsb-base
+Suggests: libdbd-mysql, libdbd-pgsql, libdbd-sqlite3, libdbd-freetds
+Description: Modular, multi-threaded, high-performance log management solution
+ In concept nxlog is similar to syslog-ng or rsyslog but it is not limited to
+ unix and syslog only. It supports different platforms, log sources and formats
+ so nxlog can be an ideal choice to implement a centralized logging system.
+ .
+ It can collect logs from files in various formats, receive logs from the
+ network remotely over UDP, TCP or TLS/SSL on all supported platforms. It
+ supports platform specific sources such as the Windows Eventlog, Linux kernel
+ logs, Android device logs, local syslog etc. Writing and reading logs to/from
+ databases is also supported for many database servers. The collected logs can
+ be stored into files, databases or forwarded to a remote log server using
+ various protocols. The old BSD Syslog and the newer IETF syslog standard (RFC
+ 3164 and RFC 5424-5426) is fully supported by nxlog in addition to other
+ custom formats. A key concept in nxlog is to be able to handle and preserve
+ structured logs so there is no need to convert everything to syslog and then
+ parse these logs again at the other side. It has powerful message filtering,
+ log rewrite and conversion capabilities. Using a lightweight, modular and
+ multithreaded architecture which can scale, nxlog can process hundreds of
+ thousands of events per second.
+ .
+  * Multi-platform - support for Unix (Linux, HPUX, BSD), Windows, Android
+  * Modular architecture through dynamically loadable plugins
+  * Scalable, high-performance I/O - collect messages at blazing speeds (can
+    achieve above 500k EPS)
+  * Message buffering and prioritization - no lost or dropped messages
+  * Simple configuration format with a powerful language similar to Perl
+  * Scheduled tasks and built-in log rotation
+  * Support for different formats such as Syslog, CSV, GELF, JSON, XML,
+    Windows EventLog and even custom formats
+  * Offline processing mode for post processing, conversion or transfer
+  * Event classification and pattern matching
+  * Log message rewrite, conversion between different formats
+  * Secure network transport over SSL
+  * Internationalization for supporting different character sets and on the
+    fly auto-detection of encodings
+
+Package: nxlog-ce-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, nxlog-ce (= ${binary:Version})
+Description: Modular, high-performance log management solution (debug symbols)
+ In concept nxlog is similar to syslog-ng or rsyslog but it is not limited to
+ unix and syslog only. It supports different platforms, log sources and formats
+ so nxlog can be an ideal choice to implement a centralized logging system.
+ .
+ This package includes the debugging symbols for nxlog-ce.

@@ -1,0 +1,2 @@
+if defined undef log_info("never printed");
+if not defined($EventTime) $EventTime = now();

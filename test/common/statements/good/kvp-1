@@ -1,0 +1,6 @@
+$success = TRUE;
+$raw_event = "key1:value1 key2:value2 key3:value3";
+kvp->parse_kvp();
+if $key1 != 'value1' $success = FALSE;
+if $key2 != 'value2' $success = FALSE;
+if $key3 != 'value3' $success = FALSE;

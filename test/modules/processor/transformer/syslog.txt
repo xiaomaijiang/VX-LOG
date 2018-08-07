@@ -1,0 +1,3 @@
+<0>2010-10-12 12:49:06 host app[12345]: kernel message
+<30>2010-10-12 12:49:06 host app[12345]: daemon.info
+<27>2010-10-12 12:49:06 host app[12345]: daemon.error

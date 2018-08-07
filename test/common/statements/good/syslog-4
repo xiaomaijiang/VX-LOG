@@ -1,0 +1,10 @@
+$success = TRUE;
+$raw_event = "<78>Feb 1 16:00:01 log4ensics64 /USR/SBIN/CRON[6695]: (CRON) error (grandchild #6696 failed with exit status 22)";
+parse_syslog_bsd($raw_event);
+
+if ($SyslogFacilityValue != syslog_facility_value('CRON')) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value('INFO')) $success = FALSE;
+
+if not defined $SourceName $success = FALSE;
+if $SourceName != '/USR/SBIN/CRON' $success = FALSE;
+if hour($EventTime) != 16 $success = FALSE;

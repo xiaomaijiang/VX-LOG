@@ -1,0 +1,13 @@
+"user","notice","Feb 15 16:17:01","mephisto","CRON","7344","pam_unix(cron:session): session closed for user root"
+"user","","Feb 15 16:17:01","mephisto","CRON","7344","pam_unix(cron:session): session closed for user root"
+"user",,"Feb 15 16:17:01","mephisto","CRON","7344","pam_unix(cron:session): session closed for user root"
+"user","notice","","mephisto","CRON","7344","pam_unix(cron:session): session closed for user root"
+"user","notice",,"mephisto","CRON","7344","pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01","","CRON","7344","pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01",,"CRON","7344","pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01","mephisto","","7344","pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01","mephisto",,"7344","pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01","mephisto","CRON","","pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01","mephisto","CRON",,"pam_unix(cron:session): session closed for user root"
+"user","notice","Feb 15 16:17:01","mephisto","CRON","7344",""
+"user","notice","Feb 15 16:17:01","mephisto","CRON","7344",

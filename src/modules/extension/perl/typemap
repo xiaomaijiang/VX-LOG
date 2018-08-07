@@ -1,0 +1,11 @@
+TYPEMAP
+
+nx_logdata_t *		LOGDATA_OBJ
+
+INPUT
+LOGDATA_OBJ
+    $var = (nx_logdata_t *)SvIV($arg);
+
+OUTPUT
+LOGDATA_OBJ
+    sv_setiv($arg, (I32) $var);

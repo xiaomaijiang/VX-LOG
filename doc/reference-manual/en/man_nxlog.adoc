@@ -1,0 +1,135 @@
+include::attributes.adoc[]
+
+= nxlog(8)
+:doctype: manpage
+:mansource: {productName} {productVersion}
+// Some content is included in the Manual and in man_nxlog-processor.adoc
+// tag::manual_include[]
+
+== NAME
+
+nxlog - collects, processes, converts, and forwards event logs in many
+different formats
+
+== SYNOPSIS
+
+*nxlog* [-c _conffile_] [-f]
+
+*nxlog* [-c _conffile_] -v
+
+*nxlog* [-r | -s]
+
+== DESCRIPTION
+
+NXLog can process high volumes of event logs from many different
+sources. Supported types of log processing include rewriting, correlating,
+alerting, filtering, and pattern matching. Additional features include
+scheduling, log file rotation, buffering, and prioritized processing. After
+processing, {productName} can store or forward event logs in any of many
+supported formats. Inputs, outputs, and processing are implemented with a
+modular architecture and a powerful configuration language.
+
+// tag::linux_note[]
+
+While the details provided here apply to {productName} installations on Linux
+and other UNIX-style operating systems in particular, a few Windows-specific
+notes are included.
+
+// end::linux_note[]
+
+== OPTIONS
+
+*-c* _conffile_, *--conf* _conffile_:: Specify an alternate configuration file
+  _conffile_. On Windows, this option must be used with *-f*. To change the
+  configuration file used by the {productName} service on Windows, modify the
+  service parameters.
+
+*-f*, *--foreground*:: Run in foreground, do not daemonize.
+
+*-h*, *--help*:: Print help.
+
+*-r*, *--reload*:: Reload configuration of a running instance.
+
+*-s*, *--stop*:: Send stop signal to a running instance.
+
+*-v*, *--verify*:: Verify configuration file syntax.
+
+== SIGNALS
+
+Various signals can be used to control the {productName} process. Some
+corresponding Windows control codes are also available; these are shown in
+parentheses where applicable.
+
+SIGHUP:: This signal causes {productName} to reload the configuration and
+  restart the modules. On Windows, "sc stop nxlog" and "sc start nxlog" can be
+  used instead.
+
+SIGUSR1 (200):: This signal generates an internal log message with information
+  about the current state of {productName} and its configured module
+  instances. The message will be generated with INFO log level, written to the
+  log file (if configured with <<config_global_logfile,LogFile>>), and
+  available via the <<im_internal,im_internal>> module.
+
+SIGUSR2 (201):: This signal causes {productName} to switch to the DEBUG log
+  level. This is equivalent to setting the <<config_global_loglevel,LogLevel>>
+  directive to `DEBUG` but does not require {productName} to be restarted.
+
+SIGINT/SIGQUIT/SIGTERM:: {productName} will exit if it receives one of these
+  signals. On Windows, "sc stop nxlog" can be used instead.
+
+On Linux/UNIX, a signal can be sent with the `kill` command. The following,
+for example, sends the SIGUSR1 signal:
+
+`kill -SIGUSR1 $(cat /opt/nxlog/var/run/nxlog/nxlog.pid)`
+
+On Windows, a signal can be sent with the `sc` command. The following, for
+example, sends the 200 signal:
+
+`sc control nxlog 200`
+
+== FILES
+
+*/opt/nxlog/bin/nxlog*:: The main {productName} executable
+
+// tag::nxlog-stmnt-verifier[]
+
+*/opt/nxlog/bin/nxlog-stmnt-verifier*:: This tool can be used to check
+  {productName} Language statements. All statements are read from standard
+  input and then validated. If a statement is invalid, the tool prints an
+  error to standard error and exits non-zero.
+
+// end::nxlog-stmnt-verifier[]
+
+*/opt/nxlog/etc/nxlog.conf*:: The default configuration file
+
+*/opt/nxlog/lib/nxlog/modules*:: The {productName} modules are located in this
+  directory, by default. See the <<config_global_moduledir,ModuleDir>>
+  directive.
+
+*/opt/nxlog/spool/nxlog/configcache.dat*:: This is the position cache file
+  where positions are saved. See the <<config_global_nocache,NoCache>>
+  directive, in addition to <<config_global_cachedir,CacheDir>>.
+
+*/opt/nxsec/var/run/nxlog/nxlog.pid*:: The process ID (PID) of the currently
+  running {productName} process is written to this file. See the
+  <<config_global_pidfile,PidFile>> directive.
+
+== SEE ALSO
+
+<<nxlog-processor-8,nxlog-processor(8)>>
+
+*{productName} website:* <https://nxlog.co>
+
+*{productName} User Guide:* <https://nxlog.co/documentation/nxlog-user-guide>
+
+// tag::footer[]
+
+== COPYRIGHT
+
+{copyright}
+
+The NXLog Community Edition is licensed under the NXLog Public License. The
+NXLog Enterprise Edition is not free and has a commercial license.
+
+// end::footer[]
+// end::manual_include[]

@@ -1,0 +1,30 @@
+suppressing a
+suppressing b
+a suppressed3
+b suppressed4
+b suppressed5
+suppressing c
+c suppressed7
+suppressing b
+a pair-first1
+b pair-first2
+got pair for a
+c pair-first4
+got pair for c
+got pair for b
+a thresholded1
+b thresholded2
+a thresholded3
+c thresholded4
+got thresholded for a
+c thresholded6
+b thresholded7
+got thresholded for b
+c thresholded9
+a absence-trigger1
+b absence-trigger2
+c absence-trigger3
+c absence-required4
+b absence-required5
+a absence-required6
+'absence-required' not received within 10 secs

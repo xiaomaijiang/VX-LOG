@@ -1,0 +1,569 @@
+[[core_funcs]]
+===== Functions
+
+The following functions are exported by core.
+
+[[core_func_datetime]]
+<<lang_type_datetime,datetime>> `datetime(<<lang_type_integer,integer>> arg)`::
++
+--
+Convert the integer argument, expressing the number of microseconds since epoch, to datetime.
+--
+
+[[core_func_day]]
+<<lang_type_integer,integer>> `day(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the day part of the time value.
+--
+
+[[core_func_dayofweek]]
+<<lang_type_integer,integer>> `dayofweek(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the number of days since Sunday in the range of 0-6.
+--
+
+[[core_func_dayofyear]]
+<<lang_type_integer,integer>> `dayofyear(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the day number of the year in the range of 1-366.
+--
+
+[[core_func_dropped]]
+<<lang_type_boolean,boolean>> `dropped()`::
++
+--
+Return TRUE if the currently processed event has already been
+     dropped.
+--
+
+[[core_func_fix_year]]
+<<lang_type_datetime,datetime>> `fix_year(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+
+Set the year value to the current year in a _datetime_ which was
+parsed with a missing year, such as BSD Syslog or Cisco timestamps.
+     
+--
+
+[[core_func_get_stat]]
+<<lang_type_integer,integer>> `get_stat(<<lang_type_string,string>> statname)`::
++
+--
+Return the value of the statistical counter or
+   undef if it does not exist.
+--
+
+<<lang_type_integer,integer>> `get_stat(<<lang_type_string,string>> statname, <<lang_type_datetime,datetime>> time)`::
++
+--
+Return the value of the statistical counter or
+   undef if it does not exist. The _time_ argument specifies the
+   current time.
+--
+
+[[core_func_get_var]]
+<<lang_type_unknown,unknown>> `get_var(<<lang_type_string,string>> varname)`::
++
+--
+Return the value of the variable or undef if it
+   does not exist.
+--
+
+[[core_func_host_ip]]
+<<lang_type_ip4addr,ip4addr>> `host_ip()`::
++
+--
+Return the first non-loopback IP address the hostname resolves to.
+--
+
+<<lang_type_ip4addr,ip4addr>> `host_ip(<<lang_type_integer,integer>> nth)`::
++
+--
+Return the _nth_ non-loopback IP address the
+   hostname resolves to. The _nth_ argument starts from
+   1.
+--
+
+[[core_func_hostname]]
+<<lang_type_string,string>> `hostname()`::
++
+--
+Return the hostname (short form).
+--
+
+[[core_func_hostname_fqdn]]
+<<lang_type_string,string>> `hostname_fqdn()`::
++
+--
+Return the FQDN hostname. This function will return the short form if the FQDN hostname cannot be determined.
+--
+
+[[core_func_hour]]
+<<lang_type_integer,integer>> `hour(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the hour part of the time value.
+--
+
+[[core_func_integer]]
+<<lang_type_integer,integer>> `integer(<<lang_type_unknown,unknown>> arg)`::
++
+--
+Parse and convert the string argument to an integer. For datetime type it returns the number of microseconds since epoch.
+--
+
+[[core_func_ip4addr]]
+<<lang_type_ip4addr,ip4addr>> `ip4addr(<<lang_type_integer,integer>> arg)`::
++
+--
+Convert the integer argument to an ip4addr type.
+--
+
+<<lang_type_ip4addr,ip4addr>> `ip4addr(<<lang_type_integer,integer>> arg, <<lang_type_boolean,boolean>> ntoa)`::
++
+--
+Convert the integer argument to an ip4addr
+   type. If _ntoa_ is set to true, the integer is assumed to be in
+   network byte order. Instead of `1.2.3.4` the result will be
+   `4.3.2.1`.
+--
+
+[[core_func_lc]]
+<<lang_type_string,string>> `lc(<<lang_type_string,string>> arg)`::
++
+--
+Convert the string to lower case.
+--
+
+[[core_func_microsecond]]
+<<lang_type_integer,integer>> `microsecond(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the microsecond part of the time value.
+--
+
+[[core_func_minute]]
+<<lang_type_integer,integer>> `minute(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the minute part of the time value.
+--
+
+[[core_func_month]]
+<<lang_type_integer,integer>> `month(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the month part of the _datetime_ value.
+--
+
+[[core_func_now]]
+<<lang_type_datetime,datetime>> `now()`::
++
+--
+Return the current time.
+--
+
+[[core_func_parsedate]]
+<<lang_type_datetime,datetime>> `parsedate(<<lang_type_string,string>> arg)`::
++
+--
+
+Parse a string containing a timestamp. Dates without timezone
+information are treated as local time. The current year is used for
+formats that do not include the year. An
+<<lang_literal_undef,undefined>> datetime type is returned
+if the argument cannot be parsed, so that the user can fix the error
+(for example, `$EventTime = parsedate($somestring); if not
+defined($EventTime) $EventTime = now();`). Supported timestamp formats
+are listed below.
+
+RFC 3164 (legacy Syslog) and variations:::
++
+----
+Nov 6 08:49:37
+Nov  6 08:49:37
+Nov 06 08:49:37
+Nov 3 14:50:30.403
+Nov  3 14:50:30.403
+Nov 03 14:50:30.403
+Nov 3 2005 14:50:30
+Nov  3 2005 14:50:30
+Nov 03 2005 14:50:30
+Nov 3 2005 14:50:30.403
+Nov  3 2005 14:50:30.403
+Nov 03 2005 14:50:30.403
+----
+
+RFC 1123::: RFC 1123 compliant dates are also supported, including a
+couple others which are similar such as those defined in RFC 822,
+RFC 850, and RFC 1036.
++
+----
+Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
+Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format
+Sun, 6 Nov 1994 08:49:37 GMT   ; RFC 822, updated by RFC 1123
+Sun, 06 Nov 94 08:49:37 GMT    ; RFC 822
+Sun,  6 Nov 94 08:49:37 GMT    ; RFC 822
+Sun, 6 Nov 94 08:49:37 GMT     ; RFC 822
+Sun, 06 Nov 94 08:49 GMT       ; Unknown
+Sun, 6 Nov 94 08:49 GMT        ; Unknown
+Sun, 06 Nov 94 8:49:37 GMT     ; Unknown [Elm 70.85]
+Sun, 6 Nov 94 8:49:37 GMT      ; Unknown [Elm 70.85]
+Mon,  7 Jan 2002 07:21:22 GMT  ; Unknown [Postfix]
+Sun, 06-Nov-1994 08:49:37 GMT  ; RFC 850 with four digit years
+----
++
+The above formats are also recognized when the leading day of week
+and/or the timezone are omitted.
+
+Apache/NCSA date::: This format can be found in Apache access logs and
+  other sources.
++
+----
+24/Aug/2009:16:08:57 +0200
+----
+
+ISO 8601 and RFC 3339::: {productName} can parse the ISO format with or
+without sub-second resolution, and with or without timezone
+information. It accepts either a comma (`,`) or a dot (`.`) in case
+there is sub-second resolution.
++
+----
+1977-09-06 01:02:03
+1977-09-06 01:02:03.004
+1977-09-06T01:02:03.004Z
+1977-09-06T01:02:03.004+02:00
+2011-5-29 0:3:21
+2011-5-29 0:3:21+02:00
+2011-5-29 0:3:21.004
+2011-5-29 0:3:21.004+02:00
+----
+
+Windows timestamp::: This format is `YYYYMMDDhhmmss.USEC` with
+an optional timezone offset.
++
+----
+20100426151354.537875-000
+20100426151354.537875000
+----
+
+Integer timestamp::: This format is `XXXXXXXXXX.USEC`. The
+value is expressed as an integer showing the number of seconds
+elapsed since the epoch UTC. The fractional microsecond part is
+optional.
++
+----
+1258531221.650359
+1258531221
+----
+     
+--
+
+[[core_func_replace]]
+<<lang_type_string,string>> `replace(<<lang_type_string,string>> subject, <<lang_type_string,string>> src, <<lang_type_string,string>> dst)`::
++
+--
+Replace all occurrences of _src_ with _dst_ in the _subject_ string.
+--
+
+<<lang_type_string,string>> `replace(<<lang_type_string,string>> subject, <<lang_type_string,string>> src, <<lang_type_string,string>> dst, <<lang_type_integer,integer>> count)`::
++
+--
+Replace _count_ number occurrences of _src_ with _dst_ in the _subject_ string.
+--
+
+[[core_func_second]]
+<<lang_type_integer,integer>> `second(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the second part of the time value.
+--
+
+[[core_func_size]]
+<<lang_type_integer,integer>> `size(<<lang_type_string,string>> str)`::
++
+--
+Return the size of the string _str_ in bytes.
+--
+
+[[core_func_strftime]]
+<<lang_type_string,string>> `strftime(<<lang_type_datetime,datetime>> datetime, <<lang_type_string,string>> fmt)`::
++
+--
+
+Convert a datetime to a string with the given format. See the
+strftime(3) manual or the Windows
+link:https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/strftime-wcsftime-strftime-l-wcsftime-l[strftime]
+reference for the format specification.
+     
+--
+
+[[core_func_string]]
+<<lang_type_string,string>> `string(<<lang_type_unknown,unknown>> arg)`::
++
+--
+Convert the argument to a string.
+--
+
+[[core_func_strptime]]
+<<lang_type_datetime,datetime>> `strptime(<<lang_type_string,string>> input, <<lang_type_string,string>> fmt)`::
++
+--
+Convert the string to a datetime with the given format. See the manual of strptime(3) for the format specification.
+--
+
+[[core_func_substr]]
+<<lang_type_string,string>> `substr(<<lang_type_string,string>> src, <<lang_type_integer,integer>> from)`::
++
+--
+Return the string starting at the byte offset
+   specified in _from_.
+--
+
+<<lang_type_string,string>> `substr(<<lang_type_string,string>> src, <<lang_type_integer,integer>> from, <<lang_type_integer,integer>> to)`::
++
+--
+Return a sub-string specified with the starting
+   and ending positions as byte offsets from the beginning of the
+   string.
+--
+
+[[core_func_type]]
+<<lang_type_string,string>> `type(<<lang_type_unknown,unknown>> arg)`::
++
+--
+Return the type of the variable, which can be `boolean`,
+     `integer`, `string`, `datetime`, `ip4addr`, `ip6addr`, `regexp`,
+     or `binary`. For values with the unknown type, it returns
+     undef.
+--
+
+[[core_func_uc]]
+<<lang_type_string,string>> `uc(<<lang_type_string,string>> arg)`::
++
+--
+Convert the string to upper case.
+--
+
+[[core_func_year]]
+<<lang_type_integer,integer>> `year(<<lang_type_datetime,datetime>> datetime)`::
++
+--
+Return the year part of the _datetime_ value.
+--
+
+
+[[core_procs]]
+===== Procedures
+
+The following procedures are exported by core.
+
+[[core_proc_add_stat]]
+`add_stat(<<lang_type_string,string>> statname, <<lang_type_integer,integer>> value);`::
++
+--
+Add _value_ to the statistical counter using the current time.
+--
+
+`add_stat(<<lang_type_string,string>> statname, <<lang_type_integer,integer>> value, <<lang_type_datetime,datetime>> time);`::
++
+--
+Add _value_ to the statistical counter using the time specified in the argument named _time_.
+--
+
+[[core_proc_add_to_route]]
+`add_to_route(<<lang_type_string,string>> routename);`::
++
+--
+
+Copy the currently processed event data to the route specified. This
+procedure makes a copy of the data. The original will be processed
+normally. Note that flow control is explicitly disabled when moving
+data with add_to_route() and the data will not be added if the queue
+of the target module(s) is full.
+     
+--
+
+[[core_proc_create_stat]]
+`create_stat(<<lang_type_string,string>> statname, <<lang_type_string,string>> type);`::
++
+--
+
+Create a module statistical counter with the specified name using the
+current time. The statistical counter will be created with an infinite
+lifetime. The _type_ argument must be one of the following to select
+the required algorithm for calculating the value of the statistical
+counter: `COUNT`, `COUNTMIN`, `COUNTMAX`, `AVG`, `AVGMIN`, `AVGMAX`,
+`RATE`, `RATEMIN`, `RATEMAX`, `GRAD`, `GRADMIN`, or `GRADMAX` (see
+<<lang_stat>>).
+
+This procedure with two parameters can
+only be used with `COUNT`, otherwise the interval parameter must be
+specified (see below). This procedure will do nothing if a counter
+with the specified name already exists.
+     
+--
+
+`create_stat(<<lang_type_string,string>> statname, <<lang_type_string,string>> type, <<lang_type_integer,integer>> interval);`::
++
+--
+Create a module statistical counter with the specified name to be calculated over _interval_ seconds and using the current time. The statistical counter will be created with an infinite lifetime.
+--
+
+`create_stat(<<lang_type_string,string>> statname, <<lang_type_string,string>> type, <<lang_type_integer,integer>> interval, <<lang_type_datetime,datetime>> time);`::
++
+--
+Create a module statistical counter with the
+   specified name to be calculated over _interval_ seconds and the
+   time value specified in the _time_ argument. The statistical
+   counter will be created with an infinite
+   lifetime.
+--
+
+`create_stat(<<lang_type_string,string>> statname, <<lang_type_string,string>> type, <<lang_type_integer,integer>> interval, <<lang_type_datetime,datetime>> time, <<lang_type_integer,integer>> lifetime);`::
++
+--
+Create a module statistical counter with the
+   specified name to be calculated over _interval_ seconds and the
+   time value specified in the _time_ argument. The statistical
+   counter will expire after _lifetime_ seconds.
+--
+
+`create_stat(<<lang_type_string,string>> statname, <<lang_type_string,string>> type, <<lang_type_integer,integer>> interval, <<lang_type_datetime,datetime>> time, <<lang_type_datetime,datetime>> expiry);`::
++
+--
+Create a module statistical counter with the
+   specified name to be calculated over _interval_ seconds and the
+   time value specified in the _time_ argument. The statistical
+   counter will expire at _expiry_.
+--
+
+[[core_proc_create_var]]
+`create_var(<<lang_type_string,string>> varname);`::
++
+--
+Create a module variable with the specified name. The variable will be created with an infinite lifetime.
+--
+
+`create_var(<<lang_type_string,string>> varname, <<lang_type_integer,integer>> lifetime);`::
++
+--
+Create a module variable with the specified name
+   and the _lifetime_ given in seconds.  When the lifetime expires,
+   the variable will be deleted automatically and `get_var(name)` will
+   return undef.
+--
+
+`create_var(<<lang_type_string,string>> varname, <<lang_type_datetime,datetime>> expiry);`::
++
+--
+Create a module variable with the specified
+   name. The _expiry_ specifies when the variable should be deleted
+   automatically.
+--
+
+[[core_proc_debug]]
+`debug(<<lang_type_unknown,unknown>> arg, <<lang_type_varargs,varargs>> args);`::
++
+--
+Print the argument(s) at DEBUG log level. Same as <<core_proc_log_debug,log_debug()>>.
+--
+
+[[core_proc_delete]]
+`delete(<<lang_type_unknown,unknown>> arg);`::
++
+--
+Delete the field from the event. For example, `delete($field)`.
+Note that `$field = undef` is not the same, though after both operations
+the field will be undefined.
+--
+
+[[core_proc_delete_var]]
+`delete_var(<<lang_type_string,string>> varname);`::
++
+--
+Delete the module variable with the specified name if it exists.
+--
+
+[[core_proc_drop]]
+`drop();`::
++
+--
+
+Drop the event record that is currently being processed. Any further
+action on the event record will result in a "missing logdata" error.
+     
+--
+
+[[core_proc_log_debug]]
+`log_debug(<<lang_type_unknown,unknown>> arg, <<lang_type_varargs,varargs>> args);`::
++
+--
+Print the argument(s) at DEBUG log level. Same as
+   <<core_proc_debug,debug()>>.
+--
+
+[[core_proc_log_error]]
+`log_error(<<lang_type_unknown,unknown>> arg, <<lang_type_varargs,varargs>> args);`::
++
+--
+Print the argument(s) at ERROR log level.
+--
+
+[[core_proc_log_info]]
+`log_info(<<lang_type_unknown,unknown>> arg, <<lang_type_varargs,varargs>> args);`::
++
+--
+Print the argument(s) at INFO log level.
+--
+
+[[core_proc_log_warning]]
+`log_warning(<<lang_type_unknown,unknown>> arg, <<lang_type_varargs,varargs>> args);`::
++
+--
+Print the argument(s) at WARNING log level.
+--
+
+[[core_proc_rename_field]]
+`rename_field(<<lang_type_string,string>> old, <<lang_type_string,string>> new);`::
++
+--
+Rename a field. For example, `rename_field("old", "new")`.
+--
+
+[[core_proc_reroute]]
+`reroute(<<lang_type_string,string>> routename);`::
++
+--
+
+Move the currently processed event data to the route specified. The
+event data will enter the route as if it was received by an input
+module there. Note that flow control is explicitly disabled when
+moving data with reroute() and the data will be dropped if the queue
+of the target module(s) is full.
+     
+--
+
+[[core_proc_set_var]]
+`set_var(<<lang_type_string,string>> varname, <<lang_type_unknown,unknown>> value);`::
++
+--
+Set the value of a module variable. If the variable does not exist, it will be created with an infinite lifetime.
+--
+
+[[core_proc_sleep]]
+`sleep(<<lang_type_integer,integer>> interval);`::
++
+--
+
+Sleep the specified number of microseconds. This procedure is provided
+for testing purposes primarily. It can be used as a poor man's rate
+limiting tool, though this use is not recommended.
+     
+--
+

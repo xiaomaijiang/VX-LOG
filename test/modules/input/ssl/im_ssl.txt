@@ -1,0 +1,14 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/input/ssl/test.conf
+WRITELINE: ssl:localhost:23456 11111
+WRITELINE: ssl:localhost:23456 22222
+STOPDAEMON: modules/input/ssl/test.conf
+COMPAREFILE: tmp/output modules/input/ssl/testoutput1.txt
+REMOVE: tmp/output
+
+STARTDAEMON: modules/input/ssl/test.conf
+WRITEFILE: ssl:localhost:23456 test.log
+SLEEP: 1
+STOPDAEMON: modules/input/ssl/test.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output

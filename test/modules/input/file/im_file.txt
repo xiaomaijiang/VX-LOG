@@ -1,0 +1,124 @@
+REMOVE: tmp/input
+REMOVE: tmp/output
+WRITELINE: file:tmp/input 11111
+STARTDAEMON: modules/input/file/test.conf
+WRITELINE: file:tmp/input 22222
+SLEEP: 1
+STOPDAEMON: modules/input/file/test.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output modules/input/file/testoutput1.txt
+REMOVE: tmp/output
+
+TRUNCATE: tmp/input
+STARTDAEMON: modules/input/file/test.conf
+WRITELINE: file:tmp/input 11111
+WRITELINE: file:tmp/input 22222
+SLEEP: 1
+STOPDAEMON: modules/input/file/test.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output modules/input/file/testoutput1.txt
+REMOVE: tmp/output
+
+TRUNCATE: tmp/input
+STARTDAEMON: modules/input/file/test.conf
+WRITEFILE: file:tmp/input test.log
+SLEEP: 2
+STOPDAEMON: modules/input/file/test.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+
+
+# TEST SAVEPOS
+REMOVE: tmp/configcache.dat
+REMOVE: tmp/input
+REMOVE: tmp/output
+REMOVE: tmp/selflog
+
+WRITELINE: file:tmp/input 11111
+WRITELINE: file:tmp/input 22222
+RUNPROCESSOR: modules/input/file/savepos.conf
+COMPAREFILE: tmp/output modules/input/file/testoutput1.txt
+WRITELINE: file:tmp/input 33333
+WRITELINE: file:tmp/input 44444
+RUNPROCESSOR: modules/input/file/savepos.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output modules/input/file/testoutput2.txt
+REMOVE: tmp/output
+
+# regression test for Activefiles with truncation
+REMOVE: tmp/input1.txt
+REMOVE: tmp/input2.txt
+REMOVE: tmp/input3.txt
+REMOVE: tmp/input4.txt
+REMOVE: tmp/output
+
+WRITELINE: file:tmp/input1.txt 1111
+WRITELINE: file:tmp/input2.txt 1111
+WRITELINE: file:tmp/input3.txt 1111
+WRITELINE: file:tmp/input4.txt 1111
+
+STARTDAEMON: modules/input/file/activefiles.conf
+SLEEP: 1
+
+TRUNCATE: tmp/input1.txt
+TRUNCATE: tmp/input2.txt
+TRUNCATE: tmp/input3.txt
+TRUNCATE: tmp/input4.txt
+
+WRITELINE: file:tmp/input1.txt 22
+WRITELINE: file:tmp/input2.txt 22
+WRITELINE: file:tmp/input3.txt 22
+WRITELINE: file:tmp/input4.txt 22
+
+SLEEP: 2
+STOPDAEMON: modules/input/file/activefiles.conf
+REMOVE: tmp/input1.txt
+REMOVE: tmp/input2.txt
+REMOVE: tmp/input3.txt
+REMOVE: tmp/input4.txt
+COMPAREFILE: tmp/output modules/input/file/activefiles-out1.txt
+REMOVE: tmp/output
+
+REMOVE: tmp/input1.txt
+REMOVE: tmp/input2.txt
+REMOVE: tmp/input3.txt
+REMOVE: tmp/input4.txt
+REMOVE: tmp/output
+
+WRITELINE: file:tmp/input1.txt 1111
+WRITELINE: file:tmp/input2.txt 1111
+
+STARTDAEMON: modules/input/file/activefiles.conf
+SLEEP: 1
+
+TRUNCATE: tmp/input1.txt
+TRUNCATE: tmp/input2.txt
+
+WRITELINE: file:tmp/input1.txt 22
+WRITELINE: file:tmp/input2.txt 22
+
+SLEEP: 2
+STOPDAEMON: modules/input/file/activefiles.conf
+REMOVE: tmp/input1.txt
+REMOVE: tmp/input2.txt
+REMOVE: tmp/input3.txt
+REMOVE: tmp/input4.txt
+COMPAREFILE: tmp/output modules/input/file/activefiles-out2.txt
+REMOVE: tmp/output
+
+
+REMOVE: tmp/configcache.dat
+REMOVE: tmp/output
+REMOVE: tmp/selflog
+STARTDAEMON: modules/input/file/savepos2.conf
+SLEEP: 1
+STOPDAEMON: modules/input/file/savepos2.conf
+# output should only contain part of testinput1.txt
+# because we stopped in the middle. So we restart it and 
+# read the rest of the input without sleep() to make it faster.
+STARTDAEMON: modules/input/file/savepos3.conf
+SLEEP: 1
+STOPDAEMON: modules/input/file/savepos3.conf
+COMPAREFILE: tmp/output modules/input/file/testinput1.txt
+REMOVE: tmp/output

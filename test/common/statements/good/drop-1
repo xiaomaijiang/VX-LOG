@@ -1,0 +1,4 @@
+$success = TRUE;
+drop();
+$success = FALSE;
+log_info("not printed");

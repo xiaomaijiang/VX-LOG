@@ -1,0 +1,53 @@
+[[xm_exec]]
+==== External Program Execution (xm_exec)
+
+This module provides two procedures which make it possible to execute
+external scripts or programs. These two procedures are provided
+through this extension module in order to keep the {productName} core
+small. Also, without this module loaded an administrator is not able
+to execute arbitrary scripts.
+
+NOTE: The <<im_exec,im_exec>> and <<om_exec,om_exec>> modules also
+      provide support for running external programs, though the
+      purpose of these is to pipe data to and read data from
+      programs. The procedures provided by the _xm_exec_ module do not
+      pipe log message data, but are intended for multiple invocations
+      (though data can be still passed to the executed script/program
+      as command line arguments).
+
+[[xm_exec_config]]
+===== Configuration
+
+The _xm_exec_ module accepts only the <<config_module_common,common module
+directives>>.
+
+include::../../apidoc-xm_exec.adoc[]
+
+[[xm_exec_config_examples]]
+===== Examples
+
+.{productName} Acting as a Cron Daemon
+====
+This _xm_exec_ module instance will run the command every second without
+waiting for it to terminate.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_exec.conf[lines=2..-1]
+----
+====
+
+.Sending Email Alerts
+====
+If the `$raw_event` field matches the regular expression, an email
+will be sent.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_exec_alert.conf[lines=2..-1]
+----
+====
+
+For another example, see <<om_file_config_example_rotate1>>.

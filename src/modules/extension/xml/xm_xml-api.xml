@@ -1,0 +1,54 @@
+<declarations>
+ <module>xm_xml</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>parse_xml</name>
+   <type>global</type>
+   <cb>nx_expr_proc__parse_xml</cb>
+   <description>
+     <en>Parse the `$raw_event` field as XML input.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>parse_xml</name>
+   <type>global</type>
+   <cb>nx_expr_proc__parse_xml</cb>
+   <arg>
+    <name>source</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>Parse the given string as XML format.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>to_xml</name>
+   <type>global</type>
+   <cb>nx_expr_proc__to_xml</cb>
+   <description>
+     <en>Convert the fields to XML and put this into the `$raw_event`
+     field. The `$raw_event` field and any field having a leading dot
+     (`.`) or underscore (`_`) will be automatically excluded.
+     </en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>to_xml</name>
+   <type>global</type>
+   <cb>nx_expr_func__to_xml</cb>
+   <rettype>string</rettype>
+   <description>
+     <en>Convert the fields to XML and returns this as a string value.
+     The `$raw_event` field and any field having a leading dot (`.`)
+     or underscore (`_`) will be automatically excluded.
+     </en>
+   </description>
+ </function>
+
+</declarations>

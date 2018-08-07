@@ -1,0 +1,14 @@
+$success = TRUE;
+
+if $undef == '' $success = FALSE;
+if '' == $undef $success = FALSE;
+if $undef == 'test' $success = FALSE;
+if 'test' == $undef $success = FALSE;
+$undef = undef;
+if $undef == 'test' $success = FALSE;
+if 'test' == $undef $success = FALSE;
+
+if 'a' == 'b' $success = FALSE;
+if TRUE == FALSE $success = FALSE;
+if 1 == 2 $success = FALSE;
+

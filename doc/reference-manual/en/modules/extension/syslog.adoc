@@ -1,0 +1,271 @@
+:module: xm_syslog
+[[xm_syslog]]
+==== Syslog (xm_syslog)
+
+This module provides support for the legacy BSD Syslog protocol as
+defined in RFC 3164 and the current IETF standard defined by RFCs
+5424-5426. This is achieved by exporting functions and procedures
+usable from the {productName} language. The transport is handled by
+the respective input and output modules (such as <<im_udp,im_udp>>),
+this module only provides a parser and helper functions to create
+Syslog messages and handle facility and severity values.
+
+The older but still widespread BSD Syslog standard defines both the
+format and the transport protocol in RFC 3164. The transport protocol
+is UDP, but to provide reliability and security, this line-based
+format is also commonly transferred over TCP and SSL. There is a newer
+standard defined in RFC 5424, also known as the IETF Syslog format,
+which obsoletes the BSD Syslog format. This format overcomes most of
+the limitations of BSD Syslog and allows multi-line messages and
+proper timestamps. The transport method is defined in RFC 5426 for UDP
+and RFC 5425 for TLS/SSL.
+
+Because the IETF Syslog format supports multi-line messages, RFC 5425
+defines a special format to encapsulate these by prepending the
+payload size in ASCII to the IETF Syslog message. Messages transferred
+in UDP packets are self-contained and do not need this additional
+framing. The following input reader and output writer functions are
+provided by the _xm_syslog_ module to support this TLS transport defined
+in RFC 5425.  While RFC 5425 explicitly defines that the TLS network
+transport protocol is to be used, pure TCP may be used if security is
+not a requirement. Syslog messages can also be written to file with
+this framing format using these functions.
+
+[[xm_syslog_inputtype_syslog_tls]]
+InputType Syslog_TLS:: This input reader function parses the payload
+  size and then reads the message according to this value. It is
+  required to support Syslog TLS transport defined in RFC 5425.
+
+[[xm_syslog_outputtype_syslog_tls]]
+OutputType Syslog_TLS:: This output writer function prepends the
+  payload size to the message. It is required to support Syslog TLS
+  transport defined in RFC 5425.
+
+NOTE: The _Syslog_TLS_ InputType/OutputType can work with any
+      input/output such as <<im_tcp,im_tcp>> or <<im_file,im_file>>
+      and does not depend on SSL transport at all. The name
+      _Syslog_TLS_ was chosen to refer to the octet-framing method
+      described in RFC 5425 used for TLS transport.
+
+NOTE: The <<pm_transformer,pm_transformer>> module can also parse and
+      create BSD and IETF Syslog messages, but the functions and
+      procedures provided by this module make it possible to solve
+      more complex tasks which <<pm_transformer,pm_transformer>> is
+      not capable of on its own.
+
+Structured data in IETF Syslog messages is parsed and put into
+{productName} fields. The SD-ID will be prepended to the field name
+with a dot unless it is `NXLOG@XXXX`. Consider the following Syslog
+message (line break added):
+
+----
+<30>1 2011-12-04T21:16:10.000000+02:00 host app procid msgid \
+[exampleSDID@32473 eventSource="Application" eventID="1011"] Message part
+----
+
+After this IETF-formatted Syslog message is parsed with
+<<xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()>>, there will
+be two additional fields: `$exampleSDID.eventID` and
+`$exampleSDID.eventSource`. When SD-ID is `NXLOG`, the field name will
+be the same as the SD-PARAM name. The two additional fields extracted
+from the structured data part of the following IETF Syslog message are
+`$eventID` and `$eventSource`:
+
+----
+<30>1 2011-12-04T21:16:10.000000+02:00 host app procid msgid \
+[NXLOG@32473 eventSource="Application" eventID="1011"] Message part
+----
+
+All fields in the structured data part are parsed as
+<<lang_type_string,strings>>.
+
+[[xm_syslog_config]]
+===== Configuration
+
+The _xm_syslog_ module accepts the following directives in addition to
+the <<config_module_common,common module directives>>.
+
+[[xm_syslog_config_ietftimestampingmt]]
+IETFTimestampInGMT:: This optional boolean directive can be used to
+  format the timestamps produced by
+  <<xm_syslog_proc_to_syslog_ietf,to_syslog_ietf()>> in UTC/GMT
+  instead of local time. The default is FALSE: local time is used with
+  a timezone indicator.
+
+[[xm_syslog_config_snaredelimiter]]
+SnareDelimiter:: This optional directive takes a single character (see
+  <<{module}_config_char,below>>) as argument. This character is used
+  by the <<xm_syslog_proc_to_syslog_snare,to_syslog_snare()>>
+  procedure to separate fields. If this directive is not specified,
+  the default escape character is the tab (`\t`). In latter versions
+  of Snare 4 this has changed to the hash mark (`#`); this directive
+  can be used to specify the alternative delimiter. Note that there is
+  no delimiter after the last field.
+
+[[xm_syslog_config_snarereplacement]]
+SnareReplacement:: This optional directive takes a single character
+  (see <<{module}_config_char,below>>) as argument. This character is
+  used by the <<xm_syslog_proc_to_syslog_snare,to_syslog_snare()>>
+  procedure to replace occurrences of the
+  <<xm_syslog_config_snaredelimiter,delimiter>> character inside the
+  `$Message` field. If this directive is not specified, the default
+  replacement character is the space.
+
+[[xm_syslog_config_char]]
+====== Specifying Quote, Escape, and Delimiter Characters
+
+The <<xm_syslog_config_snaredelimiter,SnareDelimiter>> and
+<<xm_syslog_config_snarereplacement,SnareReplacement>> directives can
+be specified in several ways.
+
+include::../config_char.adoc[]
+
+include::../../apidoc-xm_syslog.adoc[]
+
+include::../../fields-xm_syslog.adoc[]
+
+[[xm_syslog_config_examples]]
+===== Examples
+
+[[xm_syslog_example_syslog_bsd_file]]
+.Sending a File as BSD Syslog over UDP
+====
+In this example, logs are collected from files, converted to BSD
+Syslog format with the
+<<xm_syslog_proc_to_syslog_bsd,to_syslog_bsd()>> procedure, and sent
+over UDP with the <<om_udp,om_udp>> module.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog_file_bsd_udp.conf[lines=2..-1]
+----
+====
+
+[[xm_syslog_example_bsd_udp]]
+.Collecting BSD Style Syslog Messages over UDP
+====
+To collect BSD Syslog messages over UDP, use the
+<<xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()>> procedure
+coupled with the <<im_udp,im_udp>> module as in the following example.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog_bsd_udp.conf[lines=2..-1]
+----
+====
+
+[[xm_syslog_example_ietf_udp]]
+.Collecting IETF Style Syslog Messages over UDP
+====
+To collect IETF Syslog messages over UDP as defined by RFC 5424 and
+RFC 5426, use the
+<<xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()>> procedure
+coupled with the <<im_udp,im_udp>> module as in the following example.
+Note that, as for BSD Syslog, the default port is 514 (as defined by
+RFC 5426).
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog_ietf_udp.conf[lines=2..-1]
+----
+====
+
+[[xm_syslog_example_bsd_ietf_udp]]
+.Collecting Both IETF and BSD Syslog Messages over the Same UDP Port
+====
+To collect both IETF and BSD Syslog messages over UDP, use the
+<<xm_syslog_proc_parse_syslog,parse_syslog()>> procedure coupled with
+the <<im_udp,im_udp>> module as in the following example. This
+procedure is capable of detecting and parsing both Syslog
+formats. Since 514 is the default UDP port number for both BSD and
+IETF Syslog, this port can be useful to collect both formats
+simultaneously. To accept both formats on different ports, the
+appropriate parsers can be used as in the previous two examples.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog_bsd_ietf_udp.conf[lines=2..-1]
+----
+====
+
+.Collecting IETF Syslog Messages over TLS/SSL
+====
+To collect IETF Syslog messages over TLS/SSL as defined by RFC 5424
+and RFC 5425, use the
+<<xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()>> procedure
+coupled with the <<im_ssl,im_ssl>> module as in this example.  Note
+that the default port is 6514 in this case (as defined by RFC
+5425). The payload format parser is handled by the
+<<xm_syslog_inputtype_syslog_tls,Syslog_TLS>> input reader.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog_ietf_ssl.conf[lines=2..-1]
+----
+====
+
+[[xm_syslog_example_ietf_tcpout]]
+.Forwarding IETF Syslog over TCP
+====
+The following configuration uses the
+<<xm_syslog_proc_to_syslog_ietf,to_syslog_ietf()>> procedure to
+convert input to IETF Syslog and forward it over TCP.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog_ietf_tcpout.conf[lines=2..-1]
+----
+
+Because of the Syslog_TLS framing, the raw data sent over TCP will
+look like the following.
+
+.Output Sample
+[source,log]
+----
+130 <13>1 2012-01-01T16:15:52.873750Z  - - - [NXLOG@14506 EventReceivedTime="2012-01-01 17:15:52" TestField="test value"] test message
+----
+
+This example shows that all fields--except those which are filled by
+the Syslog parser--are added to the structured data part.
+====
+
+[[xm_syslog_example1]]
+.Conditional Rewrite of the Syslog Facility--Version 1
+====
+If the message part of the Syslog event matches the regular
+expression, the `$SeverityValue` field will be set to the "error"
+Syslog severity integer value (which is provided by the
+<<xm_syslog_func_syslog_severity_value,syslog_severity_value()>>
+function).
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog1.conf[lines=2..-1]
+----
+====
+
+[[xm_syslog_example2]]
+.Conditional Rewrite of the Syslog Facility--Version 2
+====
+The following example does almost the same thing as the previous
+example, except that the Syslog parsing and rewrite is moved to a
+processor module and the rewrite only occurs if the facility was
+modified.  This can make processing faster on multi-core systems
+because the processor module runs in a separate thread. This method
+can also minimize UDP packet loss because the input module does not
+need to parse Syslog messages and therefore can process UDP packets
+faster.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_syslog2.conf[lines=2..-1]
+----
+====

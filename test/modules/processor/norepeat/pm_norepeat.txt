@@ -1,0 +1,7 @@
+REMOVE: tmp/input
+REMOVE: tmp/output
+RUNPROCESSOR: modules/processor/norepeat/test.conf
+REMOVE: tmp/input
+COMPAREFILE: tmp/output modules/processor/norepeat/testoutput.txt
+#REMOVE: tmp/output
+

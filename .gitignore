@@ -1,0 +1,14 @@
+*.o
+*.lo
+*.Plo
+**/.deps
+**/.libs
+*.so
+.vscode
+cache
+**/.DS_Store
+**/nxlog
+**/*.la
+**/Makefile
+**/nxlog-processor
+**/nxlog-stmnt-verifier

@@ -1,0 +1,6 @@
+$success = TRUE;
+if "0123456789" =~ /^(.)./ 
+{
+   if $1 != "0" $success = FALSE;
+}
+else $success = FALSE;

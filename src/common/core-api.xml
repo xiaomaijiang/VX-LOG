@@ -1,0 +1,1078 @@
+<declarations>
+ <module>core</module>
+ <include>expr.h</include>
+ <include>module.h</include>
+
+<!-- PROCEDURES -->
+
+ <procedure>
+   <name>log_debug</name>
+   <cb>nx_expr_proc__log_debug</cb>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>args</name>
+    <type>varargs</type>
+    <access>r</access>
+   </arg>
+   <description><en>Print the argument(s) at DEBUG log level. Same as
+   &lt;&lt;core_proc_debug,debug()&gt;&gt;.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>debug</name>
+   <cb>nx_expr_proc__debug</cb>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>args</name>
+    <type>varargs</type>
+    <access>r</access>
+   </arg>
+   <description><en>Print the argument(s) at DEBUG log level. Same as &lt;&lt;core_proc_log_debug,log_debug()&gt;&gt;.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>log_info</name>
+   <cb>nx_expr_proc__log_info</cb>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>args</name>
+    <type>varargs</type>
+    <access>r</access>
+   </arg>
+   <description><en>Print the argument(s) at INFO log level.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>log_warning</name>
+   <cb>nx_expr_proc__log_warning</cb>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>args</name>
+    <type>varargs</type>
+    <access>r</access>
+   </arg>
+   <description><en>Print the argument(s) at WARNING log level.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>log_error</name>
+   <cb>nx_expr_proc__log_error</cb>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>args</name>
+    <type>varargs</type>
+    <access>r</access>
+   </arg>
+   <description><en>Print the argument(s) at ERROR log level.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>delete</name>
+   <cb>nx_expr_proc__delete</cb>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+    <access>rw</access>
+   </arg>
+   <description><en>Delete the field from the event. For example, `delete($field)`.
+Note that `$field = undef` is not the same, though after both operations
+the field will be undefined.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_var</name>
+   <cb>nx_expr_proc__create_var</cb>
+   <arg>
+    <name>varname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module variable with the specified name. The variable will be created with an infinite lifetime.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_var</name>
+   <cb>nx_expr_proc__create_var</cb>
+   <arg>
+    <name>varname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>lifetime</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module variable with the specified name
+   and the _lifetime_ given in seconds.  When the lifetime expires,
+   the variable will be deleted automatically and `get_var(name)` will
+   return undef.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_var</name>
+   <cb>nx_expr_proc__create_var</cb>
+   <arg>
+    <name>varname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>expiry</name>
+    <type>datetime</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module variable with the specified
+   name. The _expiry_ specifies when the variable should be deleted
+   automatically.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>delete_var</name>
+   <cb>nx_expr_proc__delete_var</cb>
+   <arg>
+    <name>varname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description><en>Delete the module variable with the specified name if it exists.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>set_var</name>
+   <cb>nx_expr_proc__set_var</cb>
+   <arg>
+    <name>varname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>value</name>
+    <type>unknown</type>
+    <access>r</access>
+   </arg>
+   <description><en>Set the value of a module variable. If the variable does not exist, it will be created with an infinite lifetime.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_stat</name>
+   <cb>nx_expr_proc__create_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>type</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+Create a module statistical counter with the specified name using the
+current time. The statistical counter will be created with an infinite
+lifetime. The _type_ argument must be one of the following to select
+the required algorithm for calculating the value of the statistical
+counter: `COUNT`, `COUNTMIN`, `COUNTMAX`, `AVG`, `AVGMIN`, `AVGMAX`,
+`RATE`, `RATEMIN`, `RATEMAX`, `GRAD`, `GRADMIN`, or `GRADMAX` (see
+&lt;&lt;lang_stat&gt;&gt;).
+
+This procedure with two parameters can
+only be used with `COUNT`, otherwise the interval parameter must be
+specified (see below). This procedure will do nothing if a counter
+with the specified name already exists.
+     </en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>create_stat</name>
+   <cb>nx_expr_proc__create_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>type</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>interval</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module statistical counter with the specified name to be calculated over _interval_ seconds and using the current time. The statistical counter will be created with an infinite lifetime.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_stat</name>
+   <cb>nx_expr_proc__create_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>type</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>interval</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>time</name>
+    <type>datetime</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module statistical counter with the
+   specified name to be calculated over _interval_ seconds and the
+   time value specified in the _time_ argument. The statistical
+   counter will be created with an infinite
+   lifetime.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_stat</name>
+   <cb>nx_expr_proc__create_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>type</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>interval</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>time</name>
+    <type>datetime</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>lifetime</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module statistical counter with the
+   specified name to be calculated over _interval_ seconds and the
+   time value specified in the _time_ argument. The statistical
+   counter will expire after _lifetime_ seconds.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>create_stat</name>
+   <cb>nx_expr_proc__create_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>type</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>interval</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>time</name>
+    <type>datetime</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>expiry</name>
+    <type>datetime</type>
+    <access>r</access>
+   </arg>
+   <description><en>Create a module statistical counter with the
+   specified name to be calculated over _interval_ seconds and the
+   time value specified in the _time_ argument. The statistical
+   counter will expire at _expiry_.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>add_stat</name>
+   <cb>nx_expr_proc__add_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>value</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <description><en>Add _value_ to the statistical counter using the current time.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>add_stat</name>
+   <cb>nx_expr_proc__add_stat</cb>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>value</name>
+    <type>integer</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>time</name>
+    <type>datetime</type>
+    <access>r</access>
+   </arg>
+   <description><en>Add _value_ to the statistical counter using the time specified in the argument named _time_.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>sleep</name>
+   <cb>nx_expr_proc__sleep</cb>
+   <arg>
+    <name>interval</name>
+    <type>integer</type>
+    <access>rw</access>
+   </arg>
+   <description>
+     <en>
+Sleep the specified number of microseconds. This procedure is provided
+for testing purposes primarily. It can be used as a poor man's rate
+limiting tool, though this use is not recommended.
+     </en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>drop</name>
+   <cb>nx_expr_proc__drop</cb>
+   <description>
+     <en>
+Drop the event record that is currently being processed. Any further
+action on the event record will result in a "missing logdata" error.
+     </en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>rename_field</name>
+   <cb>nx_expr_proc__rename_field</cb>
+   <arg>
+    <name>old</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>new</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description><en>Rename a field. For example, `rename_field("old", "new")`.</en></description>
+ </procedure>
+
+ <procedure>
+   <name>reroute</name>
+   <cb>nx_expr_proc__reroute</cb>
+   <arg>
+    <name>routename</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+Move the currently processed event data to the route specified. The
+event data will enter the route as if it was received by an input
+module there. Note that flow control is explicitly disabled when
+moving data with reroute() and the data will be dropped if the queue
+of the target module(s) is full.
+     </en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>add_to_route</name>
+   <cb>nx_expr_proc__add_to_route</cb>
+   <arg>
+    <name>routename</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+Copy the currently processed event data to the route specified. This
+procedure makes a copy of the data. The original will be processed
+normally. Note that flow control is explicitly disabled when moving
+data with add_to_route() and the data will not be added if the queue
+of the target module(s) is full.
+     </en>
+   </description>
+ </procedure>
+
+
+<!-- FUNCTIONS -->
+
+ <function>
+   <name>lc</name>
+   <type>global</type>
+   <cb>nx_expr_func__lc</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>arg</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>Convert the string to lower case.</en>
+   </description>
+ </function>
+
+ <function>
+   <name>uc</name>
+   <type>global</type>
+   <cb>nx_expr_func__uc</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>arg</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>Convert the string to upper case.</en>
+   </description>
+ </function>
+
+ <function>
+   <name>now</name>
+   <cb>nx_expr_func__now</cb>
+   <rettype>datetime</rettype>
+   <description><en>Return the current time.</en></description>
+ </function>
+
+ <function>
+   <name>type</name>
+   <cb>nx_expr_func__type</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+   </arg>
+   <description>
+     <en>Return the type of the variable, which can be `boolean`,
+     `integer`, `string`, `datetime`, `ip4addr`, `ip6addr`, `regexp`,
+     or `binary`. For values with the unknown type, it returns
+     undef.</en>
+   </description>
+ </function>
+
+ <function>
+   <name>microsecond</name>
+   <cb>nx_expr_func__microsecond</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the microsecond part of the time value.</en></description>
+ </function>
+
+ <function>
+   <name>second</name>
+   <cb>nx_expr_func__second</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the second part of the time value.</en></description>
+ </function>
+
+ <function>
+   <name>minute</name>
+   <cb>nx_expr_func__minute</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the minute part of the time value.</en></description>
+ </function>
+
+ <function>
+   <name>hour</name>
+   <cb>nx_expr_func__hour</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the hour part of the time value.</en></description>
+ </function>
+
+ <function>
+   <name>day</name>
+   <cb>nx_expr_func__day</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the day part of the time value.</en></description>
+ </function>
+
+ <function>
+   <name>month</name>
+   <cb>nx_expr_func__month</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the month part of the _datetime_ value.</en></description>
+ </function>
+
+ <function>
+   <name>year</name>
+   <cb>nx_expr_func__year</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the year part of the _datetime_ value.</en></description>
+ </function>
+
+ <function>
+   <name>fix_year</name>
+   <cb>nx_expr_func__fix_year</cb>
+   <rettype>datetime</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description>
+     <en>
+Set the year value to the current year in a _datetime_ which was
+parsed with a missing year, such as BSD Syslog or Cisco timestamps.
+     </en>
+   </description>
+ </function>
+
+ <function>
+   <name>dayofweek</name>
+   <cb>nx_expr_func__dayofweek</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the number of days since Sunday in the range of 0-6.</en></description>
+ </function>
+
+ <function>
+   <name>dayofyear</name>
+   <cb>nx_expr_func__dayofyear</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the day number of the year in the range of 1-366.</en></description>
+ </function>
+
+ <function>
+   <name>string</name>
+   <cb>nx_expr_func__to_string</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+   </arg>
+   <description><en>Convert the argument to a string.</en></description>
+ </function>
+
+ <function>
+   <name>integer</name>
+   <cb>nx_expr_func__to_integer</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>arg</name>
+    <type>unknown</type>
+   </arg>
+   <description><en>Parse and convert the string argument to an integer. For datetime type it returns the number of microseconds since epoch.</en></description>
+ </function>
+
+ <function>
+   <name>datetime</name>
+   <cb>nx_expr_func__to_datetime</cb>
+   <rettype>datetime</rettype>
+   <arg>
+    <name>arg</name>
+    <type>integer</type>
+   </arg>
+   <description><en>Convert the integer argument, expressing the number of microseconds since epoch, to datetime.</en></description>
+ </function>
+
+ <function>
+   <name>parsedate</name>
+   <cb>nx_expr_func__parsedate</cb>
+   <rettype>datetime</rettype>
+   <arg>
+    <name>arg</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>
+Parse a string containing a timestamp. Dates without timezone
+information are treated as local time. The current year is used for
+formats that do not include the year. An
+&lt;&lt;lang_literal_undef,undefined&gt;&gt; datetime type is returned
+if the argument cannot be parsed, so that the user can fix the error
+(for example, `$EventTime = parsedate($somestring); if not
+defined($EventTime) $EventTime = now();`). Supported timestamp formats
+are listed below.
+
+RFC 3164 (legacy Syslog) and variations:::
++
+----
+Nov 6 08:49:37
+Nov  6 08:49:37
+Nov 06 08:49:37
+Nov 3 14:50:30.403
+Nov  3 14:50:30.403
+Nov 03 14:50:30.403
+Nov 3 2005 14:50:30
+Nov  3 2005 14:50:30
+Nov 03 2005 14:50:30
+Nov 3 2005 14:50:30.403
+Nov  3 2005 14:50:30.403
+Nov 03 2005 14:50:30.403
+----
+
+RFC 1123::: RFC 1123 compliant dates are also supported, including a
+couple others which are similar such as those defined in RFC 822,
+RFC 850, and RFC 1036.
++
+----
+Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
+Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format
+Sun, 6 Nov 1994 08:49:37 GMT   ; RFC 822, updated by RFC 1123
+Sun, 06 Nov 94 08:49:37 GMT    ; RFC 822
+Sun,  6 Nov 94 08:49:37 GMT    ; RFC 822
+Sun, 6 Nov 94 08:49:37 GMT     ; RFC 822
+Sun, 06 Nov 94 08:49 GMT       ; Unknown
+Sun, 6 Nov 94 08:49 GMT        ; Unknown
+Sun, 06 Nov 94 8:49:37 GMT     ; Unknown [Elm 70.85]
+Sun, 6 Nov 94 8:49:37 GMT      ; Unknown [Elm 70.85]
+Mon,  7 Jan 2002 07:21:22 GMT  ; Unknown [Postfix]
+Sun, 06-Nov-1994 08:49:37 GMT  ; RFC 850 with four digit years
+----
++
+The above formats are also recognized when the leading day of week
+and/or the timezone are omitted.
+
+Apache/NCSA date::: This format can be found in Apache access logs and
+  other sources.
++
+----
+24/Aug/2009:16:08:57 +0200
+----
+
+ISO 8601 and RFC 3339::: {productName} can parse the ISO format with or
+without sub-second resolution, and with or without timezone
+information. It accepts either a comma (`,`) or a dot (`.`) in case
+there is sub-second resolution.
++
+----
+1977-09-06 01:02:03
+1977-09-06 01:02:03.004
+1977-09-06T01:02:03.004Z
+1977-09-06T01:02:03.004+02:00
+2011-5-29 0:3:21
+2011-5-29 0:3:21+02:00
+2011-5-29 0:3:21.004
+2011-5-29 0:3:21.004+02:00
+----
+
+Windows timestamp::: This format is `YYYYMMDDhhmmss.USEC` with
+an optional timezone offset.
++
+----
+20100426151354.537875-000
+20100426151354.537875000
+----
+
+Integer timestamp::: This format is `XXXXXXXXXX.USEC`. The
+value is expressed as an integer showing the number of seconds
+elapsed since the epoch UTC. The fractional microsecond part is
+optional.
++
+----
+1258531221.650359
+1258531221
+----
+     </en>
+   </description>
+ </function>
+
+ <function>
+   <name>strftime</name>
+   <type>global</type>
+   <cb>nx_expr_func__strftime</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>datetime</name>
+    <type>datetime</type>
+   </arg>
+   <arg>
+    <name>fmt</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>
+Convert a datetime to a string with the given format. See the
+strftime(3) manual or the Windows
+link:https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/strftime-wcsftime-strftime-l-wcsftime-l[strftime]
+reference for the format specification.
+     </en>
+   </description>
+ </function>
+
+ <function>
+   <name>strptime</name>
+   <type>global</type>
+   <cb>nx_expr_func__strptime</cb>
+   <rettype>datetime</rettype>
+   <arg>
+    <name>input</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>fmt</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>Convert the string to a datetime with the given format. See the manual of strptime(3) for the format specification.</en>
+   </description>
+ </function>
+
+ <function>
+   <name>hostname</name>
+   <type>global</type>
+   <cb>nx_expr_func__hostname</cb>
+   <rettype>string</rettype>
+   <description><en>Return the hostname (short form).</en></description>
+ </function>
+
+ <function>
+   <name>hostname_fqdn</name>
+   <type>global</type>
+   <cb>nx_expr_func__hostname_fqdn</cb>
+   <rettype>string</rettype>
+   <description><en>Return the FQDN hostname. This function will return the short form if the FQDN hostname cannot be determined.</en></description>
+ </function>
+
+ <function>
+   <name>host_ip</name>
+   <type>global</type>
+   <cb>nx_expr_func__host_ip</cb>
+   <rettype>ip4addr</rettype>
+   <description><en>Return the first non-loopback IP address the hostname resolves to.</en></description>
+ </function>
+
+ <function>
+   <name>host_ip</name>
+   <type>global</type>
+   <cb>nx_expr_func__host_ip</cb>
+   <rettype>ip4addr</rettype>
+   <arg>
+    <name>nth</name>
+    <type>integer</type>
+   </arg>
+   <description><en>Return the _nth_ non-loopback IP address the
+   hostname resolves to. The _nth_ argument starts from
+   1.</en></description>
+ </function>
+
+ <function>
+   <name>get_var</name>
+   <type>global</type>
+   <cb>nx_expr_func__get_var</cb>
+   <rettype>unknown</rettype>
+   <arg>
+    <name>varname</name>
+    <type>string</type>
+   </arg>
+   <description><en>Return the value of the variable or undef if it
+   does not exist.</en></description>
+ </function>
+
+ <function>
+   <name>get_stat</name>
+   <type>global</type>
+   <cb>nx_expr_func__get_stat</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+   </arg>
+   <description><en>Return the value of the statistical counter or
+   undef if it does not exist.</en></description>
+ </function>
+
+ <function>
+   <name>get_stat</name>
+   <type>global</type>
+   <cb>nx_expr_func__get_stat</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>statname</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>time</name>
+    <type>datetime</type>
+   </arg>
+   <description><en>Return the value of the statistical counter or
+   undef if it does not exist. The _time_ argument specifies the
+   current time.</en></description>
+ </function>
+
+ <function>
+   <name>ip4addr</name>
+   <type>global</type>
+   <cb>nx_expr_func__to_ip4addr</cb>
+   <rettype>ip4addr</rettype>
+   <arg>
+    <name>arg</name>
+    <type>integer</type>
+   </arg>
+   <description><en>Convert the integer argument to an ip4addr type.</en></description>
+ </function>
+
+ <function>
+   <name>ip4addr</name>
+   <type>global</type>
+   <cb>nx_expr_func__to_ip4addr</cb>
+   <rettype>ip4addr</rettype>
+   <arg>
+    <name>arg</name>
+    <type>integer</type>
+   </arg>
+   <arg>
+    <name>ntoa</name>
+    <type>boolean</type>
+   </arg>
+   <description><en>Convert the integer argument to an ip4addr
+   type. If _ntoa_ is set to true, the integer is assumed to be in
+   network byte order. Instead of `1.2.3.4` the result will be
+   `4.3.2.1`.</en></description>
+ </function>
+
+ <function>
+   <name>substr</name>
+   <type>global</type>
+   <cb>nx_expr_func__substr</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>src</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>from</name>
+    <type>integer</type>
+   </arg>
+   <description><en>Return the string starting at the byte offset
+   specified in _from_.</en></description>
+ </function>
+
+ <function>
+   <name>substr</name>
+   <type>global</type>
+   <cb>nx_expr_func__substr</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>src</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>from</name>
+    <type>integer</type>
+   </arg>
+   <arg>
+    <name>to</name>
+    <type>integer</type>
+   </arg>
+   <description><en>Return a sub-string specified with the starting
+   and ending positions as byte offsets from the beginning of the
+   string.</en></description>
+ </function>
+
+ <function>
+   <name>replace</name>
+   <type>global</type>
+   <cb>nx_expr_func__replace</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>subject</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>src</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>dst</name>
+    <type>string</type>
+   </arg>
+   <description><en>Replace all occurrences of _src_ with _dst_ in the _subject_ string.</en></description>
+ </function>
+
+ <function>
+   <name>replace</name>
+   <type>global</type>
+   <cb>nx_expr_func__replace</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>subject</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>src</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>dst</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>count</name>
+    <type>integer</type>
+   </arg>
+   <description><en>Replace _count_ number occurrences of _src_ with _dst_ in the _subject_ string.</en></description>
+ </function>
+
+ <function>
+   <name>size</name>
+   <cb>nx_expr_func__str_size</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>str</name>
+    <type>string</type>
+   </arg>
+   <description><en>Return the size of the string _str_ in bytes.</en></description>
+ </function>
+
+ <function>
+   <name>dropped</name>
+   <type>global</type>
+   <cb>nx_expr_func__dropped</cb>
+   <rettype>boolean</rettype>
+   <description>
+     <en>Return TRUE if the currently processed event has already been
+     dropped.</en>
+   </description>
+ </function>
+
+<!--
+set_field
+get_field
+
+
+
+ <function>
+   <name>length</name>
+   <cb>nx_expr_func__str_length</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>arg</name>
+    <type>string</type>
+   </arg>
+   <description>Returns the length of a string, i.e. the number of characters (not bytes!). If the string is undef, the return value will be also undef.</description>
+ </function>
+
+ <function>
+   <name>abs</name>
+   <cb>nx_expr_func__abs</cb>
+   <rettype>integer</rettype>
+   <arg>
+    <name>arg</name>
+    <type>integer</type>
+   </arg>
+   <description>Return the absolute value of an integer.</description>
+ </function>
+
+ <function>
+   <name>hostlookup4</name>
+   <cb>nx_expr_func__hostlookup4</cb>
+   <rettype>address</rettype>
+   <arg>
+    <name>address</name>
+    <type>string</type>
+   </arg>
+   <description>Look up the first IP4 address assigned to the DNS name. Returns undef if it cannot be resolved.</description>
+ </function>
+
+ <function>
+   <name>hostlookup4</name>
+   <cb>nx_expr_func__hostlookup4</cb>
+   <rettype>address</rettype>
+   <arg>
+    <name>address</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>n</name>
+    <type>integer</type>
+   </arg>
+   <description>Look up the n-th IP4 address assigned to the DNS name. 'n' must be greater than zero. Returns undef if it cannot be resolved.</description>
+ </function>
+
+ <function>
+   <name>resolv</name>
+   <cb>nx_expr_func__addrlookup</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>address</name>
+    <type>address</type>
+   </arg>
+   <description>Look up the DNS name corresponding to the IP address specified. Returns undef on resolution failure.</description>
+ </function>
+
+-->
+
+
+</declarations>

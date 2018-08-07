@@ -1,0 +1,13 @@
+$success = TRUE;
+$raw_event = "<30>Oct 12 12:49:06 host app[12345]: daemon.info";
+parse_syslog_bsd($raw_event);
+if ($SyslogFacilityValue != syslog_facility_value('DAEMON')) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value('INFO')) $success = FALSE;
+if (syslog_facility_string($SyslogFacilityValue) != 'DAEMON') $success = FALSE;
+if (syslog_severity_string($SyslogSeverityValue) != 'INFO') $success = FALSE;
+$daemon = 'DAEMON';
+$info = 'INFO';
+if ($SyslogFacilityValue != syslog_facility_value($daemon)) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value($info)) $success = FALSE;
+if (syslog_facility_string(syslog_facility_value('DAEMON')) != 'DAEMON') $success = FALSE;
+if (syslog_severity_string(syslog_severity_value('INFO')) != 'INFO') $success = FALSE;

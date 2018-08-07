@@ -1,0 +1,2 @@
+$success = TRUE;
+if size("test") != 4 $success = FALSE;

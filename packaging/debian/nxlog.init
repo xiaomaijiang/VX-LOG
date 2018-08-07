@@ -1,0 +1,59 @@
+#!/bin/sh
+# /etc/init.d/nxlog: start the nxlog daemon.
+
+### BEGIN INIT INFO
+# Provides:             nxlog
+# Required-Start:       $network $local_fs $remote_fs
+# Required-Stop:        $network $local_fs $remote_fs
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Description:          logging daemon
+# Short-Description:    logging daemon
+### END INIT INFO
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+pidfile=var/run/nxlog/nxlog.pid
+nxlog=/usr/bin/nxlog
+
+test -f $nxlog || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+    log_begin_msg "Starting nxlog daemon..."
+    if ! [ -d /var/run/nxlog ]; then
+	mkdir /var/run/nxlog
+    fi
+    chown nxlog:nxlog /var/run/nxlog
+    chmod 1770 /var/run/nxlog
+
+    $nxlog 
+    log_end_msg $?
+    ;;
+  stop)
+    log_begin_msg "Stopping nxlog daemon..."
+    $nxlog -s
+    log_end_msg $?
+    ;;
+  reload)
+    log_begin_msg "Reloading nxlog daemon..."
+    $nxlog -r
+    log_end_msg $?
+    ;;
+  status)
+    pidof nxlog
+    RETVAL=$?
+    ;;
+  restart|force-reload)
+    log_begin_msg "Restarting nxlog daemon..."
+    $nxlog -s
+    $nxlog
+    log_end_msg $?
+    ;;
+  *)
+    log_success_msg "Usage: /etc/init.d/nxlog {start|stop|restart|force-reload}"
+    exit 1
+esac
+
+exit 0

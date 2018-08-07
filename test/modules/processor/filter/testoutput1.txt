@@ -1,0 +1,2 @@
+<6> Oct 12 12:49:06 host app[12345]: kernel message
+<27> Oct 12 12:49:06 host app[12345]: daemon.error

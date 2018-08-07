@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8">
+<event>
+  <timestamp>2012-11-23 23:00:00</timestamp>
+  <severity>ERROR</severity>
+  <message>
+    Something bad happened.
+    Please check the system.
+  </message>
+</event>
+<event>
+  <timestamp>2012-11-23 23:00:12</timestamp>
+  <severity>INFO</severity>
+  <message>
+   System state is now back to normal.
+  </message>
+</event>

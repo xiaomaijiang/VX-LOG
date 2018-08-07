@@ -1,0 +1,3 @@
+if $raw_event =~ /^(\d+-\d+-\d+\t\d+:\d+:\d+) GMT/ {
+    $EventTime = strptime($1, '%Y-%m-%d%t%H:%M:%S');
+}

@@ -1,0 +1,24 @@
+[[pm_buffer_funcs]]
+===== Functions
+
+The following functions are exported by pm_buffer.
+
+[[pm_buffer_func_buffer_count]]
+<<lang_type_integer,integer>> `buffer_count()`::
++
+--
+
+Return the number of log messages held in the memory buffer.
+     
+--
+
+[[pm_buffer_func_buffer_size]]
+<<lang_type_integer,integer>> `buffer_size()`::
++
+--
+
+Return the size of the memory buffer in bytes.
+     
+--
+
+

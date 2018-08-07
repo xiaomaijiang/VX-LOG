@@ -1,0 +1,7 @@
+$success = TRUE;
+
+if not defined strptime("2010-01-02 03:04:05", "%Y-%m-%d %H:%M:%S") $success = FALSE;
+if strptime("2010-01-02 03:04:05", "%Y-%m-%d %H:%M:%S") != 2010-01-02 03:04:05 $success = FALSE;
+
+$EventTime = strptime('2013-05-31 09:14:59.695', '%F%t%T');
+if not defined $EventTime $success = FALSE;

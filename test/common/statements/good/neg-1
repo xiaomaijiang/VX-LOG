@@ -1,0 +1,5 @@
+$success = TRUE;
+#FIXME
+#if  (- 1 != -1) $success = FALSE;
+# $val = 1;
+# if ( - $val != 1 ) $success = FALSE;

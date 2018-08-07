@@ -1,0 +1,80 @@
+<declarations>
+ <module>om_file</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>rotate_to</name>
+   <type>private</type>
+   <cb>nx_expr_proc__om_file_rotate_to</cb>
+   <arg>
+    <name>filename</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+Rotate the current file to the _filename_ specified. The module will
+then open the original file specified with the
+&lt;&lt;om_file_config_file,File&gt;&gt; directive. Note that the
+rename(2) system call is used internally which does not support moving
+files across different devices on some platforms. If this is a
+problem, first rotate the file on the same device. Then use the
+xm_exec &lt;&lt;xm_exec_proc_exec_async,exec_async()&gt;&gt; procedure
+to copy it to another device or file system, or use the xm_fileop
+&lt;&lt;xm_fileop_proc_file_copy,file_copy()&gt;&gt; procedure.
+     </en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>reopen</name>
+   <type>private</type>
+   <cb>nx_expr_proc__om_file_reopen</cb>
+   <description>
+     <en>
+Reopen the current file. This procedure should be called if the file
+has been removed or renamed, for example with the
+&lt;&lt;xm_fileop_proc_file_cycle,file_cycle()&gt;&gt;,
+&lt;&lt;xm_fileop_proc_file_remove,file_remove()&gt;&gt;, or
+&lt;&lt;xm_fileop_proc_file_rename,file_rename()&gt;&gt; procedures of
+the xm_fileop module. This does not need to be called after
+&lt;&lt;om_file_proc_rotate_to,rotate_to()&gt;&gt; because that
+procedure reopens the file automatically.
+     </en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>file_name</name>
+   <type>private</type>
+   <cb>nx_expr_func__om_file_file_name</cb>
+   <rettype>string</rettype>
+   <description>
+     <en>
+Return the name of the currently open file which was specified using
+the &lt;&lt;om_file_config_file,File&gt;&gt; directive.  Note that
+this will be the old name if the filename changes dynamically; for the
+new name, use the expression specified for the
+&lt;&lt;om_file_config_file,File&gt;&gt; directive instead of using
+this function.
+     </en>
+   </description>
+ </function>
+
+ <function>
+   <name>file_size</name>
+   <type>private</type>
+   <cb>nx_expr_func__om_file_file_size</cb>
+   <rettype>integer</rettype>
+   <description>
+     <en>
+Return the size of the currently open output file in bytes. Returns
+undef if the file is not open. This can happen if
+&lt;&lt;om_file_config_file,File&gt;&gt; is not a string literal
+expression and there was no log message.
+     </en>
+   </description>
+ </function>
+
+</declarations>

@@ -1,0 +1,26 @@
+$success = TRUE;
+
+if not 'a' IN 'a', 'b', 1 + 1 $success = FALSE;
+if not 'a' IN ('a', 'b', 1 + 1) $success = FALSE;
+
+# FIXME: precendence
+# if 40 + 2 IN 'a' $success = FALSE;
+
+if (40 + 2) IN 'a', 1.2.3.4, "b", "a" + 'b', now(), 24 $success = FALSE;
+
+$id = 42;
+$id1 = 1;
+$id2 = 2;
+
+if $id in $id1, $id2 $success = FALSE;
+if $id in ($id1, $id2) $success = FALSE;
+
+if $id in (1, 2, 3) $success = FALSE;
+
+if $id not in 42, 1, 2 $success = FALSE;
+if $id not in (42, 1, 2) $success = FALSE;
+
+if $id not in $id $success = FALSE;
+if not $id in $id $success = FALSE;
+
+

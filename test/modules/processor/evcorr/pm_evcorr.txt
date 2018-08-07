@@ -1,0 +1,13 @@
+REMOVE: tmp/output
+RUNPROCESSOR: modules/processor/evcorr/test_syslog.conf
+COMPAREFILE: tmp/output modules/processor/evcorr/testoutput_syslog.txt
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/processor/evcorr/evcorr2.conf
+COMPAREFILE: tmp/output modules/processor/evcorr/testoutput_evcorr2.txt
+REMOVE: tmp/output
+
+RUNPROCESSOR: modules/processor/evcorr/evcorr-context.conf
+COMPAREFILE: tmp/output modules/processor/evcorr/testoutput_context.txt
+REMOVE: tmp/output
+

@@ -1,0 +1,121 @@
+2013-10-01 09:39:59    root    pts/1    login
+2013-10-01 11:03:13    root    pts/1    logout
+2013-10-01 11:06:44    root    pts/1    login
+2013-10-01 11:07:15    root    pts/3    login
+2013-10-01 11:30:14    root    pts/3    logout
+2013-10-01 11:30:14    root    pts/1    logout
+2013-10-01 23:23:38    shutdown    no device    shutdown
+2013-10-02 05:51:00    reboot    no device    reboot(boot)
+2013-10-02 05:51:23    (unknown)    tty7    login
+2013-10-02 05:51:35    LOGIN    tty1    login process(user logout)
+2013-10-02 05:51:35    LOGIN    tty3    login process(user logout)
+2013-10-02 05:51:35    LOGIN    tty5    login process(user logout)
+2013-10-02 05:51:35    LOGIN    tty4    login process(user logout)
+2013-10-02 05:51:35    LOGIN    tty6    login process(user logout)
+2013-10-02 05:51:35    LOGIN    tty2    login process(user logout)
+2013-10-02 05:51:57    bb    tty7    login
+2013-10-02 06:22:09    shutdown    no device    shutdown
+2013-10-02 07:58:08    reboot    no device    reboot(boot)
+2013-10-02 07:58:31    (unknown)    tty7    login
+2013-10-02 07:58:41    LOGIN    tty4    login process(user logout)
+2013-10-02 07:58:41    LOGIN    tty1    login process(user logout)
+2013-10-02 07:58:41    LOGIN    tty6    login process(user logout)
+2013-10-02 07:58:41    LOGIN    tty2    login process(user logout)
+2013-10-02 07:58:41    LOGIN    tty3    login process(user logout)
+2013-10-02 07:58:41    LOGIN    tty5    login process(user logout)
+2013-10-02 08:01:36    bb    tty7    login
+2013-10-02 08:04:17    root    pts/2    login
+2013-10-02 08:04:25    root    pts/3    login
+2013-10-02 12:22:34    root    pts/3    logout
+2013-10-02 12:22:34    root    pts/2    logout
+2013-10-02 12:23:05    shutdown    no device    shutdown
+2013-10-02 21:47:20    reboot    no device    reboot(boot)
+2013-10-02 21:47:44    (unknown)    tty7    login
+2013-10-02 21:47:54    LOGIN    tty2    login process(user logout)
+2013-10-02 21:47:54    LOGIN    tty4    login process(user logout)
+2013-10-02 21:47:54    LOGIN    tty1    login process(user logout)
+2013-10-02 21:47:54    LOGIN    tty5    login process(user logout)
+2013-10-02 21:47:54    LOGIN    tty3    login process(user logout)
+2013-10-02 21:47:54    LOGIN    tty6    login process(user logout)
+2013-10-02 21:48:28    bb    tty7    login
+2013-10-03 08:06:09    root    pts/1    login
+2013-10-03 08:24:06    root    pts/3    login
+2013-10-03 08:38:36    bb    pts/4    login
+2013-10-03 08:44:49    bb    pts/5    login
+2013-10-03 08:45:15    bb    pts/5    logout
+2013-10-03 08:45:22    bb    pts/5    login
+2013-10-03 08:45:32    bb    pts/5    logout
+2013-10-03 08:46:10    bb    pts/5    login
+2013-10-03 08:47:02    bb    pts/6    login
+2013-10-03 08:47:07    bb    pts/6    logout
+2013-10-03 08:51:49    bb    pts/6    login
+2013-10-03 08:51:51    bb    pts/6    logout
+2013-10-03 08:52:57    bb    pts/6    login
+2013-10-03 08:52:59    bb    pts/6    logout
+2013-10-03 08:53:07    bb    pts/6    login
+2013-10-03 08:53:09    bb    pts/6    logout
+2013-10-03 08:53:56    bb    pts/6    login
+2013-10-03 08:54:01    bb    pts/6    logout
+2013-10-03 08:54:12    bb    pts/6    login
+2013-10-03 08:54:23    bb    pts/6    logout
+2013-10-03 08:56:01    bb    pts/5    logout
+2013-10-03 10:38:46    bb    pts/5    login
+2013-10-03 10:38:48    bb    pts/5    logout
+2013-10-03 10:38:51    bb    pts/5    login
+2013-10-03 10:39:12    bb    pts/6    login
+2013-10-03 10:39:15    bb    pts/6    logout
+2013-10-03 10:39:26    bb    pts/6    login
+2013-10-03 10:39:30    bb    pts/6    logout
+2013-10-03 10:39:38    bb    pts/6    login
+2013-10-03 10:39:41    bb    pts/6    logout
+2013-10-03 10:39:57    bb    pts/6    login
+2013-10-03 10:40:00    bb    pts/6    logout
+2013-10-03 10:40:02    bb    pts/6    login
+2013-10-03 10:40:04    bb    pts/6    logout
+2013-10-03 10:40:24    bb    pts/6    login
+2013-10-03 10:40:26    bb    pts/6    logout
+2013-10-03 10:40:33    bb    pts/6    login
+2013-10-03 10:40:36    bb    pts/6    logout
+2013-10-03 10:40:47    bb    pts/6    login
+2013-10-03 10:40:51    bb    pts/6    logout
+2013-10-03 10:40:57    bb    pts/6    login
+2013-10-03 10:41:00    bb    pts/6    logout
+2013-10-03 10:46:11    bb    pts/6    login
+2013-10-03 10:46:13    bb    pts/6    logout
+2013-10-03 10:47:56    bb    pts/6    login
+2013-10-03 10:47:58    bb    pts/6    logout
+2013-10-03 10:49:11    bb    pts/5    logout
+2013-10-03 12:22:58    bb    pts/5    login
+2013-10-03 12:23:02    bb    pts/5    logout
+2013-10-03 12:35:07    bb    pts/5    login
+2013-10-03 12:35:19    bb    pts/5    logout
+2013-10-03 12:35:19    bb    pts/5    logout
+2013-10-03 12:35:34    bb    pts/5    login
+2013-10-03 12:35:36    bb    pts/5    logout
+2013-10-03 12:35:41    bb    pts/5    login
+2013-10-03 12:35:43    bb    pts/5    logout
+2013-10-03 12:35:46    bb    pts/5    login
+2013-10-03 12:35:48    bb    pts/5    logout
+2013-10-03 12:35:57    bb    pts/5    login
+2013-10-03 12:36:00    bb    pts/5    logout
+2013-10-03 12:36:50    bb    pts/5    login
+2013-10-03 12:37:25    bb    pts/5    logout
+2013-10-03 13:29:22    root    pts/5    login
+2013-10-03 13:29:33    root    pts/5    logout
+2013-10-03 13:32:02    bb    tty1    login
+2013-10-03 13:35:05    LOGIN    tty1    login process(user logout)
+2013-10-03 13:35:22    root    pts/5    login
+2013-10-03 13:35:26    root    pts/5    logout
+2013-10-03 13:55:06    bb    pts/5    login
+2013-10-03 13:55:08    bb    pts/5    logout
+2013-10-03 14:02:58    bb    pts/5    login
+2013-10-03 14:03:00    bb    pts/5    logout
+2013-10-03 14:03:31    bb    pts/5    login
+2013-10-03 14:03:32    bb    pts/5    logout
+2013-10-03 14:05:28    bb    pts/5    login
+2013-10-03 14:05:30    bb    pts/5    logout
+2013-10-03 14:06:42    bb    pts/5    login
+2013-10-03 14:06:43    bb    pts/5    logout
+2013-10-03 15:59:31    root    pts/3    logout
+2013-10-03 15:59:31    root    pts/1    logout
+2013-10-03 15:59:43    bb    pts/4    logout

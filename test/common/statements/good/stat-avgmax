@@ -1,0 +1,15 @@
+# AVGMAX
+
+$success = TRUE;
+create_stat("stat", "AVGMAX", 60, 2010-01-01 00:00:00);
+add_stat("stat", 10, 2010-01-01 00:00:01);
+add_stat("stat", 90, 2010-01-01 00:00:02);
+if get_stat("stat", 2010-01-01 00:01:00) != 50 $success = FALSE;
+
+add_stat("stat", 5, 2010-01-01 00:01:01);
+add_stat("stat", 45, 2010-01-01 00:01:02);
+if get_stat("stat", 2010-01-01 00:02:00) != 50 $success = FALSE;
+
+add_stat("stat", 10, 2010-01-01 00:02:01);
+add_stat("stat", 20, 2010-01-01 00:02:02);
+if get_stat("stat", 2010-01-01 00:03:00) != 50 $success = FALSE;

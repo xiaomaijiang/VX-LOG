@@ -1,0 +1,13 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/output/tcp/test.conf
+SLEEP: 4
+STOPDAEMON: modules/output/tcp/test.conf
+TESTGENVERIFY: tmp/output 1000
+REMOVE: tmp/output
+
+STARTDAEMON: modules/output/tcp/multi_tcp.conf
+WRITEFILE: tcp:localhost:23456 modules/output/tcp/testinput.txt
+SLEEP: 1
+STOPDAEMON: modules/output/tcp/multi_tcp.conf
+COMPAREFILESIZE: modules/output/tcp/testoutput.txt tmp/output
+REMOVE: tmp/output

@@ -1,0 +1,14 @@
+$raw_event = "";
+$TestField = "testvalue";
+$Undef = undef;
+$Integer = 42;
+$BoolTrue = TRUE;
+$BoolFalse = FALSE;
+#$DateTime = parsedate("2011-05-29 00:03:21.004+02:00");
+to_json();
+if ( $raw_event != '{"TestField":"testvalue","Undef":null,"Integer":42,"BoolTrue":true,"BoolFalse":false}' ) $success = FALSE;
+$raw_event2 = to_json();
+if $raw_event2 != $raw_event $success = FALSE;
+#log_info($raw_event);
+$raw_event2 = undef;
+if not defined $success $success = TRUE;

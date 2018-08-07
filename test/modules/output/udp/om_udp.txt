@@ -1,0 +1,5 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/output/udp/test.conf
+STOPDAEMON: modules/output/udp/test.conf
+TESTGENVERIFY: tmp/output 300
+REMOVE: tmp/output

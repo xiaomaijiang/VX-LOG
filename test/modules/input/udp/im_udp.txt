@@ -1,0 +1,15 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/input/udp/test.conf
+WRITELINE: udp:localhost:23456 11111
+WRITELINE: udp:localhost:23456 22222
+STOPDAEMON: modules/input/udp/test.conf
+COMPAREFILE: tmp/output modules/input/udp/testoutput1.txt
+REMOVE: tmp/output
+
+STARTDAEMON: modules/input/udp/test.conf
+WRITEFILE: udp:localhost:23456 test.log
+SLEEP: 3
+STOPDAEMON: modules/input/udp/test.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+

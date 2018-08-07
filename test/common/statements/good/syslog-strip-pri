@@ -1,0 +1,4 @@
+$success = TRUE;
+$raw_event = "<30>Oct 12 12:49:06 host app[12345]: daemon.info";
+if $raw_event =~ /(^<\d+>)(.*)/ $raw_event = $2;
+if $raw_event != "Oct 12 12:49:06 host app[12345]: daemon.info" $success = FALSE;

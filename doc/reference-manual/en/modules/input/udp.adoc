@@ -1,0 +1,70 @@
+[[im_udp]]
+==== UDP (im_udp)
+
+This module accepts UDP datagrams on the configured address and
+port. UDP is the transport protocol of the legacy BSD Syslog as
+described in RFC 3164, so this module can be particularly useful to
+receive such messages from older devices which do not support other
+transports.
+
+NOTE: This module provides no access control. Firewall rules can be
+      used to drop log events from certain hosts.
+
+[NOTE]
+====
+UDP packets can be dropped by the operating system because the
+protocol does not guarantee reliable message delivery. It is
+recommended to use the <<im_tcp,TCP>> or <<im_ssl,SSL>> transport
+modules instead if message loss is a concern.
+
+Though {productName} was designed to minimize message loss even in the
+case of UDP, adjusting the kernel buffers may reduce the likelihood of
+UDP message loss on a loaded system. The
+<<config_route_priority,Priority>> directive in the Route block can
+also help in this situation.
+====
+
+For parsing Syslog messages, see the <<pm_transformer,pm_transformer>>
+module or the <<xm_syslog_proc_to_syslog_bsd,parse_syslog_bsd()>>
+procedure of <<xm_syslog,xm_syslog>>.
+
+[[im_udp_config]]
+===== Configuration
+
+The _im_udp_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_udp_config_host]]
+Host:: The module will accept messages on this IP address or DNS
+  hostname. The default is `localhost`.
+
+[[im_udp_config_port]]
+Port:: The module will listen for incoming connections on this port
+  number. The default is port 514.
+
+'''
+
+[[im_udp_config_sockbufsize]]
+SockBufSize:: This optional directive sets the socket buffer size
+  (SO_RCVBUF) to the value specified. If not set, the operating system
+  defaults are used. If UDP packet loss is occurring at the kernel
+  level, setting this to a high value (such as `150000000`) may
+  help. On Windows systems the default socket buffer size is extremely
+  low, and using this option is highly recommended.
+
+include::../../fields-im_udp.adoc[]
+
+[[im_udp_config_examples]]
+===== Examples
+
+.Using the im_udp Module
+====
+This configuration accepts log messages via UDP and writes them to
+file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_udp.conf[lines=2..-1]
+----
+====

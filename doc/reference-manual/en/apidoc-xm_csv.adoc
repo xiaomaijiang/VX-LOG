@@ -1,0 +1,40 @@
+[[xm_csv_funcs]]
+===== Functions
+
+The following functions are exported by xm_csv.
+
+[[xm_csv_func_to_csv]]
+<<lang_type_string,string>> `to_csv()`::
++
+--
+Convert the specified fields to a single CSV formatted
+     string.
+--
+
+
+[[xm_csv_procs]]
+===== Procedures
+
+The following procedures are exported by xm_csv.
+
+[[xm_csv_proc_parse_csv]]
+`parse_csv();`::
++
+--
+Parse the `$raw_event` field as CSV input.
+--
+
+`parse_csv(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string as CSV format.
+--
+
+[[xm_csv_proc_to_csv]]
+`to_csv();`::
++
+--
+Format the specified fields as CSV and put this into the
+     `$raw_event` field.
+--
+

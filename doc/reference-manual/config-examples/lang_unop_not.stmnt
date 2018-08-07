@@ -1,0 +1,1 @@
+if not $Success log_error("Job failed");

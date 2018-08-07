@@ -1,0 +1,19 @@
+include::attributes.adoc[]
+
+= {productNameCE} Reference Manual
+:author: {companyNameFormal}
+:doctype: book
+:revnumber: {productVersion}
+:revdate: {month} {year}
+:copyright: Copyright © {author} {year}
+:revremark: {copyright}
+
+include::man_pages.adoc[leveloffset=+1]
+
+include::configuration.adoc[]
+
+include::language.adoc[]
+
+include::modules.adoc[leveloffset=-1]
+
+// FIXME: manpages for nxlog, nxlog-processor, nxlog-stmnt-verifier

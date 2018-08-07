@@ -1,0 +1,11 @@
+$raw_event = '<?xml version="1.0" encoding="UTF-8"?>
+<Event>
+ <time>2001-12-31T12:00:00</time>
+ <uid/>
+</Event>';
+parse_xml();
+if not defined $time $success = FALSE;
+if $time != "2001-12-31T12:00:00" $success = FALSE;
+if defined $uid $success = FALSE;
+#if $uid != "500" $success = FALSE;
+if not defined $success $success = TRUE;

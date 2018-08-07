@@ -1,0 +1,16 @@
+# GRAD
+
+$success = TRUE;
+create_stat("stat", "GRAD", 60, 2010-01-01 00:00:00);
+add_stat("stat", 1, 2010-01-01 00:00:01);
+add_stat("stat", 9, 2010-01-01 00:00:02);
+if get_stat("stat", 2010-01-01 00:01:00) != 10 $success = FALSE;
+
+add_stat("stat", 10, 2010-01-01 00:01:01);
+add_stat("stat", 5, 2010-01-01 00:01:02);
+if get_stat("stat", 2010-01-01 00:02:00) != 5 $success = FALSE;
+
+add_stat("stat", 4, 2010-01-01 00:02:01);
+add_stat("stat", 0, 2010-01-01 00:03:00);
+add_stat("stat", 6, 2010-01-01 00:03:02);
+if get_stat("stat", 2010-01-01 00:04:00) != 2 $success = FALSE;

@@ -1,0 +1,11 @@
+$raw_event = '{"TestField":"testvalue","Map":{"subkey1":1,"subkey2":"two"}}';
+parse_json();
+if not defined $TestField $success = FALSE;
+if $TestField != 'testvalue' $success = FALSE;
+if not defined $Map $success = FALSE;
+
+# FIXME: #462
+if $Map != '{"subkey1":1,"subkey2":two}' $success = FALSE;
+#if $Map != '{"subkey1":1,"subkey2":"two"}' $success = FALSE;
+
+if not defined $success $success = TRUE;

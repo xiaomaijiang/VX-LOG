@@ -1,0 +1,1 @@
+if $Message !~ /^Test message/ log_info("didn't match");

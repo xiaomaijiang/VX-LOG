@@ -1,0 +1,50 @@
+<declarations>
+ <module>xm_csv</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>parse_csv</name>
+   <type>public</type>
+   <cb>nx_expr_proc__parse_csv</cb>
+   <description>
+     <en>Parse the `$raw_event` field as CSV input.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>parse_csv</name>
+   <type>public</type>
+   <cb>nx_expr_proc__parse_csv</cb>
+   <arg>
+    <name>source</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>Parse the given string as CSV format.</en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>to_csv</name>
+   <type>public</type>
+   <cb>nx_expr_proc__to_csv</cb>
+   <description>
+     <en>Format the specified fields as CSV and put this into the
+     `$raw_event` field.</en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>to_csv</name>
+   <type>public</type>
+   <cb>nx_expr_func__to_csv</cb>
+   <rettype>string</rettype>
+   <description>
+     <en>Convert the specified fields to a single CSV formatted
+     string.</en>
+   </description>
+ </function>
+
+</declarations>

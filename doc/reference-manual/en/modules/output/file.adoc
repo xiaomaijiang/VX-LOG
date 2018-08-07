@@ -1,0 +1,89 @@
+[[om_file]]
+==== File (om_file)
+
+This module can be used to write log messages to a file.
+
+[[om_file_config]]
+===== Configuration
+
+The _om_file_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+The <<om_file_config_file,File>> directive is required.
+
+[[om_file_config_file]]
+File:: This mandatory directive specifies the name of the output file
+  to open. It must be a <<lang_type_string,string>> type
+  <<lang_expressions,expression>>. If the expression in the *File*
+  directive is not a constant string (it contains functions, field
+  names, or operators), it will be evaluated before each event is
+  written to the file (and after the <<config_module_exec,Exec>> is
+  evaluated).  Note that the filename must be quoted to be a valid
+  string literal, unlike in other directives which take a filename
+  argument. For relative filenames, note that {productName} changes
+  its working directory to "/" unless the global
+  <<config_global_spooldir,SpoolDir>> is set to something else.
++
+Below are three variations for specifying the same output file on a
+Windows system:
++
+----
+File 'C:\logs\logmsg.txt'
+File "C:\\logs\\logmsg.txt"
+File 'C:/logs/logmsg.txt'
+----
+
+'''
+
+[[om_file_config_createdir]]
+CreateDir:: If set to TRUE, this optional boolean directive instructs
+  the module to create the output directory before opening the file
+  for writing if it does not exist. The default is FALSE.
+
+[[om_file_config_outputtype]]
+OutputType:: See the <<config_outputtype,OutputType>> directive in the
+  list of common module directives. If this directive is not specified
+  the default is <<config_outputtype_linebased,LineBased>>.
+
+[[om_file_config_sync]]
+Sync:: This optional boolean directive instructs the module to sync
+  the file after each log message is written, ensuring that it is
+  really written to disk from the buffers. Because this can hurt
+  performance, the default is FALSE.
+
+[[om_file_config_truncate]]
+Truncate:: This optional boolean directive instructs the module to
+  truncate the file before each write, causing only the most recent
+  log message to be saved. The default is FALSE: messages are appended
+  to the output file.
+
+include::../../apidoc-om_file.adoc[]
+
+[[om_file_config_examples]]
+===== Examples
+
+.Storing Raw Syslog Messages into a File
+====
+This configuration reads log messages from socket and writes the
+messages to file. No additional processing is done.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_file.conf[lines=2..-1]
+----
+====
+
+[[om_file_config_example_rotate1]]
+.File Rotation Based on Size
+====
+With this configuration, {productName} accepts log messages via TCP
+and parses them as BSD Syslog. A separate output file is used for log
+messages from each host. When the output file size exceeds 15 MB, it
+will be automatically rotated and compressed.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_file_rotate1.conf[lines=2..-1]
+----
+====

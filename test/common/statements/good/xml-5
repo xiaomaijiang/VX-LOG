@@ -1,0 +1,13 @@
+$raw_event = "";
+$TestField = "testvalue";
+$Undef = undef;
+$Integer = 42;
+$BoolTrue = TRUE;
+$BoolFalse = FALSE;
+to_xml();
+#log_info($raw_event);
+if ( $raw_event != '<Event><TestField>testvalue</TestField><Undef/><Integer>42</Integer><BoolTrue>TRUE</BoolTrue><BoolFalse>FALSE</BoolFalse></Event>' ) $success = FALSE;
+$raw_event2 = to_xml();
+if $raw_event2 != $raw_event $success = FALSE;
+$raw_event2 = undef;
+if not defined $success $success = TRUE;

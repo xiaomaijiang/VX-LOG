@@ -1,0 +1,212 @@
+/* src/common/config.h.in.  Generated from configure.in by autoheader.  */
+
+/* Define to 1 if you have the `apr_file_link' function. */
+#undef HAVE_APR_FILE_LINK
+
+/* Define to 1 if you have the `apr_file_sync' function. */
+#undef HAVE_APR_FILE_SYNC
+
+/* Define to 1 if you have the `apr_pollset_wakeup' function. */
+#undef HAVE_APR_POLLSET_WAKEUP
+
+/* Define to 1 if you have the `apr_pool_create_unmanaged_ex' function. */
+#undef HAVE_APR_POOL_CREATE_UNMANAGED_EX
+
+/* Define to 1 if you have the `apr_sockaddr_ip_getbuf' function. */
+#undef HAVE_APR_SOCKADDR_IP_GETBUF
+
+/* Define to 1 if you have the `backtrace_symbols' function. */
+#undef HAVE_BACKTRACE_SYMBOLS
+
+/* Define to 1 if you have the `chmod' function. */
+#undef HAVE_CHMOD
+
+/* Define to 1 if you have the `chown' function. */
+#undef HAVE_CHOWN
+
+/* Define to 1 if you have the <dbi/dbi.h> header file. */
+#undef HAVE_DBI_DBI_H
+
+/* Define to 1 if you have the `dbi_initialize_r' function. */
+#undef HAVE_DBI_INITIALIZE_R
+
+/* Define to 1 if you have the declaration of `AF_UNIX', and to 0 if you
+   don't. */
+#undef HAVE_DECL_AF_UNIX
+
+/* Define to 1 if you have the declaration of `PCRE_ERROR_BADUTF8', and to 0
+   if you don't. */
+#undef HAVE_DECL_PCRE_ERROR_BADUTF8
+
+/* Define to 1 if you have the declaration of `PCRE_ERROR_BADUTF8_OFFSET', and
+   to 0 if you don't. */
+#undef HAVE_DECL_PCRE_ERROR_BADUTF8_OFFSET
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the `EVP_md5' function. */
+#undef HAVE_EVP_MD5
+
+/* Define to 1 if you have the `EVP_ripemd160' function. */
+#undef HAVE_EVP_RIPEMD160
+
+/* Define to 1 if you have the `EVP_sha1' function. */
+#undef HAVE_EVP_SHA1
+
+/* Define to 1 if you have the `EVP_sha256' function. */
+#undef HAVE_EVP_SHA256
+
+/* Define to 1 if you have the `EVP_sha512' function. */
+#undef HAVE_EVP_SHA512
+
+/* Define to 1 if you have the <execinfo.h> header file. */
+#undef HAVE_EXECINFO_H
+
+/* Define to 1 if you have the `getgrouplist' function. */
+#undef HAVE_GETGROUPLIST
+
+/* Define to 1 if you have the <grp.h> header file. */
+#undef HAVE_GRP_H
+
+/* Define to 1 if you have the `iconv_open' function. */
+#undef HAVE_ICONV_OPEN
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `klogctl' function. */
+#undef HAVE_KLOGCTL
+
+/* Define to 1 if you have the <langinfo.h> header file. */
+#undef HAVE_LANGINFO_H
+
+/* Define to 1 if you have the `crypto' library (-lcrypto). */
+#undef HAVE_LIBCRYPTO
+
+/* Define to 1 if you have the `ssl' library (-lssl). */
+#undef HAVE_LIBSSL
+
+/* Define to 1 if you have the `locale_charset' function. */
+#undef HAVE_LOCALE_CHARSET
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `nl_langinfo' function. */
+#undef HAVE_NL_LANGINFO
+
+/* Define to 1 if you have the <openssl/evp.h> header file. */
+#undef HAVE_OPENSSL_EVP_H
+
+/* Define to 1 if you have the <pcre.h> header file. */
+#undef HAVE_PCRE_H
+
+/* Define to 1 if you have the `perl_parse' function. */
+#undef HAVE_PERL_PARSE
+
+/* Define to 1 if you have the `prctl' function. */
+#undef HAVE_PRCTL
+
+/* Define to 1 if you have the `setgroups' function. */
+#undef HAVE_SETGROUPS
+
+/* Define to 1 if you have the `setpflags' function. */
+#undef HAVE_SETPFLAGS
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the `strptime' function. */
+#undef HAVE_STRPTIME
+
+/* Define to 1 if `tm_gmtoff' is a member of `struct tm'. */
+#undef HAVE_STRUCT_TM_TM_GMTOFF
+
+/* Define to 1 if `__tm_gmtoff' is a member of `struct tm'. */
+#undef HAVE_STRUCT_TM___TM_GMTOFF
+
+/* Define to 1 if you have the <syslog.h> header file. */
+#undef HAVE_SYSLOG_H
+
+/* Define to 1 if you have the <sys/capability.h> header file. */
+#undef HAVE_SYS_CAPABILITY_H
+
+/* Define to 1 if you have the <sys/klog.h> header file. */
+#undef HAVE_SYS_KLOG_H
+
+/* Define to 1 if you have the <sys/prctl.h> header file. */
+#undef HAVE_SYS_PRCTL_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the <utmp.h> header file. */
+#undef HAVE_UTMP_H
+
+/* Define to 1 if you have the <winevt.h> header file. */
+#undef HAVE_WINEVT_H
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION
+
+/* version string */
+#undef VERSION_STRING
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* Enable large inode numbers on Mac OS X 10.5.  */
+#ifndef _DARWIN_USE_64_BIT_INODE
+# define _DARWIN_USE_64_BIT_INODE 1
+#endif
+
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES

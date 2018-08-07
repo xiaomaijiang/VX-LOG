@@ -1,0 +1,8 @@
+$success = TRUE;
+$EventID = 4242;
+
+if string($EventID) =~ /^42/ 
+{
+   $success = TRUE;
+}
+else $success = FALSE;

@@ -1,0 +1,6 @@
+REMOVE: tmp/output
+RUNPROCESSOR: modules/extension/wtmp/xm_wtmp.conf
+COMPAREFILE: tmp/output modules/extension/wtmp/xm_wtmp.out
+REMOVE: tmp/output
+
+

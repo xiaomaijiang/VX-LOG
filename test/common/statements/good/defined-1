@@ -1,0 +1,9 @@
+$success = TRUE;
+if not defined 1 $success = FALSE;
+if defined undef $success = FALSE;
+if not defined(1) $success = FALSE;
+if not defined("defined") $success = FALSE;
+$var = 1;
+if not defined($var) $success = FALSE;
+if defined($undefined) $success = FALSE;
+if not defined 2010-01-01 01:01:01 $success = FALSE;

@@ -1,0 +1,9 @@
+[[im_null]]
+==== Null (im_null)
+
+This module does not generate any input, so basically it does nothing.
+Yet it can be useful for creating a dummy route, for testing purposes,
+or for <<config_module_schedule,Scheduled>> {productName} code
+execution. The _im_null_ module accepts only the
+<<config_module_common,common module directives>>. See
+<<config_example_routes,this example>> for usage.

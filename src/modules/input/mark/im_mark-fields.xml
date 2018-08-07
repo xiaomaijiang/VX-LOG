@@ -1,0 +1,83 @@
+<fields>
+  <module>im_mark</module>
+  <field>
+    <name>raw_event</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The value defined by the
+	&lt;&lt;im_mark_config_mark,Mark&gt;&gt; directive, `-- MARK
+	--` by default.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Message</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The same value as &lt;&lt;im_mark_field_raw_event,$raw_event&gt;&gt;.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SeverityValue</name>
+    <type>integer</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The INFO severity level value: `2`.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Severity</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The severity name: `INFO`.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>EventTime</name>
+    <type>datetime</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The current time.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SourceName</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	Set to `nxlog`.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>ProcessID</name>
+    <type>integer</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The process ID of the {productName} process.
+      </en>
+    </description>
+  </field>
+
+</fields>

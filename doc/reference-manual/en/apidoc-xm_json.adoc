@@ -1,0 +1,46 @@
+[[xm_json_funcs]]
+===== Functions
+
+The following functions are exported by xm_json.
+
+[[xm_json_func_to_json]]
+<<lang_type_string,string>> `to_json()`::
++
+--
+
+Convert the fields to JSON and return this as a string value.  The
+`$raw_event` field and any field having a leading dot (`.`) or
+underscore (`_`) will be automatically excluded.
+     
+--
+
+
+[[xm_json_procs]]
+===== Procedures
+
+The following procedures are exported by xm_json.
+
+[[xm_json_proc_parse_json]]
+`parse_json();`::
++
+--
+Parse the `$raw_event` field as JSON input.
+--
+
+`parse_json(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string as JSON format.
+--
+
+[[xm_json_proc_to_json]]
+`to_json();`::
++
+--
+
+Convert the fields to JSON and put this into the `$raw_event`
+field. The `$raw_event` field and any field having a leading dot (`.`)
+or underscore (`_`) will be automatically excluded.
+     
+--
+

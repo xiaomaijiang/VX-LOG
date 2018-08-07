@@ -1,0 +1,1 @@
+<30> Oct 12 12:49:06 host app[12345]: regexp test ok

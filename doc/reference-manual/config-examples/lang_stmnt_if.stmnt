@@ -1,0 +1,17 @@
+if now() > 2000-01-01 00:00:00 log_info("we are in the 21st century");
+
+# same as above but with brackets
+if ( now() > 2000-01-01 00:00:00 ) log_info("we are in the 21st century");
+
+# conditional statement block
+if now() > 2000-01-01 00:00:00
+{
+   log_info("we are in the 21st century");
+}
+
+# conditional statement block with an else branch
+if now() > 2000-01-01 00:00:00
+{
+   log_info("we are in the 21st century");
+}
+else log_info("we are not yet in the 21st century");

@@ -1,0 +1,36 @@
+[[pm_blocker]]
+==== Blocker (pm_blocker)
+
+This module blocks log messages and can be used to simulate a blocked
+route. When the module blocks the data flow, log messages are first
+accumulated in the buffers, and then the flow control mechanism pauses
+the input modules. Using the <<pm_blocker_proc_block,block()>>
+procedure, it is possible to programmatically stop or resume the data
+flow. It can be useful for real-world scenarios as well as
+testing. See the examples below. When the module starts, the blocking
+mode is disabled by default (it operates like <<pm_null,pm_null>>
+would).
+
+===== Configuration
+
+The _pm_blocker_ module accepts only the <<config_module_common,common
+module directives>>.
+
+include::../../apidoc-pm_blocker.adoc[]
+
+[[pm_blocker_config_examples]]
+===== Examples
+
+.Using the pm_blocker Module
+====
+In this example messages are received over UDP and forwarded to
+another host via TCP. The log data is forwarded during non-working
+hours (between 7pm and 8am). During working hours, the data is
+buffered on the disk.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/pm_blocker.conf[lines=2..-1]
+----
+====

@@ -1,0 +1,22 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/input/tcp/test.conf
+WRITELINE: tcp:localhost:23456 11111
+WRITELINE: tcp:localhost:23456 22222
+SLEEP: 1
+STOPDAEMON: modules/input/tcp/test.conf
+COMPAREFILE: tmp/output modules/input/tcp/testoutput1.txt
+REMOVE: tmp/output
+
+STARTDAEMON: modules/input/tcp/test.conf
+WRITEFILE: tcp:localhost:23456 test.log
+SLEEP: 3 
+STOPDAEMON: modules/input/tcp/test.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+
+STARTDAEMON: modules/input/tcp/binarytest.conf
+SLEEP: 3 
+STOPDAEMON: modules/input/tcp/binarytest.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+

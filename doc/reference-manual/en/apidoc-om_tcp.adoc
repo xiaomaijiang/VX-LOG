@@ -1,0 +1,15 @@
+[[om_tcp_procs]]
+===== Procedures
+
+The following procedures are exported by om_tcp.
+
+[[om_tcp_proc_reconnect]]
+`reconnect();`::
++
+--
+
+Force a reconnection. This can be used from a Schedule block to
+periodically reconnect to the server.
+     
+--
+

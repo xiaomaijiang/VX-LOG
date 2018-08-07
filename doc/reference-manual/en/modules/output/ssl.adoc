@@ -1,0 +1,96 @@
+[[om_ssl]]
+==== TLS/SSL (om_ssl)
+
+The _om_ssl_ module uses the OpenSSL library to provide an SSL/TLS
+transport. It behaves like the <<om_tcp,om_tcp>> module, except that
+an SSL handshake is performed at connection time and the data is
+received over a secure channel. Log messages transferred over plain
+TCP can be eavesdropped or even altered with a man-in-the-middle
+attack, while the _om_ssl_ module provides a secure log message
+transport.
+
+[[om_ssl_config]]
+===== Configuration
+
+The _om_ssl_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+The <<om_ssl_config_host,Host>> directive is required.
+
+[[om_ssl_config_host]]
+Host:: The module will connect to this IP address or DNS hostname.
+
+[[om_ssl_config_port]]
+Port:: The module will connect to this port number on the remote host.
+  The default is port 514.
+
+'''
+
+[[om_ssl_config_allowuntrusted]]
+AllowUntrusted:: This boolean directive specifies that the connection
+  should be allowed without certificate verification. If set to TRUE
+  the connection will be allowed even if the remote server presents an
+  unknown or self-signed certificate. The default value is FALSE: the
+  remote socket must present a trusted certificate.
+
+[[om_ssl_config_cadir]]
+CADir:: This specifies the path to a directory containing certificate
+  authority (CA) certificates, which will be used to check the
+  certificate of the remote socket. The certificate filenames in this
+  directory must be in the OpenSSL hashed format.
+
+[[om_ssl_config_cafile]]
+CAFile:: This specifies the path of the certificate authority (CA)
+  certificate, which will be used to check the certificate of the
+  remote socket.
+
+[[om_ssl_config_certfile]]
+CertFile:: This specifies the path of the certificate file to be used
+  for the SSL handshake.
+
+[[om_ssl_config_certkeyfile]]
+CertKeyFile:: This specifies the path of the certificate key file to
+  be used for the SSL handshake.
+
+[[om_ssl_config_crldir]]
+CRLDir:: This specifies the path to a directory containing certificate
+  revocation lists (CRLs), which will be consulted when checking the
+  certificate of the remote socket. The certificate filenames in this
+  directory must be in the OpenSSL hashed format.
+
+[[om_ssl_config_crlfile]]
+CRLFile::
+  This specifies the path of the certificate revocation list (CRL) which
+  will be used to check the certificate of the remote socket against.
+
+[[om_ssl_config_keypass]]
+KeyPass:: With this directive, a password can be supplied for the
+  certificate key file defined in
+  <<om_ssl_config_certkeyfile,CertKeyFile>>. This directive is not
+  needed for passwordless private keys.
+
+[[om_ssl_config_outputtype]]
+OutputType:: See the <<config_outputtype,OutputType>> directive in the
+  list of common module directives.
+
+[[om_ssl_config_reconnect]]
+Reconnect:: This directive has been deprecated as of version 2.4. The
+  module will try to reconnect automatically at increasing intervals
+  on all errors.
+
+include::../../apidoc-om_ssl.adoc[]
+
+[[om_ssl_config_examples]]
+===== Examples
+
+.Sending Binary Data to Another {productName} Agent
+====
+This configuration reads log messages from socket and sends them in
+the {productName} <<config_outputtype_binary,binary>> format to
+another {productName} agent.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_ssl.conf[lines=2..-1]
+----
+====

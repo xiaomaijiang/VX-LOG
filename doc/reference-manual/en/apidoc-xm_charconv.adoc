@@ -1,0 +1,33 @@
+[[xm_charconv_funcs]]
+===== Functions
+
+The following functions are exported by xm_charconv.
+
+[[xm_charconv_func_convert]]
+<<lang_type_string,string>> `convert(<<lang_type_string,string>> source, <<lang_type_string,string>> srcencoding, <<lang_type_string,string>> dstencoding)`::
++
+--
+
+Convert the source string to the encoding specified in _dstencoding_
+from _srcencoding_. The _srcencoding_ argument can be set to `auto` to
+request auto detection.
+     
+--
+
+
+[[xm_charconv_procs]]
+===== Procedures
+
+The following procedures are exported by xm_charconv.
+
+[[xm_charconv_proc_convert_fields]]
+`convert_fields(<<lang_type_string,string>> srcencoding, <<lang_type_string,string>> dstencoding);`::
++
+--
+
+Convert all string type fields of a log message from _srcencoding_ to
+_dstencoding_. The _srcencoding_ argument can be set to `auto` to
+request auto detection.
+     
+--
+

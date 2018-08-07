@@ -1,0 +1,7 @@
+$success = TRUE;
+$one = 1;
+$three = 'three';
+
+csv->to_csv();
+#log_info($raw_event);
+if $raw_event != '1		"three"' $success = FALSE;

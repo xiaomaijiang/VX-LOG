@@ -1,0 +1,22 @@
+$raw_event = '<?xml version="1.0" encoding="UTF-8"?>
+<Event>
+ <time>2001-12-31T12:00:00</time>
+ <request>
+    <method>GET</method>
+    <ip>1.2.3.4</ip>
+    <username>john</username>
+ </request>
+ <uid>42</uid>
+</Event>';
+parse_xml();
+if not defined $time $success = FALSE;
+if $time != "2001-12-31T12:00:00" $success = FALSE;
+if not defined $request $success = FALSE;
+if $request != "
+    <method>GET</method>
+    <ip>1.2.3.4</ip>
+    <username>john</username>
+ " $success = FALSE;
+if not defined $uid $success = FALSE;
+if $uid != "42" $success = FALSE;
+if not defined $success $success = TRUE;

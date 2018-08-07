@@ -1,0 +1,4 @@
+$success = TRUE;
+$arviz = "\xE1\x72\x76\xED\x7A";
+convert_fields("AUTO", "UTF-8");
+if $arviz != "\xC3\xA1\x72\x76\xC3\xAD\x7A" $success = FALSE;

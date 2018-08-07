@@ -1,0 +1,7 @@
+$success = TRUE;
+if defined $test $success = FALSE;
+if $test != undef $success = FALSE;
+$test = 'test';
+$test = undef;
+if defined $test $success = FALSE;
+if $test != undef $success = FALSE;

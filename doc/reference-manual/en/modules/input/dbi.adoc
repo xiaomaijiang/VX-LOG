@@ -1,0 +1,94 @@
+[[im_dbi]]
+==== DBI (im_dbi)
+
+The _im_dbi_ module allows {productName} to pull log data from external
+databases. This module utilizes the
+http://libdbi.sourceforge.net[libdbi] database abstraction library,
+which supports various database engines such as MySQL, PostgreSQL,
+MSSQL, Sybase, Oracle, SQLite, and Firebird. A SELECT statement can be
+specified, which will be executed periodically to check for new
+records.
+
+NOTE: The _im_dbi_ and <<om_dbi,om_dbi>> modules support GNU/Linux only
+      because of the libdbi library. The <<im_odbc,im_odbc>> and
+      <<om_odbc,om_odbc>> modules provide native database access on
+      Windows.
+
+// tag::driver-pkgs[]
+
+NOTE: libdbi needs <<im_dbi_config_driver,drivers>> to access the
+      database engines. These are in the libdbd-* packages on Debian
+      and Ubuntu. CentOS 5.6 has a libdbi-drivers RPM package, but
+      this package does not contain any driver binaries under
+      /usr/lib64/dbd. The drivers for both MySQL and PostgreSQL are in
+      libdbi-dbd-mysql. If these are not installed, {productName} will
+      return a libdbi driver initialization error.
+
+// end::driver-pkgs[]
+
+[[im_dbi_config]]
+===== Configuration
+
+The _im_dbi_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[im_dbi_config_driver]]
+
+// tag::driver[]
+
+Driver:: This mandatory directive specifies the name of the libdbi
+  driver which will be used to connect to the database. A DRIVER name
+  must be provided here for which a loadable driver module exists
+  under the name `libdbdDRIVER.so` (usually under `/usr/lib/dbd/`). The
+  MySQL driver is in the `libdbdmysql.so` file.
+
+// end::driver[]
+
+[[im_dbi_config_sql]]
+SQL:: This directive should specify the SELECT statement to be
+  executed every <<im_dbi_config_pollinterval,PollInterval>>
+  seconds. The module automatically appends a `WHERE id > ? LIMIT 10`
+  clause to the statement. The result set returned by the SELECT
+  statement must contain an _id_ column which is then stored and used
+  for the next query.
+
+'''
+
+[[im_dbi_config_option]]
+
+// tag::option[]
+
+Option:: This directive can be used to specify additional driver
+  options such as connection parameters. The manual of the libdbi
+  driver should contain the options available for use here.
+
+// end::option[]
+
+[[im_dbi_config_pollinterval]]
+PollInterval:: This directive specifies how frequently the module will
+  check for new records, in seconds. If this directive is not
+  specified, the default is 1 second. Fractional seconds may be
+  specified (`PollInterval 0.5` will check twice every second).
+
+[[im_dbi_config_savepos]]
+SavePos:: If this boolean directive is set to TRUE, the position will
+  be saved when {productName} exits. The position will be read from
+  the cache file upon startup. The default is TRUE: the position will
+  be saved if this directive is not specified. Even if *SavePos* is
+  enabled, it can be explicitly turned off with the global
+  <<config_global_nocache,NoCache>> directive.
+
+[[im_dbi_config_examples]]
+===== Examples
+
+.Reading From a MySQL Database
+====
+This example uses libdbi and the MySQL driver to connect to the logdb
+database on the local host and execute the provided statement.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_dbi_mysql.conf[lines=2..-1]
+----
+====

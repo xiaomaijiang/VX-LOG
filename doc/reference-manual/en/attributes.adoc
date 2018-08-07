@@ -1,0 +1,21 @@
+// The contents of this file and ../attributes.adoc should roughly correspond
+// with the attributes.adoc file in the nxlog/documentation repository.
+
+include::../attributes.adoc[]
+
+// Variables for use in documents
+:companyName: NXLog
+:companyNameFormal: NXLog Ltd.
+:companyWebsite: link:https://nxlog.co[{companyName} website]
+:productNameCE: NXLog Community Edition
+:productNameEE: NXLog Enterprise Edition
+:productName: NXLog
+
+// Metadata attributes
+:author: {companyNameFormal}
+:copyright: Copyright © {author} {year}
+:revnumber: {productVersion}
+:revdate: {month} {year}
+:revremark: {copyright}
+:manmanual: {productName}
+:man-linkstyle: pass:[blue R < >]

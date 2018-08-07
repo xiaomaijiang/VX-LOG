@@ -1,0 +1,4 @@
+$success = TRUE;
+$ipaddr = 195.228.245.1;
+if not defined $ipaddr $success = FALSE;
+if $ipaddr != 195.228.245.1 $success = FALSE;

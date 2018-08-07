@@ -1,0 +1,70 @@
+[[om_file_funcs]]
+===== Functions
+
+The following functions are exported by om_file.
+
+[[om_file_func_file_name]]
+<<lang_type_string,string>> `file_name()`::
++
+--
+
+Return the name of the currently open file which was specified using
+the <<om_file_config_file,File>> directive.  Note that
+this will be the old name if the filename changes dynamically; for the
+new name, use the expression specified for the
+<<om_file_config_file,File>> directive instead of using
+this function.
+     
+--
+
+[[om_file_func_file_size]]
+<<lang_type_integer,integer>> `file_size()`::
++
+--
+
+Return the size of the currently open output file in bytes. Returns
+undef if the file is not open. This can happen if
+<<om_file_config_file,File>> is not a string literal
+expression and there was no log message.
+     
+--
+
+
+[[om_file_procs]]
+===== Procedures
+
+The following procedures are exported by om_file.
+
+[[om_file_proc_reopen]]
+`reopen();`::
++
+--
+
+Reopen the current file. This procedure should be called if the file
+has been removed or renamed, for example with the
+<<xm_fileop_proc_file_cycle,file_cycle()>>,
+<<xm_fileop_proc_file_remove,file_remove()>>, or
+<<xm_fileop_proc_file_rename,file_rename()>> procedures of
+the xm_fileop module. This does not need to be called after
+<<om_file_proc_rotate_to,rotate_to()>> because that
+procedure reopens the file automatically.
+     
+--
+
+[[om_file_proc_rotate_to]]
+`rotate_to(<<lang_type_string,string>> filename);`::
++
+--
+
+Rotate the current file to the _filename_ specified. The module will
+then open the original file specified with the
+<<om_file_config_file,File>> directive. Note that the
+rename(2) system call is used internally which does not support moving
+files across different devices on some platforms. If this is a
+problem, first rotate the file on the same device. Then use the
+xm_exec <<xm_exec_proc_exec_async,exec_async()>> procedure
+to copy it to another device or file system, or use the xm_fileop
+<<xm_fileop_proc_file_copy,file_copy()>> procedure.
+     
+--
+

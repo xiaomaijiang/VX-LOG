@@ -1,0 +1,14 @@
+[[im_file_funcs]]
+===== Functions
+
+The following functions are exported by im_file.
+
+[[im_file_func_file_name]]
+<<lang_type_string,string>> `file_name()`::
++
+--
+Return the name of the currently open file which the log was
+     read from.
+--
+
+

@@ -1,0 +1,26 @@
+<fields>
+  <module>pm_pattern</module>
+  <field>
+    <name>PatternID</name>
+    <type>integer</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+        The ID number of the pattern which matched the message.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>PatternName</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+        The name of the pattern which matched the message.
+      </en>
+    </description>
+  </field>
+
+</fields>

@@ -1,0 +1,2 @@
+{"SourceModuleName":"filein","SourceModuleType":"im_file","severity":"ERROR","message":"\n    Something bad happened.\n    Please check the system.\n  ","EventTime":"2012-11-23 23:00:00"}
+{"SourceModuleName":"filein","SourceModuleType":"im_file","severity":"INFO","message":"\n   System state is now back to normal.\n  ","EventTime":"2012-11-23 23:00:12"}

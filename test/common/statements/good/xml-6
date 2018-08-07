@@ -1,0 +1,20 @@
+$raw_event = "";
+$Amp1 = "&";
+$Amp2 = "1&";
+$Amp3 = "&1";
+$Amp4 = "1&1";
+$Squote1 = "'";
+$Squote2 = "1'";
+$Squote3 = "'1";
+$Squote4 = "1'1";
+$Dquote1 = '"';
+$Dquote2 = '1"';
+$Dquote3 = '"1';
+$Dquote4 = '1"1';
+$All = "
+'&<> <tag>
+";
+to_xml();
+#log_info($raw_event);
+if $raw_event != '<Event><Amp1>&amp;</Amp1><Amp2>1&amp;</Amp2><Amp3>&amp;1</Amp3><Amp4>1&amp;1</Amp4><Squote1>&apos;</Squote1><Squote2>1&apos;</Squote2><Squote3>&apos;1</Squote3><Squote4>1&apos;1</Squote4><Dquote1>&quot;</Dquote1><Dquote2>1&quot;</Dquote2><Dquote3>&quot;1</Dquote3><Dquote4>1&quot;1</Dquote4><All>&#xA;&apos;&amp;&lt;&gt; &lt;tag&gt;&#xA;</All></Event>' $success = FALSE;
+if not defined $success $success = TRUE;

@@ -1,0 +1,2 @@
+$success = TRUE;
+if strftime(2010-01-02 03:04:05, "%Y%m%d%H%M%S") != "20100102030405" $success = FALSE;

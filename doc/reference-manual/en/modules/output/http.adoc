@@ -1,0 +1,93 @@
+[[om_http]]
+==== HTTP(s) (om_http)
+
+This module will connect to the specified <<om_http_config_url,URL>>
+in either plain HTTP or HTTPS mode. Each event is transferred in a
+single POST request. The module then waits for a response containing a
+successful status code (200, 201, or 202). It will reconnect and retry
+the delivery if the remote has closed the connection or a timeout is
+exceeded while waiting for the response. This HTTP-level
+acknowledgment ensures that no messages are lost during transfer.
+
+[[om_http_config]]
+===== Configuration
+
+The _om_http_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+The <<om_http_config_url,URL>> directive is required.
+
+[[om_http_config_url]]
+URL:: This mandatory directive specifies the URL where the module
+  should POST the event data. The module operates in plain HTTP or
+  HTTPS mode depending on the URL provided, and connects to the
+  hostname specified in the URL. If the port number is not explicitly
+  indicated in the URL, it defaults to port 80 for HTTP and port 443 for
+  HTTPS.
+
+'''
+
+[[om_http_config_contenttype]]
+ContentType:: This directive sets the _Content-Type_ HTTP header to
+  the string specified. The _Content-Type_ is set to `text/plain` by
+  default.
+
+[[om_http_config_httpsallowuntrusted]]
+HTTPSAllowUntrusted:: This boolean directive specifies that the
+  connection should be allowed without certificate verification. If
+  set to TRUE, the connection will be allowed even if the remote HTTPS
+  server presents an unknown or self-signed certificate. The default
+  value is FALSE: the remote HTTPS server must present a trusted
+  certificate.
+
+[[om_http_config_httpscadir]]
+HTTPSCADir:: This specifies the path to a directory containing
+  certificate authority (CA) certificates, which will be used to check
+  the certificate of the remote HTTPS server. The certificate
+  filenames in this directory must be in the OpenSSL hashed format.
+
+[[om_http_config_httpscafile]]
+HTTPSCAFile:: This specifies the path of the certificate authority
+  (CA) certificate, which will be used to check the certificate of the
+  remote HTTPS server.
+
+[[om_http_config_httpscertfile]]
+HTTPSCertFile:: This specifies the path of the certificate file to be
+  used for the HTTPS handshake.
+
+[[om_http_config_httpscertkeyfile]]
+HTTPSCertKeyFile:: This specifies the path of the certificate key file
+  to be used for the HTTPS handshake.
+
+[[om_http_config_httpscrldir]]
+HTTPSCRLDir:: This specifies the path to a directory containing
+  certificate revocation lists (CRLs), which will be consulted when
+  checking the certificate of the remote HTTPS server. The certificate
+  filenames in this directory must be in the OpenSSL hashed format.
+
+[[om_http_config_httpscrlfile]]
+HTTPSCRLFile:: This specifies the path of the certificate revocation
+  list (CRL) which will be consulted when checking the certificate of
+  the remote HTTPS server.
+
+[[om_http_config_httpskeypass]]
+HTTPSKeyPass:: With this directive, a password can be supplied for the
+  certificate key file defined in
+  <<om_http_config_httpscertkeyfile,HTTPSCertKeyFile>>. This directive
+  is not needed for passwordless private keys.
+
+include::../../apidoc-om_http.adoc[]
+
+[[om_http_config_examples]]
+===== Examples
+
+.Sending Logs over HTTPS
+====
+This configuration reads log messages from file and forwards them via
+HTTPS.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_http.conf[lines=2..-1]
+----
+====

@@ -1,0 +1,12 @@
+$success = TRUE;
+$raw_event = "<30>2010-10-12 12:49:06 host app[12345]: daemon.info";
+parse_syslog_bsd($raw_event);
+
+if ($SyslogFacilityValue != syslog_facility_value('DAEMON')) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value('INFO')) $success = FALSE;
+
+if not defined $SourceName $success = FALSE;
+if $SourceName != 'app' $success = FALSE;
+if hour($EventTime) != 12 $success = FALSE;
+
+

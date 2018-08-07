@@ -1,0 +1,17 @@
+[[om_http_procs]]
+===== Procedures
+
+The following procedures are exported by om_http.
+
+[[om_http_proc_set_http_request_path]]
+`set_http_request_path(<<lang_type_string,string>> path);`::
++
+--
+
+Set the _path_ in the HTTP request to the string specified. This is
+useful if the URL is dynamic and parameters such as event ID need to
+be included in the URL. Note that the string must be URL encoded if it
+contains reserved characters.
+     
+--
+

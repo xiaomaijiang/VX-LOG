@@ -1,0 +1,21 @@
+<0>2010-10-12 00:00:00 host app[12345]: simple
+<0>2010-10-12 00:00:01 host app[12345]: suppressed
+<0>2010-10-12 00:00:02 host app[12345]: suppressed - really suppressed
+<0>2010-10-12 00:00:03 host app[12345]: suppressed - really suppressed
+<0>2010-10-12 00:00:04 host app[12345]: suppressed - really suppressed
+<0>2010-10-12 00:00:10 host app[12345]: suppressed - really suppressed
+<0>2010-10-12 00:00:11 host app[12345]: suppressed
+<0>2010-10-12 00:00:12 host app[12345]: suppressed - really suppressed
+<0>2010-10-12 01:00:00 host app[12345]: pair1
+<0>2010-10-12 01:00:01 host app[12345]: pair2 - this is within the time interval window
+<0>2010-10-12 01:00:10 host app[12345]: pair1
+<0>2010-10-12 01:00:13 host app[12345]: pair2 - this is over the time interval window
+<0>2010-10-12 02:00:00 host app[12345]: absence1
+<0>2010-10-12 02:00:01 host app[12345]: absence2 - within the required interval
+<0>2010-10-12 02:00:10 host app[12345]: absence1
+<0>2010-10-12 02:00:13 host app[12345]: absence2 - over the required interval
+<0>2010-10-12 03:00:00 host app[12345]: thresh
+<0>2010-10-12 03:00:01 host app[12345]: thresh
+<0>2010-10-12 03:00:06 host app[12345]: thresh
+<0>2010-10-12 03:00:07 host app[12345]: thresh
+<0>2010-10-12 03:00:08 host app[12345]: thresh

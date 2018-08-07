@@ -1,0 +1,20 @@
+--------------------------------------
+2011-12-1512:22:51.000000  4296   INFO   Association Request Parameters:
+Our Implementation Class UID:    2.16.124.113543.6021.2
+Our Implementation Version Name: RZDCX_2_0_1_8
+Their Implementation Class UID:   
+Their Implementation Version Name:
+Application Context Name:    1.2.840.10008.3.1.1.1
+Requested Extended Negotiation: none
+Accepted Extended Negotiation: none
+--------------------------------------
+2011-12-1512:22:51.000000  4296   DEBUG  Constructing Associate RQ PDU
+--------------------------------------
+2011-12-1512:22:51.000000  4296   DEBUG  WriteToConnection, length: 310, bytes written: 310, loop no: 1
+--------------------------------------
+2011-12-1512:22:51.015000  4296   DEBUG  PDU Type: Associate Accept, PDU Length: 216 + 6 bytes PDU header
+  02  00  00  00  00  d8  00  01  00  00  50  41  43  53  20  20
+  20  20  20  20  20  20  20  20  20  20  52  5a  44  43  58  20
+  20  20  20  20  20  20  20  20  20  20  00  00  00  00  00  00
+--------------------------------------
+2011-12-1512:22:51.031000  4296   DEBUG  DIMSE sendDcmDataset: sending 146 bytes

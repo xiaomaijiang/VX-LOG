@@ -1,0 +1,52 @@
+[[xm_wtmp]]
+==== WTMP (xm_wtmp)
+
+This module provides a parser function to process binary wtmp
+files. The module registers a parser function using the name of the
+extension module instance. This parser can be used as a parameter for
+the <<config_inputtype,InputType>> directive in input modules such as
+<<im_file,im_file>>.
+
+[[xm_wtmp_config]]
+===== Configuration
+
+The _xm_wtmp_ module accepts only the <<config_module_common,common
+module directives>>.
+
+[[xm_wtmp_config_examples]]
+===== Examples
+
+[[xm_wtmp_example1]]
+.WTMP to JSON Format Conversion
+====
+The following configuration accepts WTMP and converts it to JSON.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/wtmp2json.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,json]
+----
+{
+  "EventTime":"2013-10-01 09:39:59",
+  "AccountName":"root",
+  "Device":"pts/1",
+  "LoginType":"login",
+  "EventReceivedTime":"2013-10-10 15:40:20",
+  "SourceModuleName":"input",
+  "SourceModuleType":"im_file"
+}
+{
+  "EventTime":"2013-10-01 23:23:38",
+  "AccountName":"shutdown",
+  "Device":"no device",
+  "LoginType":"shutdown",
+  "EventReceivedTime":"2013-10-11 10:58:00",
+  "SourceModuleName":"input",
+  "SourceModuleType":"im_file"
+}
+----
+====

@@ -1,0 +1,16 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/input/uds/test.conf
+WRITELINE: uds:tmp/socket 11111
+WRITELINE: uds:tmp/socket 22222
+SLEEP: 1
+STOPDAEMON: modules/input/uds/test.conf
+COMPAREFILE: tmp/output modules/input/uds/testoutput1.txt
+REMOVE: tmp/output
+
+STARTDAEMON: modules/input/uds/test.conf
+WRITEFILE: uds:tmp/socket test.log
+SLEEP: 3
+STOPDAEMON: modules/input/uds/test.conf
+COMPAREFILE: tmp/output test.log
+REMOVE: tmp/output
+REMOVE: tmp/socket

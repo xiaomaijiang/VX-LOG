@@ -1,0 +1,12 @@
+Nov 21 11:40:27 hostname app[26459]: Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+Nov 21 11:40:27 hostname app[26459]: eth2       1500 0  16936814      0      0 0      30486067      0      8      0 BMRU
+Nov 21 11:40:27 hostname app[26459]: lo        16436 0  277217234      0      0 0      277217234      0      0      0 LRU
+Nov 21 11:40:27 hostname app[26459]: tun0       1500 0    316943      0      0 0        368642      0      0      0 MOPRU
+Nov 21 11:40:28 hostname app[26459]: Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+Nov 21 11:40:28 hostname app[26459]: eth2       1500 0  16945117      0      0 0      30493583      0      8      0 BMRU
+Nov 21 11:40:28 hostname app[26459]: lo        16436 0  277217234      0      0 0      277217234      0      0      0 LRU
+Nov 21 11:40:28 hostname app[26459]: tun0       1500 0    316943      0      0 0        368642      0      0      0 MOPRU
+Nov 21 11:40:29 hostname app[26459]: Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+Nov 21 11:40:29 hostname app[26459]: eth2       1500 0  16945270      0      0 0      30493735      0      8      0 BMRU
+Nov 21 11:40:29 hostname app[26459]: lo        16436 0  277217234      0      0 0      277217234      0      0      0 LRU
+Nov 21 11:40:29 hostname app[26459]: tun0       1500 0    316943      0      0 0        368642      0      0      0 MOPRU

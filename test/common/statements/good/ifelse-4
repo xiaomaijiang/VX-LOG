@@ -1,0 +1,9 @@
+$false = FALSE;
+if ( $false ) 
+{
+}
+else if TRUE
+{
+
+    $success = TRUE;
+}

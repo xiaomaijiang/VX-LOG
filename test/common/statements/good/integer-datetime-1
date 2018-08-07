@@ -1,0 +1,4 @@
+$success = TRUE;
+#log_info(integer(1999-01-02 01:02:03));
+if not defined integer(1999-01-02 01:02:03) $success = FALSE;
+if integer(1999-01-02 01:02:03) != 915235323000000 $success = FALSE;

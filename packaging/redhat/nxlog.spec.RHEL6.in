@@ -1,0 +1,129 @@
+# install  redhat-rpm-config for debuginfo package 
+
+Summary:	nxlog is a modular, multi-threaded, high-performance log management solution
+Name:		nxlog-ce
+Version:	@VERSION@
+Release:	1
+License:	NXLog Public License
+Group:		System Environment/Daemons
+Source:		nxlog-ce-%{version}.tar.gz
+Vendor:         NXLog Ltd
+URL:		http://nxlog.org
+BuildRequires:	apr-devel pcre-devel openssl-devel libdbi-devel libcap-devel expat-devel openssl-devel gcc libtool glibc-devel libgcc perl perl-ExtUtils-Embed rpm-build tar make which
+Prereq(post,preun):	/sbin/install-info
+Requires(pre):	shadow-utils, apr >= 1.2, libdbi >= 0.8.1, openssl, pcre, expat, zlib
+#BuildArchitectures:	x86_64
+BuildRoot:	%{_tmppath}/%{name}-root
+Conflicts:	nxlog-ce < %{version}
+Conflicts:	nxlog-ce > %{version}
+
+%description
+
+%prep
+%setup -q -n nxlog-ce-%{version}
+
+%build
+./configure $(EXTRA_CONFIGURE_OPTIONS) --prefix=/usr --libexecdir=/usr/libexec --with-cachedir=/var/spool/nxlog --with-configfile=/etc/nxlog.conf --with-pidfile=/var/run/nxlog/nxlog.pid
+make
+exit 0
+
+%install
+make DESTDIR=$RPM_BUILD_ROOT install
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/extension/*.a
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/extension/*.la
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/input/*.a
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/input/*.la
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/processor/*.a
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/processor/*.la
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/output/*.a
+rm -f $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/output/*.la
+
+strip $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/extension/*
+strip $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/input/*
+strip $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/processor/*
+strip $RPM_BUILD_ROOT/usr/libexec/nxlog/modules/output/*
+strip $RPM_BUILD_ROOT/usr/bin/*
+
+install -d -m 755 $RPM_BUILD_ROOT/etc/init.d
+install -m 755 packaging/redhat/init $RPM_BUILD_ROOT/etc/init.d/nxlog
+
+install -d -m 1770 $RPM_BUILD_ROOT/var/run/nxlog
+install -d -m 0770 $RPM_BUILD_ROOT/var/lib/nxlog/cert
+install -d -m 0770 $RPM_BUILD_ROOT/var/spool/nxlog
+install -d -m 0770 $RPM_BUILD_ROOT/var/log/nxlog
+install -d -m 0775 $RPM_BUILD_ROOT/etc
+install -m 664 packaging/redhat/nxlog.conf $RPM_BUILD_ROOT/etc/nxlog.conf
+
+%clean
+
+#rm -rf ${RPM_BUILD_ROOT}
+
+%files
+%defattr(-, root, root)
+/usr/bin/*
+/usr/libexec/nxlog/modules/*
+/usr/share/doc/nxlog-ce/*
+/usr/share/nxlog-ce/*
+/usr/share/perl5/vendor_perl/Log/Nxlog.pm
+%config /etc/init.d/nxlog
+%config /etc/nxlog.conf
+
+%attr(1770, nxlog, nxlog) /var/run/nxlog
+%attr(0770, nxlog, nxlog) /var/lib/nxlog/cert
+%attr(0770, nxlog, nxlog) /var/spool/nxlog
+%attr(0770, nxlog, nxlog) /var/log/nxlog
+
+%pre
+getent group nxlog >/dev/null || groupadd -r nxlog
+getent passwd nxlog >/dev/null || \
+    useradd -r -g nxlog -d /var/spool/nxlog -s /sbin/nologin \
+    -c "user for the nxlog log managment tool" nxlog
+
+%post
+if [ -x /usr/lib/lsb/install_initd ]; then
+  /usr/lib/lsb/install_initd /etc/init.d/nxlog
+elif [ -x /sbin/chkconfig ]; then
+  /sbin/chkconfig --add nxlog
+else
+   for i in 2 3 4 5; do
+        ln -sf /etc/init.d/nxlog /etc/rc.d/rc${i}.d/S90nxlog
+   done
+   for i in 1 6; do
+        ln -sf /etc/init.d/nxlog /etc/rc.d/rc${i}.d/K10nxlog
+   done
+fi
+
+chown -R nxlog:nxlog /var/lib/nxlog
+
+%preun
+#only on uninstall, not on upgrades.
+if [ $1 = 0 ]; then
+  /etc/init.d/nxlog stop  > /dev/null 2>&1
+  if [ -x /usr/lib/lsb/remove_initd ]; then
+    /usr/lib/lsb/install_initd /etc/init.d/nxlog
+  elif [ -x /sbin/chkconfig ]; then
+    /sbin/chkconfig --del nxlog
+  else
+    rm -f /etc/rc.d/rc?.d/???nxlog
+  fi
+fi
+
+%postun
+# check if this is an upgrade of the package
+if [ "$1" -ge 1 ]; then
+  # Restart (full stop and start in case of shared object changes) if currently running.
+  if [ -x /sbin/service ]; then
+      if /sbin/service nxlog status >/dev/null 2>&1; then
+        /sbin/service nxlog stop >/dev/null 2>&1
+        /sbin/service nxlog start >/dev/null 2>&1
+      fi
+  else
+      if /etc/init.d/nxlog status >/dev/null 2>&1; then
+          /etc/init.d/nxlog stop >/dev/null 2>&1
+          /etc/init.d/nxlog start >/dev/null 2>&1
+      fi
+  fi
+fi
+
+%changelog
+

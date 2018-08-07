@@ -1,0 +1,52 @@
+[[im_kernel]]
+==== Kernel (im_kernel)
+
+This module can collect kernel log messages from the kernel log
+buffer. Currently this module works on Linux
+only, where the klogctl()
+system call is used for this purpose. In order to be able to read
+kernel logs, special privileges are required. For this, {productName}
+needs to be started as root. Using the <<config_global_user,User>> and
+<<config_global_group,Group>> global directives {productName} can then
+drop its root privileges while keeping the CAP_SYS_ADMIN capability in
+order to read the kernel log buffer.
+
+NOTE: Unfortunately it is not possible to read from the /proc/kmsg
+      pseudo file for an unprivileged process even if the
+      CAP_SYS_ADMIN capability is kept. For this reason the /proc/kmsg
+      interface is not supported by the _im_kernel_ module. The
+      <<im_file,im_file>> module should work fine with the /proc/kmsg
+      pseudo file if one wishes to collect kernel logs this way,
+      though this will require {productName} to be running as root.
+
+.Log Sample
+[source,log]
+----
+<6>Some message from the kernel.
+----
+
+Kernel messages are valid BSD Syslog messages, with a priority from 0 (emerg)
+to 7 (debug), but do not contain timestamp and hostname fields. These can be
+parsed with the _xm_syslog_
+<<xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()>> procedure, and the
+timestamp and hostname fields will be added by {productName}.
+
+===== Configuration
+
+The _im_kernel_ module accepts only the <<config_module_common,common
+module directives>>.
+
+[[im_kernel_config_examples]]
+===== Examples
+
+.Storing Raw Kernel Logs into a File
+====
+This configuration collects log messages from the kernel and writes
+them to file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_kernel.conf[lines=2..-1]
+----
+====

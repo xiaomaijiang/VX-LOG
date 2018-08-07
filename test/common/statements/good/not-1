@@ -1,0 +1,3 @@
+$success = TRUE;
+if defined not undef $success = FALSE;
+if not TRUE $success = FALSE;

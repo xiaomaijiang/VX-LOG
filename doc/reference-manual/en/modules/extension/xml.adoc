@@ -1,0 +1,75 @@
+[[xm_xml]]
+==== XML (xm_xml)
+
+This module provides functions and procedures for working with data
+formatted as Extensible Markup Language (XML). It can convert log
+messages to XML format and can parse XML into <<lang_fields,fields>>.
+
+[[xm_xml_config]]
+===== Configuration
+
+The _xm_xml_ module accepts only the <<config_module_common,common
+module directives>>.
+
+include::../../apidoc-xm_xml.adoc[]
+
+[[xm_xml_config_examples]]
+===== Examples
+
+[[xm_xml_example1]]
+.Syslog to XML Format Conversion
+====
+The following configuration accepts Syslog (both BSD and IETF) and
+converts it to XML.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/syslog2xml.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,log]
+----
+<30>Sep 30 15:45:43 host44.localdomain.hu acpid: 1 client rule loaded
+----
+
+.Output Sample
+[source,xml]
+----
+<Event>
+  <MessageSourceAddress>127.0.0.1</MessageSourceAddress>
+  <EventReceivedTime>2012-03-08 15:05:39</EventReceivedTime>
+  <SyslogFacilityValue>3</SyslogFacilityValue>
+  <SyslogFacility>DAEMON</SyslogFacility>
+  <SyslogSeverityValue>6</SyslogSeverityValue>
+  <SyslogSeverity>INFO</SyslogSeverity>
+  <SeverityValue>2</SeverityValue>
+  <Severity>INFO</Severity>
+  <Hostname>host44.localdomain.hu</Hostname>
+  <EventTime>2012-09-30 15:45:43</EventTime>
+  <SourceName>acpid</SourceName>
+  <Message>1 client rule loaded</Message>
+</Event>
+----
+====
+
+[[xm_xml_example2]]
+.Converting Windows EventLog to Syslog-Encapsulated XML
+====
+The following configuration reads the Windows EventLog and converts it
+to the BSD Syslog format where the message part contains the fields
+in XML.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/xm_xml.conf[lines=2..-1]
+----
+
+.Output Sample
+[source,log]
+----
+<14>Mar  8 15:12:12 WIN-OUNNPISDHIG Service_Control_Manager: <Event><EventTime>2012-03-08 15:12:12</EventTime><EventTimeWritten>2012-03-08 15:12:12</EventTimeWritten><Hostname>WIN-OUNNPISDHIG</Hostname><EventType>INFO</EventType><SeverityValue>2</SeverityValue><Severity>INFO</Severity><SourceName>Service Control Manager</SourceName><FileName>System</FileName><EventID>7036</EventID><CategoryNumber>0</CategoryNumber><RecordNumber>6791</RecordNumber><Message>The nxlog service entered the running state. </Message><EventReceivedTime>2012-03-08 15:12:14</EventReceivedTime></Event>
+----
+====

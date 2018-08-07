@@ -1,0 +1,18 @@
+<declarations>
+ <module>om_tcp</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>reconnect</name>
+   <type>private</type>
+   <cb>nx_expr_proc__om_tcp_reconnect</cb>
+   <description>
+     <en>
+Force a reconnection. This can be used from a Schedule block to
+periodically reconnect to the server.
+     </en>
+   </description>
+ </procedure>
+
+</declarations>

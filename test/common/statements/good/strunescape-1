@@ -1,0 +1,7 @@
+$success = TRUE;
+if "\n" != "
+" $success = FALSE;
+if "\r" != "\x0D" $success = FALSE;
+if "\r\n" != "\x0D\x0A" $success = FALSE;
+if "\\" != '\' $success = FALSE;
+if "\"" != '"' $success = FALSE;

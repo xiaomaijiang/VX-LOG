@@ -1,0 +1,194 @@
+[[im_file]]
+==== File (im_file)
+
+This module can be used to read log messages from files. The file
+position can be persistently saved across restarts in order to avoid
+reading from the beginning again when {productName} is
+restarted. External rotation tools are also supported. When the module
+is not able to read any more data from the file, it checks whether the
+opened file descriptor belongs to the same filename it opened
+originally. If the inodes differ, the module assumes the file was
+moved and reopens its input.
+
+_im_file_ uses a one second interval to monitor files for new
+messages. This method was implemented because polling a regular file
+is not supported on all platforms. If there is no more data to read,
+the module will sleep for 1 second.
+
+By using wildcards, the module can read multiple files simultaneously
+and will open new files as they appear. It will also enter newly
+created directories if recursion is enabled.
+
+NOTE: The module needs to scan the directory content for wildcarded
+      file monitoring. This can present a significant load if there
+      are many files (hundreds or thousands) in the monitored
+      directory. For this reason it is highly recommended to rotate
+      files out of the monitored directory either using the built-in
+      log rotation capabilities of {productName} or with external
+      tools.
+
+[[im_file_config]]
+===== Configuration
+
+The _im_file_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>. The
+<<im_file_config_file,File>> directive is required.
+
+[[im_file_config_file]]
+File:: This mandatory directive specifies the name of the input file
+  to open. It must be a <<lang_type_string,string>> type
+  <<lang_expressions,expression>>. For relative filenames you should
+  be aware that {productName} changes its working directory to "/"
+  unless the global <<config_global_spooldir,SpoolDir>> is set to
+  something else. On Windows systems the directory separator is the
+  backslash (`\`). For compatibility reasons the forward slash (`/`)
+  character can be also used as the directory separator, but this only
+  works for filenames not containing wildcards. If the filename is
+  specified using wildcards, the backslash (`\`) should be used for
+  the directory separator.
++
+Wildcards are supported in filenames only, directory names in the path
+cannot be wildcarded. Wildcards are not regular expressions, but are
+patterns commonly used by Unix shells to expand filenames (also known
+as "globbing").
++
+--
+  ?::: Matches a single character only.
+  *::: Matches zero or more characters.
+  \*::: Matches the asterisk (`*`) character.
+  \?::: Matches the question mark (`?`) character.
+  [...]::: Used to specify a single character. The class description
+    is a list containing single characters and ranges of characters
+    separated by the hyphen (`-`). If the first character of the class
+    description is `^` or `!`, the sense of the description is
+    reversed (any character _not_ in the list is accepted). Any
+    character can have a backslash (`\`) preceding it, which is
+    ignored, allowing the characters `]` and `-` to be used in the
+    character class, as well as `^` and `!` at the beginning.
+--
++
+[[im_file_config_file_note]]
+[NOTE]
+====
+The backslash (`\`) is used to escape the wildcard characters.
+Unfortunately this is the same as the directory separator on Windows.
+Take this into account when specifying wildcarded filenames on this
+platform. Suppose that log files under the directory `C:\test` need to
+be monitored. Specifying the wildcard `C:\test\\*.log` will not match
+because `\*` becomes a literal asterisk and the filename is treated as
+non-wildcarded. For this reason the directory separator needs to be
+escaped: `C:\test\\\*.log` will match our files. `C:\\test\\*.log` will
+also work. When specifying the filename using double quotes, this
+would became `C:\\test\\\\*.log` because the backslash is also used as
+an escape character inside double quoted <<lang_literal_string,string
+literals>>.
+Filenames on Windows systems are treated
+case-insensitively, but case-sensitively on Unix/Linux.
+====
+
+'''
+
+[[im_file_config_activefiles]]
+ActiveFiles:: This directive specifies the maximum number of files
+  {productName} will actively monitor. If there are modifications to
+  more files in parallel than the value of this directive, then
+  modifications to files above this limit will only get noticed after
+  the <<im_file_config_dircheckinterval,DirCheckInterval>> (all data
+  should be collected eventually). Typically there are only a few log
+  sources actively appending data to log files, and the rest of the
+  files are dormant after being rotated, so the default value of 10
+  files should be sufficient in most cases. This directive is also only
+  relevant in case of a wildcarded <<im_file_config_file,File>> path.
+
+[[im_file_config_closewhenidle]]
+CloseWhenIdle:: If set to TRUE, this boolean directive specifies that
+  open input files should be closed as soon as possible after there is
+  no more data to read. Some applications request an exclusive lock on
+  the log file when written or rotated, and this directive can
+  possibly help if the application tries again to acquire the lock. The
+  default is FALSE.
+
+[[im_file_config_dircheckinterval]]
+DirCheckInterval:: This directive specifies how frequently, in
+  seconds, the module will check the monitored directory for
+  modifications to files and new files in case of a wildcarded
+  <<im_file_config_file,File>> path. The default is twice the value of
+  the <<im_file_config_pollinterval,PollInterval>> directive (if
+  <<im_file_config_pollinterval,PollInterval>> is not set, the default
+  is 2 seconds). Fractional seconds may be specified. It is
+  recommended to increase the default if there are many files which
+  cannot be rotated out and the {productName} process is causing high
+  CPU load.
+
+[[im_file_config_pollinterval]]
+PollInterval:: This directive specifies how frequently the module will
+  check for new files and new log entries, in seconds. If this
+  directive is not specified, it defaults to 1 second. Fractional
+  seconds may be specified (`PollInterval 0.5` will check twice every
+  second).
+
+[[im_file_config_readfromlast]]
+ReadFromLast:: This optional boolean directive instructs the module to
+  only read logs which arrived after {productName} was started if the
+  saved position could not be read (for example on first start). When
+  <<im_file_config_savepos,SavePos>> is TRUE and a previously saved
+  position value could be read, the module will resume reading from
+  this saved position. If *ReadFromLast* is FALSE, the module will
+  read all logs from the file. This can result in quite a lot of
+  messages, and is usually not the expected behavior. If this
+  directive is not specified, it defaults to TRUE.
+
+[[im_file_config_recursive]]
+Recursive:: If set to TRUE, this boolean directive specifies that
+  input files should be searched recursively under
+  sub-directories. This option takes effect only if wildcards are used
+  in the filename. For example, if the <<im_file_config_file,File>>
+  directive is set to `/var/log/*.log`, then
+  `/var/log/apache2/access.log` will also match. Because directory
+  wildcards are not supported, this directive only makes it possible
+  to read multiple files from different sub-directories with a single
+  im_file module instance. The default is TRUE.
+
+[[im_file_config_renamecheck]]
+RenameCheck:: If set to TRUE, this boolean directive specifies that
+  input files should be monitored for possible file rotation via
+  renaming in order to avoid re-reading the file contents. A file is
+  considered to be rotated when {productName} detects a new file whose
+  inode and size matches that of another watched file which has just
+  been deleted.  Note that this does not always work correctly and can
+  yield false positives when a log file is deleted and another is
+  added with the same size. The file system is likely to reuse to
+  inode number of the deleted file and thus the module will falsely
+  detect this as a rename/rotation. For this reason the default value
+  of *RenameCheck* is FALSE: renamed files are considered to be new
+  and the file contents will be re-read.
++
+NOTE: It is recommended to use a naming scheme for rotated files so
+      names of rotated files do not match the wildcard and are not
+      monitored anymore after rotation, instead of trying to solve the
+      renaming issue with this directive.
+
+[[im_file_config_savepos]]
+SavePos:: If this boolean directive is set to TRUE, the file position
+  will be saved when {productName} exits. The file position will be
+  read from the cache file upon startup. The default is TRUE: the file
+  position will be saved if this directive is not specified. Even if
+  *SavePos* is enabled, it can be explicitly turned off with the
+  global <<config_global_nocache,NoCache>> directive.
+
+include::../../apidoc-im_file.adoc[]
+
+[[im_file_config_examples]]
+===== Examples
+
+.Forwarding Logs From a File to a Remote Host
+====
+This configuration will read from a file and forward messages
+via TCP. No additional processing is done.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/im_file.conf[lines=2..-1]
+----
+====

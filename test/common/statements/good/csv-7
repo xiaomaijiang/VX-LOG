@@ -1,0 +1,13 @@
+$success = TRUE;
+$one = 1;
+$three = 'three';
+
+csv1->to_csv();
+#log_info($raw_event);
+if $raw_event != '1,,"three"' $success = FALSE;
+if $raw_event != csv1->to_csv() $success = FALSE;
+
+csv2->to_csv();
+#log_info($raw_event);
+if $raw_event != '1,,three' $success = FALSE;
+if $raw_event != csv2->to_csv() $success = FALSE;

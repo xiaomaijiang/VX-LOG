@@ -1,0 +1,9 @@
+nxlog-ce (0.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Botond Botyanszki <boti@nxlog.org>  Sat, 06 Nov 2010 18:24:10 +0200
+
+Local variables:
+mode: debian-changelog
+End:

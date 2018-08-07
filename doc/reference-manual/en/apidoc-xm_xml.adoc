@@ -1,0 +1,44 @@
+[[xm_xml_funcs]]
+===== Functions
+
+The following functions are exported by xm_xml.
+
+[[xm_xml_func_to_xml]]
+<<lang_type_string,string>> `to_xml()`::
++
+--
+Convert the fields to XML and returns this as a string value.
+     The `$raw_event` field and any field having a leading dot (`.`)
+     or underscore (`_`) will be automatically excluded.
+     
+--
+
+
+[[xm_xml_procs]]
+===== Procedures
+
+The following procedures are exported by xm_xml.
+
+[[xm_xml_proc_parse_xml]]
+`parse_xml();`::
++
+--
+Parse the `$raw_event` field as XML input.
+--
+
+`parse_xml(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string as XML format.
+--
+
+[[xm_xml_proc_to_xml]]
+`to_xml();`::
++
+--
+Convert the fields to XML and put this into the `$raw_event`
+     field. The `$raw_event` field and any field having a leading dot
+     (`.`) or underscore (`_`) will be automatically excluded.
+     
+--
+

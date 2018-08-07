@@ -1,0 +1,9 @@
+$success = TRUE;
+$Message = "test\tmessage\n#second line";
+$Hostname = "host";
+$EventTime = 2012-10-25 01:02:03;
+$EventID = 4242;
+$UserName = "user";
+to_syslog_snare();
+#log_info($raw_event);
+if $raw_event != "<13>Oct 25 01:02:03 host MSWinEventLog#1#N/A#0#Thu Oct 25 01:02:03 2012#4242#N/A#N/A#N/A#N/A#host#N/A##test\tmessage \tsecond line#N/A" $success = FALSE;

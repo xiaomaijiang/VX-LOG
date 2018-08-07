@@ -1,0 +1,9 @@
+$raw_event = '{"notdate1":"0000-01-01 01:01:01","notdate2":"2015-01-01 01:01:01 ","date1":"2015-01-01 01:01:01","date2":"2015-01-01T01:01:01.000Z"}';
+parse_json();
+if not defined $date1 $success = FALSE;
+if type($notdate1) != 'string' $success = FALSE;
+if type($notdate2) != 'string' $success = FALSE;
+if type($date1) != 'datetime' $success = FALSE;
+if type($date2) != 'datetime' $success = FALSE;
+if $date1 != 2015-01-01 01:01:01 $success = FALSE;
+if not defined $success $success = TRUE;

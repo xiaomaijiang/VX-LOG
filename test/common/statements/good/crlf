@@ -1,0 +1,6 @@
+$success = TRUE;
+$a = 1;
+# comment
+
+$a = 2;
+

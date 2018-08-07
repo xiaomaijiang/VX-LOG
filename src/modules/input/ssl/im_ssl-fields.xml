@@ -1,0 +1,25 @@
+<fields>
+  <module>im_ssl</module>
+  <field>
+    <name>raw_event</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The received string.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>MessageSourceAddress</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The IP address of the remote host.
+      </en>
+    </description>
+  </field>
+
+</fields>

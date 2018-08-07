@@ -1,0 +1,17 @@
+<declarations>
+ <module>im_file</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <function>
+   <name>file_name</name>
+   <type>private</type>
+   <cb>nx_expr_func__im_file_file_name</cb>
+   <rettype>string</rettype>
+   <description>
+     <en>Return the name of the currently open file which the log was
+     read from.</en>
+   </description>
+ </function>
+
+</declarations>

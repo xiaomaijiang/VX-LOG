@@ -1,0 +1,37 @@
+[[xm_multiline_funcs]]
+===== Functions
+
+The following functions are exported by xm_multiline.
+
+[[xm_multiline_func_process_multiline]]
+<<lang_type_boolean,boolean>> `process_multiline()`::
++
+--
+Process multiline logs.
+--
+
+<<lang_type_boolean,boolean>> `process_multiline(<<lang_type_string,string>> line)`::
++
+--
+Process multiline logs from _line_.
+--
+
+
+[[xm_multiline_procs]]
+===== Procedures
+
+The following procedures are exported by xm_multiline.
+
+[[xm_multiline_proc_process_multiline]]
+`process_multiline();`::
++
+--
+Process multiline logs.
+--
+
+`process_multiline(<<lang_type_string,string>> line);`::
++
+--
+Process multiline logs from _line_.
+--
+

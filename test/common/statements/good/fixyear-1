@@ -1,0 +1,15 @@
+$success = TRUE;
+$new = fix_year(parsedate("Nov 3 14:50:30.403"));
+if not defined $new $success = FALSE;
+if hour($new) != 14 $success = FALSE;
+if $new < 2000-01-01 00:00:00 $success = FALSE;
+
+$new = fix_year(1970-10-12 12:49:06);
+if not defined $new $success = FALSE;
+if hour($new) != 12 $success = FALSE;
+if year($new) != year(now()) $success = FALSE;
+
+$new = fix_year(parsedate("Oct 10 12:49:06"));
+if not defined $new $success = FALSE;
+if hour($new) != 12 $success = FALSE;
+if year($new) != year(now()) $success = FALSE;

@@ -1,0 +1,4 @@
+{"SourceModuleName":"in","SourceModuleType":"im_file","key1":"\\v\\a'lue1'","key2":"value2"}
+{"SourceModuleName":"in","SourceModuleType":"im_file","key1":"'\r\n","key2":"value2"}
+{"SourceModuleName":"in","SourceModuleType":"im_file","'key1'":"value1","\\key2":"value2"}
+{"SourceModuleName":"in","SourceModuleType":"im_file","key1":"value1","key2":"","key3":"value3"}

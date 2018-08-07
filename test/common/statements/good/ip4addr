@@ -1,0 +1,13 @@
+$success = TRUE;
+
+$ip4addr = 127.0.0.1;
+if type($ip4addr) != 'ip4addr' $success = FALSE;
+if not defined $ip4addr $success = FALSE;
+if string($ip4addr) != '127.0.0.1' $success = FALSE;
+if 127.0.0.1 == 192.168.1.1 $success = FALSE;
+if 127.0.0.1 != 127.0.0.1 $success = FALSE;
+if not (127.0.0.1 == 127.0.0.1) $success = FALSE;
+if $ip4addr != 127.0.0.1 $success = FALSE;
+if not ($ip4addr == 127.0.0.1) $success = FALSE;
+if not ($ip4addr == $ip4addr) $success = FALSE;
+if $ip4addr != $ip4addr $success = FALSE;

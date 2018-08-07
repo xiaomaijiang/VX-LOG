@@ -1,0 +1,9 @@
+$success = TRUE;
+$raw_event = "one, two, three";
+csv->parse_csv();
+if not defined $one $success = FALSE;
+if $one != 'one' $success = FALSE;
+if not defined $two $success = FALSE;
+if $two != 'two' $success = FALSE;
+if not defined $three $success = FALSE;
+if $three != 'three' $success = FALSE;

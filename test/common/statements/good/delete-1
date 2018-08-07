@@ -1,0 +1,13 @@
+$success = TRUE;
+$field = 1;
+delete($field);
+if defined $field $success = FALSE;
+
+$field = undef;
+delete($field);
+if defined $field $success = FALSE;
+
+delete($field2);
+if defined $field2 $success = FALSE;
+
+delete($raw_event);

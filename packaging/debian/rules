@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with autotools_dev
+
+override_dh_auto_configure:
+	dh_auto_configure -- --prefix=/usr --libexecdir=/usr/lib --with-cachedir=/var/spool/nxlog --with-configfile=/etc/nxlog/nxlog.conf --with-pidfile=/var/run/nxlog/nxlog.pid
+
+override_dh_auto_test:
+
+override_dh_auto_install:
+	$(MAKE) DESTDIR=$(CURDIR)/debian/nxlog-ce install
+	rm -f $(CURDIR)/debian/nxlog-ce/usr/lib/nxlog/modules/*/*.la
+	rm -f $(CURDIR)/debian/nxlog-ce/usr/lib/nxlog/modules/*/*.a
+
+override_dh_installinit:
+	dh_installinit --name=nxlog --restart-after-upgrade
+
+override_dh_strip:
+	dh_strip --dbg-package=nxlog-ce-dbg
+
+override_dh_installchangelogs:
+	dh_installchangelogs

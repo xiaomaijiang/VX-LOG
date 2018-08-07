@@ -1,0 +1,113 @@
+$success = TRUE;
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 host app procid msgid [NXLOG@32473 iut="9" Testfield="testvalue" Testfield2="\\\"\]" EventID="1"] Message part';
+parse_syslog_ietf($raw_event);
+
+if ($SyslogFacilityValue != syslog_facility_value('DAEMON')) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value('INFO')) $success = FALSE;
+
+if not defined $SourceName or $SourceName != 'app' $success = FALSE;
+if not defined $Hostname or $Hostname != 'host' $success = FALSE;
+if not defined $ProcessID or $ProcessID != 'procid' $success = FALSE;
+if not defined $MessageID or $MessageID != 'msgid' $success = FALSE;
+if not defined $Message or $Message != 'Message part' $success = FALSE;
+#log_info($Message);
+
+if not defined $iut or $iut != "9" $success = FALSE;
+if not defined $Testfield or $Testfield != "testvalue" $success = FALSE;
+if not defined $Testfield2 or $Testfield2 != '\"]' $success = FALSE;
+
+#
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - - Message part';
+$SourceName = undef;
+$Hostname = undef;
+$ProcessID = undef;
+$MessageID = undef;
+$Message = undef;
+
+parse_syslog_ietf($raw_event);
+
+if ($SyslogFacilityValue != syslog_facility_value('DAEMON')) $success = FALSE;
+if ($SyslogSeverityValue != syslog_severity_value('INFO')) $success = FALSE;
+
+if defined $SourceName $success = FALSE;
+# hostname is set to hostname() if NILVALUE is found
+if not defined $Hostname $success = FALSE;
+if defined $ProcessID $success = FALSE;
+if defined $MessageID $success = FALSE;
+if not defined $Message or $Message != 'Message part' $success = FALSE;
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 -';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - ';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - -';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - -';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - ';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - -';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - ';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - -';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - - ';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - [] Message part';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - []';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 - - - - [] ';
+parse_syslog_ietf($raw_event);
+
+$raw_event = '';
+$Message = 'msg';
+$MessageID = 'msgId';
+$ProcessID = 'procId';
+$SourceName = 'src';
+to_syslog_ietf();
+#log_info($raw_event);	
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 host app procid msgid [exampleSDID@32473 eventSource="Application" eventID="1011"] Message part';
+parse_syslog_ietf($raw_event);
+if not defined $exampleSDID.eventID or $exampleSDID.eventID != "1011" $success = FALSE;
+
+$raw_event = '<30>1 2011-12-04T21:16:10.000000+02:00 host app procid msgid [NXLOG@32473 eventSource="Application" eventID="1011"] Message part';
+parse_syslog_ietf($raw_event);
+if not defined $eventID or $eventID != "1011" $success = FALSE;
+
+$raw_event = '';
+$SourceName = 'app 1';
+to_syslog_ietf();
+if $raw_event != '<30>1 2011-12-04T19:16:10.000000Z host app_1 procid msgid [NXLOG@14506 success="TRUE" iut="9" Testfield="testvalue" Testfield2="\\\"\]" EventID="1011" exampleSDID.eventSource="Application" exampleSDID.eventID="1011" eventSource="Application"] Message part' $success = FALSE;
+#log_info($raw_event);
+
+# regression test for parsing UTC time format with Z
+delete($Hostname);
+delete($SourceName);
+delete($Message);
+delete($EventTime);
+$raw_event = '<27>2013-05-22T20:37:34Z myhostname.com DUHF_113_HHR[11500]:  INTERNAL SomeModule::Somewhere -  Something is wrong';
+parse_syslog_ietf($raw_event);
+if not ($Hostname == 'myhostname.com' and $SourceName == 'DUHF_113_HHR')
+{
+    $success = FALSE;
+}
+
+$TestField = 'test value';
+rename_field('TestField', 'Test Field');
+to_syslog_ietf();
+#log_info($raw_event);
+if $raw_event != '<27>1 2013-05-22T20:37:34.000000Z myhostname.com DUHF_113_HHR 11500 msgid [NXLOG@14506 success="TRUE" iut="9" Test_Field="test value" Testfield2="\\\"\]" EventID="1011" exampleSDID.eventSource="Application" exampleSDID.eventID="1011" eventSource="Application"]  INTERNAL SomeModule::Somewhere -  Something is wrong' $success = FALSE;

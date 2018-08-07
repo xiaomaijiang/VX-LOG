@@ -1,0 +1,13 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/output/ssl/test.conf
+SLEEP: 5
+STOPDAEMON: modules/output/ssl/test.conf
+TESTGENVERIFY: tmp/output 1000
+REMOVE: tmp/output
+
+STARTDAEMON: modules/output/ssl/multi_ssl.conf
+WRITEFILE: tcp:localhost:23456 modules/output/ssl/testinput.txt
+SLEEP: 1
+STOPDAEMON: modules/output/ssl/multi_ssl.conf
+COMPAREFILESIZE: modules/output/ssl/testoutput.txt tmp/output
+REMOVE: tmp/output

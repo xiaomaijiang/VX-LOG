@@ -1,0 +1,15 @@
+REMOVE: tmp/output
+STARTDAEMON: modules/output/file/test.conf
+SLEEP: 1
+STOPDAEMON: modules/output/file/test.conf
+TESTGENVERIFY: tmp/output 1000
+REMOVE: tmp/output
+
+STARTDAEMON: modules/output/file/trunc.conf
+WRITELINE: tcp:localhost:23456 11111
+WRITELINE: tcp:localhost:23456 22222
+SLEEP: 1
+STOPDAEMON: modules/output/file/trunc.conf
+COMPAREFILE: tmp/output modules/output/file/output_trunc.txt
+REMOVE: tmp/output
+

@@ -1,0 +1,54 @@
+[[xm_kvp_funcs]]
+===== Functions
+
+The following functions are exported by xm_kvp.
+
+[[xm_kvp_func_to_kvp]]
+<<lang_type_string,string>> `to_kvp()`::
++
+--
+Convert the internal fields to a single key-value pair
+     formatted string.
+--
+
+
+[[xm_kvp_procs]]
+===== Procedures
+
+The following procedures are exported by xm_kvp.
+
+[[xm_kvp_proc_parse_kvp]]
+`parse_kvp();`::
++
+--
+Parse the `$raw_event` field as key-value pairs and populate
+     the internal fields using the key names.
+--
+
+`parse_kvp(<<lang_type_string,string>> source);`::
++
+--
+Parse the given string key-value pairs and populate the
+     internal fields using the key names.
+--
+
+[[xm_kvp_proc_reset_kvp]]
+`reset_kvp();`::
++
+--
+Reset the KVP parser so that the autodetected
+     <<xm_kvp_config_keyquotechar,KeyQuoteChar>>,
+     <<xm_kvp_config_valuequotechar,ValueQuoteChar>>,
+     <<xm_kvp_config_kvdelimiter,KVDelimiter>>, and
+     <<xm_kvp_config_kvpdelimiter,KVPDelimiter>>
+     characters can be detected again.
+--
+
+[[xm_kvp_proc_to_kvp]]
+`to_kvp();`::
++
+--
+Format the internal fields as key-value pairs and put this
+     into the `$raw_event` field.
+--
+

@@ -1,0 +1,18 @@
+$raw_event = "";
+$TestField = "'testvalue'";
+$Undef = undef;
+$Integer = 42;
+$Bool = TRUE;
+$IpAddr = 192.168.1.1;
+to_xml();
+$TestField = undef;
+$Integer = undef;
+$BoolTrue = undef;
+parse_xml();
+if not defined $TestField $success = FALSE;
+if $TestField != "'testvalue'" $success = FALSE;
+if not defined $Integer $success = FALSE;
+if $Integer != "42" $success = FALSE;
+if not defined $Bool $success = FALSE;
+if $Bool != "TRUE" $success = FALSE;
+if not defined $success $success = TRUE;

@@ -1,0 +1,12 @@
+$success = TRUE;
+$raw_event = '\\\R\r\n\N \a\c\A \"';
+csv->parse_csv();
+
+if not defined $one $success = FALSE;
+if $one != '\\R' + "\r\n" + '\N' $success = FALSE;
+
+if not defined $two $success = FALSE;
+if $two != '\a\c\A' $success = FALSE;
+
+if not defined $three $success = FALSE;
+if $three != '"' $success = FALSE;

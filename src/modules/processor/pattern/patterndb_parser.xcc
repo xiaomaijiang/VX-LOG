@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<parser>
+    <preamble><![CDATA[
+/*
+ * This file is part of the nxlog log collector tool.
+ * See the file LICENSE in the source root for licensing terms.
+ * Website: http://nxlog.org
+ * Author: Botond Botyanszki <botond.botyanszki@nxlog.org>
+ */
+
+#include "patterndb.h"
+#include "../../../common/exception.h"
+
+#define NX_LOGMODULE NX_LOGMODULE_MODULE
+
+typedef struct nx_patterndb_parser_data_t
+{
+    apr_pool_t *pool; ///< parent pool
+    nx_patterndb_t *patterndb;
+    const char *filename;
+} nx_patterndb_parser_data_t;
+
+#define XCC_GET_PATTERNDB(X) (((nx_patterndb_parser_data_t *) ((XCCParserData *)(X))->udata)->patterndb)
+#define XCC_GET_PATTERNDB_POOL(X) ((((nx_patterndb_parser_data_t *) ((XCCParserData *)(X))->udata)->patterndb)->pool)
+#define XCC_GET_FILENAME(X) (((nx_patterndb_parser_data_t *) ((XCCParserData *)(X))->udata)->filename)
+
+    ]]></preamble>
+
+    <element-type name="ignored" ctype="void *">
+    </element-type>
+
+    <element-type name="string" ctype="const char *">
+    </element-type>
+
+    <element-type name="patterndb" ctype="nx_patterndb_t *">
+     <![CDATA[
+         $$ = nx_patterndb_new(((const nx_patterndb_parser_data_t *) ((const XCCParserData *)($X))->udata)->pool);
+         XCC_GET_PATTERNDB($X) = $$;
+      ]]>
+    </element-type>
+
+    <element-type name="patterngroup" ctype="nx_patterngroup_t *">
+     <![CDATA[
+        $$ = nx_patterngroup_new(XCC_GET_PATTERNDB($X));
+     ]]>
+    </element-type>
+
+    <element-type name="pattern" ctype="nx_pattern_t *">
+     <![CDATA[
+        $$ = nx_pattern_new(XCC_GET_PATTERNDB($X));
+     ]]>
+    </element-type>
+
+    <element-type name="matchfield" ctype="nx_pattern_matchfield_t *">
+     <![CDATA[
+        $$ = nx_pattern_matchfield_new(XCC_GET_PATTERNDB($X));
+     ]]>
+    </element-type>
+
+    <element-type name="capturedfield" ctype="nx_pattern_capturedfield_t *">
+     <![CDATA[
+        $$ = apr_pcalloc(XCC_GET_PATTERNDB_POOL($X), sizeof(nx_pattern_capturedfield_t));
+     ]]>
+    </element-type>
+
+    <element-type name="field_list" ctype="nx_logdata_field_list_t *">
+     <![CDATA[
+        $$ = apr_pcalloc(XCC_GET_PATTERNDB_POOL($X), sizeof(nx_logdata_field_list_t));
+        NX_DLIST_INIT($$, nx_logdata_field_list_t, link);
+     ]]>
+    </element-type>
+
+    <element-type name="field" ctype="nx_pattern_field_t *">
+     <![CDATA[
+        $$ = malloc(sizeof(nx_pattern_field_t));
+     ]]>
+    </element-type>
+
+    <element-type name="statements" ctype="nx_expr_statement_list_t *">
+    </element-type>
+
+    <element-type name="id" ctype="int">
+    </element-type>
+
+
+    <element name="patterndb" type="patterndb">
+	<child name="created" maxOccurs="1">
+	</child>
+	<child name="version" maxOccurs="1">
+	</child>
+	<child name="group">
+           <![CDATA[
+               nx_patterndb_add_group($$, $?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="group" type="patterngroup">
+	<child name="id" minOccurs="1" maxOccurs="1">
+           <![CDATA[
+               $$->id = atoi($?);
+               log_debug("patterngroup id: %ld", $$->id);
+           ]]>
+	</child>
+	<child name="name">
+           <![CDATA[
+               $$->name = apr_pstrdup(XCC_GET_PATTERNDB_POOL($X), $?);
+               log_debug("patterngroup name: %s", $$->name);
+           ]]>
+	</child>
+	<child name="description" maxOccurs="1"/>
+	<child name="pattern">
+           <![CDATA[
+               nx_patterngroup_add_pattern($$, $?);
+           ]]>
+	</child>
+	<child name="matchfield">
+           <![CDATA[
+               nx_patterngroup_add_matchfield(XCC_GET_PATTERNDB_POOL($X), $$, $?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="pattern" type="pattern">
+	<child name="id" minOccurs="1" maxOccurs="1">
+           <![CDATA[
+               $$->id = atoi($?);
+               log_debug("pattern id: %ld", $$->id);
+           ]]>
+	</child>
+	<child name="name" minOccurs="1" maxOccurs="1">
+           <![CDATA[
+               $$->name = apr_pstrdup(XCC_GET_PATTERNDB_POOL($X), $?);
+           ]]>
+	</child>
+	<child name="description" maxOccurs="1"/>
+	<child name="matchfield">
+          <![CDATA[
+               nx_pattern_add_matchfield(XCC_GET_PATTERNDB_POOL($X), $$, $?);
+           ]]>
+	</child>
+	<child name="set">
+          <![CDATA[
+               $$->setfields = $?;
+           ]]>
+	</child>
+	<child name="exec">
+          <![CDATA[
+               nx_patterndb_parse_exec_block(NULL, XCC_GET_PATTERNDB($X), $$, $?, XCC_GET_FILENAME($X),
+                                             xcc_get_linenum($X), 1); //TODO linepos
+            ]]>
+	</child>
+	<child name="testcase">
+          <![CDATA[
+             //FIXME
+           ]]>
+	</child>
+    </element>
+
+    <element name="matchfield" type="matchfield">
+	<child name="name" minOccurs="1" maxOccurs="1">
+           <![CDATA[
+               $$->name = apr_pstrdup(XCC_GET_PATTERNDB_POOL($X), $?);
+           ]]>
+	</child>
+	<child name="type" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->type = nx_pattern_match_type_from_string($?);
+           ]]>
+	</child>
+	<child name="value" minOccurs="1" maxOccurs="1">
+           <![CDATA[
+               $$->value = apr_pstrdup(XCC_GET_PATTERNDB_POOL($X), $?);
+           ]]>
+	</child>
+	<child name="capturedfield">
+          <![CDATA[
+               nx_pattern_matchfield_add_capturedfield($$, $?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="capturedfield" type="capturedfield">
+	<child name="name" minOccurs="1" maxOccurs="1">
+           <![CDATA[
+               $$->name = apr_pstrdup(XCC_GET_PATTERNDB_POOL($X), $?);
+           ]]>
+	</child>
+	<child name="type" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->type = nx_value_type_from_string($?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="field" type="field">
+	<child name="name" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->name = strdup($?);
+           ]]>
+	</child>
+	<child name="value" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->value = strdup($?);
+           ]]>
+	</child>
+	<child name="type" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->type = nx_value_type_from_string($?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="type" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="fieldname" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="name" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="description" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="value" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="id" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="exec" type="string">
+        <data>
+            $$ = $?;
+        </data>
+    </element>
+
+    <element name="created" type="ignored">
+    </element>
+
+    <element name="version" type="ignored">
+    </element>
+
+    <element name="set" type="field_list">
+	<child name="field">
+          <![CDATA[
+               nx_pattern_field_list_insert_field(XCC_GET_PATTERNDB_POOL($X), $$, $?->name, $?->value, $?->type);
+               nx_pattern_field_free($?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="testcase" type="ignored">
+	<child name="field">
+	</child>
+	<child name="capturedvalue">
+          <![CDATA[
+               nx_pattern_field_free($?);
+           ]]>
+	</child>
+    </element>
+
+    <element name="capturedvalue" type="field">
+	<child name="name" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->name = strdup($?);
+           ]]>
+	</child>
+	<child name="value" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->value = strdup($?);
+           ]]>
+	</child>
+	<child name="type" minOccurs="1" maxOccurs="1">
+          <![CDATA[
+               $$->type = nx_value_type_from_string($?);
+           ]]>
+	</child>
+    </element>
+
+    <postamble><![CDATA[
+
+//FIXME implement own error handler to throw exception with line number
+//      and pass it to xcc_parse below
+//int exception_handler(int ierrno, const char *entity, const char *context, void *udata)
+
+
+nx_patterndb_t *nx_patterndb_parse(apr_pool_t *pool, const char *filename)
+{
+    FILE *f;
+    nx_exception_t e;
+    nx_patterndb_parser_data_t parser_data;
+
+    ASSERT(pool != NULL);
+    ASSERT(filename != NULL);
+
+    memset(&parser_data, 0, sizeof(nx_patterndb_parser_data_t));
+    parser_data.pool = pool;
+    parser_data.filename = apr_pstrdup(pool, filename);
+
+    f = fopen(filename, "r");
+    if ( f == NULL )
+    {
+	throw_errno("Couldn't open pattern file '%s'", filename);
+    }
+
+    try
+    {
+	if ( xcc_parse(f, (void **) &(parser_data.patterndb), (void *) &parser_data, NULL) != XCC_RETURN_SUCCESS )
+	{
+	    throw_msg("failed to parse pattern database '%s'", filename);
+	}
+    }
+    catch(e)
+    {
+	fclose(f);
+	rethrow(e);
+    }
+    fclose(f);
+
+    log_debug("pattern databse '%s' parsed successfully", filename);
+    return ( parser_data.patterndb );
+}
+
+    ]]></postamble>
+</parser>

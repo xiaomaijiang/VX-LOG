@@ -1,0 +1,1 @@
+if $SeverityValue < 1 log_info("severity is less than or equal to one");

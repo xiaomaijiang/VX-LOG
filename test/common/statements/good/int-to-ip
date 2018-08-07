@@ -1,0 +1,8 @@
+$success = TRUE;
+$integer = 1475478203;
+$ip = ($integer / (256*256*256) % 256) + "." + (($integer / (256*256)) % 256) + "." + (($integer / 256) % 256) + "." + ($integer % 256);
+#log_info($ip);
+if $ip != "87.242.2.187" $success = FALSE;
+if $ip != string(ip4addr($integer)) $success = FALSE;
+if "187.2.242.87" != string(ip4addr($integer, TRUE)) $success = FALSE;
+#log_info(ip4addr($integer));

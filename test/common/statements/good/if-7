@@ -1,0 +1,13 @@
+if undef
+{
+    $success = FALSE;
+}
+else if 0
+{
+    $success = FALSE;
+}
+else if $undefval
+{
+    $success = FALSE;
+}
+else $success = TRUE;

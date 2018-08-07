@@ -1,0 +1,10 @@
+$success = TRUE;
+if type("string") != "string" $success = FALSE;
+$string = "string";
+if type($string) != "string" $success = FALSE;
+if type(TRUE) != "boolean" $success = FALSE;
+$bool = TRUE;
+if type($bool) != "boolean" $success = FALSE;
+if type(now()) != "datetime" $success = FALSE;
+if type(1) != "integer" $success = FALSE;
+if defined type(undef) $success = FALSE;

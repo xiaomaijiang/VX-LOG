@@ -1,0 +1,6 @@
+$true = TRUE;
+$false = FALSE;
+if ( $false or $true )
+{
+    $success = TRUE;
+}

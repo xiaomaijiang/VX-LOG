@@ -1,0 +1,44 @@
+[[om_udp]]
+==== UDP (om_udp)
+
+This module sends log messages as UDP datagrams to the address and
+port specified. UDP is the transport protocol of the legacy BSD Syslog
+standard as described in RFC 3164, so this module can be particularly
+useful to send messages to devices or Syslog daemons which do not
+support other transports.
+
+[[om_udp_config]]
+===== Configuration
+
+The _om_udp_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+The <<om_udp_config_host,Host>> directive is required.
+
+[[om_udp_config_host]]
+Host:: The module will connect to this IP address or DNS hostname.
+
+[[om_udp_config_port]]
+Port:: The module will connect to this port number on the remote
+  host. The default is port 514.
+
+'''
+
+[[om_udp_config_sockbufsize]]
+SockBufSize:: This optional directive sets the socket buffer size
+  (SO_SNDBUF) to the value specified. If this is not set, the
+  operating system default is used.
+
+[[om_udp_config_examples]]
+===== Examples
+
+.Sending Raw Syslog over UDP
+====
+This configuration reads log messages from socket and forwards them
+via UDP.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_udp.conf[lines=2..-1]
+----
+====

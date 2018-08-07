@@ -1,0 +1,37 @@
+<declarations>
+ <module>pm_blocker</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>block</name>
+   <type>public</type>
+   <cb>nx_expr_proc__pm_blocker_block</cb>
+   <arg>
+    <name>mode</name>
+    <type>boolean</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+When _mode_ is TRUE, the module will block. A `block(FALSE)` should be
+called from a Schedule block or another module, it might not get
+invoked if the queue is already full.
+     </en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>is_blocking</name>
+   <type>public</type>
+   <cb>nx_expr_func__pm_blocker_is_blocking</cb>
+   <rettype>boolean</rettype>
+   <description>
+     <en>
+Return TRUE if the module is currently blocking the data flow, FALSE
+otherwise.
+     </en>
+   </description>
+ </function>
+
+</declarations>

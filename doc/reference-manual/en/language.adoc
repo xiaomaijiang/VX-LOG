@@ -1,0 +1,962 @@
+[[lang]]
+== Language
+
+[[lang_types]]
+=== Types
+
+The following types are provided by the {productName} language.
+
+[[lang_type_unknown]]
+Unknown:: This is a special type for values where the type cannot be
+  determined at compile time and for uninitialized values. The
+  <<lang_literal_undef,undef literal>> and <<lang_fields,fields>>
+  without a value also have an unknown type. The unknown type can also
+  be thought of as "any" in case of function and procedure API
+  declarations.
+
+[[lang_type_boolean]]
+Boolean:: A boolean value is TRUE, FALSE or undefined. Note that an
+  undefined value is not the same as a FALSE value.
+
+[[lang_type_integer]]
+Integer:: An integer can hold a signed 64 bit value in addition to
+  the undefined value. Floating point values are not supported.
+
+[[lang_type_string]]
+String:: A string is an array of characters in any character set. The
+  <<lang_type_binary,binary>> type should be used for values where the
+  NUL byte can also occur. An undefined string is not the same as an
+  empty string. Strings have a limited length to prevent resource
+  exhaustion problems, this is a compile-time value currently set to
+  1M.
+
+[[lang_type_datetime]]
+Datetime:: A datetime holds a microsecond value of time elapsed since
+  the Epoch. It is always stored in UTC/GMT.
+
+[[lang_type_ip4addr]]
+IPv4 Address:: An ip4addr type stores a dotted-quad IPv4 address in an
+  internal format (integer).
+
+[[lang_type_ip6addr]]
+IPv6 Address:: An ip6addr type stores an IPv6 address in an internal
+  format.
+
+[[lang_type_regexp]]
+Regular expression:: A regular expression type can only be used with
+  the <<lang_binop_regmatch,=~>> or <<lang_binop_notregmatch,!~>>
+  operators.
+
+[[lang_type_binary]]
+Binary:: This type can hold an array of bytes.
+
+[[lang_type_varargs]]
+Variadic arguments:: This is a special type only used in function and
+  procedure API declarations to indicate variadic arguments.
+
+[[lang_expressions]]
+=== Expressions
+
+[[lang_literals]]
+==== Literals
+
+[[lang_literal_undef]]
+Undef:: The undef literal has an <<lang_type_unknown,unknown>>
+  type. It can be also used in an
+  <<lang_statement_assignment,assignment>> to unset the value of a
+  <<lang_fields,field>>.
++
+.Un-Setting the Value of a Field
+====
+This statement unsets the `$ProcessID` field.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_assign.stmnt[]
+----
+====
+
+[[lang_literal_boolean]]
+Boolean:: A boolean literal is either TRUE or FALSE. It is
+  case-insensitive, so `True`, `False`, `true`, and `false` are also
+  valid.
+
+[[lang_literal_integer]]
+Integer:: An integer starts with a minus (`-`) sign if it is
+  negative. A "0X" or "0x" prepended modifier indicates a hexadecimal
+  notation. The "K", "M" and "G" modifiers are also supported; these
+  mean Kilo (1024), Mega (1024^2), or Giga (1024^3) respectively when
+  appended.
++
+.Setting an Integer Value
+====
+This statement uses a modifier to set the `$Limit` field to 44040192
+(42×1024^2).
+
+[source,statement]
+----
+include::../config-examples/lang_literal_integer.stmnt[]
+----
+====
+
+[[lang_literal_string]]
+String:: String literals are quoted characters using either single or
+  double quotes. String literals specified with double quotes can
+  contain the following escape sequences.
++
+--
+\\::: The backslash (`\`) character.
+\"::: The double quote (`"`) character.
+\n::: Line feed (LF).
+\r::: Carriage return (CR).
+\t::: Horizontal tab.
+\b::: Audible bell.
+\xXX::: A single byte in the form of a two digit hexadecimal
+  number. For example the line-feed character can also be expressed
+  as `\x0A`.
++
+NOTE: String literals in single quotes do not process the escape
+      sequences: `"\n"` is a single character (LF) while `'\n'` is two
+      characters. The following comparison is FALSE for this reason:
+      `"\n" == '\n'`.
++
+NOTE: Extra care should be taken with the backslash when using double
+      quoted string literals to specify file paths on Windows. See
+      <<im_file_config_file_note,this note>> for the file directive of
+      im_file about the possible complications.
+
+.Setting a String Value
+====
+This statement sets the `$Message` field to the specified string.
+
+[source,statement]
+----
+include::../config-examples/lang_literal_string.stmnt[]
+----
+====
+--
+
+[[lang_regexp]]
+Regular expression:: Regular expressions must be quoted with slashes
+  as in Perl. Captured substrings are accessible through a numeric
+  reference such as $1. The full subject string is placed into $0.
++
+.A regular expression match operation
+====
+----
+include::../config-examples/lang_literal_regexp.stmnt[]
+----
+====
+
+[[lang_literal_datetime]]
+Datetime:: A datetime literal is an unquoted representation of a time
+  value expressing local time in the format of `YYYY-MM-DD hh:mm:ss`.
++
+.Setting a Datetime Value
+====
+This statement sets the `$EventTime` field to the specified datetime
+value.
+
+[source,statement]
+----
+include::../config-examples/lang_literal_datetime.stmnt[]
+----
+====
+
+[[lang_literal_ip4addr]]
+IPv4 Address:: An IPv4 literal value is expressed in dotted quad notation
+  such as `192.168.1.1`.
+
+[[lang_literal_ip6addr]]
+IPv6 Address:: An IPv6 literal value is expressed by 8 groups of
+  16-bit hexadecimal values separated by colons (`:`) such as
+  `2001:0db8:85a3:0000:0000:8a2e:0370:7334`.
+
+[[lang_fields]]
+==== Fields
+
+Fields are referenced in the {productName} language by prepending a
+dollar sign (`$`) to the field name. A field name can contain the
+characters `[a-zA-Z0-9_.]` but must begin with a letter or underscore
+(`_`), as indicated by the following regular expression:
+
+----
+[[:alpha:]_][[:alnum:]\._]*
+----
+
+Fields containing special characters such as the space or minus (`-`)
+can be specified using curly braces such as `$\{file-size\}` or
+`${file size}`.
+
+A field which does not exist has an <<lang_type_unknown,unknown>>
+type.
+
+[[lang_operations]]
+==== Operations
+
+[[lang_unary_operations]]
+===== Unary Operations
+
+The following unary operations are available. It is possible to use
+brackets around the operand to make it look like a function call as in
+the <<lang_defined_example,"defined" example>> below.
+
+[[lang_unop_not]]
+not:: The *not* operator expects a boolean value. It will evaluate to
+  undef if the value is undefined. If it receives an unknown value
+  which evaluates to a non-boolean, it will result in a run-time
+  execution error.
++
+.Using the "not" Operand
+====
+If the `$Success` field has a value of false, an error is logged.
+
+[source,statement]
+----
+include::../config-examples/lang_unop_not.stmnt[]
+----
+====
+
+////
+Include this section when nxlog/nxlog#89 is fixed. Remember to update
+lang_unop_neg.stmnt also.
+[[lang_unop_neg]]
+-:: The unary negation operator before an integer is very similar to a
+  negative integer, except that two or more minus (`-`) signs are not
+  valid for an integer literal.
++
+.Unary Negation
+====
+If the `$Message` field matches the regular expression, the `$Change`
+field will be set to the negated value of the captured integer.
+
+[source,statement]
+----
+include::../config-examples/lang_unop_neg.stmnt[]
+----
+====
+////
+
+[[lang_unop_defined]]
+defined:: The defined operator will evaluate to TRUE if the operand
+  is defined, otherwise FALSE.
++
+[[lang_defined_example]]
+.Using the Unary "defined" Operation
+====
+This statement is a no-op, it does nothing.
+
+[source,statement]
+----
+include::../config-examples/lang_unop_defined.stmnt[lines=1]
+----
+
+If the `$EventTime` field has not been set (due perhaps to failed
+parsing), it will be set to the current time.
+
+[source,statement]
+----
+include::../config-examples/lang_unop_defined.stmnt[lines=2]
+----
+====
+
+[[lang_binary_operations]]
+===== Binary Operations
+
+The following binary operations are available.
+
+The operations are described with the following syntax:
+
+`LEFT_OPERAND_TYPE OPERATION RIGHT_OPERAND_TYPE = EVALUATED_VALUE_TYPE`
+
+[[lang_binop_regmatch]]
+=~:: This is the regular expression match operation as in Perl. The
+  PCRE engine is used to to execute the regular expressions. This
+  operation takes a string and a regexp operand and evaluates to a
+  boolean value which will be TRUE if the regular expression matches
+  the subject string. Captured sub-strings are accessible through
+  numeric reference, such as `$1`, and the full subject string is
+  placed into `$0`.
++
+--
+* `<<lang_type_string,string>> =~ <<lang_type_regexp,regexp>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_regexp,regexp>> =~ <<lang_type_string,string>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Regular Expression Based String Matching
+====
+A log message will be generated if the `$Message` field matches the
+regular expression.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_regmatch.stmnt[]
+----
+====
++
+Regular expression based string substitution is also supported with
+the `s///` operator.
++
+[[lang_binop_regmatch_modifiers]]The following regular expression
+modifiers are supported:
++
+--
+  g::: The `/g` modifier can be used for global replacement.
++
+.Replace Whitespace Occurrences
+====
+----
+include::../config-examples/lang_binop_regmatch_replace.stmnt[]
+----
+====
+  s::: The dot (`.`) normally matches any character except
+    newline. The `/s` modifier causes the dot to match all characters
+    including line terminator characters (LF and CRLF).
++
+.Dot Matches All Characters
+====
+----
+include::../config-examples/lang_binop_regmatch_dotall.stmnt[]
+----
+====
+  m::: The `/m` modifier can be used to treat the string as multiple
+    lines (`^` and `$` match newlines within data).
+  i::: The `/i` modifier does case insensitive matching.
+--
++
+Variables and captured sub-string references cannot be used inside the
+regular expression or the regexp substitution operator (they will be
+treated literally).
+
+[[lang_binop_notregmatch]]
+!~:: This is the opposite of <<lang_binop_regmatch,=~>>: the
+  expression will evaluate to TRUE if the regular expression does not
+  match on the subject string. It can be also written as
+  `<<lang_unop_not,not>> LEFT_OPERAND <<lang_binop_regmatch,=~>>
+  RIGHT_OPERAND`.
++
+--
+* `<<lang_type_string,string>> !~ <<lang_type_regexp,regexp>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_regexp,regexp>> !~ <<lang_type_string,string>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+The `s///` substitution operator is also supported.
++
+.Regular Expression Based Negative String Matching
+====
+A log message will be generated if the `$Message` field does not match
+the regular expression.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_notregmatch.stmnt[]
+----
+====
+
+[[lang_binop_equal]]
+==:: This operator compares two values for equality. Comparing a
+  defined value with an undefined results in
+  <<lang_literal_undef,undef>>.
++
+--
+* `<<lang_literal_undef,undef>> == <<lang_literal_undef,undef>> =
+   <<lang_literal_boolean,TRUE>>`
+* `<<lang_type_string,string>> == <<lang_type_string,string>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_integer,integer>> == <<lang_type_integer,integer>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_boolean,boolean>> == <<lang_type_boolean,boolean>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_datetime,datetime>> == <<lang_type_datetime,datetime>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_ip4addr,ip4addr>> == <<lang_type_ip4addr,ip4addr>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_ip4addr,ip4addr>> == <<lang_type_string,string>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_string,string>> == <<lang_type_ip4addr,ip4addr>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Equality
+====
+A log message will be generated if `$SeverityValue` is 1.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_equal.stmnt[]
+----
+====
+
+[[lang_binop_notequal]]
+!=:: This operator compares two values for inequality. Comparing a
+  defined value with an undefined results in
+  <<lang_literal_undef,undef>>.
++
+--
+* `<<lang_literal_undef,undef>> != <<lang_literal_undef,undef>> =
+   <<lang_literal_boolean,FALSE>>`
+* `<<lang_type_string,string>> != <<lang_type_string,string>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_integer,integer>> != <<lang_type_integer,integer>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_boolean,boolean>> != <<lang_type_boolean,boolean>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_datetime,datetime>> != <<lang_type_datetime,datetime>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_ip4addr,ip4addr>> != <<lang_type_ip4addr,ip4addr>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_ip4addr,ip4addr>> != <<lang_type_string,string>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_string,string>> != <<lang_type_ip4addr,ip4addr>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Inequality
+====
+A log message will be generated if `$SeverityValue` is not 1.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_notequal.stmnt[]
+----
+====
+
+[[lang_binop_less]]
+<:: This operation will evaluate to TRUE if the left operand is less
+  than the right operand, and FALSE otherwise. Comparing a defined
+  value with an undefined results in <<lang_literal_undef,undef>>.
++
+--
+* `<<lang_type_integer,integer>> < <<lang_type_integer,integer>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_datetime,datetime>> < <<lang_type_datetime,datetime>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Less
+====
+A log message will be generated if `$SeverityValue` is less than 1.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_less.stmnt[]
+----
+====
+
+[[lang_binop_le]]
+\<=:: This operation will evaluate to TRUE if the left operand is less
+  than or equal to the right operand, and FALSE otherwise. Comparing a
+  defined value with an undefined results in
+  <<lang_literal_undef,undef>>.
++
+--
+* `<<lang_type_integer,integer>> \<= <<lang_type_integer,integer>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_datetime,datetime>> \<= <<lang_type_datetime,datetime>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Less or Equal
+====
+A log message will be generated if `$SeverityValue` is less than or
+equal to 1.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_le.stmnt[]
+----
+====
+
+[[lang_binop_greater]]
+>:: This operation will evaluate to TRUE if the left operand is
+  greater than the right operand, and FALSE otherwise. Comparing a
+  defined value with an undefined results in
+  <<lang_literal_undef,undef>>.
++
+--
+* `<<lang_type_integer,integer>> > <<lang_type_integer,integer>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_datetime,datetime>> > <<lang_type_datetime,datetime>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Greater
+====
+A log message will be generated if `$SeverityValue` is greater than 1.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_greater.stmnt[]
+----
+====
+
+[[lang_binop_ge]]
+>=:: This operation will evaluate to TRUE if the left operand is
+  greater than or equal to the right operand, and FALSE
+  otherwise. Comparing a defined value with an undefined results in
+  <<lang_literal_undef,undef>>.
++
+--
+* `<<lang_type_integer,integer>> >= <<lang_type_integer,integer>> =
+   <<lang_type_boolean,boolean>>`
+* `<<lang_type_datetime,datetime>> >= <<lang_type_datetime,datetime>> =
+   <<lang_type_boolean,boolean>>`
+--
++
+.Greater or Equal
+====
+A log message will be generated if `$SeverityValue` is greater than or
+equal to 1.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_ge.stmnt[]
+----
+====
+
+[[lang_binop_and]]
+and:: This operation evaluates to TRUE if and only if both operands
+  are TRUE. The operation will evaluate to
+  <<lang_literal_undef,undef>> if either operand is undefined.
++
+`<<lang_type_boolean,boolean>> and <<lang_type_boolean,boolean>> =
+ <<lang_type_boolean,boolean>>`
++
+.And Operation
+====
+A log message will be generated only if both `$SeverityValue` equals 1
+_and_ `$FacilityValue` equals 2.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_and.stmnt[]
+----
+====
+
+[[lang_binop_or]]
+or:: This operation evaluates to TRUE if either operand is TRUE. The
+  operation will evaluate to <<lang_literal_undef,undef>> if both
+  operands are undefined.
++
+`<<lang_type_boolean,boolean>> or <<lang_type_boolean,boolean>> =
+ <<lang_type_boolean,boolean>>`
++
+.Or Operation
+====
+A log message will be generated if `$SeverityValue` is equal to either
+1 or 2.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_or.stmnt[]
+----
+====
+
+[[lang_binop_plus]]
++:: This operation will result in an integer if both operands are
+  integers. If either operand is a string, the result will be a string
+  where non-string typed values are converted to strings. In this case
+  it acts as a concatenation operator, like the dot (`.`) operator in
+  Perl. Adding an undefined value to a non-string will result in
+  undef.
++
+--
+* `<<lang_type_integer,integer>> + <<lang_type_integer,integer>> =
+   <<lang_type_integer,integer>>`
+* `<<lang_type_string,string>> + <<lang_literal_undef,undef>> =
+   <<lang_type_string,string>>`
+* `<<lang_literal_undef,undef>> + <<lang_type_string,string>> =
+   <<lang_type_string,string>>`
+* `<<lang_literal_undef,undef>> + <<lang_literal_undef,undef>> =
+   <<lang_literal_undef,undef>>`
+* `<<lang_type_string,string>> + <<lang_type_string,string>> =
+   <<lang_type_string,string>>` (Concatenate two strings.)
+* `<<lang_type_datetime,datetime>> + <<lang_type_integer,integer>> =
+   <<lang_type_datetime,datetime>>` (Add the number of seconds in the
+  right value to the datetime stored in the left value.)
+* `<<lang_type_integer,integer>> + <<lang_type_datetime,datetime>> =
+   <<lang_type_datetime,datetime>>` (Add the number of seconds in the
+  left value to the datetime stored in the right value.)
+--
++
+.Concatenation
+====
+This statement will always cause a log message to be generated.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_plus.stmnt[]
+----
+====
+
+[[lang_binop_minus]]
+-:: Subtraction. The result will be undef if either operand is
+  undefined.
++
+--
+* `<<lang_type_integer,integer>> - <<lang_type_integer,integer>> =
+   <<lang_type_integer,integer>>` (Subtract two integers.)
+* `<<lang_type_datetime,datetime>> - <<lang_type_datetime,datetime>> =
+   <<lang_type_integer,integer>>` (Subtract two datetime types. The
+  result is the difference between to two expressed in microseconds.)
+* `<<lang_type_datetime,datetime>> - <<lang_type_integer,integer>> =
+   <<lang_type_datetime,datetime>>` (Subtract the number of seconds from
+  the datetime stored in the left value.)
+--
++
+.Subtraction
+====
+This statement will always cause a log message to be generated.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_minus.stmnt[]
+----
+====
+
+[[lang_binop_mul]]
+*:: Multiply an integer with another. The result will be undef if
+  either operand is undefined.
++
+`<<lang_type_integer,integer>> * <<lang_type_integer,integer>> =
+ <<lang_type_integer,integer>>`
++
+.Multiplication
+====
+This statement will always cause a log message to be generated.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_mul.stmnt[]
+----
+====
+
+[[lang_binop_div]]
+/:: Divide an integer with another. The result will be undef if either
+  operand is undefined. Since the result is an integer, a fractional
+  part is lost.
++
+`<<lang_type_integer,integer>> / <<lang_type_integer,integer>> =
+ <<lang_type_integer,integer>>`
++
+.Division
+====
+This statement will always cause a log message to be generated.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_div.stmnt[]
+----
+====
+
+[[lang_binop_mod]]
+%:: The modulo operation divides an integer with another and returns
+  the remainder. The result will be undef if either operand is
+  undefined.
++
+`<<lang_type_integer,integer>> % <<lang_type_integer,integer>> =
+ <<lang_type_integer,integer>>`
++
+.Modulo
+====
+This statement will always cause a log message to be generated.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_mod.stmnt[]
+----
+====
+
+[[lang_binop_in]]
+IN:: This operation will evaluate to TRUE if the left operand is equal
+  to any of the expressions in the list on the right, and FALSE
+  otherwise.  Comparing a undefined value results in
+  <<lang_literal_undef,undef>>.
++
+`<<lang_type_unknown,unknown>> IN <<lang_type_unknown,unknown>>,
+ <<lang_type_unknown,unknown>> ... = <<lang_type_boolean,boolean>>`
++
+.IN
+====
+A log message will be generated if `$EventID` is equal to any one of
+the values in the list.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_in.stmnt[]
+----
+====
+
+[[lang_binop_not_in]]
+NOT IN:: This operation is equivalent to `NOT expr IN expr_list`.
++
+`<<lang_type_unknown,unknown>> NOT IN <<lang_type_unknown,unknown>>,
+ <<lang_type_unknown,unknown>> ... = <<lang_type_boolean,boolean>>`
++
+.NOT IN
+====
+A log message will be generated if `$EventID` is not equal to any of
+the values in the list.
+
+[source,statement]
+----
+include::../config-examples/lang_binop_not_in.stmnt[]
+----
+====
+
+[[lang_functions]]
+==== Functions
+
+See <<core_funcs>> for a list of functions provided by the
+{productName} core. Additional functions are available through
+modules.
+
+.A Function Call
+====
+This statement uses the <<core_func_now,now()>> function to set the
+field to the current time.
+
+[source,statement]
+----
+include::../config-examples/lang_func.stmnt[]
+----
+====
+
+It is also possible to call a function of a specific module instance.
+
+.Calling a Function of a Specific Module Instance
+====
+This statement calls the <<om_file_func_file_name,file_name()>> and
+<<om_file_func_file_size,file_size()>> functions of a defined _om_file_
+instance named `out` in order to log the name and size of its currently open
+output file.
+
+[source,statement]
+----
+include::../config-examples/lang_func_instance.conf[tag=manual_include, indent=0]
+----
+====
+
+[[lang_statements]]
+=== Statements
+
+The following elements can be used in statements. There is no loop
+operation (_for_ or _while_) in the {productName} language.
+
+[[lang_statement_assignment]]
+==== Assignment
+
+The assignment operation is declared with an equal sign (`=`). It
+loads the value from the expression evaluated on the right into a
+<<lang_fields,field>> on the left.
+
+.Field Assignment
+====
+This statement sets the `$EventReceivedTime` field to the value
+returned by the <<core_func_now,now()>> function.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_assign2.stmnt[]
+----
+====
+
+[[lang_statement_block]]
+==== Block
+
+A block consists of one or more statements within curly braces (`{}`).
+This is typically used with <<lang_statement_if,conditional
+statements>> as in the example below.
+
+.Conditional Statement Block
+====
+If the expression matches, both log messages will be generated.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_block.stmnt[]
+----
+====
+
+[[lang_statement_procedures]]
+==== Procedures
+
+See <<core_procs>> for a list of procedures provided by the
+{productName} core. Additional procedures are available through
+modules.
+
+.A Procedure Call
+====
+The <<core_proc_log_info,log_info()>> procedure generates an internal
+log message.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_proc.stmnt[]
+----
+====
+
+It is also possible to call a procedure of a specific module instance.
+
+.Calling a Procedure of a Specific Module Instance
+====
+This statement calls the <<xm_csv_proc_parse_csv,parse_csv()>> procedure of a
+defined _xm_csv_ module instance named `csv_parser`.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_proc_instance.conf[tag=manual_include, indent=0]
+----
+====
+
+[[lang_statement_if]]
+==== If-Else
+
+A conditional statement starts with the `if` keyword followed by a
+boolean expression and a statement. The `else` keyword, followed by
+another statement, is optional. Brackets around the expression are
+also optional.
+
+.Conditional Statements
+====
+A log message will be generated if the expression matches.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_if.stmnt[lines=1]
+----
+
+This statement is the same as the previous, but uses brackets.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_if.stmnt[lines=4]
+----
+
+This is a conditional statement block.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_if.stmnt[lines=7..10]
+----
+
+This conditional statement block includes an else branch.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_if.stmnt[lines=13..-1]
+----
+====
+
+Like Perl, the {productName} language does not have a _switch_
+statement. Instead, this can be accomplished by using conditional
+_if-else_ statements.
+
+.Emulating switch with if-else
+====
+The generated log message various based on the value of the `$value`
+field.
+
+[source,statement]
+----
+include::../config-examples/lang_stmnt_if_switch.stmnt[]
+----
+====
+
+NOTE: The Perl _elsif_ and _unless_ keywords are not supported.
+
+[[lang_variables]]
+=== Variables
+
+A module variable can only be accessed from the same module instance
+where it was created. A variable is referenced by a string value and
+can store a value of any type.
+
+See the <<core_proc_create_var,create_var()>>,
+<<core_proc_delete_var,delete_var()>>,
+<<core_proc_set_var,set_var()>>, and <<core_func_get_var,get_var()>>
+procedures.
+
+[[lang_stat]]
+=== Statistical Counters
+
+The following types are available for statistical counters:
+
+[[lang_stat_count]]
+COUNT:: Added values are aggregated, and the value of the counter is
+  increased if only positive integers are added until the counter is
+  destroyed or indefinitely if the counter has no expiry.
+
+[[lang_stat_countmin]]
+COUNTMIN:: This calculates the minimum value of the counter.
+
+[[lang_stat_countmax]]
+COUNTMAX:: This calculates the maximum value of the counter.
+
+[[lang_stat_avg]]
+AVG:: This algorithm calculates the average over the specified
+  interval.
+
+[[lang_stat_avgmin]]
+AVGMIN:: This algorithm calculates the average over the specified
+  interval, and the value of the counter is always the lowest which
+  was ever calculated during the lifetime of the counter.
+
+[[lang_stat_avgmax]]
+AVGMAX:: Like AVGMIN, but this returns the highest value calculated during
+  the lifetime of the counter.
+
+[[lang_stat_rate]]
+RATE:: This calculates the value over the specified interval. It can
+  be used to calculate events per second (EPS) values.
+
+[[lang_stat_ratemin]]
+RATEMIN:: This calculates the value over the specified interval, and
+  returns the lowest rate calculated during the lifetime of the
+  counter.
+
+[[lang_stat_ratemax]]
+RATEMAX:: Like RATEMIN, but this returns the highest rate calculated
+  during the lifetime of the counter.
+
+[[lang_stat_grad]]
+GRAD:: This calculates the change of the rate of the counter over the
+  specified interval, which is the gradient.
+
+[[lang_stat_gradmin]]
+GRADMIN:: This calculates the gradient and returns the lowest gradient
+  calculated during the lifetime of the counter.
+
+[[lang_stat_gradmax]]
+GRADMAX:: Like GRADMIN, but this returns the highest gradient
+  calculated during the lifetime of the counter.
+
+.Simple Event Correlation Using Statistical Counters
+====
+If the number of login failures exceeds 3 within 45 seconds, then an
+internal log message is generated. This accomplishes the exact same
+task as our <<lang_variable_example_corr,previous algorithm>> did with
+module variables, except that it is a lot simpler. In addition, this
+method is more precise, because it uses the timestamp from the log
+message instead of relying on the current time; consequently it is
+also possible to use this for offline log analysis.
+
+----
+include::../config-examples/lang_stat.stmnt[]
+----
+
+Note that this is still not perfect because the time window used in
+the rate calculation does not shift, so the
+<<lang_variable_example_corr_note,problem described in our previous
+example>> also affects this version, and this algorithm may not work
+in some situations. For this reason and for better performance, it is
+better to use the <<pm_evcorr,event correlation module>> instead; it
+has a Thresholded rule which uses a sliding window to overcome this
+problem.
+====
+
+include::apidoc-core.adoc[leveloffset=-2]

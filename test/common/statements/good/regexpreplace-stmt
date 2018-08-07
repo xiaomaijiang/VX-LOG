@@ -1,0 +1,6 @@
+$success = TRUE;
+
+$subject = "--aa--";
+$subject =~ s/a/123/g;
+if not defined $subject $success = FALSE;
+if $subject != "--123123--" $success = FALSE;

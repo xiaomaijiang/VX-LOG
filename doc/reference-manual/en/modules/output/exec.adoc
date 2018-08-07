@@ -1,0 +1,51 @@
+[[om_exec]]
+==== Program (om_exec)
+
+This module will execute a program or script on startup and write
+(pipe) log data to its standard input. Unless
+<<config_outputtype,OutputType>> is set to something else,
+only the contents of the `$raw_event` field are sent over the
+pipe. The execution of the program or script will terminate when the
+module is stopped, which usually happens when {ProductName} exits and
+the pipe is closed.
+
+NOTE: The program or script is started when {productName} starts and
+      must not exit until the module is stopped. To invoke a program
+      or script for each log message, use <<xm_exec,xm_exec>> instead.
+
+[[om_exec_config]]
+===== Configuration
+
+The _om_exec_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+The <<om_exec_config_command,Command>> directive is required.
+
+[[om_exec_config_command]]
+Command:: This mandatory directive specifies the name of the
+  program or script to be executed.
+
+'''
+
+[[om_exec_config_arg]]
+Arg:: This is an optional parameter. *Arg* can be specified
+  multiple times, once for each argument that needs to be passed to
+  the <<om_exec_config_command,Command>>. Note that specifying
+  multiple arguments with one *Arg* directive, with arguments
+  separated by spaces, will not work (the
+  <<om_exec_config_command,Command>> will receive it as one argument).
+
+[[om_exec_config_examples]]
+===== Examples
+
+.Piping Logs to an External Program
+====
+With this configuration, {productName} will start the specified
+command, read logs from socket, and write those logs to the standard
+input of the command.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_exec.conf[lines=2..-1]
+----
+====

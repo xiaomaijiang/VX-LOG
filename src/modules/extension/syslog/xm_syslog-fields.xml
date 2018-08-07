@@ -1,0 +1,246 @@
+<fields>
+  <module>xm_syslog</module>
+  <extra>
+    <en>
+In addition to the fields listed below, the
+&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt; and
+&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+procedures will create fields from the Structured Data part of an IETF
+Syslog message. If the SD-ID in this case is not "NXLOG", these fields
+will be prefixed by the SD-ID (for example, `$mySDID.CustomField`).
+    </en>
+  </extra>
+
+  <field>
+    <name>raw_event</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	A Syslog formatted string, set after
+	&lt;&lt;xm_syslog_proc_to_syslog_bsd,to_syslog_bsd()&gt;&gt;
+	or
+	&lt;&lt;xm_syslog_proc_to_syslog_ietf,to_syslog_ietf()&gt;&gt;
+	is called.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Message</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The message part of the Syslog line, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SyslogSeverityValue</name>
+    <type>integer</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+The severity code of the Syslog line, set after
+&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;, or
+&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+is called. The default severity is `5` (notice). See
+&lt;&lt;xm_syslog_field_SeverityValue,$SeverityValue&gt;&gt;.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SyslogSeverity</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+The severity name of the Syslog line, set after
+&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;, or
+&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+is called. The default severity is `notice`. See
+&lt;&lt;xm_syslog_field_SeverityValue,$SeverityValue&gt;&gt;.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SeverityValue</name>
+    <type>integer</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+The normalized severity number of the event, mapped as follows.
+
+[cols="2", options="header,autowidth"]
+|===
+|Syslog Severity
+|Normalized Severity
+
+|0/emerg
+|5/critical
+
+|1/alert
+|5/critical
+
+|2/crit
+|5/critical
+
+|3/err
+|4/error
+
+|4/warning
+|3/warning
+
+|5/notice
+|2/info
+
+|6/info
+|2/info
+
+|7/debug
+|1/debug
+|===
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Severity</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+The normalized severity name of the event. See
+&lt;&lt;xm_syslog_field_SeverityValue,$SeverityValue&gt;&gt;.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SyslogFacilityValue</name>
+    <type>integer</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The facility code of the Syslog line, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called. The default facility is `1` (user).
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SyslogFacility</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The facility name of the Syslog line, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called. The default facility is `user`.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>EventTime</name>
+    <type>datetime</type>
+    <persist>TRUE</persist>
+    <description>
+      <en>
+	The timestamp found in the Syslog message, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called. If the year value is missing, it is set to the
+	current year.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>Hostname</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The hostname part of the Syslog line, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>SourceName</name>
+    <type>string</type>
+    <persist>TRUE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The application/program part of the Syslog line, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>MessageID</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <lookup>TRUE</lookup>
+    <description>
+      <en>
+	The MSGID part of the syslog message, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called.
+      </en>
+    </description>
+  </field>
+
+  <field>
+    <name>ProcessID</name>
+    <type>string</type>
+    <persist>FALSE</persist>
+    <description>
+      <en>
+	The process ID in the Syslog line, set after
+	&lt;&lt;xm_syslog_proc_parse_syslog,parse_syslog()&gt;&gt;,
+	&lt;&lt;xm_syslog_proc_parse_syslog_bsd,parse_syslog_bsd()&gt;&gt;,
+	or
+	&lt;&lt;xm_syslog_proc_parse_syslog_ietf,parse_syslog_ietf()&gt;&gt;
+	is called.
+      </en>
+    </description>
+  </field>
+
+</fields>

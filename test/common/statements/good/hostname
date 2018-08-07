@@ -1,0 +1,8 @@
+$success = TRUE;
+$hostname = hostname(); 
+if not defined $hostname $success = FALSE;
+if $hostname == "" $success = FALSE;
+#log_info($hostname);
+$hostname = hostname_fqdn(); 
+if not defined $hostname $success = FALSE;
+if $hostname == "" $success = FALSE;

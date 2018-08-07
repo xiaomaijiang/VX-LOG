@@ -1,0 +1,63 @@
+include::attributes.adoc[]
+
+= nxlog-processor(8)
+:doctype: manpage
+:manmanual: {productName}
+// Some content is included in the Manual
+// tag::manual_include[]
+
+== NAME
+
+nxlog-processor - performs batch log processing
+
+== SYNOPSIS
+
+*nxlog-processor* [-c _conffile_] [-v]
+
+== DESCRIPTION
+
+The nxlog-processor tool is similar to the NXLog daemon and uses the same
+configuration file. However, it runs in the foreground and exits after all
+input log data has been processed. Common input sources are files and
+databases. This tool is useful for log processing tasks such as:
+
+* loading a group of files into a database,
+* converting between different formats,
+* testing configuration, or
+* doing offline event correlation.
+
+include::man_nxlog.adoc[tag=linux_note]
+
+== OPTIONS
+
+*-c* _conffile_, *--conf* _conffile_:: Specify an alternate configuration file
+  _conffile_.
+
+*-h*, *--help*:: Print help.
+
+*-v*, *--verify*:: Verify configuration file syntax.
+
+== FILES
+
+*/opt/nxlog/bin/nxlog-processor*:: The main NXLog-processor executable
+
+include::man_nxlog.adoc[tag=nxlog-stmnt-verifier]
+
+*/opt/nxlog/etc/nxlog.conf*:: The default configuration file
+
+*/opt/nxlog/spool/nxlog/configcache.dat*:: This is the position cache file
+  where positions are saved. To disable position caching, as may be desirable
+  when using nxlog-processor, set the <<config_global_nocache,NoCache>>
+  directive to TRUE.
+
+== SEE ALSO
+
+<<nxlog-8,nxlog(8)>>
+
+*{productName} website:* <https://nxlog.co>
+
+*{productName} User Guide:* <https://nxlog.co/documentation/nxlog-user-guide>
+
+include::man_nxlog.adoc[tag=footer]
+
+// end::manual_include[]

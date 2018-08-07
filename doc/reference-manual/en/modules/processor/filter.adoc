@@ -1,0 +1,46 @@
+[[pm_filter]]
+==== Filter (pm_filter)
+
+This is a simple module which forwards log messages if the specified
+condition is TRUE.
+
+This module has been obsoleted by the {productName} language. Filtering is now
+possible in any module with a conditional <<core_proc_drop,drop()>> procedure
+in an <<config_module_exec,Exec>> block or directive.
+
+.Filtering Events With drop()
+====
+This statement drops the current event if the `$raw_event` field matches the
+specified regular expression.
+
+[source,statement]
+----
+include::../../../config-examples/drop.stmnt[]
+----
+====
+
+[[pm_filter_config]]
+===== Configuration
+
+The _pm_filter_ module accepts the following directives in addition to
+the <<config_module_common,common module directives>>.
+
+[[pm_filter_config_condition]]
+Condition:: This mandatory directive takes an expression as argument
+  which must evaluate to a <<lang_type_boolean,boolean>> value. If the
+  expression does not evaluate to TRUE, the log message is discarded.
+
+[[pm_filter_config_examples]]
+===== Examples
+
+.Filtering Messages
+====
+This configuration retains only log messages that match one of the
+regular expressions, all others are discarded.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/pm_filter.conf[lines=2..-1]
+----
+====

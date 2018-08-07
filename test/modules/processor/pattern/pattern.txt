@@ -1,0 +1,5 @@
+REMOVE: tmp/output
+RUNPROCESSOR: modules/processor/pattern/pattern.conf
+COMPAREFILE: tmp/output modules/processor/pattern/output.txt
+REMOVE: tmp/output
+

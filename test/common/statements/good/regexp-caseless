@@ -1,0 +1,14 @@
+$success = TRUE;
+$value = "AaA";
+
+if $value =~ /^aaa$/
+{
+   $success = FALSE;
+}
+
+if $value =~ /^(aaa)$/i
+{
+   if $1 != "AaA" $success = FALSE;
+}
+else $success = FALSE;
+

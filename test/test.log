@@ -1,0 +1,1890 @@
+Sep 30 14:05:06 mephisto mysqld: 090930 14:05:06  InnoDB: Started; log sequence number 0 739822365
+Sep 30 14:05:06 mephisto mysqld: 090930 14:05:06 [Note] Event Scheduler: Loaded 0 events
+Sep 30 14:05:06 mephisto mysqld: 090930 14:05:06 [Note] /usr/sbin/mysqld: ready for connections.
+Sep 30 14:05:06 mephisto mysqld: Version: '5.1.39-1'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  (Debian)
+Sep 30 14:05:07 mephisto /etc/mysql/debian-start[28286]: Upgrading MySQL tables if necessary.
+Sep 30 14:05:08 mephisto /etc/mysql/debian-start[28293]: /usr/bin/mysql_upgrade: the '--basedir' option is always ignored
+Sep 30 14:05:08 mephisto /etc/mysql/debian-start[28293]: Looking for 'mysql' as: /usr/bin/mysql
+Sep 30 14:05:09 mephisto /etc/mysql/debian-start[28293]: Looking for 'mysqlcheck' as: /usr/bin/mysqlcheck
+Sep 30 14:05:09 mephisto /etc/mysql/debian-start[28293]: Running 'mysqlcheck' with connection arguments: '--port=3306' '--socket=/var/run/mysqld/mysqld.sock' '--host=localhost' '--socket=/var/run/mysqld/mysqld.sock' '--socket=/var/run/mysqld/mysqld.sock' 
+Sep 30 14:05:09 mephisto /etc/mysql/debian-start[28293]: Running 'mysqlcheck' with connection arguments: '--port=3306' '--socket=/var/run/mysqld/mysqld.sock' '--host=localhost' '--socket=/var/run/mysqld/mysqld.sock' '--socket=/var/run/mysqld/mysqld.sock' 
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.columns_priv                                 OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.db                                           OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.event                                        OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.func                                         OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.general_log
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: Error    : You can't use locks with log tables.
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: status   : OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.help_category                                OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.help_keyword                                 OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.help_relation                                OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.help_topic                                   OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.host                                         OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.ndb_binlog_index                             OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.plugin                                       OK
+Sep 30 14:05:10 mephisto /etc/mysql/debian-start[28293]: mysql.proc                                         OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.procs_priv                                   OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.servers                                      OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.slow_log
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: Error    : You can't use locks with log tables.
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: status   : OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.tables_priv                                  OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.time_zone                                    OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.time_zone_leap_second                        OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.time_zone_name                               OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.time_zone_transition                         OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.time_zone_transition_type                    OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: mysql.user                                         OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: Running 'mysql_fix_privilege_tables'...
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28293]: OK
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28335]: Checking for insecure root accounts.
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28339]: WARNING: mysql.user contains 3 root accounts without password!
+Sep 30 14:05:11 mephisto /etc/mysql/debian-start[28341]: Triggering myisam-recover for all MyISAM tables
+Sep 30 14:12:24 mephisto acpid: client 20690[106:108] has disconnected 
+Sep 30 14:12:24 mephisto acpid: client connected from 408[106:108] 
+Sep 30 14:12:24 mephisto acpid: 1 client rule loaded 
+Sep 30 14:12:36 mephisto FaxQueuer[712]: HylaFAX (tm) Version 6.0.3
+Sep 30 14:12:36 mephisto FaxQueuer[712]: Copyright (c) 1990-1996 Sam Leffler
+Sep 30 14:12:36 mephisto FaxQueuer[712]: Copyright (c) 1991-1996 Silicon Graphics, Inc.
+Sep 30 14:12:36 mephisto HylaFAX[715]: HylaFAX INET Protocol Server: restarted.
+Sep 30 14:14:11 mephisto mysqld: 
+Sep 30 14:14:11 mephisto mysqld: Status information:
+Sep 30 14:14:11 mephisto mysqld: 
+Sep 30 14:14:11 mephisto mysqld: Current dir: /var/lib/mysql/
+Sep 30 14:14:12 mephisto mysqld: Running threads: 0  Stack size: 131072
+Sep 30 14:14:12 mephisto mysqld: Current locks:
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad94d98:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af937a8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af1ee98:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af1a2f8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad9ee18:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af91788:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad4a348:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af3b938:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af85c28:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af850c8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af84758:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af97fe8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af0db18:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad78e78:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af48508:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad1e988:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363afc3a88:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae54a08:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363afc29e8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad21788:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad72318:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad40898:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad1d7d8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad71578:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363aea68b0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad5c918:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad1ce08:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad22f88:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad43818:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad3e0b8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363afaeab8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af8ead8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad4d128:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ade2078:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ade0848:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af491d0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae9bfc8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af9d048:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae90ac8:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae84238:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363adf86c0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ade4e40:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae976a0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae0e550:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af09a60:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363aebc8c0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363aebbab0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363aeb7790:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae8c0e0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363aeb4550:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363afc6ca0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363aeab430:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363adf7820:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae87a50:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae7c9a0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae37c30:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae387e0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae452f0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ada27a0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae2d9b0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ae32e00:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363ad971d0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363adb7860:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: lock: 0x7f363af0e6d0:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: Key caches:
+Sep 30 14:14:12 mephisto mysqld: default
+Sep 30 14:14:12 mephisto mysqld: Buffer_size:      16777216
+Sep 30 14:14:12 mephisto mysqld: Block_size:           1024
+Sep 30 14:14:12 mephisto mysqld: Division_limit:        100
+Sep 30 14:14:12 mephisto mysqld: Age_limit:             300
+Sep 30 14:14:12 mephisto mysqld: blocks used:             4
+Sep 30 14:14:12 mephisto mysqld: not flushed:             0
+Sep 30 14:14:12 mephisto mysqld: w_requests:            566
+Sep 30 14:14:12 mephisto mysqld: writes:                 49
+Sep 30 14:14:12 mephisto mysqld: r_requests:            529
+Sep 30 14:14:12 mephisto mysqld: reads:                   6
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: handler status:
+Sep 30 14:14:12 mephisto mysqld: read_key:           50
+Sep 30 14:14:12 mephisto mysqld: read_next:          30
+Sep 30 14:14:12 mephisto mysqld: read_rnd             0
+Sep 30 14:14:12 mephisto mysqld: read_first:          6
+Sep 30 14:14:12 mephisto mysqld: write:            2222
+Sep 30 14:14:12 mephisto mysqld: delete               0
+Sep 30 14:14:12 mephisto mysqld: update:              0
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: Table status:
+Sep 30 14:14:12 mephisto mysqld: Opened tables:        989
+Sep 30 14:14:12 mephisto mysqld: Open tables:           64
+Sep 30 14:14:12 mephisto mysqld: Open files:            80
+Sep 30 14:14:12 mephisto mysqld: Open streams:           0
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: Alarm status:
+Sep 30 14:14:12 mephisto mysqld: Active alarms:   0
+Sep 30 14:14:12 mephisto mysqld: Max used alarms: 1
+Sep 30 14:14:12 mephisto mysqld: Next alarm time: 0
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: Begin safemalloc memory dump:
+Sep 30 14:14:12 mephisto mysqld: 
+Sep 30 14:14:12 mephisto mysqld: End safemalloc memory dump.
+Sep 30 14:17:02 mephisto CRON[19390]: pam_unix(cron:session): session opened for user root by (uid=0)
+Sep 30 14:17:02 mephisto console-kit-daemon[20540]: WARNING: Couldn't read /proc/20539/environ: Failed to open file '/proc/20539/environ': No such file or directory 
+Sep 30 14:17:02 mephisto /USR/SBIN/CRON[19407]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Sep 30 14:17:04 mephisto CRON[19390]: pam_unix(cron:session): session closed for user root
+Sep 30 14:17:45 mephisto seahorse-agent[6135]: left gtk_main 
+Sep 30 14:17:49 mephisto kernel: seahorse-agent[6135]: segfault at ffffffff ip 7fc9ebbbb18f sp 7ffff5ad6f10 error 4 in libglib-2.0.so.0.2000.0 (deleted)[7fc9ebb64000+c3000]
+Sep 30 14:17:50 mephisto gdm[5542]: pam_unix(gdm:session): session closed for user boti
+Sep 30 14:17:54 mephisto gdm[5526]: Restarting computer...
+Sep 30 14:17:54 mephisto shutdown[5526]: shutting down for system reboot
+Sep 30 14:17:54 mephisto kernel: tun0: Disabled Privacy Extensions
+Sep 30 14:17:57 mephisto init: Switching to runlevel: 6
+Sep 30 14:17:57 mephisto bonobo-activation-server (boti-19791): could not associate with desktop session: Failed to connect to socket /tmp/dbus-p6xiPJDAxK: Connection refused
+Sep 30 14:17:57 mephisto kernel: /dev/vmmon[19815]: Module vmmon: unloaded
+Sep 30 14:17:58 mephisto kernel: bridge-eth0: down
+Sep 30 14:17:58 mephisto kernel: bridge-eth0: detached
+Sep 30 14:18:06 mephisto rpc.statd[16789]: Caught signal 15, un-registering and exiting.
+Sep 30 14:18:06 mephisto sshd[23617]: Received signal 15; terminating.
+Sep 30 14:18:06 mephisto xinetd[5270]: Exiting...
+Sep 30 14:18:09 mephisto mysqld: 090930 14:18:09 [Note] /usr/sbin/mysqld: Normal shutdown
+Sep 30 14:18:09 mephisto mysqld: 
+Sep 30 14:18:09 mephisto mysqld: 090930 14:18:09 [Note] Event Scheduler: Purging the queue. 0 events
+Sep 30 14:18:09 mephisto mysqld: 090930 14:18:09  InnoDB: Starting shutdown...
+Sep 30 14:18:10 mephisto mysqld: 090930 14:18:10  InnoDB: Shutdown completed; log sequence number 0 739822365
+Sep 30 14:18:10 mephisto mysqld: 090930 14:18:10 [Warning] Forcing shutdown of 1 plugins
+Sep 30 14:18:10 mephisto mysqld: 090930 14:18:10 [Note] /usr/sbin/mysqld: Shutdown complete
+Sep 30 14:18:10 mephisto mysqld: 
+Sep 30 14:18:10 mephisto mysqld: 
+Sep 30 14:18:10 mephisto mysqld: Memory status:
+Sep 30 14:18:10 mephisto mysqld: Non-mmapped space allocated from system: 10358784
+Sep 30 14:18:10 mephisto mysqld: Number of free chunks:^I^I^I 234
+Sep 30 14:18:10 mephisto mysqld: Number of fastbin blocks:^I^I 0
+Sep 30 14:18:10 mephisto mysqld: Number of mmapped regions:^I^I 12
+Sep 30 14:18:10 mephisto mysqld: Space in mmapped regions:^I^I 48758784
+Sep 30 14:18:10 mephisto mysqld: Maximum total allocated space:^I^I 0
+Sep 30 14:18:10 mephisto mysqld: Space available in freed fastbin blocks: 0
+Sep 30 14:18:10 mephisto mysqld: Total allocated space:^I^I^I 8802368
+Sep 30 14:18:10 mephisto mysqld: Total free space:^I^I^I 1556416
+Sep 30 14:18:10 mephisto mysqld: Top-most, releasable space:^I^I 725920
+Sep 30 14:18:10 mephisto mysqld: Estimated memory (with thread stack):    59117568
+Sep 30 14:18:10 mephisto mysqld: 
+Sep 30 14:18:10 mephisto last message repeated 2 times
+Sep 30 14:18:10 mephisto mysqld: Events status:
+Sep 30 14:18:10 mephisto mysqld: LLA = Last Locked At  LUA = Last Unlocked At
+Sep 30 14:18:10 mephisto mysqld: WOC = Waiting On Condition  DL = Data Locked
+Sep 30 14:18:10 mephisto mysqld: 
+Sep 30 14:18:10 mephisto mysqld: Event scheduler status:
+Sep 30 14:18:10 mephisto mysqld: State      : INITIALIZED
+Sep 30 14:18:10 mephisto mysqld: Thread id  : 0
+Sep 30 14:18:10 mephisto mysqld: LLA        : n/a:0
+Sep 30 14:18:10 mephisto mysqld: LUA        : n/a:0
+Sep 30 14:18:10 mephisto mysqld: WOC        : NO
+Sep 30 14:18:10 mephisto mysqld: Workers    : 0
+Sep 30 14:18:10 mephisto mysqld: Executed   : 0
+Sep 30 14:18:10 mephisto mysqld: Data locked: NO
+Sep 30 14:18:10 mephisto mysqld: 
+Sep 30 14:18:10 mephisto mysqld: Event queue status:
+Sep 30 14:18:10 mephisto mysqld: Element count   : 0
+Sep 30 14:18:10 mephisto mysqld: Data locked     : NO
+Sep 30 14:18:10 mephisto mysqld: Attempting lock : NO
+Sep 30 14:18:10 mephisto mysqld: LLA             : init_queue:132
+Sep 30 14:18:10 mephisto mysqld: LUA             : init_queue:142
+Sep 30 14:18:10 mephisto mysqld: WOC             : NO
+Sep 30 14:18:10 mephisto mysqld: Next activation : never
+Sep 30 14:18:10 mephisto mysqld_safe: mysqld from pid file /var/run/mysqld/mysqld.pid ended
+Sep 30 14:18:11 mephisto kernel: fuse exit
+Sep 30 14:18:14 mephisto kernel: Kernel logging (proc) stopped.
+Sep 30 14:18:14 mephisto kernel: Kernel log daemon terminating.
+Sep 30 14:18:15 mephisto exiting on signal 15
+Sep 30 14:18:53 mephisto syslogd 1.5.0#5: restart.
+Sep 30 14:18:53 mephisto kernel: klogd 1.5.0#5, log source = /proc/kmsg started.
+Sep 30 14:18:54 mephisto kernel: Linux version 2.6.25 (2.6.25) (root@mephisto) (gcc version 4.2.3 (Debian 4.2.3-1)) #7 Mon Jun 16 12:40:20 CEST 2008
+Sep 30 14:18:54 mephisto kernel: Command line: BOOT_IMAGE=/boot/vmlinuz-2.6.25 root=/dev/sda5 ro quiet
+Sep 30 14:18:54 mephisto kernel: BIOS-provided physical RAM map:
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 00000000000e4000 - 0000000000100000 (reserved)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 0000000000100000 - 000000003ffb0000 (usable)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 000000003ffb0000 - 000000003ffc0000 (ACPI data)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 000000003ffc0000 - 000000003fff0000 (ACPI NVS)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 000000003fff0000 - 0000000040000000 (reserved)
+Sep 30 14:18:54 mephisto kernel:  BIOS-e820: 00000000ff780000 - 0000000100000000 (reserved)
+Sep 30 14:18:54 mephisto kernel: Entering add_active_range(0, 0, 159) 0 entries of 256 used
+Sep 30 14:18:55 mephisto acpid: starting up with proc fs 
+Sep 30 14:18:55 mephisto kernel: Entering add_active_range(0, 256, 262064) 1 entries of 256 used
+Sep 30 14:18:55 mephisto acpid: 1 rule loaded 
+Sep 30 14:18:55 mephisto kernel: end_pfn_map = 1048576
+Sep 30 14:18:55 mephisto acpid: waiting for events: event logging is off 
+Sep 30 14:18:55 mephisto kernel: DMI 2.3 present.
+Sep 30 14:18:55 mephisto kernel: ACPI: RSDP 000FA880, 0021 (r2 ACPIAM)
+Sep 30 14:18:55 mephisto kernel: ACPI: XSDT 3FFB0100, 003C (r1 A M I  OEMXSDT   8000502 MSFT       97)
+Sep 30 14:18:55 mephisto kernel: ACPI: FACP 3FFB0290, 00F4 (r3 A M I  OEMFACP   8000502 MSFT       97)
+Sep 30 14:18:55 mephisto kernel: ACPI: DSDT 3FFB03F0, 391B (r1  A0277 A0277001        1 MSFT  100000D)
+Sep 30 14:18:55 mephisto kernel: ACPI: FACS 3FFC0000, 0040
+Sep 30 14:18:55 mephisto kernel: ACPI: APIC 3FFB0390, 0052 (r1 A M I  OEMAPIC   8000502 MSFT       97)
+Sep 30 14:18:55 mephisto kernel: ACPI: OEMB 3FFC0040, 003F (r1 A M I  OEMBIOS   8000502 MSFT       97)
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Found user 'avahi' (UID 117) and group 'avahi' (GID 123).
+Sep 30 14:18:55 mephisto kernel: Entering add_active_range(0, 0, 159) 0 entries of 256 used
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Successfully dropped root privileges.
+Sep 30 14:18:55 mephisto kernel: Entering add_active_range(0, 256, 262064) 1 entries of 256 used
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: avahi-daemon 0.6.25 starting up.
+Sep 30 14:18:55 mephisto kernel: early res: 0 [0-fff] BIOS data page
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Successfully called chroot().
+Sep 30 14:18:55 mephisto kernel: early res: 1 [200000-5f95ef] TEXT DATA BSS
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Successfully dropped remaining capabilities.
+Sep 30 14:18:55 mephisto kernel: early res: 2 [9fc00-a0bff] EBDA
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: No service file found in /etc/avahi/services.
+Sep 30 14:18:55 mephisto kernel: early res: 3 [8000-afff] PGTABLE
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Joining mDNS multicast group on interface eth0.IPv6 with address fe80::213:d4ff:fea4:a695.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000000000-ffffe200001fffff] PMD ->ffff810001200000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: New relevant interface eth0.IPv6 for mDNS.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000200000-ffffe200003fffff] PMD ->ffff810001600000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Joining mDNS multicast group on interface eth0.IPv4 with address 192.168.168.2.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000400000-ffffe200005fffff] PMD ->ffff810001a00000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: New relevant interface eth0.IPv4 for mDNS.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000600000-ffffe200007fffff] PMD ->ffff810001e00000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Network interface enumeration completed.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000800000-ffffe200009fffff] PMD ->ffff810002200000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Registering new address record for fe80::213:d4ff:fea4:a695 on eth0.*.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000a00000-ffffe20000bfffff] PMD ->ffff810002600000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Registering new address record for 192.168.168.2 on eth0.IPv4.
+Sep 30 14:18:55 mephisto kernel:  [ffffe20000c00000-ffffe20000dfffff] PMD ->ffff810002a00000 on node 0
+Sep 30 14:18:55 mephisto avahi-daemon[2026]: Registering HINFO record with values 'X86_64'/'LINUX'.
+Sep 30 14:18:55 mephisto kernel: Zone PFN ranges:
+Sep 30 14:18:55 mephisto kernel:   DMA             0 ->     4096
+Sep 30 14:18:55 mephisto kernel:   DMA32        4096 ->  1048576
+Sep 30 14:18:55 mephisto kernel:   Normal    1048576 ->  1048576
+Sep 30 14:18:56 mephisto kernel: Movable zone start PFN for each node
+Sep 30 14:18:56 mephisto kernel: early_node_map[2] active PFN ranges
+Sep 30 14:18:56 mephisto kernel:     0:        0 ->      159
+Sep 30 14:18:56 mephisto kernel:     0:      256 ->   262064
+Sep 30 14:18:56 mephisto kernel: On node 0 totalpages: 261967
+Sep 30 14:18:56 mephisto kernel:   DMA zone: 56 pages used for memmap
+Sep 30 14:18:56 mephisto kernel:   DMA zone: 1024 pages reserved
+Sep 30 14:18:56 mephisto kernel:   DMA zone: 2919 pages, LIFO batch:0
+Sep 30 14:18:56 mephisto kernel:   DMA32 zone: 3526 pages used for memmap
+Sep 30 14:18:56 mephisto kernel:   DMA32 zone: 254442 pages, LIFO batch:31
+Sep 30 14:18:56 mephisto kernel:   Normal zone: 0 pages used for memmap
+Sep 30 14:18:56 mephisto kernel:   Movable zone: 0 pages used for memmap
+Sep 30 14:18:56 mephisto avahi-daemon[2026]: Server startup complete. Host name is mephisto.local. Local service cookie is 3780489770.
+Sep 30 14:18:57 mephisto sshd[2048]: Server listening on 0.0.0.0 port 22.
+Sep 30 14:18:57 mephisto kernel: Detected use of extended apic ids on hypertransport bus
+Sep 30 14:18:57 mephisto sshd[2048]: Server listening on :: port 22.
+Sep 30 14:18:57 mephisto kernel: ACPI: PM-Timer IO Port: 0x808
+Sep 30 14:18:57 mephisto kernel: ACPI: Local APIC address 0xfee00000
+Sep 30 14:18:57 mephisto kernel: ACPI: LAPIC (acpi_id[0x01] lapic_id[0x00] enabled)
+Sep 30 14:18:57 mephisto kernel: Processor #0 (Bootup-CPU)
+Sep 30 14:18:57 mephisto kernel: ACPI: LAPIC (acpi_id[0x02] lapic_id[0x81] disabled)
+Sep 30 14:18:57 mephisto kernel: ACPI: IOAPIC (id[0x01] address[0xfec00000] gsi_base[0])
+Sep 30 14:18:57 mephisto kernel: IOAPIC[0]: apic_id 1, address 0xfec00000, GSI 0-23
+Sep 30 14:18:57 mephisto kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+Sep 30 14:18:57 mephisto kernel: ACPI: IRQ0 used by override.
+Sep 30 14:18:57 mephisto kernel: ACPI: IRQ2 used by override.
+Sep 30 14:18:57 mephisto kernel: ACPI: IRQ9 used by override.
+Sep 30 14:18:57 mephisto kernel: Setting APIC routing to flat
+Sep 30 14:18:57 mephisto kernel: Using ACPI (MADT) for SMP configuration information
+Sep 30 14:18:57 mephisto kernel: Allocating PCI resources starting at 50000000 (gap: 40000000:bf780000)
+Sep 30 14:18:57 mephisto kernel: Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 257361
+Sep 30 14:18:57 mephisto kernel: Kernel command line: BOOT_IMAGE=/boot/vmlinuz-2.6.25 root=/dev/sda5 ro quiet
+Sep 30 14:18:57 mephisto kernel: Initializing CPU#0
+Sep 30 14:18:57 mephisto kernel: PID hash table entries: 4096 (order: 12, 32768 bytes)
+Sep 30 14:18:57 mephisto kernel: Extended CMOS year: 2000
+Sep 30 14:18:57 mephisto kernel: TSC calibrated against PM_TIMER
+Sep 30 14:18:57 mephisto kernel: time.c: Detected 2202.810 MHz processor.
+Sep 30 14:18:57 mephisto kernel: spurious 8259A interrupt: IRQ7.
+Sep 30 14:18:57 mephisto kernel: Console: colour VGA+ 80x25
+Sep 30 14:18:57 mephisto kernel: console [tty0] enabled
+Sep 30 14:18:57 mephisto kernel: Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes)
+Sep 30 14:18:57 mephisto kernel: Inode-cache hash table entries: 65536 (order: 7, 524288 bytes)
+Sep 30 14:18:57 mephisto kernel: Checking aperture...
+Sep 30 14:18:57 mephisto kernel: Node 0: aperture @ f4000000 size 64 MB
+Sep 30 14:18:57 mephisto kernel: Memory: 1027140k/1048256k available (2305k kernel code, 20080k reserved, 1119k data, 232k init)
+Sep 30 14:18:57 mephisto kernel: CPA: page pool initialized 1 of 1 pages preallocated
+Sep 30 14:18:57 mephisto kernel: Calibrating delay using timer specific routine.. 4408.77 BogoMIPS (lpj=2204388)
+Sep 30 14:18:57 mephisto kernel: Security Framework initialized
+Sep 30 14:18:57 mephisto kernel: SELinux:  Disabled at boot.
+Sep 30 14:18:57 mephisto kernel: Capability LSM initialized
+Sep 30 14:18:57 mephisto kernel: Mount-cache hash table entries: 256
+Sep 30 14:18:57 mephisto kernel: CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+Sep 30 14:18:57 mephisto kernel: CPU: L2 Cache: 512K (64 bytes/line)
+Sep 30 14:18:57 mephisto kernel: CPU: AMD Athlon(tm) 64 Processor 3500+ stepping 02
+Sep 30 14:18:57 mephisto kernel: ACPI: Core revision 20070126
+Sep 30 14:18:57 mephisto kernel: Using local APIC timer interrupts.
+Sep 30 14:18:57 mephisto kernel: APIC timer calibration result 12515969
+Sep 30 14:18:57 mephisto kernel: Detected 12.515 MHz APIC timer.
+Sep 30 14:18:57 mephisto kernel: net_namespace: 1000 bytes
+Sep 30 14:18:57 mephisto kernel: NET: Registered protocol family 16
+Sep 30 14:18:57 mephisto kernel: No dock devices found.
+Sep 30 14:18:57 mephisto kernel: ACPI: bus type pci registered
+Sep 30 14:18:57 mephisto kernel: PCI: Using configuration type 1
+Sep 30 14:18:57 mephisto kernel: ACPI: EC: Look up EC in DSDT
+Sep 30 14:18:57 mephisto kernel: ACPI: Interpreter enabled
+Sep 30 14:18:57 mephisto kernel: ACPI: (supports S0 S1 S3 S5)
+Sep 30 14:18:57 mephisto kernel: ACPI: Using IOAPIC for interrupt routing
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Root Bridge [PCI0] (0000:00)
+Sep 30 14:18:57 mephisto kernel: pci 0000:00:11.0: Enabled onboard AC97/MC97 devices
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Routing Table [\_SB_.PCI0._PRT]
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Link [LNKA] (IRQs 3 4 5 7 10 *11 14 15)
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Link [LNKB] (IRQs 3 4 5 7 *10 11 14 15)
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Link [LNKC] (IRQs 3 4 *5 7 10 11 14 15)
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Link [LNKD] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Link [LNKE] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:18:57 mephisto kernel: ACPI: PCI Interrupt Link [LNKF] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:18:58 mephisto kernel: ACPI: PCI Interrupt Link [LNKG] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:18:58 mephisto kernel: ACPI: PCI Interrupt Link [LNKH] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:18:58 mephisto kernel: ACPI Warning (tbutils-0217): Incorrect checksum in table [OEMB] -  13, should be 0E [20070126]
+Sep 30 14:18:58 mephisto kernel: Linux Plug and Play Support v0.97 (c) Adam Belay
+Sep 30 14:18:58 mephisto kernel: pnp: PnP ACPI init
+Sep 30 14:18:58 mephisto kernel: ACPI: bus type pnp registered
+Sep 30 14:18:58 mephisto kernel: pnp 00:00: Plug and Play ACPI device, IDs PNP0a03 (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:01: Plug and Play ACPI device, IDs PNP0200 (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:02: Plug and Play ACPI device, IDs PNP0b00 (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:03: Plug and Play ACPI device, IDs PNP0303 PNP030b (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:04: Plug and Play ACPI device, IDs PNP0800 (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:05: Plug and Play ACPI device, IDs PNP0c04 (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:06: Plug and Play ACPI device, IDs PNP0400 (active)
+Sep 30 14:18:58 mephisto kernel:  00:07: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:18:58 mephisto kernel: pnp 00:07: Plug and Play ACPI device, IDs PNP0c02 (active)
+Sep 30 14:18:58 mephisto kernel:  00:08: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:18:58 mephisto kernel: pnp 00:08: Plug and Play ACPI device, IDs PNP0c02 (active)
+Sep 30 14:18:58 mephisto kernel:  00:09: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:18:58 mephisto kernel: pnp 00:09: Plug and Play ACPI device, IDs PNP0c02 (active)
+Sep 30 14:18:58 mephisto kernel: pnp 00:0a: Plug and Play ACPI device, IDs PNP0501 (active)
+Sep 30 14:18:58 mephisto kernel:  00:0b: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:18:58 mephisto kernel: pnp 00:0b: Plug and Play ACPI device, IDs PNP0c01 (active)
+Sep 30 14:18:58 mephisto kernel: pnp: PnP ACPI: found 12 devices
+Sep 30 14:18:58 mephisto kernel: ACPI: ACPI bus type pnp unregistered
+Sep 30 14:18:58 mephisto kernel: SCSI subsystem initialized
+Sep 30 14:18:58 mephisto kernel: libata version 3.00 loaded.
+Sep 30 14:18:58 mephisto kernel: usbcore: registered new interface driver usbfs
+Sep 30 14:18:58 mephisto kernel: usbcore: registered new interface driver hub
+Sep 30 14:18:58 mephisto kernel: usbcore: registered new device driver usb
+Sep 30 14:18:58 mephisto kernel: PCI: Using ACPI for IRQ routing
+Sep 30 14:18:58 mephisto kernel: PCI: If a device doesn't work, try "pci=routeirq".  If it helps, post a report
+Sep 30 14:18:58 mephisto kernel: PCI: Cannot allocate resource region 0 of device 0000:00:00.0
+Sep 30 14:18:58 mephisto kernel: agpgart: Detected AGP bridge 0
+Sep 30 14:18:58 mephisto kernel: agpgart: AGP aperture is 64M @ 0xf4000000
+Sep 30 14:18:58 mephisto kernel: ACPI: RTC can wake from S4
+Sep 30 14:18:58 mephisto kernel: pnp: the driver 'system' has been registered
+Sep 30 14:18:58 mephisto kernel: system 00:07: ioport range 0x680-0x6ff has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:07: ioport range 0x290-0x297 has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:07: driver attached
+Sep 30 14:18:58 mephisto kernel: system 00:08: ioport range 0x3e1-0x3e7 has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:08: ioport range 0x4d0-0x4d1 has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:08: ioport range 0x800-0x87f has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:08: ioport range 0x400-0x41f has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:08: driver attached
+Sep 30 14:18:58 mephisto kernel: system 00:09: iomem range 0xfec00000-0xfec00fff has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:09: iomem range 0xfee00000-0xfee00fff could not be reserved
+Sep 30 14:18:58 mephisto kernel: system 00:09: iomem range 0xfff80000-0xffffffff could not be reserved
+Sep 30 14:18:58 mephisto kernel: system 00:09: driver attached
+Sep 30 14:18:58 mephisto kernel: system 00:0b: iomem range 0x0-0x9ffff could not be reserved
+Sep 30 14:18:58 mephisto kernel: system 00:0b: iomem range 0xc0000-0xdffff has been reserved
+Sep 30 14:18:58 mephisto kernel: system 00:0b: iomem range 0xe0000-0xfffff could not be reserved
+Sep 30 14:18:58 mephisto kernel: system 00:0b: iomem range 0x100000-0x3ffeffff could not be reserved
+Sep 30 14:18:58 mephisto kernel: system 00:0b: iomem range 0x0-0x0 could not be reserved
+Sep 30 14:18:58 mephisto kernel: system 00:0b: driver attached
+Sep 30 14:18:58 mephisto kernel: PCI: Bridge: 0000:00:01.0
+Sep 30 14:18:58 mephisto kernel:   IO window: disabled.
+Sep 30 14:18:58 mephisto kernel:   MEM window: 0xfb000000-0xfbffffff
+Sep 30 14:18:58 mephisto kernel:   PREFETCH window: 0x00000000f8000000-0x00000000f9ffffff
+Sep 30 14:18:58 mephisto kernel: PCI: Setting latency timer of device 0000:00:01.0 to 64
+Sep 30 14:18:58 mephisto kernel: NET: Registered protocol family 2
+Sep 30 14:18:58 mephisto kernel: IP route cache hash table entries: 32768 (order: 6, 262144 bytes)
+Sep 30 14:18:58 mephisto kernel: TCP established hash table entries: 131072 (order: 9, 2097152 bytes)
+Sep 30 14:18:58 mephisto kernel: TCP bind hash table entries: 65536 (order: 7, 524288 bytes)
+Sep 30 14:18:58 mephisto kernel: TCP: Hash tables configured (established 131072 bind 65536)
+Sep 30 14:18:58 mephisto kernel: TCP reno registered
+Sep 30 14:18:58 mephisto kernel: audit: initializing netlink socket (disabled)
+Sep 30 14:18:58 mephisto kernel: type=2000 audit(1254313085.118:1): initialized
+Sep 30 14:18:58 mephisto kernel: io scheduler noop registered
+Sep 30 14:18:58 mephisto kernel: io scheduler anticipatory registered
+Sep 30 14:18:58 mephisto kernel: io scheduler deadline registered
+Sep 30 14:18:58 mephisto kernel: io scheduler cfq registered (default)
+Sep 30 14:18:58 mephisto kernel: PCI: VIA PCI bridge detected. Disabling DAC.
+Sep 30 14:18:58 mephisto kernel: pci 0000:01:00.0: Boot video device
+Sep 30 14:18:58 mephisto kernel: Real Time Clock Driver v1.12ac
+Sep 30 14:18:58 mephisto kernel: Linux agpgart interface v0.103
+Sep 30 14:18:58 mephisto kernel: Serial: 8250/16550 driver $Revision: 1.90 $ 4 ports, IRQ sharing enabled
+Sep 30 14:18:58 mephisto kernel: serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+Sep 30 14:18:58 mephisto kernel: pnp: the driver 'serial' has been registered
+Sep 30 14:18:58 mephisto kernel: 00:0a: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+Sep 30 14:18:58 mephisto kernel: serial 00:0a: driver attached
+Sep 30 14:18:58 mephisto kernel: brd: module loaded
+Sep 30 14:18:58 mephisto kernel: Uniform Multi-Platform E-IDE driver
+Sep 30 14:18:58 mephisto kernel: ide: Assuming 33MHz system bus speed for PIO modes; override with idebus=xx
+Sep 30 14:18:58 mephisto kernel: VP_IDE: IDE controller (0x1106:0x0571 rev 0x06) at  PCI slot 0000:00:0f.1
+Sep 30 14:18:58 mephisto kernel: ACPI: PCI Interrupt 0000:00:0f.1[A] -> GSI 20 (level, low) -> IRQ 20
+Sep 30 14:18:58 mephisto kernel: VP_IDE: not 100% native mode: will probe irqs later
+Sep 30 14:18:58 mephisto kernel: VP_IDE: VIA vt8237 (rev 00) IDE UDMA133 controller on pci0000:00:0f.1
+Sep 30 14:18:58 mephisto kernel:     ide0: BM-DMA at 0xfc00-0xfc07, BIOS settings: hda:PIO, hdb:PIO
+Sep 30 14:18:58 mephisto kernel:     ide1: BM-DMA at 0xfc08-0xfc0f, BIOS settings: hdc:DMA, hdd:PIO
+Sep 30 14:18:58 mephisto mysqld_safe: Starting mysqld daemon with databases from /var/lib/mysql
+Sep 30 14:18:58 mephisto kernel: Probing IDE interface ide0...
+Sep 30 14:18:58 mephisto kernel: Probing IDE interface ide1...
+Sep 30 14:18:58 mephisto kernel: hdc: PLEXTOR DVDR PX-755A, ATAPI CD/DVD-ROM drive
+Sep 30 14:18:58 mephisto kernel: hdc: host max PIO5 wanted PIO255(auto-tune) selected PIO4
+Sep 30 14:18:58 mephisto kernel: hdc: host side 80-wire cable detection failed, limiting max speed to UDMA33
+Sep 30 14:18:58 mephisto kernel: hdc: UDMA/33 mode selected
+Sep 30 14:18:58 mephisto kernel: ide1 at 0x170-0x177,0x376 on irq 15
+Sep 30 14:18:58 mephisto kernel: hdc: ATAPI 40X DVD-ROM DVD-R CD-R/RW drive, 2048kB Cache
+Sep 30 14:18:58 mephisto kernel: Uniform CD-ROM driver Revision: 3.20
+Sep 30 14:18:58 mephisto kernel: Driver 'sd' needs updating - please use bus_type methods
+Sep 30 14:18:58 mephisto kernel: sata_via 0000:00:0f.0: version 2.3
+Sep 30 14:18:58 mephisto kernel: ACPI: PCI Interrupt 0000:00:0f.0[B] -> GSI 20 (level, low) -> IRQ 20
+Sep 30 14:18:58 mephisto kernel: sata_via 0000:00:0f.0: routed to hard irq line 10
+Sep 30 14:18:58 mephisto kernel: scsi0 : sata_via
+Sep 30 14:18:58 mephisto kernel: scsi1 : sata_via
+Sep 30 14:18:58 mephisto kernel: ata1: SATA max UDMA/133 cmd 0xd000 ctl 0xc800 bmdma 0xb800 irq 20
+Sep 30 14:18:58 mephisto kernel: ata2: SATA max UDMA/133 cmd 0xc400 ctl 0xc000 bmdma 0xb808 irq 20
+Sep 30 14:18:58 mephisto kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Sep 30 14:18:58 mephisto kernel: ata1.00: ATA-7: Maxtor 6V250F0, VA111630, max UDMA/133
+Sep 30 14:18:58 mephisto kernel: ata1.00: 490234752 sectors, multi 16: LBA48 NCQ (depth 0/32)
+Sep 30 14:18:58 mephisto kernel: ata1.00: configured for UDMA/133
+Sep 30 14:18:59 mephisto kernel: ata2: SATA link down 1.5 Gbps (SStatus 0 SControl 300)
+Sep 30 14:18:59 mephisto kernel: scsi 0:0:0:0: Direct-Access     ATA      Maxtor 6V250F0   VA11 PQ: 0 ANSI: 5
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] 490234752 512-byte hardware sectors (251000 MB)
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Write Protect is off
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] 490234752 512-byte hardware sectors (251000 MB)
+Sep 30 14:18:59 mephisto mysqld: 090930 14:18:58 [Note] Plugin 'FEDERATED' is disabled.
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Write Protect is off
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Sep 30 14:18:59 mephisto kernel:  sda: sda1 sda2 sda3 < sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12 >
+Sep 30 14:18:59 mephisto kernel: sd 0:0:0:0: [sda] Attached SCSI disk
+Sep 30 14:18:59 mephisto kernel: usbmon: debugfs is not available
+Sep 30 14:18:59 mephisto kernel: pnp: the driver 'i8042 kbd' has been registered
+Sep 30 14:18:59 mephisto kernel: i8042 kbd 00:03: driver attached
+Sep 30 14:18:59 mephisto kernel: pnp: the driver 'i8042 aux' has been registered
+Sep 30 14:18:59 mephisto mysqld: 090930 14:18:59  InnoDB: Started; log sequence number 0 739822365
+Sep 30 14:18:59 mephisto kernel: PNP: PS/2 Controller [PNP0303:PS2K] at 0x60,0x64 irq 1
+Sep 30 14:18:59 mephisto mysqld: 090930 14:18:59 [Note] Event Scheduler: Loaded 0 events
+Sep 30 14:18:59 mephisto kernel: PNP: PS/2 appears to have AUX port disabled, if this is incorrect please boot with i8042.nopnp
+Sep 30 14:18:59 mephisto mysqld: 090930 14:18:59 [Note] /usr/sbin/mysqld: ready for connections.
+Sep 30 14:18:59 mephisto kernel: serio: i8042 KBD port at 0x60,0x64 irq 1
+Sep 30 14:20:04 mephisto mysqld: Version: '5.1.39-1'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  (Debian)
+Sep 30 14:20:04 mephisto kernel: mice: PS/2 mouse device common for all mice
+Sep 30 14:20:04 mephisto kernel: input: AT Translated Set 2 keyboard as /class/input/input0
+Sep 30 14:20:04 mephisto kernel: cpuidle: using governor ladder
+Sep 30 14:20:04 mephisto kernel: TCP cubic registered
+Sep 30 14:20:04 mephisto kernel: NET: Registered protocol family 1
+Sep 30 14:20:04 mephisto kernel: NET: Registered protocol family 17
+Sep 30 14:20:04 mephisto kernel: md: Autodetecting RAID arrays.
+Sep 30 14:20:04 mephisto kernel: md: Scanned 0 and added 0 devices.
+Sep 30 14:20:04 mephisto kernel: md: autorun ...
+Sep 30 14:20:04 mephisto kernel: md: ... autorun DONE.
+Sep 30 14:20:04 mephisto kernel: ReiserFS: sda5: found reiserfs format "3.6" with standard journal
+Sep 30 14:20:04 mephisto ntpdate[1725]: step time server 193.6.222.46 offset 65.274674 sec
+Sep 30 14:20:04 mephisto kernel: ReiserFS: sda5: using ordered data mode
+Sep 30 14:20:04 mephisto kernel: ReiserFS: sda5: journal params: device sda5, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:20:04 mephisto kernel: ReiserFS: sda5: checking transaction log (sda5)
+Sep 30 14:20:04 mephisto kernel: ReiserFS: sda5: Using r5 hash to sort names
+Sep 30 14:20:04 mephisto kernel: VFS: Mounted root (reiserfs filesystem) readonly.
+Sep 30 14:20:04 mephisto kernel: Freeing unused kernel memory: 232k freed
+Sep 30 14:20:04 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.4[C] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:20:04 mephisto kernel: ehci_hcd 0000:00:10.4: EHCI Host Controller
+Sep 30 14:20:04 mephisto kernel: ehci_hcd 0000:00:10.4: new USB bus registered, assigned bus number 1
+Sep 30 14:20:04 mephisto kernel: ehci_hcd 0000:00:10.4: irq 21, io mem 0xfaf00000
+Sep 30 14:20:04 mephisto kernel: ehci_hcd 0000:00:10.4: USB 2.0 started, EHCI 1.00, driver 10 Dec 2004
+Sep 30 14:20:04 mephisto kernel: usb usb1: configuration #1 chosen from 1 choice
+Sep 30 14:20:04 mephisto kernel: hub 1-0:1.0: USB hub found
+Sep 30 14:20:04 mephisto kernel: hub 1-0:1.0: 8 ports detected
+Sep 30 14:20:04 mephisto kernel: ACPI: PCI Interrupt 0000:00:0a.0[A] -> GSI 17 (level, low) -> IRQ 17
+Sep 30 14:20:04 mephisto kernel: PCI: Disallowing DAC for device 0000:00:0a.0
+Sep 30 14:20:04 mephisto kernel: skge 1.13 addr 0xfad00000 irq 17 chip Yukon-Lite rev 9
+Sep 30 14:20:04 mephisto kernel: skge eth0: addr 00:13:d4:a4:a6:95
+Sep 30 14:20:04 mephisto kernel: pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+Sep 30 14:20:04 mephisto kernel: shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+Sep 30 14:20:04 mephisto kernel: input: PC Speaker as /class/input/input1
+Sep 30 14:20:04 mephisto kernel: pnp: the driver 'rtc_cmos' has been registered
+Sep 30 14:20:04 mephisto kernel: rtc_cmos 00:02: disabling not supported
+Sep 30 14:20:04 mephisto kernel: rtc_cmos: probe of 00:02 failed with error -16
+Sep 30 14:20:04 mephisto kernel: ACPI: ACPI0007:00 is registered as cooling_device0
+Sep 30 14:20:04 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 2
+Sep 30 14:20:04 mephisto kernel: USB Universal Host Controller Interface driver v3.0
+Sep 30 14:20:04 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.0[A] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:20:04 mephisto kernel: uhci_hcd 0000:00:10.0: UHCI Host Controller
+Sep 30 14:20:04 mephisto kernel: uhci_hcd 0000:00:10.0: new USB bus registered, assigned bus number 2
+Sep 30 14:20:04 mephisto kernel: uhci_hcd 0000:00:10.0: irq 21, io base 0x0000d400
+Sep 30 14:20:04 mephisto kernel: usb usb2: configuration #1 chosen from 1 choice
+Sep 30 14:20:04 mephisto kernel: hub 2-0:1.0: USB hub found
+Sep 30 14:20:04 mephisto kernel: hub 2-0:1.0: 2 ports detected
+Sep 30 14:20:04 mephisto kernel: pnp: the driver 'parport_pc' has been registered
+Sep 30 14:20:04 mephisto kernel: parport_pc 00:06: reported by Plug and Play ACPI
+Sep 30 14:20:04 mephisto kernel: parport0: PC-style at 0x378, irq 7 [PCSPP]
+Sep 30 14:20:04 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.1[A] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:20:04 mephisto kernel: uhci_hcd 0000:00:10.1: UHCI Host Controller
+Sep 30 14:20:04 mephisto kernel: uhci_hcd 0000:00:10.1: new USB bus registered, assigned bus number 3
+Sep 30 14:20:04 mephisto kernel: uhci_hcd 0000:00:10.1: irq 21, io base 0x0000d800
+Sep 30 14:20:04 mephisto kernel: usb usb3: configuration #1 chosen from 1 choice
+Sep 30 14:20:05 mephisto kernel: hub 3-0:1.0: USB hub found
+Sep 30 14:20:05 mephisto kernel: hub 3-0:1.0: 2 ports detected
+Sep 30 14:20:05 mephisto kernel: parport_pc 00:06: driver attached
+Sep 30 14:20:05 mephisto kernel: input: Power Button (FF) as /class/input/input2
+Sep 30 14:20:05 mephisto kernel: ACPI: Power Button (FF) [PWRF]
+Sep 30 14:20:05 mephisto kernel: input: Power Button (CM) as /class/input/input3
+Sep 30 14:20:05 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 3
+Sep 30 14:20:05 mephisto kernel: ACPI: Power Button (CM) [PWRB]
+Sep 30 14:20:05 mephisto kernel: input: Sleep Button (CM) as /class/input/input4
+Sep 30 14:20:05 mephisto kernel: ACPI: Sleep Button (CM) [SLPB]
+Sep 30 14:20:05 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.2[B] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:20:05 mephisto kernel: uhci_hcd 0000:00:10.2: UHCI Host Controller
+Sep 30 14:20:05 mephisto kernel: uhci_hcd 0000:00:10.2: new USB bus registered, assigned bus number 4
+Sep 30 14:20:05 mephisto kernel: uhci_hcd 0000:00:10.2: irq 21, io base 0x0000e000
+Sep 30 14:20:05 mephisto kernel: usb usb4: configuration #1 chosen from 1 choice
+Sep 30 14:20:05 mephisto kernel: hub 4-0:1.0: USB hub found
+Sep 30 14:20:05 mephisto kernel: hub 4-0:1.0: 2 ports detected
+Sep 30 14:20:05 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.3[B] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:20:05 mephisto kernel: uhci_hcd 0000:00:10.3: UHCI Host Controller
+Sep 30 14:20:05 mephisto kernel: uhci_hcd 0000:00:10.3: new USB bus registered, assigned bus number 5
+Sep 30 14:20:05 mephisto kernel: uhci_hcd 0000:00:10.3: irq 21, io base 0x0000e400
+Sep 30 14:20:05 mephisto kernel: usb usb5: configuration #1 chosen from 1 choice
+Sep 30 14:20:05 mephisto kernel: hub 5-0:1.0: USB hub found
+Sep 30 14:20:05 mephisto kernel: hub 5-0:1.0: 2 ports detected
+Sep 30 14:20:05 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 4
+Sep 30 14:20:05 mephisto kernel: usb 2-2: new full speed USB device using uhci_hcd and address 2
+Sep 30 14:20:05 mephisto kernel: PCI: Enabling device 0000:00:11.6 (0000 -> 0001)
+Sep 30 14:20:05 mephisto kernel: ACPI: PCI Interrupt 0000:00:11.6[C] -> GSI 22 (level, low) -> IRQ 22
+Sep 30 14:20:05 mephisto kernel: usb 2-2: configuration #1 chosen from 1 choice
+Sep 30 14:20:05 mephisto kernel: usb 3-1: new full speed USB device using uhci_hcd and address 2
+Sep 30 14:20:05 mephisto kernel: usb 3-1: configuration #1 chosen from 1 choice
+Sep 30 14:20:05 mephisto kernel: Linux video capture interface: v2.00
+Sep 30 14:20:05 mephisto kernel: usb 3-2: new low speed USB device using uhci_hcd and address 3
+Sep 30 14:20:05 mephisto kernel: PCI: Setting latency timer of device 0000:00:11.6 to 64
+Sep 30 14:20:05 mephisto kernel: usb 3-2: configuration #1 chosen from 1 choice
+Sep 30 14:20:05 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: USB OV519 video device found
+Sep 30 14:20:05 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: Sensor is an OV7670
+Sep 30 14:20:05 mephisto kernel: ACPI: PCI interrupt for device 0000:00:11.6 disabled
+Sep 30 14:20:05 mephisto kernel: VIA 82xx Modem: probe of 0000:00:11.6 failed with error -13
+Sep 30 14:20:05 mephisto kernel: ACPI: PCI Interrupt 0000:00:11.5[C] -> GSI 22 (level, low) -> IRQ 22
+Sep 30 14:20:05 mephisto kernel: PCI: Setting latency timer of device 0000:00:11.5 to 64
+Sep 30 14:20:05 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: Device at usb-0000:00:10.1-1 registered to minor 0
+Sep 30 14:20:05 mephisto kernel: usbcore: registered new interface driver hiddev
+Sep 30 14:20:05 mephisto kernel: input: HID 0461:4d03 as /class/input/input5
+Sep 30 14:20:05 mephisto kernel: input: USB HID v1.00 Mouse [HID 0461:4d03] on usb-0000:00:10.1-2
+Sep 30 14:20:05 mephisto kernel: usbcore: registered new interface driver ov51x
+Sep 30 14:20:05 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: 1.5.7 : ov51x USB Camera Driver
+Sep 30 14:20:05 mephisto kernel: usbcore: registered new interface driver usbhid
+Sep 30 14:20:05 mephisto kernel: drivers/hid/usbhid/hid-core.c: v2.6:USB HID core driver
+Sep 30 14:20:05 mephisto kernel: Adding 1004020k swap on /dev/sda1.  Priority:-1 extents:1 across:1004020k
+Sep 30 14:20:06 mephisto kernel: w83627hf: Found W83627THF chip at 0x290
+Sep 30 14:20:06 mephisto kernel: w83627hf w83627hf.656: Reading VID from GPIO5
+Sep 30 14:20:06 mephisto kernel: powernow-k8: Found 1 AMD Athlon(tm) 64 Processor 3500+ processors (1 cpu cores) (version 2.20.00)
+Sep 30 14:20:06 mephisto kernel: powernow-k8:    0 : fid 0xe (2200 MHz), vid 0x6
+Sep 30 14:20:06 mephisto kernel: powernow-k8:    1 : fid 0xc (2000 MHz), vid 0x8
+Sep 30 14:20:06 mephisto kernel: powernow-k8:    2 : fid 0xa (1800 MHz), vid 0xa
+Sep 30 14:20:06 mephisto kernel: powernow-k8:    3 : fid 0x2 (1000 MHz), vid 0x12
+Sep 30 14:20:06 mephisto kernel: device-mapper: ioctl: 4.13.0-ioctl (2007-10-18) initialised: dm-devel@redhat.com
+Sep 30 14:20:06 mephisto kernel: fuse init (API version 7.9)
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda6: found reiserfs format "3.6" with standard journal
+Sep 30 14:20:06 mephisto /etc/mysql/debian-start[2259]: Upgrading MySQL tables if necessary.
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda6: using ordered data mode
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda6: journal params: device sda6, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:20:06 mephisto /etc/mysql/debian-start[2264]: /usr/bin/mysql_upgrade: the '--basedir' option is always ignored
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda6: checking transaction log (sda6)
+Sep 30 14:20:06 mephisto /etc/mysql/debian-start[2264]: Looking for 'mysql' as: /usr/bin/mysql
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda6: Using r5 hash to sort names
+Sep 30 14:20:06 mephisto /etc/mysql/debian-start[2264]: Looking for 'mysqlcheck' as: /usr/bin/mysqlcheck
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda7: found reiserfs format "3.6" with standard journal
+Sep 30 14:20:06 mephisto /etc/mysql/debian-start[2264]: This installation of MySQL is already upgraded to 5.1.39, use --force if you still need to run mysql_upgrade
+Sep 30 14:20:06 mephisto kernel: ReiserFS: sda7: using ordered data mode
+Sep 30 14:20:06 mephisto /etc/mysql/debian-start[2277]: Checking for insecure root accounts.
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda7: journal params: device sda7, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda7: checking transaction log (sda7)
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda7: Using r5 hash to sort names
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda8: found reiserfs format "3.6" with standard journal
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda8: using ordered data mode
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda8: journal params: device sda8, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda8: checking transaction log (sda8)
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda8: Using r5 hash to sort names
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda9: found reiserfs format "3.6" with standard journal
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda9: using ordered data mode
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda9: journal params: device sda9, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:20:07 mephisto kernel: ReiserFS: sda9: checking transaction log (sda9)
+Sep 30 14:20:08 mephisto /etc/mysql/debian-start[2298]: WARNING: mysql.user contains 3 root accounts without password!
+Sep 30 14:20:08 mephisto kernel: ReiserFS: sda9: Using r5 hash to sort names
+Sep 30 14:20:08 mephisto /etc/mysql/debian-start[2299]: Triggering myisam-recover for all MyISAM tables
+Sep 30 14:20:08 mephisto kernel: ReiserFS: sda11: found reiserfs format "3.6" with standard journal
+Sep 30 14:20:08 mephisto kernel: ReiserFS: sda11: using ordered data mode
+Sep 30 14:20:08 mephisto kernel: ReiserFS: sda11: journal params: device sda11, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:20:08 mephisto kernel: ReiserFS: sda11: checking transaction log (sda11)
+Sep 30 14:20:08 mephisto kernel: ReiserFS: sda11: Using r5 hash to sort names
+Sep 30 14:20:08 mephisto kernel: skge eth0: enabling interface
+Sep 30 14:20:08 mephisto kernel: skge eth0: Link is up at 100 Mbps, full duplex, flow control both
+Sep 30 14:20:08 mephisto kernel: RPC: Registered udp transport module.
+Sep 30 14:20:08 mephisto kernel: RPC: Registered tcp transport module.
+Sep 30 14:20:08 mephisto kernel: ip_tables: (C) 2000-2006 Netfilter Core Team
+Sep 30 14:20:08 mephisto kernel: NET: Registered protocol family 10
+Sep 30 14:20:08 mephisto kernel: lo: Disabled Privacy Extensions
+Sep 30 14:20:08 mephisto kernel: Marking TSC unstable due to cpufreq changes
+Sep 30 14:20:08 mephisto kernel: Clocksource tsc unstable (delta = -262814736 ns)
+Sep 30 14:20:08 mephisto kernel: eth0: no IPv6 routers present
+Sep 30 14:20:10 mephisto FaxQueuer[2751]: HylaFAX (tm) Version 6.0.3
+Sep 30 14:20:10 mephisto FaxQueuer[2751]: Copyright (c) 1990-1996 Sam Leffler
+Sep 30 14:20:10 mephisto FaxQueuer[2751]: Copyright (c) 1991-1996 Silicon Graphics, Inc.
+Sep 30 14:20:10 mephisto HylaFAX[2754]: HylaFAX INET Protocol Server: restarted.
+Sep 30 14:20:11 mephisto xinetd[2818]: Reading included configuration file: /etc/xinetd.d/chargen [file=/etc/xinetd.conf] [line=14]
+Sep 30 14:20:11 mephisto xinetd[2818]: Reading included configuration file: /etc/xinetd.d/daytime [file=/etc/xinetd.d/daytime] [line=28]
+Sep 30 14:20:12 mephisto xinetd[2818]: Reading included configuration file: /etc/xinetd.d/discard [file=/etc/xinetd.d/discard] [line=26]
+Sep 30 14:20:12 mephisto xinetd[2818]: Reading included configuration file: /etc/xinetd.d/echo [file=/etc/xinetd.d/echo] [line=25]
+Sep 30 14:20:12 mephisto xinetd[2818]: Reading included configuration file: /etc/xinetd.d/time [file=/etc/xinetd.d/time] [line=26]
+Sep 30 14:20:12 mephisto xinetd[2818]: removing chargen
+Sep 30 14:20:12 mephisto xinetd[2818]: removing chargen
+Sep 30 14:20:12 mephisto xinetd[2818]: removing daytime
+Sep 30 14:20:12 mephisto xinetd[2818]: removing daytime
+Sep 30 14:20:12 mephisto xinetd[2818]: removing discard
+Sep 30 14:20:12 mephisto xinetd[2818]: removing discard
+Sep 30 14:20:12 mephisto xinetd[2818]: removing echo
+Sep 30 14:20:12 mephisto xinetd[2818]: removing echo
+Sep 30 14:20:12 mephisto xinetd[2818]: removing time
+Sep 30 14:20:12 mephisto xinetd[2818]: removing time
+Sep 30 14:20:12 mephisto xinetd[2818]: xinetd Version 2.3.14 started with libwrap loadavg options compiled in.
+Sep 30 14:20:12 mephisto xinetd[2818]: Started working: 0 available services
+Sep 30 14:20:15 mephisto acpid: client connected from 3041[106:108] 
+Sep 30 14:20:16 mephisto acpid: 1 client rule loaded 
+Sep 30 14:20:19 mephisto kernel: lp0: using parport0 (interrupt-driven).
+Sep 30 14:20:20 mephisto kernel: ppdev: user-space parallel port driver
+Sep 30 14:20:21 mephisto acpid: client connected from 3077[0:0] 
+Sep 30 14:20:21 mephisto acpid: 1 client rule loaded 
+Sep 30 14:20:22 mephisto /usr/sbin/cron[3165]: (CRON) INFO (pidfile fd = 3)
+Sep 30 14:20:22 mephisto /usr/sbin/cron[3166]: (CRON) STARTUP (fork ok)
+Sep 30 14:20:22 mephisto /usr/sbin/cron[3166]: (CRON) INFO (Running @reboot jobs)
+Sep 30 14:20:23 mephisto kernel: vmmon: module license 'unspecified' taints kernel.
+Sep 30 14:20:23 mephisto kernel: /dev/vmmon[3191]: VMCI: Driver initialized.
+Sep 30 14:20:23 mephisto kernel: /dev/vmmon[3191]: Module vmmon: registered with major=10 minor=165
+Sep 30 14:20:23 mephisto kernel: /dev/vmmon[3191]: Initial HV check: anyNotCapable=1 anyUnlocked=0 anyEnabled=0 anyDisabled=0
+Sep 30 14:20:23 mephisto kernel: /dev/vmmon[3191]: Module vmmon: initialized
+Sep 30 14:20:23 mephisto kernel: [drm] Initialized drm 1.1.0 20060810
+Sep 30 14:20:23 mephisto kernel: /dev/vmnet: open called by PID 3226 (vmnet-bridge)
+Sep 30 14:20:24 mephisto kernel: /dev/vmnet: hub 0 does not exist, allocating memory.
+Sep 30 14:20:24 mephisto kernel: /dev/vmnet: port on hub 0 successfully opened
+Sep 30 14:20:24 mephisto kernel: bridge-eth0: enabling the bridge
+Sep 30 14:20:24 mephisto kernel: bridge-eth0: up
+Sep 30 14:20:24 mephisto kernel: bridge-eth0: already up
+Sep 30 14:20:24 mephisto kernel: bridge-eth0: attached
+Sep 30 14:20:24 mephisto kernel: ACPI: PCI Interrupt 0000:01:00.0[A] -> GSI 16 (level, low) -> IRQ 16
+Sep 30 14:20:24 mephisto kernel: [drm] Initialized mga 3.2.1 20051102 on minor 0
+Sep 30 14:20:24 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 14:20:24 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 14:20:24 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+Sep 30 14:20:24 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Internet Software Consortium DHCP Server 2.0
+Sep 30 14:20:24 mephisto vmnet-detect[3234]: NetDetectDaemonInit: No host policy file found. Not initializing filter. 
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Copyright 1995, 1996, 1997, 1998, 1999 The Internet Software Consortium.
+Sep 30 14:20:24 mephisto vmnet-detect[3234]: Unable to initialize the daemon 
+Sep 30 14:20:24 mephisto vmnet-dhcpd: All rights reserved.
+Sep 30 14:20:24 mephisto vmnet-dhcpd: 
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Please contribute if you find this software useful.
+Sep 30 14:20:24 mephisto vmnet-dhcpd: For info, please visit http://www.isc.org/dhcp-contrib.html
+Sep 30 14:20:24 mephisto vmnet-dhcpd: 
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Configured subnet: 192.168.169.0
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Setting vmnet-dhcp IP address: 192.168.169.254
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Recving on     VNet/vmnet1/192.168.169.0
+Sep 30 14:20:24 mephisto kernel: /dev/vmnet: open called by PID 3243 (vmnet-dhcpd)
+Sep 30 14:20:24 mephisto vmnet-dhcpd: Sending on     VNet/vmnet1/192.168.169.0
+Sep 30 14:20:24 mephisto kernel: /dev/vmnet: hub 1 does not exist, allocating memory.
+Sep 30 14:20:24 mephisto kernel: /dev/vmnet: port on hub 1 successfully opened
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Internet Software Consortium DHCP Server 2.0
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Copyright 1995, 1996, 1997, 1998, 1999 The Internet Software Consortium.
+Sep 30 14:20:25 mephisto vmnet-dhcpd: All rights reserved.
+Sep 30 14:20:25 mephisto vmnet-dhcpd: 
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Please contribute if you find this software useful.
+Sep 30 14:20:25 mephisto vmnet-dhcpd: For info, please visit http://www.isc.org/dhcp-contrib.html
+Sep 30 14:20:25 mephisto vmnet-dhcpd: 
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Configured subnet: 192.168.169.0
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Setting vmnet-dhcp IP address: 192.168.169.254
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Recving on     VNet/vmnet8/192.168.169.0
+Sep 30 14:20:25 mephisto kernel: /dev/vmnet: open called by PID 3253 (vmnet-dhcpd)
+Sep 30 14:20:25 mephisto vmnet-dhcpd: Sending on     VNet/vmnet8/192.168.169.0
+Sep 30 14:20:25 mephisto kernel: /dev/vmnet: hub 8 does not exist, allocating memory.
+Sep 30 14:20:25 mephisto kernel: /dev/vmnet: port on hub 8 successfully opened
+Sep 30 14:20:33 mephisto kernel: /dev/vmnet: open called by PID 3277 (vmnet-netifup)
+Sep 30 14:20:33 mephisto kernel: /dev/vmnet: port on hub 1 successfully opened
+Sep 30 14:20:33 mephisto avahi-daemon[2026]: Joining mDNS multicast group on interface vmnet1.IPv4 with address 192.168.169.3.
+Sep 30 14:20:33 mephisto avahi-daemon[2026]: New relevant interface vmnet1.IPv4 for mDNS.
+Sep 30 14:20:33 mephisto avahi-daemon[2026]: Registering new address record for 192.168.169.3 on vmnet1.IPv4.
+Sep 30 14:20:34 mephisto kernel: /dev/vmnet: open called by PID 3294 (vmnet-netifup)
+Sep 30 14:20:34 mephisto kernel: /dev/vmnet: port on hub 8 successfully opened
+Sep 30 14:20:34 mephisto avahi-daemon[2026]: Joining mDNS multicast group on interface vmnet8.IPv4 with address 192.168.169.1.
+Sep 30 14:20:34 mephisto avahi-daemon[2026]: New relevant interface vmnet8.IPv4 for mDNS.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: Registering new address record for 192.168.169.1 on vmnet8.IPv4.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: Joining mDNS multicast group on interface vmnet1.IPv6 with address fe80::250:56ff:fec0:1.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: New relevant interface vmnet1.IPv6 for mDNS.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: Registering new address record for fe80::250:56ff:fec0:1 on vmnet1.*.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: Joining mDNS multicast group on interface vmnet8.IPv6 with address fe80::250:56ff:fec0:8.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: New relevant interface vmnet8.IPv6 for mDNS.
+Sep 30 14:20:35 mephisto avahi-daemon[2026]: Registering new address record for fe80::250:56ff:fec0:8 on vmnet8.*.
+Sep 30 14:20:40 mephisto gdm[3072]: pam_unix(gdm:session): session opened for user boti by (uid=0)
+Sep 30 14:20:41 mephisto gdm[3072]: pam_ck_connector(gdm:session): nox11 mode, ignoring PAM_TTY :0
+Sep 30 14:20:41 mephisto console-kit-daemon[2884]: WARNING: Couldn't read /proc/2883/environ: Failed to open file '/proc/2883/environ': No such file or directory 
+Sep 30 14:20:43 mephisto kernel: vmnet1: no IPv6 routers present
+Sep 30 14:20:44 mephisto x-session-manager[3372]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 14:20:44 mephisto x-session-manager[3372]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 14:20:44 mephisto kernel: vmnet8: no IPv6 routers present
+Sep 30 14:20:55 mephisto x-session-manager[3372]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 14:20:59 mephisto acpid: client 3077[0:0] has disconnected 
+Sep 30 14:20:59 mephisto acpid: client connected from 3077[0:0] 
+Sep 30 14:20:59 mephisto acpid: 1 client rule loaded 
+Sep 30 14:21:25 mephisto sudo:     boti : TTY=pts/0 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 14:27:22 mephisto sudo:     boti : TTY=pts/2 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 14:32:06 mephisto gnome-keyring-daemon[3352]: couldn't allocate secure memory to keep passwords and or keys from being written to the disk
+Sep 30 14:33:32 mephisto kernel: epiphany-browse[3787]: segfault at 0 ip 7fdd99793c62 sp 7fffa9971458 error 4 in libc-2.9.so[7fdd9971b000+147000]
+Sep 30 14:33:44 mephisto kernel: epiphany-browse[3929]: segfault at 0 ip 7f5caa175c62 sp 7fffba3518a8 error 4 in libc-2.9.so[7f5caa0fd000+147000]
+Sep 30 14:38:51 mephisto x-session-manager[3372]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 14:38:51 mephisto x-session-manager[3372]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 14:38:51 mephisto console-kit-daemon[2884]: WARNING: Unable to activate console: No such device or address 
+Sep 30 14:38:51 mephisto gdm[3072]: pam_unix(gdm:session): session closed for user boti
+Sep 30 14:38:53 mephisto acpid: client 3077[0:0] has disconnected 
+Sep 30 14:38:53 mephisto acpid: client connected from 4073[0:0] 
+Sep 30 14:38:53 mephisto acpid: 1 client rule loaded 
+Sep 30 14:38:54 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 14:38:54 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 14:38:54 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+Sep 30 14:38:54 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+Sep 30 14:39:01 mephisto login[3344]: pam_unix(login:session): session opened for user root by LOGIN(uid=0)
+Sep 30 14:39:01 mephisto login[4112]: ROOT LOGIN  on '/dev/tty1'
+Sep 30 14:39:08 mephisto acpid: client 4073[0:0] has disconnected 
+Sep 30 14:39:08 mephisto acpid: client connected from 4073[0:0] 
+Sep 30 14:39:08 mephisto acpid: 1 client rule loaded 
+Sep 30 14:39:33 mephisto acpid: client 4073[0:0] has disconnected 
+Sep 30 14:39:33 mephisto acpid: client connected from 4313[0:0] 
+Sep 30 14:39:33 mephisto acpid: 1 client rule loaded 
+Sep 30 14:39:35 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 14:39:35 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 14:39:35 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+Sep 30 14:39:35 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+Sep 30 14:42:45 mephisto shutdown[4464]: shutting down for system reboot
+Sep 30 14:42:45 mephisto init: Switching to runlevel: 6
+Sep 30 14:42:45 mephisto console-kit-daemon[2884]: WARNING: Unable to activate console: No such device or address 
+Sep 30 14:42:46 mephisto kernel: /dev/vmmon[4543]: Module vmmon: unloaded
+Sep 30 14:42:46 mephisto kernel: bridge-eth0: down
+Sep 30 14:42:46 mephisto kernel: bridge-eth0: detached
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Interface vmnet1.IPv6 no longer relevant for mDNS.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Leaving mDNS multicast group on interface vmnet1.IPv6 with address fe80::250:56ff:fec0:1.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Interface vmnet1.IPv4 no longer relevant for mDNS.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Leaving mDNS multicast group on interface vmnet1.IPv4 with address 192.168.169.3.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Withdrawing address record for fe80::250:56ff:fec0:1 on vmnet1.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Withdrawing address record for 192.168.169.3 on vmnet1.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Interface vmnet8.IPv6 no longer relevant for mDNS.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Leaving mDNS multicast group on interface vmnet8.IPv6 with address fe80::250:56ff:fec0:8.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Interface vmnet8.IPv4 no longer relevant for mDNS.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Leaving mDNS multicast group on interface vmnet8.IPv4 with address 192.168.169.1.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Withdrawing address record for fe80::250:56ff:fec0:8 on vmnet8.
+Sep 30 14:42:46 mephisto avahi-daemon[2026]: Withdrawing address record for 192.168.169.1 on vmnet8.
+Sep 30 14:42:51 mephisto rpc.statd[1704]: Caught signal 15, un-registering and exiting.
+Sep 30 14:42:51 mephisto sshd[2048]: Received signal 15; terminating.
+Sep 30 14:42:51 mephisto xinetd[2818]: Exiting...
+Sep 30 14:42:54 mephisto mysqld: 090930 14:42:54 [Note] /usr/sbin/mysqld: Normal shutdown
+Sep 30 14:42:54 mephisto mysqld: 
+Sep 30 14:42:54 mephisto mysqld: 090930 14:42:54 [Note] Event Scheduler: Purging the queue. 0 events
+Sep 30 14:42:54 mephisto mysqld: 090930 14:42:54  InnoDB: Starting shutdown...
+Sep 30 14:42:55 mephisto mysqld: 090930 14:42:55  InnoDB: Shutdown completed; log sequence number 0 739822365
+Sep 30 14:42:55 mephisto mysqld: 090930 14:42:55 [Warning] Forcing shutdown of 1 plugins
+Sep 30 14:42:55 mephisto mysqld: 090930 14:42:55 [Note] /usr/sbin/mysqld: Shutdown complete
+Sep 30 14:42:55 mephisto mysqld: 
+Sep 30 14:42:55 mephisto mysqld_safe: mysqld from pid file /var/run/mysqld/mysqld.pid ended
+Sep 30 14:42:56 mephisto kernel: fuse exit
+Sep 30 14:42:57 mephisto avahi-daemon[2026]: Got SIGTERM, quitting.
+Sep 30 14:42:57 mephisto avahi-daemon[2026]: Leaving mDNS multicast group on interface eth0.IPv6 with address fe80::213:d4ff:fea4:a695.
+Sep 30 14:42:57 mephisto avahi-daemon[2026]: Leaving mDNS multicast group on interface eth0.IPv4 with address 192.168.168.2.
+Sep 30 14:42:57 mephisto kernel: Kernel logging (proc) stopped.
+Sep 30 14:42:57 mephisto kernel: Kernel log daemon terminating.
+Sep 30 14:42:58 mephisto exiting on signal 15
+Sep 30 14:44:14 mephisto syslogd 1.5.0#5: restart.
+Sep 30 14:44:14 mephisto kernel: klogd 1.5.0#5, log source = /proc/kmsg started.
+Sep 30 14:44:14 mephisto kernel: Linux version 2.6.25 (2.6.25) (root@mephisto) (gcc version 4.2.3 (Debian 4.2.3-1)) #7 Mon Jun 16 12:40:20 CEST 2008
+Sep 30 14:44:14 mephisto kernel: Command line: BOOT_IMAGE=/boot/vmlinuz-2.6.25 root=/dev/sda5 ro quiet
+Sep 30 14:44:15 mephisto kernel: BIOS-provided physical RAM map:
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 00000000000e4000 - 0000000000100000 (reserved)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 0000000000100000 - 000000003ffb0000 (usable)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 000000003ffb0000 - 000000003ffc0000 (ACPI data)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 000000003ffc0000 - 000000003fff0000 (ACPI NVS)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 000000003fff0000 - 0000000040000000 (reserved)
+Sep 30 14:44:15 mephisto kernel:  BIOS-e820: 00000000ff780000 - 0000000100000000 (reserved)
+Sep 30 14:44:15 mephisto kernel: Entering add_active_range(0, 0, 159) 0 entries of 256 used
+Sep 30 14:44:15 mephisto acpid: starting up with proc fs 
+Sep 30 14:44:15 mephisto kernel: Entering add_active_range(0, 256, 262064) 1 entries of 256 used
+Sep 30 14:44:15 mephisto acpid: 1 rule loaded 
+Sep 30 14:44:15 mephisto kernel: end_pfn_map = 1048576
+Sep 30 14:44:15 mephisto acpid: waiting for events: event logging is off 
+Sep 30 14:44:15 mephisto kernel: DMI 2.3 present.
+Sep 30 14:44:15 mephisto kernel: ACPI: RSDP 000FA880, 0021 (r2 ACPIAM)
+Sep 30 14:44:15 mephisto kernel: ACPI: XSDT 3FFB0100, 003C (r1 A M I  OEMXSDT   8000502 MSFT       97)
+Sep 30 14:44:16 mephisto kernel: ACPI: FACP 3FFB0290, 00F4 (r3 A M I  OEMFACP   8000502 MSFT       97)
+Sep 30 14:44:16 mephisto kernel: ACPI: DSDT 3FFB03F0, 391B (r1  A0277 A0277001        1 MSFT  100000D)
+Sep 30 14:44:16 mephisto kernel: ACPI: FACS 3FFC0000, 0040
+Sep 30 14:44:16 mephisto kernel: ACPI: APIC 3FFB0390, 0052 (r1 A M I  OEMAPIC   8000502 MSFT       97)
+Sep 30 14:44:16 mephisto kernel: ACPI: OEMB 3FFC0040, 003F (r1 A M I  OEMBIOS   8000502 MSFT       97)
+Sep 30 14:44:16 mephisto kernel: Entering add_active_range(0, 0, 159) 0 entries of 256 used
+Sep 30 14:44:16 mephisto avahi-daemon[1969]: Found user 'avahi' (UID 117) and group 'avahi' (GID 123).
+Sep 30 14:44:16 mephisto kernel: Entering add_active_range(0, 256, 262064) 1 entries of 256 used
+Sep 30 14:44:16 mephisto avahi-daemon[1969]: Successfully dropped root privileges.
+Sep 30 14:45:21 mephisto kernel: early res: 0 [0-fff] BIOS data page
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: avahi-daemon 0.6.25 starting up.
+Sep 30 14:45:21 mephisto kernel: early res: 1 [200000-5f95ef] TEXT DATA BSS
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Successfully called chroot().
+Sep 30 14:45:21 mephisto kernel: early res: 2 [9fc00-a0bff] EBDA
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Successfully dropped remaining capabilities.
+Sep 30 14:45:21 mephisto kernel: early res: 3 [8000-afff] PGTABLE
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: No service file found in /etc/avahi/services.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000000000-ffffe200001fffff] PMD ->ffff810001200000 on node 0
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Joining mDNS multicast group on interface eth0.IPv6 with address fe80::213:d4ff:fea4:a695.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000200000-ffffe200003fffff] PMD ->ffff810001600000 on node 0
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: New relevant interface eth0.IPv6 for mDNS.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000400000-ffffe200005fffff] PMD ->ffff810001a00000 on node 0
+Sep 30 14:45:21 mephisto ntpdate[1669]: step time server 193.6.222.47 offset 65.574332 sec
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Joining mDNS multicast group on interface eth0.IPv4 with address 192.168.168.2.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000600000-ffffe200007fffff] PMD ->ffff810001e00000 on node 0
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: New relevant interface eth0.IPv4 for mDNS.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000800000-ffffe200009fffff] PMD ->ffff810002200000 on node 0
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Network interface enumeration completed.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000a00000-ffffe20000bfffff] PMD ->ffff810002600000 on node 0
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Registering new address record for fe80::213:d4ff:fea4:a695 on eth0.*.
+Sep 30 14:45:21 mephisto kernel:  [ffffe20000c00000-ffffe20000dfffff] PMD ->ffff810002a00000 on node 0
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Registering new address record for 192.168.168.2 on eth0.IPv4.
+Sep 30 14:45:21 mephisto kernel: Zone PFN ranges:
+Sep 30 14:45:21 mephisto avahi-daemon[1969]: Registering HINFO record with values 'X86_64'/'LINUX'.
+Sep 30 14:45:21 mephisto kernel:   DMA             0 ->     4096
+Sep 30 14:45:21 mephisto kernel:   DMA32        4096 ->  1048576
+Sep 30 14:45:21 mephisto kernel:   Normal    1048576 ->  1048576
+Sep 30 14:45:22 mephisto kernel: Movable zone start PFN for each node
+Sep 30 14:45:22 mephisto kernel: early_node_map[2] active PFN ranges
+Sep 30 14:45:22 mephisto kernel:     0:        0 ->      159
+Sep 30 14:45:22 mephisto kernel:     0:      256 ->   262064
+Sep 30 14:45:22 mephisto kernel: On node 0 totalpages: 261967
+Sep 30 14:45:22 mephisto kernel:   DMA zone: 56 pages used for memmap
+Sep 30 14:45:22 mephisto kernel:   DMA zone: 1024 pages reserved
+Sep 30 14:45:22 mephisto kernel:   DMA zone: 2919 pages, LIFO batch:0
+Sep 30 14:45:22 mephisto kernel:   DMA32 zone: 3526 pages used for memmap
+Sep 30 14:45:23 mephisto kernel:   DMA32 zone: 254442 pages, LIFO batch:31
+Sep 30 14:45:23 mephisto kernel:   Normal zone: 0 pages used for memmap
+Sep 30 14:45:23 mephisto kernel:   Movable zone: 0 pages used for memmap
+Sep 30 14:45:23 mephisto kernel: Detected use of extended apic ids on hypertransport bus
+Sep 30 14:45:23 mephisto kernel: ACPI: PM-Timer IO Port: 0x808
+Sep 30 14:45:23 mephisto avahi-daemon[1969]: Server startup complete. Host name is mephisto.local. Local service cookie is 1171437828.
+Sep 30 14:45:23 mephisto sshd[1992]: Server listening on 0.0.0.0 port 22.
+Sep 30 14:45:24 mephisto kernel: ACPI: Local APIC address 0xfee00000
+Sep 30 14:45:24 mephisto sshd[1992]: Server listening on :: port 22.
+Sep 30 14:45:24 mephisto kernel: ACPI: LAPIC (acpi_id[0x01] lapic_id[0x00] enabled)
+Sep 30 14:45:24 mephisto kernel: Processor #0 (Bootup-CPU)
+Sep 30 14:45:24 mephisto kernel: ACPI: LAPIC (acpi_id[0x02] lapic_id[0x81] disabled)
+Sep 30 14:45:24 mephisto kernel: ACPI: IOAPIC (id[0x01] address[0xfec00000] gsi_base[0])
+Sep 30 14:45:24 mephisto kernel: IOAPIC[0]: apic_id 1, address 0xfec00000, GSI 0-23
+Sep 30 14:45:24 mephisto kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+Sep 30 14:45:24 mephisto kernel: ACPI: IRQ0 used by override.
+Sep 30 14:45:24 mephisto kernel: ACPI: IRQ2 used by override.
+Sep 30 14:45:24 mephisto kernel: ACPI: IRQ9 used by override.
+Sep 30 14:45:24 mephisto kernel: Setting APIC routing to flat
+Sep 30 14:45:24 mephisto kernel: Using ACPI (MADT) for SMP configuration information
+Sep 30 14:45:24 mephisto kernel: Allocating PCI resources starting at 50000000 (gap: 40000000:bf780000)
+Sep 30 14:45:24 mephisto kernel: Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 257361
+Sep 30 14:45:24 mephisto kernel: Kernel command line: BOOT_IMAGE=/boot/vmlinuz-2.6.25 root=/dev/sda5 ro quiet
+Sep 30 14:45:24 mephisto kernel: Initializing CPU#0
+Sep 30 14:45:24 mephisto kernel: PID hash table entries: 4096 (order: 12, 32768 bytes)
+Sep 30 14:45:24 mephisto kernel: Extended CMOS year: 2000
+Sep 30 14:45:24 mephisto kernel: TSC calibrated against PM_TIMER
+Sep 30 14:45:24 mephisto kernel: time.c: Detected 2202.802 MHz processor.
+Sep 30 14:45:24 mephisto kernel: spurious 8259A interrupt: IRQ7.
+Sep 30 14:45:24 mephisto kernel: Console: colour VGA+ 80x25
+Sep 30 14:45:24 mephisto kernel: console [tty0] enabled
+Sep 30 14:45:24 mephisto kernel: Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes)
+Sep 30 14:45:24 mephisto kernel: Inode-cache hash table entries: 65536 (order: 7, 524288 bytes)
+Sep 30 14:45:24 mephisto kernel: Checking aperture...
+Sep 30 14:45:24 mephisto kernel: Node 0: aperture @ f4000000 size 64 MB
+Sep 30 14:45:24 mephisto kernel: Memory: 1027140k/1048256k available (2305k kernel code, 20080k reserved, 1119k data, 232k init)
+Sep 30 14:45:24 mephisto kernel: CPA: page pool initialized 1 of 1 pages preallocated
+Sep 30 14:45:24 mephisto kernel: Calibrating delay using timer specific routine.. 4408.84 BogoMIPS (lpj=2204420)
+Sep 30 14:45:24 mephisto kernel: Security Framework initialized
+Sep 30 14:45:24 mephisto kernel: SELinux:  Disabled at boot.
+Sep 30 14:45:24 mephisto kernel: Capability LSM initialized
+Sep 30 14:45:24 mephisto kernel: Mount-cache hash table entries: 256
+Sep 30 14:45:24 mephisto kernel: CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+Sep 30 14:45:24 mephisto kernel: CPU: L2 Cache: 512K (64 bytes/line)
+Sep 30 14:45:24 mephisto kernel: CPU: AMD Athlon(tm) 64 Processor 3500+ stepping 02
+Sep 30 14:45:24 mephisto kernel: ACPI: Core revision 20070126
+Sep 30 14:45:24 mephisto kernel: Using local APIC timer interrupts.
+Sep 30 14:45:24 mephisto kernel: APIC timer calibration result 12515915
+Sep 30 14:45:24 mephisto kernel: Detected 12.515 MHz APIC timer.
+Sep 30 14:45:24 mephisto kernel: net_namespace: 1000 bytes
+Sep 30 14:45:24 mephisto kernel: NET: Registered protocol family 16
+Sep 30 14:45:24 mephisto kernel: No dock devices found.
+Sep 30 14:45:24 mephisto kernel: ACPI: bus type pci registered
+Sep 30 14:45:24 mephisto kernel: PCI: Using configuration type 1
+Sep 30 14:45:24 mephisto kernel: ACPI: EC: Look up EC in DSDT
+Sep 30 14:45:24 mephisto kernel: ACPI: Interpreter enabled
+Sep 30 14:45:24 mephisto kernel: ACPI: (supports S0 S1 S3 S5)
+Sep 30 14:45:24 mephisto kernel: ACPI: Using IOAPIC for interrupt routing
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Root Bridge [PCI0] (0000:00)
+Sep 30 14:45:24 mephisto kernel: pci 0000:00:11.0: Enabled onboard AC97/MC97 devices
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Routing Table [\_SB_.PCI0._PRT]
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKA] (IRQs 3 4 5 7 10 *11 14 15)
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKB] (IRQs 3 4 5 7 *10 11 14 15)
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKC] (IRQs 3 4 *5 7 10 11 14 15)
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKD] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKE] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKF] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKG] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:45:24 mephisto kernel: ACPI: PCI Interrupt Link [LNKH] (IRQs 3 4 5 7 10 11 14 15) *0, disabled.
+Sep 30 14:45:24 mephisto kernel: ACPI Warning (tbutils-0217): Incorrect checksum in table [OEMB] -  13, should be 0E [20070126]
+Sep 30 14:45:24 mephisto kernel: Linux Plug and Play Support v0.97 (c) Adam Belay
+Sep 30 14:45:24 mephisto kernel: pnp: PnP ACPI init
+Sep 30 14:45:24 mephisto kernel: ACPI: bus type pnp registered
+Sep 30 14:45:24 mephisto kernel: pnp 00:00: Plug and Play ACPI device, IDs PNP0a03 (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:01: Plug and Play ACPI device, IDs PNP0200 (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:02: Plug and Play ACPI device, IDs PNP0b00 (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:03: Plug and Play ACPI device, IDs PNP0303 PNP030b (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:04: Plug and Play ACPI device, IDs PNP0800 (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:05: Plug and Play ACPI device, IDs PNP0c04 (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:06: Plug and Play ACPI device, IDs PNP0400 (active)
+Sep 30 14:45:24 mephisto kernel:  00:07: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:45:24 mephisto kernel: pnp 00:07: Plug and Play ACPI device, IDs PNP0c02 (active)
+Sep 30 14:45:24 mephisto kernel:  00:08: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:45:24 mephisto kernel: pnp 00:08: Plug and Play ACPI device, IDs PNP0c02 (active)
+Sep 30 14:45:24 mephisto kernel:  00:09: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:45:24 mephisto kernel: pnp 00:09: Plug and Play ACPI device, IDs PNP0c02 (active)
+Sep 30 14:45:24 mephisto kernel: pnp 00:0a: Plug and Play ACPI device, IDs PNP0501 (active)
+Sep 30 14:45:24 mephisto kernel:  00:0b: calling quirk 0xffffffff8034a6d2: quirk_system_pci_resources+0x0/0x17c()
+Sep 30 14:45:24 mephisto kernel: pnp 00:0b: Plug and Play ACPI device, IDs PNP0c01 (active)
+Sep 30 14:45:24 mephisto kernel: pnp: PnP ACPI: found 12 devices
+Sep 30 14:45:24 mephisto kernel: ACPI: ACPI bus type pnp unregistered
+Sep 30 14:45:24 mephisto kernel: SCSI subsystem initialized
+Sep 30 14:45:24 mephisto kernel: libata version 3.00 loaded.
+Sep 30 14:45:24 mephisto kernel: usbcore: registered new interface driver usbfs
+Sep 30 14:45:24 mephisto kernel: usbcore: registered new interface driver hub
+Sep 30 14:45:24 mephisto kernel: usbcore: registered new device driver usb
+Sep 30 14:45:24 mephisto kernel: PCI: Using ACPI for IRQ routing
+Sep 30 14:45:24 mephisto kernel: PCI: If a device doesn't work, try "pci=routeirq".  If it helps, post a report
+Sep 30 14:45:24 mephisto kernel: PCI: Cannot allocate resource region 0 of device 0000:00:00.0
+Sep 30 14:45:24 mephisto kernel: agpgart: Detected AGP bridge 0
+Sep 30 14:45:24 mephisto kernel: agpgart: AGP aperture is 64M @ 0xf4000000
+Sep 30 14:45:24 mephisto kernel: ACPI: RTC can wake from S4
+Sep 30 14:45:24 mephisto kernel: pnp: the driver 'system' has been registered
+Sep 30 14:45:24 mephisto kernel: system 00:07: ioport range 0x680-0x6ff has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:07: ioport range 0x290-0x297 has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:07: driver attached
+Sep 30 14:45:24 mephisto kernel: system 00:08: ioport range 0x3e1-0x3e7 has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:08: ioport range 0x4d0-0x4d1 has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:08: ioport range 0x800-0x87f has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:08: ioport range 0x400-0x41f has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:08: driver attached
+Sep 30 14:45:24 mephisto kernel: system 00:09: iomem range 0xfec00000-0xfec00fff has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:09: iomem range 0xfee00000-0xfee00fff could not be reserved
+Sep 30 14:45:24 mephisto mysqld_safe: Starting mysqld daemon with databases from /var/lib/mysql
+Sep 30 14:45:24 mephisto kernel: system 00:09: iomem range 0xfff80000-0xffffffff could not be reserved
+Sep 30 14:45:24 mephisto kernel: system 00:09: driver attached
+Sep 30 14:45:24 mephisto kernel: system 00:0b: iomem range 0x0-0x9ffff could not be reserved
+Sep 30 14:45:24 mephisto kernel: system 00:0b: iomem range 0xc0000-0xdffff has been reserved
+Sep 30 14:45:24 mephisto kernel: system 00:0b: iomem range 0xe0000-0xfffff could not be reserved
+Sep 30 14:45:24 mephisto kernel: system 00:0b: iomem range 0x100000-0x3ffeffff could not be reserved
+Sep 30 14:45:24 mephisto kernel: system 00:0b: iomem range 0x0-0x0 could not be reserved
+Sep 30 14:45:24 mephisto kernel: system 00:0b: driver attached
+Sep 30 14:45:24 mephisto kernel: PCI: Bridge: 0000:00:01.0
+Sep 30 14:45:24 mephisto kernel:   IO window: disabled.
+Sep 30 14:45:24 mephisto kernel:   MEM window: 0xfb000000-0xfbffffff
+Sep 30 14:45:24 mephisto kernel:   PREFETCH window: 0x00000000f8000000-0x00000000f9ffffff
+Sep 30 14:45:25 mephisto kernel: PCI: Setting latency timer of device 0000:00:01.0 to 64
+Sep 30 14:45:25 mephisto kernel: NET: Registered protocol family 2
+Sep 30 14:45:25 mephisto kernel: IP route cache hash table entries: 32768 (order: 6, 262144 bytes)
+Sep 30 14:45:25 mephisto kernel: TCP established hash table entries: 131072 (order: 9, 2097152 bytes)
+Sep 30 14:45:25 mephisto kernel: TCP bind hash table entries: 65536 (order: 7, 524288 bytes)
+Sep 30 14:45:25 mephisto kernel: TCP: Hash tables configured (established 131072 bind 65536)
+Sep 30 14:45:25 mephisto kernel: TCP reno registered
+Sep 30 14:45:25 mephisto kernel: audit: initializing netlink socket (disabled)
+Sep 30 14:45:25 mephisto kernel: type=2000 audit(1254314604.118:1): initialized
+Sep 30 14:45:25 mephisto kernel: io scheduler noop registered
+Sep 30 14:45:25 mephisto kernel: io scheduler anticipatory registered
+Sep 30 14:45:25 mephisto kernel: io scheduler deadline registered
+Sep 30 14:45:25 mephisto kernel: io scheduler cfq registered (default)
+Sep 30 14:45:26 mephisto mysqld: 090930 14:45:25 [Note] Plugin 'FEDERATED' is disabled.
+Sep 30 14:45:26 mephisto kernel: PCI: VIA PCI bridge detected. Disabling DAC.
+Sep 30 14:45:26 mephisto kernel: pci 0000:01:00.0: Boot video device
+Sep 30 14:45:26 mephisto kernel: Real Time Clock Driver v1.12ac
+Sep 30 14:45:26 mephisto kernel: Linux agpgart interface v0.103
+Sep 30 14:45:26 mephisto kernel: Serial: 8250/16550 driver $Revision: 1.90 $ 4 ports, IRQ sharing enabled
+Sep 30 14:45:26 mephisto kernel: serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+Sep 30 14:45:26 mephisto kernel: pnp: the driver 'serial' has been registered
+Sep 30 14:45:26 mephisto kernel: 00:0a: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+Sep 30 14:45:26 mephisto kernel: serial 00:0a: driver attached
+Sep 30 14:45:26 mephisto kernel: brd: module loaded
+Sep 30 14:45:26 mephisto kernel: Uniform Multi-Platform E-IDE driver
+Sep 30 14:45:26 mephisto kernel: ide: Assuming 33MHz system bus speed for PIO modes; override with idebus=xx
+Sep 30 14:45:26 mephisto kernel: VP_IDE: IDE controller (0x1106:0x0571 rev 0x06) at  PCI slot 0000:00:0f.1
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:0f.1[A] -> GSI 20 (level, low) -> IRQ 20
+Sep 30 14:45:26 mephisto kernel: VP_IDE: not 100% native mode: will probe irqs later
+Sep 30 14:45:26 mephisto kernel: VP_IDE: VIA vt8237 (rev 00) IDE UDMA133 controller on pci0000:00:0f.1
+Sep 30 14:45:26 mephisto kernel:     ide0: BM-DMA at 0xfc00-0xfc07, BIOS settings: hda:PIO, hdb:PIO
+Sep 30 14:45:26 mephisto kernel:     ide1: BM-DMA at 0xfc08-0xfc0f, BIOS settings: hdc:DMA, hdd:PIO
+Sep 30 14:45:26 mephisto kernel: Probing IDE interface ide0...
+Sep 30 14:45:26 mephisto kernel: Probing IDE interface ide1...
+Sep 30 14:45:26 mephisto kernel: hdc: PLEXTOR DVDR PX-755A, ATAPI CD/DVD-ROM drive
+Sep 30 14:45:26 mephisto mysqld: 090930 14:45:26  InnoDB: Started; log sequence number 0 739822365
+Sep 30 14:45:26 mephisto kernel: hdc: host max PIO5 wanted PIO255(auto-tune) selected PIO4
+Sep 30 14:45:26 mephisto mysqld: 090930 14:45:26 [Note] Event Scheduler: Loaded 0 events
+Sep 30 14:45:26 mephisto kernel: hdc: host side 80-wire cable detection failed, limiting max speed to UDMA33
+Sep 30 14:45:26 mephisto mysqld: 090930 14:45:26 [Note] /usr/sbin/mysqld: ready for connections.
+Sep 30 14:45:26 mephisto kernel: hdc: UDMA/33 mode selected
+Sep 30 14:45:26 mephisto mysqld: Version: '5.1.39-1'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  (Debian)
+Sep 30 14:45:26 mephisto kernel: ide1 at 0x170-0x177,0x376 on irq 15
+Sep 30 14:45:26 mephisto kernel: hdc: ATAPI 40X DVD-ROM DVD-R CD-R/RW drive, 2048kB Cache
+Sep 30 14:45:26 mephisto kernel: Uniform CD-ROM driver Revision: 3.20
+Sep 30 14:45:26 mephisto kernel: Driver 'sd' needs updating - please use bus_type methods
+Sep 30 14:45:26 mephisto kernel: sata_via 0000:00:0f.0: version 2.3
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:0f.0[B] -> GSI 20 (level, low) -> IRQ 20
+Sep 30 14:45:26 mephisto kernel: sata_via 0000:00:0f.0: routed to hard irq line 10
+Sep 30 14:45:26 mephisto kernel: scsi0 : sata_via
+Sep 30 14:45:26 mephisto kernel: scsi1 : sata_via
+Sep 30 14:45:26 mephisto kernel: ata1: SATA max UDMA/133 cmd 0xd000 ctl 0xc800 bmdma 0xb800 irq 20
+Sep 30 14:45:26 mephisto kernel: ata2: SATA max UDMA/133 cmd 0xc400 ctl 0xc000 bmdma 0xb808 irq 20
+Sep 30 14:45:26 mephisto kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Sep 30 14:45:26 mephisto kernel: ata1.00: ATA-7: Maxtor 6V250F0, VA111630, max UDMA/133
+Sep 30 14:45:26 mephisto kernel: ata1.00: 490234752 sectors, multi 16: LBA48 NCQ (depth 0/32)
+Sep 30 14:45:26 mephisto kernel: ata1.00: configured for UDMA/133
+Sep 30 14:45:26 mephisto kernel: ata2: SATA link down 1.5 Gbps (SStatus 0 SControl 300)
+Sep 30 14:45:26 mephisto kernel: scsi 0:0:0:0: Direct-Access     ATA      Maxtor 6V250F0   VA11 PQ: 0 ANSI: 5
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] 490234752 512-byte hardware sectors (251000 MB)
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Write Protect is off
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] 490234752 512-byte hardware sectors (251000 MB)
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Write Protect is off
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Sep 30 14:45:26 mephisto kernel:  sda: sda1 sda2 sda3 < sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12 >
+Sep 30 14:45:26 mephisto kernel: sd 0:0:0:0: [sda] Attached SCSI disk
+Sep 30 14:45:26 mephisto kernel: usbmon: debugfs is not available
+Sep 30 14:45:26 mephisto kernel: pnp: the driver 'i8042 kbd' has been registered
+Sep 30 14:45:26 mephisto kernel: i8042 kbd 00:03: driver attached
+Sep 30 14:45:26 mephisto kernel: pnp: the driver 'i8042 aux' has been registered
+Sep 30 14:45:26 mephisto kernel: PNP: PS/2 Controller [PNP0303:PS2K] at 0x60,0x64 irq 1
+Sep 30 14:45:26 mephisto kernel: PNP: PS/2 appears to have AUX port disabled, if this is incorrect please boot with i8042.nopnp
+Sep 30 14:45:26 mephisto kernel: serio: i8042 KBD port at 0x60,0x64 irq 1
+Sep 30 14:45:26 mephisto kernel: mice: PS/2 mouse device common for all mice
+Sep 30 14:45:26 mephisto kernel: input: AT Translated Set 2 keyboard as /class/input/input0
+Sep 30 14:45:26 mephisto kernel: cpuidle: using governor ladder
+Sep 30 14:45:26 mephisto kernel: TCP cubic registered
+Sep 30 14:45:26 mephisto kernel: NET: Registered protocol family 1
+Sep 30 14:45:26 mephisto kernel: NET: Registered protocol family 17
+Sep 30 14:45:26 mephisto kernel: md: Autodetecting RAID arrays.
+Sep 30 14:45:26 mephisto kernel: md: Scanned 0 and added 0 devices.
+Sep 30 14:45:26 mephisto kernel: md: autorun ...
+Sep 30 14:45:26 mephisto kernel: md: ... autorun DONE.
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda5: found reiserfs format "3.6" with standard journal
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda5: using ordered data mode
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda5: journal params: device sda5, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda5: checking transaction log (sda5)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda5: Using r5 hash to sort names
+Sep 30 14:45:26 mephisto kernel: VFS: Mounted root (reiserfs filesystem) readonly.
+Sep 30 14:45:26 mephisto kernel: Freeing unused kernel memory: 232k freed
+Sep 30 14:45:26 mephisto kernel: pnp: the driver 'rtc_cmos' has been registered
+Sep 30 14:45:26 mephisto kernel: rtc_cmos 00:02: disabling not supported
+Sep 30 14:45:26 mephisto kernel: rtc_cmos: probe of 00:02 failed with error -16
+Sep 30 14:45:26 mephisto kernel: input: PC Speaker as /class/input/input1
+Sep 30 14:45:26 mephisto kernel: pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+Sep 30 14:45:26 mephisto kernel: shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:0a.0[A] -> GSI 17 (level, low) -> IRQ 17
+Sep 30 14:45:26 mephisto kernel: PCI: Disallowing DAC for device 0000:00:0a.0
+Sep 30 14:45:26 mephisto kernel: skge 1.13 addr 0xfad00000 irq 17 chip Yukon-Lite rev 9
+Sep 30 14:45:26 mephisto kernel: skge eth0: addr 00:13:d4:a4:a6:95
+Sep 30 14:45:26 mephisto kernel: pnp: the driver 'parport_pc' has been registered
+Sep 30 14:45:26 mephisto kernel: parport_pc 00:06: reported by Plug and Play ACPI
+Sep 30 14:45:26 mephisto kernel: parport0: PC-style at 0x378, irq 7 [PCSPP]
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.4[C] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:45:26 mephisto kernel: ehci_hcd 0000:00:10.4: EHCI Host Controller
+Sep 30 14:45:26 mephisto kernel: ehci_hcd 0000:00:10.4: new USB bus registered, assigned bus number 1
+Sep 30 14:45:26 mephisto kernel: ehci_hcd 0000:00:10.4: irq 21, io mem 0xfaf00000
+Sep 30 14:45:26 mephisto kernel: ehci_hcd 0000:00:10.4: USB 2.0 started, EHCI 1.00, driver 10 Dec 2004
+Sep 30 14:45:26 mephisto kernel: usb usb1: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: hub 1-0:1.0: USB hub found
+Sep 30 14:45:26 mephisto kernel: hub 1-0:1.0: 8 ports detected
+Sep 30 14:45:26 mephisto kernel: parport_pc 00:06: driver attached
+Sep 30 14:45:26 mephisto kernel: ACPI: ACPI0007:00 is registered as cooling_device0
+Sep 30 14:45:26 mephisto kernel: input: Power Button (FF) as /class/input/input2
+Sep 30 14:45:26 mephisto kernel: ACPI: Power Button (FF) [PWRF]
+Sep 30 14:45:26 mephisto kernel: input: Power Button (CM) as /class/input/input3
+Sep 30 14:45:26 mephisto kernel: ACPI: Power Button (CM) [PWRB]
+Sep 30 14:45:26 mephisto kernel: input: Sleep Button (CM) as /class/input/input4
+Sep 30 14:45:26 mephisto kernel: ACPI: Sleep Button (CM) [SLPB]
+Sep 30 14:45:26 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 2
+Sep 30 14:45:26 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 3
+Sep 30 14:45:26 mephisto kernel: USB Universal Host Controller Interface driver v3.0
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.0[A] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.0: UHCI Host Controller
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.0: new USB bus registered, assigned bus number 2
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.0: irq 21, io base 0x0000d400
+Sep 30 14:45:26 mephisto kernel: usb usb2: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: hub 2-0:1.0: USB hub found
+Sep 30 14:45:26 mephisto kernel: hub 2-0:1.0: 2 ports detected
+Sep 30 14:45:26 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 4
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.1[A] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.1: UHCI Host Controller
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.1: new USB bus registered, assigned bus number 3
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.1: irq 21, io base 0x0000d800
+Sep 30 14:45:26 mephisto kernel: usb usb3: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: hub 3-0:1.0: USB hub found
+Sep 30 14:45:26 mephisto kernel: hub 3-0:1.0: 2 ports detected
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:11.5[C] -> GSI 22 (level, low) -> IRQ 22
+Sep 30 14:45:26 mephisto kernel: PCI: Setting latency timer of device 0000:00:11.5 to 64
+Sep 30 14:45:26 mephisto kernel: usb 2-2: new full speed USB device using uhci_hcd and address 2
+Sep 30 14:45:26 mephisto kernel: usb 2-2: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: PCI: Enabling device 0000:00:11.6 (0000 -> 0001)
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:11.6[C] -> GSI 22 (level, low) -> IRQ 22
+Sep 30 14:45:26 mephisto kernel: usb 3-1: new full speed USB device using uhci_hcd and address 2
+Sep 30 14:45:26 mephisto kernel: usb 3-1: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: usb 3-2: new low speed USB device using uhci_hcd and address 3
+Sep 30 14:45:26 mephisto kernel: usb 3-2: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: PCI: Setting latency timer of device 0000:00:11.6 to 64
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI interrupt for device 0000:00:11.6 disabled
+Sep 30 14:45:26 mephisto kernel: VIA 82xx Modem: probe of 0000:00:11.6 failed with error -13
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.2[B] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.2: UHCI Host Controller
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.2: new USB bus registered, assigned bus number 4
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.2: irq 21, io base 0x0000e000
+Sep 30 14:45:26 mephisto kernel: usb usb4: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: hub 4-0:1.0: USB hub found
+Sep 30 14:45:26 mephisto kernel: hub 4-0:1.0: 2 ports detected
+Sep 30 14:45:26 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.3[B] -> GSI 21 (level, low) -> IRQ 21
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.3: UHCI Host Controller
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.3: new USB bus registered, assigned bus number 5
+Sep 30 14:45:26 mephisto kernel: uhci_hcd 0000:00:10.3: irq 21, io base 0x0000e400
+Sep 30 14:45:26 mephisto kernel: usb usb5: configuration #1 chosen from 1 choice
+Sep 30 14:45:26 mephisto kernel: hub 5-0:1.0: USB hub found
+Sep 30 14:45:26 mephisto kernel: hub 5-0:1.0: 2 ports detected
+Sep 30 14:45:26 mephisto kernel: Linux video capture interface: v2.00
+Sep 30 14:45:26 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: USB OV519 video device found
+Sep 30 14:45:26 mephisto kernel: usbcore: registered new interface driver hiddev
+Sep 30 14:45:26 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: Sensor is an OV7670
+Sep 30 14:45:26 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: Device at usb-0000:00:10.1-1 registered to minor 0
+Sep 30 14:45:26 mephisto kernel: input: HID 0461:4d03 as /class/input/input5
+Sep 30 14:45:26 mephisto kernel: input: USB HID v1.00 Mouse [HID 0461:4d03] on usb-0000:00:10.1-2
+Sep 30 14:45:26 mephisto kernel: usbcore: registered new interface driver usbhid
+Sep 30 14:45:26 mephisto kernel: drivers/hid/usbhid/hid-core.c: v2.6:USB HID core driver
+Sep 30 14:45:26 mephisto kernel: usbcore: registered new interface driver ov51x
+Sep 30 14:45:26 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: 1.5.7 : ov51x USB Camera Driver
+Sep 30 14:45:26 mephisto kernel: Adding 1004020k swap on /dev/sda1.  Priority:-1 extents:1 across:1004020k
+Sep 30 14:45:26 mephisto kernel: w83627hf: Found W83627THF chip at 0x290
+Sep 30 14:45:26 mephisto kernel: w83627hf w83627hf.656: Reading VID from GPIO5
+Sep 30 14:45:26 mephisto kernel: powernow-k8: Found 1 AMD Athlon(tm) 64 Processor 3500+ processors (1 cpu cores) (version 2.20.00)
+Sep 30 14:45:26 mephisto kernel: powernow-k8:    0 : fid 0xe (2200 MHz), vid 0x6
+Sep 30 14:45:26 mephisto kernel: powernow-k8:    1 : fid 0xc (2000 MHz), vid 0x8
+Sep 30 14:45:26 mephisto kernel: powernow-k8:    2 : fid 0xa (1800 MHz), vid 0xa
+Sep 30 14:45:26 mephisto kernel: powernow-k8:    3 : fid 0x2 (1000 MHz), vid 0x12
+Sep 30 14:45:26 mephisto kernel: device-mapper: ioctl: 4.13.0-ioctl (2007-10-18) initialised: dm-devel@redhat.com
+Sep 30 14:45:26 mephisto kernel: fuse init (API version 7.9)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda6: found reiserfs format "3.6" with standard journal
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda6: using ordered data mode
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda6: journal params: device sda6, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda6: checking transaction log (sda6)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda6: Using r5 hash to sort names
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda7: found reiserfs format "3.6" with standard journal
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda7: using ordered data mode
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda7: journal params: device sda7, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda7: checking transaction log (sda7)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda7: Using r5 hash to sort names
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda8: found reiserfs format "3.6" with standard journal
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda8: using ordered data mode
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda8: journal params: device sda8, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda8: checking transaction log (sda8)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda8: Using r5 hash to sort names
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda9: found reiserfs format "3.6" with standard journal
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda9: using ordered data mode
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda9: journal params: device sda9, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda9: checking transaction log (sda9)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda9: Using r5 hash to sort names
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda11: found reiserfs format "3.6" with standard journal
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda11: using ordered data mode
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda11: journal params: device sda11, size 8192, journal first block 18, max trans len 1024, max batch 900, max commit age 30, max trans age 30
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda11: checking transaction log (sda11)
+Sep 30 14:45:26 mephisto kernel: ReiserFS: sda11: Using r5 hash to sort names
+Sep 30 14:45:26 mephisto kernel: skge eth0: enabling interface
+Sep 30 14:45:26 mephisto kernel: skge eth0: Link is up at 100 Mbps, full duplex, flow control both
+Sep 30 14:45:26 mephisto kernel: RPC: Registered udp transport module.
+Sep 30 14:45:26 mephisto kernel: RPC: Registered tcp transport module.
+Sep 30 14:45:26 mephisto kernel: ip_tables: (C) 2000-2006 Netfilter Core Team
+Sep 30 14:45:26 mephisto kernel: NET: Registered protocol family 10
+Sep 30 14:45:26 mephisto kernel: lo: Disabled Privacy Extensions
+Sep 30 14:45:26 mephisto kernel: Marking TSC unstable due to cpufreq changes
+Sep 30 14:45:26 mephisto kernel: Clocksource tsc unstable (delta = -272642482 ns)
+Sep 30 14:45:27 mephisto /etc/mysql/debian-start[2212]: Upgrading MySQL tables if necessary.
+Sep 30 14:45:27 mephisto /etc/mysql/debian-start[2215]: /usr/bin/mysql_upgrade: the '--basedir' option is always ignored
+Sep 30 14:45:27 mephisto /etc/mysql/debian-start[2215]: Looking for 'mysql' as: /usr/bin/mysql
+Sep 30 14:45:28 mephisto /etc/mysql/debian-start[2215]: Looking for 'mysqlcheck' as: /usr/bin/mysqlcheck
+Sep 30 14:45:28 mephisto /etc/mysql/debian-start[2215]: This installation of MySQL is already upgraded to 5.1.39, use --force if you still need to run mysql_upgrade
+Sep 30 14:45:28 mephisto /etc/mysql/debian-start[2224]: Checking for insecure root accounts.
+Sep 30 14:45:28 mephisto /etc/mysql/debian-start[2230]: WARNING: mysql.user contains 3 root accounts without password!
+Sep 30 14:45:28 mephisto /etc/mysql/debian-start[2231]: Triggering myisam-recover for all MyISAM tables
+Sep 30 14:45:28 mephisto kernel: eth0: no IPv6 routers present
+Sep 30 14:45:32 mephisto FaxQueuer[2704]: HylaFAX (tm) Version 6.0.3
+Sep 30 14:45:32 mephisto FaxQueuer[2704]: Copyright (c) 1990-1996 Sam Leffler
+Sep 30 14:45:32 mephisto FaxQueuer[2704]: Copyright (c) 1991-1996 Silicon Graphics, Inc.
+Sep 30 14:45:32 mephisto HylaFAX[2707]: HylaFAX INET Protocol Server: restarted.
+Sep 30 14:45:33 mephisto xinetd[2779]: Reading included configuration file: /etc/xinetd.d/chargen [file=/etc/xinetd.conf] [line=14]
+Sep 30 14:45:33 mephisto xinetd[2779]: Reading included configuration file: /etc/xinetd.d/daytime [file=/etc/xinetd.d/daytime] [line=28]
+Sep 30 14:45:33 mephisto xinetd[2779]: Reading included configuration file: /etc/xinetd.d/discard [file=/etc/xinetd.d/discard] [line=26]
+Sep 30 14:45:33 mephisto xinetd[2779]: Reading included configuration file: /etc/xinetd.d/echo [file=/etc/xinetd.d/echo] [line=25]
+Sep 30 14:45:33 mephisto xinetd[2779]: Reading included configuration file: /etc/xinetd.d/time [file=/etc/xinetd.d/time] [line=26]
+Sep 30 14:45:33 mephisto xinetd[2779]: removing chargen
+Sep 30 14:45:33 mephisto xinetd[2779]: removing chargen
+Sep 30 14:45:33 mephisto xinetd[2779]: removing daytime
+Sep 30 14:45:33 mephisto xinetd[2779]: removing daytime
+Sep 30 14:45:33 mephisto xinetd[2779]: removing discard
+Sep 30 14:45:33 mephisto xinetd[2779]: removing discard
+Sep 30 14:45:33 mephisto xinetd[2779]: removing echo
+Sep 30 14:45:33 mephisto xinetd[2779]: removing echo
+Sep 30 14:45:33 mephisto xinetd[2779]: removing time
+Sep 30 14:45:33 mephisto xinetd[2779]: removing time
+Sep 30 14:45:33 mephisto xinetd[2779]: xinetd Version 2.3.14 started with libwrap loadavg options compiled in.
+Sep 30 14:45:34 mephisto xinetd[2779]: Started working: 0 available services
+Sep 30 14:45:38 mephisto acpid: client connected from 2980[106:108] 
+Sep 30 14:45:38 mephisto acpid: 1 client rule loaded 
+Sep 30 14:45:41 mephisto kernel: lp0: using parport0 (interrupt-driven).
+Sep 30 14:45:42 mephisto kernel: ppdev: user-space parallel port driver
+Sep 30 14:45:43 mephisto acpid: client connected from 3030[0:0] 
+Sep 30 14:45:43 mephisto acpid: 1 client rule loaded 
+Sep 30 14:45:44 mephisto /usr/sbin/cron[3118]: (CRON) INFO (pidfile fd = 3)
+Sep 30 14:45:44 mephisto /usr/sbin/cron[3119]: (CRON) STARTUP (fork ok)
+Sep 30 14:45:44 mephisto /usr/sbin/cron[3119]: (CRON) INFO (Running @reboot jobs)
+Sep 30 14:45:44 mephisto kernel: [drm] Initialized drm 1.1.0 20060810
+Sep 30 14:45:45 mephisto kernel: ACPI: PCI Interrupt 0000:01:00.0[A] -> GSI 16 (level, low) -> IRQ 16
+Sep 30 14:45:45 mephisto kernel: [drm] Initialized mga 3.2.1 20051102 on minor 0
+Sep 30 14:45:45 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 14:45:45 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 14:45:45 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+Sep 30 14:45:45 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+Sep 30 14:45:45 mephisto kernel: vmmon: module license 'unspecified' taints kernel.
+Sep 30 14:45:45 mephisto kernel: /dev/vmmon[3147]: VMCI: Driver initialized.
+Sep 30 14:45:45 mephisto kernel: /dev/vmmon[3147]: Module vmmon: registered with major=10 minor=165
+Sep 30 14:45:45 mephisto kernel: /dev/vmmon[3147]: Initial HV check: anyNotCapable=1 anyUnlocked=0 anyEnabled=0 anyDisabled=0
+Sep 30 14:45:45 mephisto kernel: /dev/vmmon[3147]: Module vmmon: initialized
+Sep 30 14:45:45 mephisto kernel: /dev/vmnet: open called by PID 3181 (vmnet-bridge)
+Sep 30 14:45:45 mephisto vmnet-dhcpd: Internet Software Consortium DHCP Server 2.0
+Sep 30 14:45:45 mephisto vmnet-detect[3187]: NetDetectDaemonInit: No host policy file found. Not initializing filter. 
+Sep 30 14:45:45 mephisto kernel: /dev/vmnet: hub 0 does not exist, allocating memory.
+Sep 30 14:45:45 mephisto vmnet-dhcpd: Copyright 1995, 1996, 1997, 1998, 1999 The Internet Software Consortium.
+Sep 30 14:45:45 mephisto vmnet-detect[3187]: Unable to initialize the daemon 
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: port on hub 0 successfully opened
+Sep 30 14:45:46 mephisto vmnet-dhcpd: All rights reserved.
+Sep 30 14:45:46 mephisto kernel: bridge-eth0: enabling the bridge
+Sep 30 14:45:46 mephisto vmnet-dhcpd: 
+Sep 30 14:45:46 mephisto kernel: bridge-eth0: up
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Please contribute if you find this software useful.
+Sep 30 14:45:46 mephisto kernel: bridge-eth0: already up
+Sep 30 14:45:46 mephisto vmnet-dhcpd: For info, please visit http://www.isc.org/dhcp-contrib.html
+Sep 30 14:45:46 mephisto kernel: bridge-eth0: attached
+Sep 30 14:45:46 mephisto vmnet-dhcpd: 
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Configured subnet: 192.168.169.0
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Setting vmnet-dhcp IP address: 192.168.169.254
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Recving on     VNet/vmnet1/192.168.169.0
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: open called by PID 3196 (vmnet-dhcpd)
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Sending on     VNet/vmnet1/192.168.169.0
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: hub 1 does not exist, allocating memory.
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: port on hub 1 successfully opened
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Internet Software Consortium DHCP Server 2.0
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Copyright 1995, 1996, 1997, 1998, 1999 The Internet Software Consortium.
+Sep 30 14:45:46 mephisto vmnet-dhcpd: All rights reserved.
+Sep 30 14:45:46 mephisto vmnet-dhcpd: 
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Please contribute if you find this software useful.
+Sep 30 14:45:46 mephisto vmnet-dhcpd: For info, please visit http://www.isc.org/dhcp-contrib.html
+Sep 30 14:45:46 mephisto vmnet-dhcpd: 
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Configured subnet: 192.168.169.0
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Setting vmnet-dhcp IP address: 192.168.169.254
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Recving on     VNet/vmnet8/192.168.169.0
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: open called by PID 3207 (vmnet-dhcpd)
+Sep 30 14:45:46 mephisto vmnet-dhcpd: Sending on     VNet/vmnet8/192.168.169.0
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: hub 8 does not exist, allocating memory.
+Sep 30 14:45:46 mephisto kernel: /dev/vmnet: port on hub 8 successfully opened
+Sep 30 14:45:55 mephisto kernel: /dev/vmnet: open called by PID 3230 (vmnet-netifup)
+Sep 30 14:45:55 mephisto kernel: /dev/vmnet: port on hub 1 successfully opened
+Sep 30 14:45:55 mephisto avahi-daemon[1969]: Joining mDNS multicast group on interface vmnet1.IPv4 with address 192.168.169.3.
+Sep 30 14:45:55 mephisto avahi-daemon[1969]: New relevant interface vmnet1.IPv4 for mDNS.
+Sep 30 14:45:55 mephisto avahi-daemon[1969]: Registering new address record for 192.168.169.3 on vmnet1.IPv4.
+Sep 30 14:45:56 mephisto kernel: /dev/vmnet: open called by PID 3247 (vmnet-netifup)
+Sep 30 14:45:56 mephisto kernel: /dev/vmnet: port on hub 8 successfully opened
+Sep 30 14:45:56 mephisto avahi-daemon[1969]: Joining mDNS multicast group on interface vmnet8.IPv4 with address 192.168.169.1.
+Sep 30 14:45:56 mephisto avahi-daemon[1969]: New relevant interface vmnet8.IPv4 for mDNS.
+Sep 30 14:45:56 mephisto avahi-daemon[1969]: Registering new address record for 192.168.169.1 on vmnet8.IPv4.
+Sep 30 14:45:57 mephisto avahi-daemon[1969]: Joining mDNS multicast group on interface vmnet1.IPv6 with address fe80::250:56ff:fec0:1.
+Sep 30 14:45:57 mephisto avahi-daemon[1969]: New relevant interface vmnet1.IPv6 for mDNS.
+Sep 30 14:45:57 mephisto avahi-daemon[1969]: Registering new address record for fe80::250:56ff:fec0:1 on vmnet1.*.
+Sep 30 14:45:58 mephisto avahi-daemon[1969]: Joining mDNS multicast group on interface vmnet8.IPv6 with address fe80::250:56ff:fec0:8.
+Sep 30 14:45:58 mephisto avahi-daemon[1969]: New relevant interface vmnet8.IPv6 for mDNS.
+Sep 30 14:45:58 mephisto avahi-daemon[1969]: Registering new address record for fe80::250:56ff:fec0:8 on vmnet8.*.
+Sep 30 14:46:05 mephisto gdm[3023]: pam_unix(gdm:session): session opened for user boti by (uid=0)
+Sep 30 14:46:05 mephisto gdm[3023]: pam_ck_connector(gdm:session): nox11 mode, ignoring PAM_TTY :0
+Sep 30 14:46:06 mephisto console-kit-daemon[2837]: WARNING: Couldn't read /proc/2835/environ: Failed to open file '/proc/2835/environ': No such file or directory 
+Sep 30 14:46:06 mephisto kernel: vmnet1: no IPv6 routers present
+Sep 30 14:46:07 mephisto kernel: vmnet8: no IPv6 routers present
+Sep 30 14:46:08 mephisto x-session-manager[3325]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 14:46:09 mephisto x-session-manager[3325]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 14:46:20 mephisto x-session-manager[3325]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 14:46:42 mephisto sudo:     boti : TTY=pts/0 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 14:51:15 mephisto login[3297]: pam_unix(login:session): session opened for user root by LOGIN(uid=0)
+Sep 30 14:51:16 mephisto login[3736]: ROOT LOGIN  on '/dev/tty1'
+Sep 30 14:52:28 mephisto login[3298]: pam_unix(login:session): session opened for user root by (uid=0)
+Sep 30 14:52:28 mephisto login[4015]: ROOT LOGIN  on '/dev/tty2'
+Sep 30 14:54:34 mephisto gdm[3023]: pam_unix(gdm:session): session closed for user boti
+Sep 30 14:54:34 mephisto gnome-keyring-daemon[3310]: dbus failure unregistering from session: Connection is closed
+Sep 30 14:54:37 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 14:58:48 mephisto acpid: client 3030[0:0] has disconnected 
+Sep 30 14:58:48 mephisto acpid: client connected from 9430[0:0] 
+Sep 30 14:58:48 mephisto acpid: 1 client rule loaded 
+Sep 30 14:58:49 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 14:58:49 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 14:58:49 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 1x mode
+Sep 30 14:58:49 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 1x mode
+Sep 30 14:58:49 mephisto kernel: [drm] Initialized card for AGP DMA.
+Sep 30 14:59:40 mephisto acpid: client 9430[0:0] has disconnected 
+Sep 30 14:59:40 mephisto acpid: client connected from 10018[0:0] 
+Sep 30 14:59:40 mephisto acpid: 1 client rule loaded 
+Sep 30 14:59:41 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 14:59:41 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 14:59:41 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+Sep 30 14:59:41 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+Sep 30 15:00:02 mephisto gdm[10011]: pam_unix(gdm:session): session opened for user boti by (uid=0)
+Sep 30 15:00:02 mephisto gdm[10011]: pam_ck_connector(gdm:session): nox11 mode, ignoring PAM_TTY :0
+Sep 30 15:00:04 mephisto x-session-manager[10147]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:00:04 mephisto x-session-manager[10147]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:00:14 mephisto x-session-manager[10147]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:02:34 mephisto sudo:     boti : TTY=pts/5 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 15:04:19 mephisto acpid: client 2980[106:108] has disconnected 
+Sep 30 15:04:19 mephisto acpid: client connected from 11132[106:108] 
+Sep 30 15:04:19 mephisto acpid: 1 client rule loaded 
+Sep 30 15:10:48 mephisto login[3301]: pam_unix(login:session): session opened for user boti by (uid=0)
+Sep 30 15:10:48 mephisto console-kit-daemon[2837]: WARNING: Couldn't read /proc/2835/environ: Failed to open file '/proc/2835/environ': No such file or directory 
+Sep 30 15:10:53 mephisto acpid: client 10018[0:0] has disconnected 
+Sep 30 15:10:53 mephisto acpid: client connected from 11799[0:0] 
+Sep 30 15:10:53 mephisto acpid: 1 client rule loaded 
+Sep 30 15:10:56 mephisto x-session-manager[11966]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:10:56 mephisto x-session-manager[11966]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:11:06 mephisto x-session-manager[11966]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:12:33 mephisto acpid: client connected from 10018[0:0] 
+Sep 30 15:12:33 mephisto acpid: 1 client rule loaded 
+Sep 30 15:17:01 mephisto CRON[12501]: pam_unix(cron:session): session opened for user root by (uid=0)
+Sep 30 15:17:01 mephisto /USR/SBIN/CRON[12512]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Sep 30 15:17:01 mephisto CRON[12501]: pam_unix(cron:session): session closed for user root
+Sep 30 15:17:01 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:17:02 mephisto acpid: client 11799[0:0] has disconnected 
+Sep 30 15:17:02 mephisto acpid: client 10018[0:0] has disconnected 
+Sep 30 15:17:02 mephisto acpid: client connected from 11799[0:0] 
+Sep 30 15:17:02 mephisto acpid: 1 client rule loaded 
+Sep 30 15:17:15 mephisto x-session-manager[11966]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:17:15 mephisto x-session-manager[11966]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:17:15 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:17:35 mephisto acpid: client 11799[0:0] has disconnected 
+Sep 30 15:17:35 mephisto acpid: client connected from 10018[0:0] 
+Sep 30 15:17:35 mephisto acpid: 1 client rule loaded 
+Sep 30 15:17:41 mephisto acpid: client 10018[0:0] has disconnected 
+Sep 30 15:17:41 mephisto acpid: client connected from 13767[0:0] 
+Sep 30 15:17:41 mephisto acpid: 1 client rule loaded 
+Sep 30 15:17:43 mephisto x-session-manager[13934]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:17:43 mephisto x-session-manager[13934]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:17:53 mephisto x-session-manager[13934]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:18:04 mephisto x-session-manager[13934]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:18:05 mephisto x-session-manager[13934]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:18:05 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:18:12 mephisto login[3299]: pam_unix(login:session): session opened for user boti by (uid=0)
+Sep 30 15:20:48 mephisto acpid: client 13767[0:0] has disconnected 
+Sep 30 15:20:48 mephisto acpid: client connected from 15609[0:0] 
+Sep 30 15:20:48 mephisto acpid: 1 client rule loaded 
+Sep 30 15:20:55 mephisto x-session-manager[15802]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:20:55 mephisto x-session-manager[15802]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:21:06 mephisto x-session-manager[15802]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:23:15 mephisto acpid: client 15609[0:0] has disconnected 
+Sep 30 15:23:15 mephisto acpid: client connected from 15609[0:0] 
+Sep 30 15:23:15 mephisto acpid: 1 client rule loaded 
+Sep 30 15:23:19 mephisto acpid: client 15609[0:0] has disconnected 
+Sep 30 15:23:20 mephisto acpid: client connected from 10018[0:0] 
+Sep 30 15:23:20 mephisto acpid: 1 client rule loaded 
+Sep 30 15:23:28 mephisto acpid: client connected from 15609[0:0] 
+Sep 30 15:23:28 mephisto acpid: 1 client rule loaded 
+Sep 30 15:26:28 mephisto acpid: client 10018[0:0] has disconnected 
+Sep 30 15:26:28 mephisto acpid: client 15609[0:0] has disconnected 
+Sep 30 15:26:28 mephisto acpid: client connected from 10018[0:0] 
+Sep 30 15:26:28 mephisto acpid: 1 client rule loaded 
+Sep 30 15:31:59 mephisto acpid: client 10018[0:0] has disconnected 
+Sep 30 15:31:59 mephisto acpid: client connected from 10018[0:0] 
+Sep 30 15:31:59 mephisto acpid: 1 client rule loaded 
+Sep 30 15:32:32 mephisto x-session-manager[10147]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:32:32 mephisto x-session-manager[10147]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:32:33 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:32:33 mephisto gdm[10011]: pam_unix(gdm:session): session closed for user boti
+Sep 30 15:32:35 mephisto acpid: client 10018[0:0] has disconnected 
+Sep 30 15:32:35 mephisto acpid: client connected from 20172[0:0] 
+Sep 30 15:32:35 mephisto acpid: 1 client rule loaded 
+Sep 30 15:32:37 mephisto kernel: agpgart: Found an AGP 3.0 compliant device at 0000:00:00.0.
+Sep 30 15:32:38 mephisto kernel: agpgart: Device is in legacy mode, falling back to 2.x
+Sep 30 15:32:38 mephisto kernel: agpgart: Putting AGP V2 device at 0000:00:00.0 into 4x mode
+Sep 30 15:32:38 mephisto kernel: agpgart: Putting AGP V2 device at 0000:01:00.0 into 4x mode
+Sep 30 15:32:41 mephisto acpid: client connected from 15609[0:0] 
+Sep 30 15:32:41 mephisto acpid: 1 client rule loaded 
+Sep 30 15:32:50 mephisto x-session-manager[15802]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:32:50 mephisto x-session-manager[15802]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:32:50 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:32:51 mephisto console-kit-daemon[2837]: WARNING: Couldn't read /proc/16081/environ: Failed to open file '/proc/16081/environ': No such file or directory 
+Sep 30 15:33:03 mephisto acpid: client 20172[0:0] has disconnected 
+Sep 30 15:33:05 mephisto acpid: client 15609[0:0] has disconnected 
+Sep 30 15:33:06 mephisto acpid: client connected from 20653[0:0] 
+Sep 30 15:33:06 mephisto acpid: 1 client rule loaded 
+Sep 30 15:33:09 mephisto x-session-manager[20829]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:33:09 mephisto x-session-manager[20829]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:33:20 mephisto x-session-manager[20829]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:34:16 mephisto x-session-manager[20829]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:34:16 mephisto x-session-manager[20829]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:34:16 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:34:16 mephisto console-kit-daemon[2837]: WARNING: Couldn't read /proc/21064/environ: Failed to open file '/proc/21064/environ': No such file or directory 
+Sep 30 15:34:20 mephisto acpid: client 20653[0:0] has disconnected 
+Sep 30 15:34:20 mephisto acpid: client connected from 21349[0:0] 
+Sep 30 15:34:20 mephisto acpid: 1 client rule loaded 
+Sep 30 15:34:23 mephisto x-session-manager[21518]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:34:23 mephisto x-session-manager[21518]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:34:34 mephisto x-session-manager[21518]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:35:33 mephisto x-session-manager[21518]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:35:33 mephisto x-session-manager[21518]: GLib-CRITICAL: g_key_file_load_from_dirs: assertion `!g_path_is_absolute (file)' failed 
+Sep 30 15:35:33 mephisto console-kit-daemon[2837]: WARNING: Unable to activate console: No such device or address 
+Sep 30 15:35:42 mephisto acpid: client 21349[0:0] has disconnected 
+Sep 30 15:35:42 mephisto acpid: client connected from 20172[0:0] 
+Sep 30 15:35:42 mephisto acpid: 1 client rule loaded 
+Sep 30 15:35:49 mephisto acpid: client 20172[0:0] has disconnected 
+Sep 30 15:35:49 mephisto acpid: client connected from 20172[0:0] 
+Sep 30 15:35:49 mephisto acpid: 1 client rule loaded 
+Sep 30 15:35:56 mephisto gdm[10011]: pam_unix(gdm:session): session opened for user boti by (uid=0)
+Sep 30 15:35:56 mephisto gdm[10011]: pam_ck_connector(gdm:session): nox11 mode, ignoring PAM_TTY :0
+Sep 30 15:35:57 mephisto x-session-manager[23261]: WARNING: Could not parse desktop file /home/boti/.config/autostart/mail-notification.desktop: Key file does not have key 'Type' 
+Sep 30 15:35:57 mephisto x-session-manager[23261]: WARNING: could not read /home/boti/.config/autostart/mail-notification.desktop 
+Sep 30 15:36:08 mephisto x-session-manager[23261]: WARNING: Application 'gnome-wm.desktop' failed to register before timeout 
+Sep 30 15:39:52 mephisto acpid: client 20172[0:0] has disconnected 
+Sep 30 15:39:52 mephisto acpid: client connected from 20172[0:0] 
+Sep 30 15:39:52 mephisto acpid: 1 client rule loaded 
+Sep 30 15:40:33 mephisto sudo:     boti : TTY=pts/7 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 15:40:52 mephisto sudo:     boti : TTY=pts/8 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 15:40:59 mephisto portmap: Removing stale lockfile for pid 1641
+Sep 30 15:41:04 mephisto sudo:     boti : TTY=pts/9 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 15:41:19 mephisto rpc.statd[1648]: Caught signal 15, un-registering and exiting.
+Sep 30 15:41:20 mephisto rpc.statd[24144]: Version 1.1.6 Starting
+Sep 30 15:41:20 mephisto sm-notify[24145]: Already notifying clients; Exiting!
+Sep 30 15:55:40 mephisto sudo:     boti : TTY=pts/10 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 15:56:10 mephisto kernel: SGI XFS with ACLs, security attributes, realtime, large block/inode numbers, no debug enabled
+Sep 30 15:56:10 mephisto kernel: SGI XFS Quota Management subsystem
+Sep 30 15:56:10 mephisto kernel: JFS: nTxBlock = 8031, nTxLock = 64251
+Sep 30 15:56:11 mephisto kernel: NTFS driver 2.1.29 [Flags: R/W MODULE].
+Sep 30 15:56:11 mephisto kernel: QNX4 filesystem 0.2.3 registered.
+Sep 30 15:56:11 mephisto os-prober: debug: running /usr/lib/os-probes/50mounted-tests on /dev/sda1
+Sep 30 15:56:11 mephisto 50mounted-tests: debug: /dev/sda1 is a swap partition; skipping
+Sep 30 15:56:11 mephisto os-prober: debug: os detected by /usr/lib/os-probes/50mounted-tests
+Sep 30 15:56:11 mephisto os-prober: debug: running /usr/lib/os-probes/50mounted-tests on /dev/sda10
+Sep 30 15:56:11 mephisto 50mounted-tests: debug: /dev/sda10 type not recognised; skipping
+Sep 30 15:56:11 mephisto os-prober: debug: os detected by /usr/lib/os-probes/50mounted-tests
+Sep 30 15:56:11 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10freedos on mounted /dev/sda11
+Sep 30 15:56:11 mephisto 10freedos: debug: /dev/sda11 is not a FAT partition: exiting
+Sep 30 15:56:11 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10qnx on mounted /dev/sda11
+Sep 30 15:56:11 mephisto 10qnx: debug: /dev/sda11 is not a QNX4 partition: exiting
+Sep 30 15:56:11 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20macosx on mounted /dev/sda11
+Sep 30 15:56:11 mephisto macosx-prober: debug: /dev/sda11 is not an HFS+ partition: exiting
+Sep 30 15:56:11 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20microsoft on mounted /dev/sda11
+Sep 30 15:56:12 mephisto 20microsoft: debug: /dev/sda11 is not a MS partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/30utility on mounted /dev/sda11
+Sep 30 15:56:12 mephisto 30utility: debug: /dev/sda11 is not a FAT partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/40lsb on mounted /dev/sda11
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/70hurd on mounted /dev/sda11
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/80minix on mounted /dev/sda11
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90linux-distro on mounted /dev/sda11
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90solaris on mounted /dev/sda11
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/50mounted-tests on /dev/sda12
+Sep 30 15:56:12 mephisto 50mounted-tests: debug: /dev/sda12 type not recognised; skipping
+Sep 30 15:56:12 mephisto os-prober: debug: os detected by /usr/lib/os-probes/50mounted-tests
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/50mounted-tests on /dev/sda2
+Sep 30 15:56:12 mephisto 50mounted-tests: debug: /dev/sda2 type not recognised; skipping
+Sep 30 15:56:12 mephisto os-prober: debug: os detected by /usr/lib/os-probes/50mounted-tests
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/50mounted-tests on /dev/sda3
+Sep 30 15:56:12 mephisto 50mounted-tests: debug: /dev/sda3 type not recognised; skipping
+Sep 30 15:56:12 mephisto os-prober: debug: os detected by /usr/lib/os-probes/50mounted-tests
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/50mounted-tests on /dev/sda5
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10freedos on mounted /dev/sda6
+Sep 30 15:56:12 mephisto 10freedos: debug: /dev/sda6 is not a FAT partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10qnx on mounted /dev/sda6
+Sep 30 15:56:12 mephisto 10qnx: debug: /dev/sda6 is not a QNX4 partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20macosx on mounted /dev/sda6
+Sep 30 15:56:12 mephisto macosx-prober: debug: /dev/sda6 is not an HFS+ partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20microsoft on mounted /dev/sda6
+Sep 30 15:56:12 mephisto 20microsoft: debug: /dev/sda6 is not a MS partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/30utility on mounted /dev/sda6
+Sep 30 15:56:12 mephisto 30utility: debug: /dev/sda6 is not a FAT partition: exiting
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/40lsb on mounted /dev/sda6
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/70hurd on mounted /dev/sda6
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/80minix on mounted /dev/sda6
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90linux-distro on mounted /dev/sda6
+Sep 30 15:56:12 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90solaris on mounted /dev/sda6
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10freedos on mounted /dev/sda7
+Sep 30 15:56:13 mephisto 10freedos: debug: /dev/sda7 is not a FAT partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10qnx on mounted /dev/sda7
+Sep 30 15:56:13 mephisto 10qnx: debug: /dev/sda7 is not a QNX4 partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20macosx on mounted /dev/sda7
+Sep 30 15:56:13 mephisto macosx-prober: debug: /dev/sda7 is not an HFS+ partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20microsoft on mounted /dev/sda7
+Sep 30 15:56:13 mephisto 20microsoft: debug: /dev/sda7 is not a MS partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/30utility on mounted /dev/sda7
+Sep 30 15:56:13 mephisto 30utility: debug: /dev/sda7 is not a FAT partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/40lsb on mounted /dev/sda7
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/70hurd on mounted /dev/sda7
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/80minix on mounted /dev/sda7
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90linux-distro on mounted /dev/sda7
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90solaris on mounted /dev/sda7
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10freedos on mounted /dev/sda8
+Sep 30 15:56:13 mephisto 10freedos: debug: /dev/sda8 is not a FAT partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10qnx on mounted /dev/sda8
+Sep 30 15:56:13 mephisto 10qnx: debug: /dev/sda8 is not a QNX4 partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20macosx on mounted /dev/sda8
+Sep 30 15:56:13 mephisto macosx-prober: debug: /dev/sda8 is not an HFS+ partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20microsoft on mounted /dev/sda8
+Sep 30 15:56:13 mephisto 20microsoft: debug: /dev/sda8 is not a MS partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/30utility on mounted /dev/sda8
+Sep 30 15:56:13 mephisto 30utility: debug: /dev/sda8 is not a FAT partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/40lsb on mounted /dev/sda8
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/70hurd on mounted /dev/sda8
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/80minix on mounted /dev/sda8
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90linux-distro on mounted /dev/sda8
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90solaris on mounted /dev/sda8
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10freedos on mounted /dev/sda9
+Sep 30 15:56:13 mephisto 10freedos: debug: /dev/sda9 is not a FAT partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/10qnx on mounted /dev/sda9
+Sep 30 15:56:13 mephisto 10qnx: debug: /dev/sda9 is not a QNX4 partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20macosx on mounted /dev/sda9
+Sep 30 15:56:13 mephisto macosx-prober: debug: /dev/sda9 is not an HFS+ partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/20microsoft on mounted /dev/sda9
+Sep 30 15:56:13 mephisto 20microsoft: debug: /dev/sda9 is not a MS partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/30utility on mounted /dev/sda9
+Sep 30 15:56:13 mephisto 30utility: debug: /dev/sda9 is not a FAT partition: exiting
+Sep 30 15:56:13 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/40lsb on mounted /dev/sda9
+Sep 30 15:56:14 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/70hurd on mounted /dev/sda9
+Sep 30 15:56:14 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/80minix on mounted /dev/sda9
+Sep 30 15:56:14 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90linux-distro on mounted /dev/sda9
+Sep 30 15:56:14 mephisto os-prober: debug: running /usr/lib/os-probes/mounted/90solaris on mounted /dev/sda9
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: unsupported key algorithm in certificate: 1.2.840.10045.2.1
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: invalid subject public-key info
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: couldn't parse certificate key data
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: couldn't parse certificate(s): /etc/ssl/certs/ca-certificates.crt
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: unsupported key algorithm in certificate: 1.2.840.10045.2.1
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: invalid subject public-key info
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: couldn't parse certificate key data
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: couldn't parse certificate(s): /etc/ssl/certs/COMODO_ECC_Certification_Authority.pem
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: couldn't parse certificate data
+Sep 30 16:02:35 mephisto gnome-keyring-daemon[23239]: couldn't parse certificate(s): /etc/ssl/certs/COMODO_ECC_Certification_Authority.pem
+Sep 30 16:02:36 mephisto gnome-keyring-ask: could not grab keyboard: 3
+Sep 30 16:17:01 mephisto CRON[26078]: pam_unix(cron:session): session opened for user root by (uid=0)
+Sep 30 16:17:01 mephisto /USR/SBIN/CRON[26086]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Sep 30 16:17:01 mephisto CRON[26078]: pam_unix(cron:session): session closed for user root
+Sep 30 16:20:47 mephisto sudo:     boti : TTY=pts/17 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 16:20:58 mephisto kernel: device eth0 entered promiscuous mode
+Sep 30 16:21:08 mephisto kernel: device eth0 left promiscuous mode
+Sep 30 16:45:20 mephisto -- MARK --
+Sep 30 17:05:20 mephisto -- MARK --
+Sep 30 17:17:01 mephisto CRON[27165]: pam_unix(cron:session): session opened for user root by (uid=0)
+Sep 30 17:17:02 mephisto /USR/SBIN/CRON[27176]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Sep 30 17:17:02 mephisto CRON[27165]: pam_unix(cron:session): session closed for user root
+Sep 30 17:45:20 mephisto -- MARK --
+Sep 30 18:05:20 mephisto -- MARK --
+Sep 30 18:17:01 mephisto CRON[27785]: pam_unix(cron:session): session opened for user root by (uid=0)
+Sep 30 18:17:01 mephisto /USR/SBIN/CRON[27794]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Sep 30 18:17:02 mephisto CRON[27785]: pam_unix(cron:session): session closed for user root
+Sep 30 18:20:24 mephisto kernel: mc[27441]: segfault at 0 ip 7f4feae4e210 sp 7ffff3b72bd8 error 4 in libc-2.9.so[7f4feadd5000+147000]
+Sep 30 18:20:59 mephisto kernel: mc[28052]: segfault at 0 ip 7fb7dfe8d210 sp 7fffe8bafc18 error 4 in libc-2.9.so[7fb7dfe14000+147000]
+Sep 30 18:35:06 mephisto kernel: usb 1-6: new high speed USB device using ehci_hcd and address 5
+Sep 30 18:35:06 mephisto kernel: usb 1-6: configuration #1 chosen from 1 choice
+Sep 30 18:35:06 mephisto kernel: Initializing USB Mass Storage driver...
+Sep 30 18:35:06 mephisto kernel: scsi2 : SCSI emulation for USB Mass Storage devices
+Sep 30 18:35:06 mephisto kernel: usbcore: registered new interface driver usb-storage
+Sep 30 18:35:06 mephisto kernel: USB Mass Storage support registered.
+Sep 30 18:35:06 mephisto kernel: usb-storage: device found at 5
+Sep 30 18:35:06 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Sep 30 18:35:11 mephisto kernel: scsi 2:0:0:0: Direct-Access                               0.00 PQ: 0 ANSI: 2
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] 7577600 512-byte hardware sectors (3880 MB)
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Write Protect is off
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Mode Sense: 00 00 00 00
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Assuming drive cache: write through
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] 7577600 512-byte hardware sectors (3880 MB)
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Write Protect is off
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Mode Sense: 00 00 00 00
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Assuming drive cache: write through
+Sep 30 18:35:11 mephisto kernel:  sdb: sdb1
+Sep 30 18:35:11 mephisto kernel: sd 2:0:0:0: [sdb] Attached SCSI removable disk
+Sep 30 18:35:11 mephisto kernel: usb-storage: device scan complete
+Sep 30 18:36:12 mephisto gnome-keyring-daemon[23239]: adding removable location: volume_uuid_7D67_4FBA at /mnt/tmp
+Sep 30 18:36:30 mephisto sudo:     boti : TTY=pts/19 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 18:42:58 mephisto sudo:     boti : TTY=pts/31 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 18:50:09 mephisto gnome-keyring-daemon[23239]: removing removable location: volume_uuid_7D67_4FBA
+Sep 30 18:50:13 mephisto kernel: usb 1-6: USB disconnect, address 5
+Sep 30 19:00:25 mephisto sudo:     boti : TTY=pts/22 ; PWD=/home/boti ; USER=root ; COMMAND=/bin/bash
+Sep 30 19:00:35 mephisto kernel: PM: Syncing filesystems ... done.
+Oct  1 09:18:20 mephisto kernel: Freezing user space processes ... (elapsed 0.01 seconds) done.
+Oct  1 09:18:20 mephisto kernel: Freezing remaining freezable tasks ... (elapsed 0.00 seconds) done.
+Oct  1 09:18:20 mephisto kernel: Suspending console(s)
+Oct  1 09:18:20 mephisto kernel: drm_sysfs_suspend
+Oct  1 09:18:20 mephisto kernel: ov51x 3-1:1.0: no suspend for driver ov51x?
+Oct  1 09:18:20 mephisto kernel: sd 0:0:0:0: [sda] Synchronizing SCSI cache
+Oct  1 09:18:20 mephisto kernel: sd 0:0:0:0: [sda] Stopping disk
+Oct  1 09:18:20 mephisto kernel: serial 00:0a: disabled
+Oct  1 09:18:20 mephisto kernel: parport_pc 00:06: disabled
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:11.5 disabled
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:10.4 disabled
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:10.3 disabled
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:10.2 disabled
+Oct  1 09:18:20 mephisto acpid: client 20172[0:0] has disconnected 
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:10.1 disabled
+Oct  1 09:18:20 mephisto acpid: client connected from 20172[0:0] 
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:10.0 disabled
+Oct  1 09:18:20 mephisto acpid: 1 client rule loaded 
+Oct  1 09:18:20 mephisto kernel: ACPI: PCI interrupt for device 0000:00:0f.0 disabled
+Oct  1 09:18:20 mephisto kernel: skge eth0: disabling interface
+Oct  1 09:18:20 mephisto kernel: ACPI handle has no context!
+Oct  1 09:18:20 mephisto kernel: ACPI handle has no context!
+Oct  1 09:18:20 mephisto kernel: pci_set_power_state(): 0000:00:00.0: state=3, current state=5
+Oct  1 09:18:20 mephisto kernel: ACPI: Preparing to enter system sleep state S3
+Oct  1 09:18:20 mephisto kernel: Extended CMOS year: 2000
+Oct  1 09:18:20 mephisto kernel: Back to C!
+Oct  1 09:18:20 mephisto kernel: Extended CMOS year: 2000
+Oct  1 09:18:20 mephisto kernel: pci 0000:00:11.0: Enabled onboard AC97/MC97 devices
+Oct  1 09:18:20 mephisto kernel: PCI: Setting latency timer of device 0000:00:01.0 to 64
+Oct  1 09:18:21 mephisto kernel: atkbd.c: Spurious ACK on isa0060/serio0. Some program might be trying access hardware directly.
+Oct  1 09:18:21 mephisto kernel: skge eth0: enabling interface
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:0f.0[B] -> GSI 20 (level, low) -> IRQ 20
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:0f.1[A] -> GSI 20 (level, low) -> IRQ 20
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.0[A] -> GSI 21 (level, low) -> IRQ 21
+Oct  1 09:18:21 mephisto kernel: usb usb2: root hub lost power or was reset
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.1[A] -> GSI 21 (level, low) -> IRQ 21
+Oct  1 09:18:21 mephisto kernel: usb usb3: root hub lost power or was reset
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.2[B] -> GSI 21 (level, low) -> IRQ 21
+Oct  1 09:18:21 mephisto kernel: usb usb4: root hub lost power or was reset
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.3[B] -> GSI 21 (level, low) -> IRQ 21
+Oct  1 09:18:21 mephisto kernel: usb usb5: root hub lost power or was reset
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:10.4[C] -> GSI 21 (level, low) -> IRQ 21
+Oct  1 09:18:21 mephisto kernel: ACPI: PCI Interrupt 0000:00:11.5[C] -> GSI 22 (level, low) -> IRQ 22
+Oct  1 09:18:21 mephisto kernel: PCI: Setting latency timer of device 0000:00:11.5 to 64
+Oct  1 09:18:21 mephisto kernel: PM: Writing back config space on device 0000:00:11.6 at offset 4 (was 1, writing 1001)
+Oct  1 09:18:22 mephisto kernel: PM: Writing back config space on device 0000:00:11.6 at offset 1 (was 2100000, writing 2100001)
+Oct  1 09:18:22 mephisto kernel: PM: Writing back config space on device 0000:01:00.0 at offset 3 (was 0, writing 4010)
+Oct  1 09:18:22 mephisto kernel: ACPI: PCI Interrupt 0000:01:00.0[A] -> GSI 16 (level, low) -> IRQ 16
+Oct  1 09:18:22 mephisto kernel: pnp: Res cnt 2
+Oct  1 09:18:22 mephisto kernel: pnp: res cnt 2
+Oct  1 09:18:22 mephisto kernel: pnp: Encode io
+Oct  1 09:18:22 mephisto kernel: pnp: Encode irq
+Oct  1 09:18:22 mephisto kernel: parport_pc 00:06: activated
+Oct  1 09:18:22 mephisto kernel: pnp: Res cnt 2
+Oct  1 09:18:22 mephisto kernel: pnp: res cnt 2
+Oct  1 09:18:22 mephisto kernel: pnp: Encode io
+Oct  1 09:18:22 mephisto kernel: pnp: Encode irq
+Oct  1 09:18:22 mephisto kernel: serial 00:0a: activated
+Oct  1 09:18:22 mephisto kernel: skge eth0: Link is up at 100 Mbps, full duplex, flow control both
+Oct  1 09:18:22 mephisto kernel: hdc: host max PIO5 wanted PIO255(auto-tune) selected PIO4
+Oct  1 09:18:22 mephisto kernel: hdc: UDMA/33 mode selected
+Oct  1 09:18:22 mephisto kernel: sd 0:0:0:0: [sda] Starting disk
+Oct  1 09:18:22 mephisto kernel: ata1: port is slow to respond, please be patient (Status 0x80)
+Oct  1 09:18:22 mephisto kernel: ata1.00: configured for UDMA/133
+Oct  1 09:18:22 mephisto kernel: sd 0:0:0:0: [sda] 490234752 512-byte hardware sectors (251000 MB)
+Oct  1 09:18:22 mephisto kernel: sd 0:0:0:0: [sda] Write Protect is off
+Oct  1 09:18:22 mephisto kernel: sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Oct  1 09:18:22 mephisto kernel: sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Oct  1 09:18:22 mephisto kernel: Restarting tasks ... done.
+Oct  1 09:18:22 mephisto kernel: usb 2-2: USB disconnect, address 2
+Oct  1 09:18:22 mephisto kernel: usb 2-2: new full speed USB device using uhci_hcd and address 3
+Oct  1 09:18:22 mephisto kernel: usb 2-2: configuration #1 chosen from 1 choice
+Oct  1 09:18:22 mephisto kernel: usb 3-1: USB disconnect, address 2
+Oct  1 09:18:22 mephisto kernel: usb 3-1: new full speed USB device using uhci_hcd and address 4
+Oct  1 09:18:22 mephisto kernel: usb 3-1: configuration #1 chosen from 1 choice
+Oct  1 09:18:22 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: USB OV519 video device found
+Oct  1 09:18:22 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: Sensor is an OV7670
+Oct  1 09:18:22 mephisto kernel: /usr/src/modules/ov51x-jpeg/ov51x-jpeg-core.c: Device at usb-0000:00:10.1-1 registered to minor 0
+Oct  1 09:18:22 mephisto kernel: usb 3-2: USB disconnect, address 3
+Oct  1 09:18:22 mephisto kernel: usb 3-2: new low speed USB device using uhci_hcd and address 5
+Oct  1 09:18:22 mephisto kernel: usb 3-2: configuration #1 chosen from 1 choice
+Oct  1 09:18:22 mephisto kernel: input: HID 0461:4d03 as /class/input/input6
+Oct  1 09:18:22 mephisto kernel: input: USB HID v1.00 Mouse [HID 0461:4d03] on usb-0000:00:10.1-2
+Oct  1 09:42:57 mephisto -- MARK --
+Oct  1 10:02:57 mephisto -- MARK --
+Oct  1 10:17:01 mephisto CRON[29529]: pam_unix(cron:session): session opened for user root by (uid=0)
+Oct  1 10:17:01 mephisto /USR/SBIN/CRON[29537]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Oct  1 10:17:01 mephisto CRON[29529]: pam_unix(cron:session): session closed for user root
+Oct  1 10:17:54 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 6
+Oct  1 10:17:59 mephisto kernel: usb 4-2: new full speed USB device using uhci_hcd and address 2
+Oct  1 10:17:59 mephisto kernel: usb 4-2: configuration #1 chosen from 1 choice
+Oct  1 10:17:59 mephisto kernel: scsi3 : SCSI emulation for USB Mass Storage devices
+Oct  1 10:17:59 mephisto kernel: usb-storage: device found at 2
+Oct  1 10:17:59 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 10:19:17 mephisto kernel: usb 4-2: USB disconnect, address 2
+Oct  1 10:19:27 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 6
+Oct  1 10:19:28 mephisto kernel: usb 4-2: new full speed USB device using uhci_hcd and address 3
+Oct  1 10:19:28 mephisto kernel: usb 4-2: configuration #1 chosen from 1 choice
+Oct  1 10:19:28 mephisto kernel: scsi4 : SCSI emulation for USB Mass Storage devices
+Oct  1 10:19:28 mephisto kernel: usb-storage: device found at 3
+Oct  1 10:19:28 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 10:20:46 mephisto kernel: usb 4-2: USB disconnect, address 3
+Oct  1 10:42:57 mephisto -- MARK --
+Oct  1 11:02:57 mephisto -- MARK --
+Oct  1 11:17:01 mephisto CRON[30184]: pam_unix(cron:session): session opened for user root by (uid=0)
+Oct  1 11:17:02 mephisto /USR/SBIN/CRON[30192]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Oct  1 11:17:02 mephisto CRON[30184]: pam_unix(cron:session): session closed for user root
+Oct  1 11:43:01 mephisto -- MARK --
+Oct  1 11:55:01 mephisto sudo:     boti : TTY=pts/27 ; PWD=/home/vpn ; USER=root ; COMMAND=/usr/sbin/openvpn dl8.ovpn
+Oct  1 11:55:07 mephisto kernel: tun: Universal TUN/TAP device driver, 1.6
+Oct  1 11:55:07 mephisto kernel: tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+Oct  1 11:55:07 mephisto kernel: tun0: Disabled Privacy Extensions
+Oct  1 11:55:17 mephisto sudo:     boti : TTY=pts/28 ; PWD=/home/boti ; USER=root ; COMMAND=/sbin/route del -net 0.0.0.0 gateway 192.168.255.97 netmask 128.0.0.0
+Oct  1 11:55:17 mephisto sudo:     boti : TTY=pts/28 ; PWD=/home/boti ; USER=root ; COMMAND=/sbin/route del -net 128.0.0.0 gateway 192.168.255.97 netmask 128.0.0.0
+Oct  1 12:17:01 mephisto CRON[30711]: pam_unix(cron:session): session opened for user root by (uid=0)
+Oct  1 12:17:01 mephisto /USR/SBIN/CRON[30719]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Oct  1 12:17:01 mephisto CRON[30711]: pam_unix(cron:session): session closed for user root
+Oct  1 12:43:01 mephisto -- MARK --
+Oct  1 12:55:10 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 6
+Oct  1 12:55:10 mephisto kernel: usb 4-2: new full speed USB device using uhci_hcd and address 4
+Oct  1 12:55:10 mephisto kernel: usb 4-2: configuration #1 chosen from 1 choice
+Oct  1 12:55:10 mephisto kernel: scsi5 : SCSI emulation for USB Mass Storage devices
+Oct  1 12:55:10 mephisto kernel: usb-storage: device found at 4
+Oct  1 12:55:10 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 13:05:50 mephisto kernel: sd 0:0:0:0: Attached scsi generic sg0 type 0
+Oct  1 13:06:01 mephisto kernel: usb 4-2: USB disconnect, address 4
+Oct  1 13:06:14 mephisto kernel: usbcore: deregistering interface driver usb-storage
+Oct  1 13:06:19 mephisto kernel: Initializing USB Mass Storage driver...
+Oct  1 13:06:19 mephisto kernel: usbcore: registered new interface driver usb-storage
+Oct  1 13:06:19 mephisto kernel: USB Mass Storage support registered.
+Oct  1 13:06:36 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 6
+Oct  1 13:06:37 mephisto kernel: usb 4-2: new full speed USB device using uhci_hcd and address 5
+Oct  1 13:06:37 mephisto kernel: usb 4-2: configuration #1 chosen from 1 choice
+Oct  1 13:06:37 mephisto kernel: scsi6 : SCSI emulation for USB Mass Storage devices
+Oct  1 13:06:37 mephisto kernel: usb-storage: device found at 5
+Oct  1 13:06:37 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 13:07:19 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 5
+Oct  1 13:07:19 mephisto kernel: usb 4-1: new full speed USB device using uhci_hcd and address 6
+Oct  1 13:07:20 mephisto kernel: usb 4-1: configuration #1 chosen from 1 choice
+Oct  1 13:07:20 mephisto kernel: scsi7 : SCSI emulation for USB Mass Storage devices
+Oct  1 13:07:20 mephisto kernel: usb-storage: device found at 6
+Oct  1 13:07:20 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 13:07:25 mephisto kernel: scsi 7:0:0:0: Direct-Access     NIKON    NIKON DSC E5700  1.00 PQ: 0 ANSI: 2
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] 62464 512-byte hardware sectors (32 MB)
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Write Protect is off
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Mode Sense: 18 00 00 08
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Assuming drive cache: write through
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] 62464 512-byte hardware sectors (32 MB)
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Write Protect is off
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Mode Sense: 18 00 00 08
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Assuming drive cache: write through
+Oct  1 13:07:25 mephisto kernel:  sdb: sdb1
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: [sdb] Attached SCSI removable disk
+Oct  1 13:07:25 mephisto kernel: sd 7:0:0:0: Attached scsi generic sg1 type 0
+Oct  1 13:07:25 mephisto kernel: usb-storage: device scan complete
+Oct  1 13:08:24 mephisto kernel: usb 4-1: USB disconnect, address 6
+Oct  1 13:08:49 mephisto kernel: usb 4-2: USB disconnect, address 5
+Oct  1 13:09:58 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 6
+Oct  1 13:10:07 mephisto kernel: usb 4-2: new full speed USB device using uhci_hcd and address 7
+Oct  1 13:10:07 mephisto kernel: usb 4-2: configuration #1 chosen from 1 choice
+Oct  1 13:10:07 mephisto kernel: scsi8 : SCSI emulation for USB Mass Storage devices
+Oct  1 13:10:07 mephisto kernel: usb-storage: device found at 7
+Oct  1 13:10:07 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 13:10:32 mephisto kernel: usb 4-2: USB disconnect, address 7
+Oct  1 13:16:06 mephisto udevd[31360]: udev: missing sysfs features; please update the kernel or disable the kernel's CONFIG_SYSFS_DEPRECATED option; udev may fail to work correctly 
+Oct  1 13:16:21 mephisto kernel: udev: starting version 146
+Oct  1 13:16:21 mephisto kernel: udev: missing sysfs features; please update the kernel or disable the kernel's CONFIG_SYSFS_DEPRECATED option; udev may fail to work correctly
+Oct  1 13:16:46 mephisto kernel: hub 1-0:1.0: unable to enumerate USB device on port 6
+Oct  1 13:16:46 mephisto kernel: usb 4-2: new full speed USB device using uhci_hcd and address 8
+Oct  1 13:16:46 mephisto kernel: usb 4-2: configuration #1 chosen from 1 choice
+Oct  1 13:16:46 mephisto kernel: scsi9 : SCSI emulation for USB Mass Storage devices
+Oct  1 13:16:46 mephisto kernel: usb-storage: device found at 8
+Oct  1 13:16:46 mephisto kernel: usb-storage: waiting for device to settle before scanning
+Oct  1 13:17:01 mephisto CRON[31381]: pam_unix(cron:session): session opened for user root by (uid=0)
+Oct  1 13:17:01 mephisto /USR/SBIN/CRON[31389]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Oct  1 13:17:01 mephisto CRON[31381]: pam_unix(cron:session): session closed for user root
+Oct  1 13:43:01 mephisto -- MARK --
+Oct  1 13:53:25 mephisto kernel: usb 4-2: USB disconnect, address 8
+Oct  1 14:05:49 mephisto app: --- end of test.log ---

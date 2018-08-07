@@ -1,0 +1,41 @@
+[[pm_norepeat]]
+==== Message De-Duplicator (pm_norepeat)
+
+This module can be used to filter out repeating messages. Like Syslog
+daemons, this module checks the previous message against the
+current. If they match, the current message is dropped. The module
+waits one second for duplicated messages to arrive. If duplicates are
+detected, the first message is forwarded, the rest are dropped, and a
+message containing "last message repeated n times" is sent instead.
+
+[[pm_norepeat_config]]
+===== Configuration
+
+The _pm_norepeat_ module accepts the following directives in addition to
+the <<config_module_common,common module directives>>.
+
+[[pm_norepeat_config_checkfields]]
+CheckFields:: This optional directive takes a comma-separated list of
+  field names which are used to compare log messages. Only the fields
+  listed here are compared, the others are ignored. For example, the
+  `$EventTime` field will be different in repeating messages, so this
+  field should not be used in the comparison. If this directive is not
+  specified, the default field to be checked is `$Message`.
+
+include::../../fields-pm_norepeat.adoc[]
+
+[[pm_norepeat_config_examples]]
+===== Examples
+
+.Filtering Out Duplicated Messages
+====
+This configuration reads log messages from the socket. The
+`$Hostname`, `$SourceName`, and `$Message` fields are used to detect
+duplicates. Then the messages are written to file.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/pm_norepeat.conf[lines=2..-1]
+----
+====

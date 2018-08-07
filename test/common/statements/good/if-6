@@ -1,0 +1,5 @@
+$test = 'Test';
+if ( (lc($test) == 'test') and (lc('Test') == 'test') )
+{
+    $success = TRUE;
+}

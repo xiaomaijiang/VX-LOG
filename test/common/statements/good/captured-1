@@ -1,0 +1,6 @@
+$success = FALSE;
+
+if "a bb 42" =~ /^a (\S+) (\d+)/
+{
+    if ($0 == "a bb 42") and ($1 == "bb") and ($2 == "42") $success = TRUE;
+}

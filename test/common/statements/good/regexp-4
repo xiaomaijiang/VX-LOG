@@ -1,0 +1,5 @@
+$success = TRUE;
+$test = "42";
+if $test =~ /^\d{2}/ { }
+else $success = FALSE;
+

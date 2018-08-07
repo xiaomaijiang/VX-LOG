@@ -1,0 +1,8 @@
+$success = TRUE;
+
+$subject = "TEST/";
+if $subject =~ s/TEST\//TEST/
+{
+   if $subject != "TEST" $success = FALSE;
+}
+else $success = FALSE;

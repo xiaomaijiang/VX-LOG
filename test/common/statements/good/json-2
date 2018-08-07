@@ -1,0 +1,12 @@
+#$raw_event = '{"TestField":true}';
+$raw_event = '{"TestField":"testvalue","Undef":null,"Integer":42,"BoolTrue":true,"BoolFalse":false}';
+parse_json();
+if not defined $TestField $success = FALSE;
+if $TestField != 'testvalue' $success = FALSE;
+if not defined $Integer $success = FALSE;
+if $Integer != 42 $success = FALSE;
+if defined $Undef $success = FALSE;
+if ($BoolTrue != TRUE) $success = FALSE;
+if ($BoolFalse != FALSE) $success = FALSE;
+
+if not defined $success $success = TRUE;

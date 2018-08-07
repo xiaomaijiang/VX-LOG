@@ -1,0 +1,8 @@
+$success = TRUE;
+
+$now = now();
+$int = integer($now);
+$now2 = datetime($int);
+if not defined $now2 $success = FALSE;
+if $now != $now2 $success = FALSE;
+

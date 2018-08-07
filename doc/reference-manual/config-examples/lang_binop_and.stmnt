@@ -1,0 +1,1 @@
+if $SeverityValue == 1 and $FacilityValue == 2 log_info("1 and 2");

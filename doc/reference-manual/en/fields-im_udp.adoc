@@ -1,0 +1,19 @@
+[[im_udp_fields]]
+===== Fields
+
+The following fields are used by im_udp.
+
+[[im_udp_field_raw_event]]
+`$raw_event` (type: <<lang_type_string,string>>)::
++
+--
+The received string.
+--
+
+[[im_udp_field_MessageSourceAddress]]
+`$MessageSourceAddress` (type: <<lang_type_string,string>>)::
++
+--
+The IP address of the remote host.
+--
+

@@ -1,0 +1,55 @@
+<declarations>
+ <module>xm_charconv</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>convert_fields</name>
+   <type>global</type>
+   <cb>nx_expr_proc__convert_fields</cb>
+   <arg>
+    <name>srcencoding</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <arg>
+    <name>dstencoding</name>
+    <type>string</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+Convert all string type fields of a log message from _srcencoding_ to
+_dstencoding_. The _srcencoding_ argument can be set to `auto` to
+request auto detection.
+     </en>
+   </description>
+ </procedure>
+
+ <function>
+   <name>convert</name>
+   <type>global</type>
+   <cb>nx_expr_func__convert</cb>
+   <rettype>string</rettype>
+   <arg>
+    <name>source</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>srcencoding</name>
+    <type>string</type>
+   </arg>
+   <arg>
+    <name>dstencoding</name>
+    <type>string</type>
+   </arg>
+   <description>
+     <en>
+Convert the source string to the encoding specified in _dstencoding_
+from _srcencoding_. The _srcencoding_ argument can be set to `auto` to
+request auto detection.
+     </en>
+   </description>
+ </function>
+
+</declarations>

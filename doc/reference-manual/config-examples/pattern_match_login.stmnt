@@ -1,0 +1,5 @@
+if $Message =~ /^pam_unix\(sshd:session\): session opened for user (\S+) by \(uid=(\d+)\)/ {
+    $AccountName = $1;
+    $AccountID = integer($2);
+    $Action = 'LoginEvent';
+}

@@ -1,0 +1,15 @@
+log_debug("test");
+log_debug("test", "test2");
+log_debug("test" + "test2");
+log_info(1);
+log_info(TRUE);
+debug("debug");
+log_warning("warning");
+log_error("error");
+log_debug(now());
+$now = now();
+log_debug($now);
+log_debug(undef);
+log_debug($undef);
+
+$success = TRUE;

@@ -1,0 +1,290 @@
+[[pm_evcorr]]
+==== Event Correlator (pm_evcorr)
+
+The _pm_evcorr_ module provides event correlation functionality in
+addition to the already available {productName} language features such
+as <<lang_variables,variables>> and <<lang_stat,statistical counters>>
+which can be also used for event correlation purposes.
+
+This module was greatly inspired by the Perl based correlation tool
+http://simple-evcorr.github.io/[SEC]. Some of the rules of the
+_pm_evcorr_ module were designed to mimic those available in SEC. This
+module aims to be a better alternative to SEC with the following
+advantages:
+
+* The correlation rules in SEC work with the current time. With
+  _pm_evcorr_ it is possible to specify a time field which is used for
+  elapsed time calculation making offline event correlation possible.
+* SEC uses regular expressions extensively, which can become quite
+  slow if there are many correlation rules. In contrast, this module
+  can correlate pre-processed messages using fields from, for example,
+  the <<pm_pattern,pattern matcher>> and <<xm_syslog,Syslog>> parsers
+  without requiring the use of regular expressions (though these are
+  also available for use by correlation rules). Thus testing
+  conditions can be significantly faster when simple comparison is
+  used instead of regular expression based pattern matching.
+* This module was designed to operate on fields, making it possible to
+  correlate structured logs in addition to simple free-form log
+  messages.
+* Most importantly, this module is written in C, providing performance
+  benefits (where SEC is written in pure Perl).
+
+The rulesets of this module can use a context. A context is an
+expression which is evaluated during runtime to a value and the
+correlation rule is checked in the context of this value. For example,
+to count the number of failed logins per user and alert if the failed
+logins exceed 3 for the user, the `$AccountName` would be used as the
+context. There is a separate context storage for each correlation rule
+instance. For global contexts accessible from all rule instances, see
+<<lang_variables,module variables>> and <<lang_stat,statistical
+counters>>.
+
+[[pm_evcorr_config]]
+===== Configuration
+
+The _pm_evcorr_ module accepts the following directives in addition to
+the <<config_module_common,common module directives>>.
+
+The _pm_evcorr_ configuration contains correlation rules which are evaluated for
+each log message processed by the module. Currently there are five rule types
+supported by pm_evcorr: <<pm_evcorr_config_absence,Absence>>,
+<<pm_evcorr_config_pair,Pair>>, <<pm_evcorr_config_simple,Simple>>,
+<<pm_evcorr_config_suppressed,Suppressed>>, and
+<<pm_evcorr_config_thresholded,Thresholded>>. These rules are defined in
+configuration blocks. The rules are evaluated in the order they are
+defined. For example, a correlation rule can change a state, variable, or
+field which can be then used by a later rule. <<config_general_include,File
+inclusion>> can be useful to store correlation rules in a separate file.
+
+[[pm_evcorr_config_absence]]
+Absence:: This rule type does the opposite of
+  <<pm_evcorr_config_pair,Pair>>. When
+  <<pm_evcorr_config_absence_triggercondition,TriggerCondition>>
+  evaluates to TRUE, this rule type will wait
+  <<pm_evcorr_config_absence_interval,Interval>> seconds for
+  <<pm_evcorr_config_absence_requiredcondition,RequiredCondition>> to
+  become TRUE. If it does not become TRUE, it executes the
+  statement(s) in the <<pm_evcorr_config_absence_exec,Exec>>
+  directive(s).
++
+--
+[[pm_evcorr_config_absence_context]]
+Context::: This optional directive specifies an expression to be used as the
+  context. It must evaluate to a value. Usually a field is specified here.
+
+[[pm_evcorr_config_absence_exec]]
+Exec::: One or more *Exec* directives must be specified, each taking a
+  <<lang_statements,statement>> as argument.
++
+NOTE: The evaluation of this Exec is not triggered by a log event; thus it
+      does not make sense to use log data related operations such as accessing
+      fields.
+
+[[pm_evcorr_config_absence_interval]]
+Interval::: This mandatory directive takes an integer argument specifying the
+  number of seconds to wait for
+  <<pm_evcorr_config_absence_requiredcondition,RequiredCondition>> to become
+  TRUE. Its value must be greater than 0. The
+  <<pm_evcorr_config_timefield,TimeField>> directive is used to calculate
+  time.
+
+[[pm_evcorr_config_absence_requiredcondition]]
+RequiredCondition::: This mandatory directive takes an expression as argument
+  which must evaluate to a <<lang_type_boolean,boolean>> value. When this
+  evaluates to TRUE after
+  <<pm_evcorr_config_absence_triggercondition,TriggerCondition>> evaluated to
+  TRUE within <<pm_evcorr_config_absence_interval,Interval>> seconds, the
+  statement(s) in the <<pm_evcorr_config_absence_exec,Exec>> directive(s) are
+  NOT executed.
+
+[[pm_evcorr_config_absence_triggercondition]]
+TriggerCondition::: This mandatory directive takes an expression as argument
+  which must evaluate to a <<lang_type_boolean,boolean>> value.
+--
+
+[[pm_evcorr_config_pair]]
+Pair:: When
+  <<pm_evcorr_config_pair_triggercondition,TriggerCondition>>
+  evaluates to TRUE, this rule type will wait
+  <<pm_evcorr_config_pair_interval,Interval>> seconds for
+  <<pm_evcorr_config_pair_requiredcondition,RequiredCondition>> to
+  become TRUE. It then executes the statement(s) in the
+  <<pm_evcorr_config_pair_exec,Exec>> directive(s).
++
+--
+[[pm_evcorr_config_pair_context]]
+Context::: This optional directive specifies an expression to be used as the
+  context. It must evaluate to a value. Usually a field is specified here.
+
+[[pm_evcorr_config_pair_exec]]
+Exec::: One or more *Exec* directives must be specified, each taking a
+  <<lang_statements,statement>> as argument.
+
+[[pm_evcorr_config_pair_interval]]
+Interval::: This directive takes an integer argument specifying the number of
+  seconds to wait for
+  <<pm_evcorr_config_pair_requiredcondition,RequiredCondition>> to become
+  TRUE. If this directive is `0` or not specified, the rule will wait
+  indefinitely for
+  <<pm_evcorr_config_pair_requiredcondition,RequiredCondition>> to become
+  TRUE. The <<pm_evcorr_config_timefield,TimeField>> directive is used to
+  calculate time.
+
+[[pm_evcorr_config_pair_requiredcondition]]
+RequiredCondition::: This mandatory directive takes an expression as argument
+  which must evaluate to a <<lang_type_boolean,boolean>> value. When this
+  evaluates to TRUE after
+  <<pm_evcorr_config_pair_triggercondition,TriggerCondition>> evaluated to
+  TRUE within <<pm_evcorr_config_pair_interval,Interval>> seconds, the
+  statement(s) in the <<pm_evcorr_config_pair_exec,Exec>> directive(s) are
+  executed.
+
+[[pm_evcorr_config_pair_triggercondition]]
+TriggerCondition::: This mandatory directive takes an expression as argument
+  which must evaluate to a <<lang_type_boolean,boolean>> value.
+--
+
+[[pm_evcorr_config_simple]]
+Simple:: This rule type is essentially the same as the
+  <<config_module_exec,Exec>> directive supported by all
+  modules. Because <<config_module_exec,Exec>>s are evaluated before
+  the correlation rules, the *Simple* rule was also needed to be able
+  to evaluate a statement as the other rules do, following the rule
+  order. The *Simple* block has one directive also with the same name.
++
+[[pm_evcorr_config_simple_exec]]
+Exec::: One or more *Exec* directives must be specified, with a
+  <<lang_statements,statement>> as argument.
+
+[[pm_evcorr_config_stop]]
+Stop:: This rule will stop evaluating successive rules if the
+  <<pm_evcorr_config_stop_condition,Condition>> evaluates to TRUE. The
+  optional <<pm_evcorr_config_stop_exec,Exec>> directive will be
+  evaluated in this case.
++
+--
+[[pm_evcorr_config_stop_condition]]
+Condition::: This mandatory directive takes an expression as argument which
+  must evaluate to a <<lang_type_boolean,boolean>> value. When it evaluates to
+  TRUE, the correlation rule engine will stop checking any further rules.
+
+[[pm_evcorr_config_stop_exec]]
+Exec::: One or more *Exec* directives may be specified, each taking a
+  <<lang_statements,statement>> as argument. This will be evaluated when the
+  specified <<pm_evcorr_config_stop_condition,Condition>> is satisfied. This
+  directive is optional.
+--
+
+[[pm_evcorr_config_suppressed]]
+Suppressed:: This rule type matches the given condition. If the
+  condition evaluates to TRUE, the statement specified with the
+  <<pm_evcorr_config_suppressed_exec,Exec>> directive is
+  evaluated. The rule will then ignore any log messages for the time
+  specified with <<pm_evcorr_config_suppressed_interval,Interval>>
+  directive. This rule is useful for avoiding creating multiple alerts
+  in a short period when a condition is satisfied.
++
+--
+[[pm_evcorr_config_suppressed_condition]]
+Condition::: This mandatory directive takes an expression as argument which
+  must evaluate to a <<lang_type_boolean,boolean>> value.
+
+[[pm_evcorr_config_suppressed_context]]
+Context::: This optional directive specifies an expression to be used as the
+  context. It must evaluate to a value. Usually a field is specified here.
+
+[[pm_evcorr_config_suppressed_exec]]
+Exec::: One or more *Exec* directives must be specified, each taking
+  a <<lang_statements,statement>> as argument.
+
+[[pm_evcorr_config_suppressed_interval]]
+Interval::: This mandatory directive takes an integer argument specifying the
+  number of seconds to ignore the condition. The
+  <<pm_evcorr_config_timefield,TimeField>> directive is used to calculate
+  time.
+--
+
+[[pm_evcorr_config_thresholded]]
+Thresholded:: This rule type will execute the statement(s) in the
+  <<pm_evcorr_config_thresholded_exec,Exec>> directive(s) if the
+  <<pm_evcorr_config_thresholded_condition,Condition>> evaluates to
+  TRUE <<pm_evcorr_config_thresholded_threshold,Threshold>> or more
+  times during the <<pm_evcorr_config_thresholded_interval,Interval>>
+  specified. The advantage of this rule over the use of
+  <<lang_stat,statistical counters>> is that the time window is
+  dynamic and shifts as log messages are processed.
++
+--
+[[pm_evcorr_config_thresholded_condition]]
+Condition::: This mandatory directive takes an expression as argument which
+  must evaluate to a <<lang_type_boolean,boolean>> value.
+
+[[pm_evcorr_config_thresholded_context]]
+Context::: This optional directive specifies an expression to be used as the
+  context. It must evaluate to a value. Usually a field is specified here.
+
+[[pm_evcorr_config_thresholded_exec]]
+Exec::: One or more *Exec* directives must be specified, each taking
+  a <<lang_statements,statement>> as argument.
+
+[[pm_evcorr_config_thresholded_interval]]
+Interval::: This mandatory directive takes an integer argument specifying a
+  time window for <<pm_evcorr_config_thresholded_condition,Condition>> to
+  become TRUE. Its value must be greater than 0. The
+  <<pm_evcorr_config_timefield,TimeField>> directive is used to calculate
+  time. This time window is dynamic, meaning that it will shift.
+
+[[pm_evcorr_config_thresholded_threshold]]
+Threshold::: This mandatory directive takes an integer argument specifying the
+  number of times <<pm_evcorr_config_thresholded_condition,Condition>> must
+  evaluate to TRUE within the given time
+  <<pm_evcorr_config_thresholded_interval,Interval>>. When the threshold is
+  reached, the module executes the statement(s) in the
+  <<pm_evcorr_config_thresholded_exec,Exec>> directive(s).
+--
+
+'''
+
+[[pm_evcorr_config_contextcleantime]]
+ContextCleanTime:: When a Context is used in the correlation rules,
+  these must be purged from memory after they are expired, otherwise
+  using too many context values could result in a high memory
+  usage. This optional directive specifies the interval between
+  context cleanups, in seconds. By default a `60` second cleanup
+  interval is used if any rules use a Context and this directive is
+  not specified.
+
+[[pm_evcorr_config_timefield]]
+TimeField:: This specifies the name of the <<lang_fields,field>> to
+  use for calculating elapsed time, such as `EventTime`. The name of
+  the field must be specified without the leading dollar sign
+  (`$`). If this parameter is not specified, the current time is
+  assumed. This directive makes it possible to accurately correlate
+  events based on the event time recorded in the logs and to do
+  non-real-time event correlation.
+
+[[pm_evcorr_config_examples]]
+===== Examples
+
+.Correlation Rules
+====
+This following configuration sample contains a rule for each type.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/evcorr2.conf[lines=2..-1]
+----
+
+.Input Sample
+[source,log]
+----
+include::../../../../../test/modules/processor/evcorr/testinput_evcorr2.txt[]
+----
+
+.Output Sample
+[source,log]
+----
+include::../../../../../test/modules/processor/evcorr/testoutput_evcorr2.txt[]
+----
+====

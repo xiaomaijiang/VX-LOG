@@ -1,0 +1,28 @@
+$success = TRUE;
+if integer("42") != 42 $success = FALSE;
+if integer("-42") != -42 $success = FALSE;
+
+$int = 1;
+$int = -1;
+$int = 0;
+
+$int = 42;
+if type($int) != 'integer' $success = FALSE;
+
+$int = -42;
+if type($int) != 'integer' $success = FALSE;
+
+$int = 42K;
+if type($int) != 'integer' $success = FALSE;
+
+$int = 42M;
+if type($int) != 'integer' $success = FALSE;
+
+$int = 42G;
+if type($int) != 'integer' $success = FALSE;
+
+$int = 0x42;
+if type($int) != 'integer' $success = FALSE;
+
+$int = -0x42;
+if type($int) != 'integer' $success = FALSE;

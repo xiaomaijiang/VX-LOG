@@ -1,0 +1,446 @@
+AC_PREREQ(2.59)
+AC_INIT([nxlog-ce], m4_esyscmd([./version.sh]), [support@nxlog.org], [nxlog-ce])
+
+m4_define([serial_tests], [
+    m4_esyscmd([automake --version |
+                head -1 |
+                awk '{split ($NF,a,"."); if (a[1] == 1 && a[2] >= 12) { print "serial-tests" }}'
+    ])
+])
+
+AC_CANONICAL_SYSTEM
+AC_CONFIG_SRCDIR(src/core/nxlog.c)
+AM_CONFIG_HEADER(src/common/config.h)
+AM_INIT_AUTOMAKE(1.7 tar-ustar foreign serial_tests)
+CFLAGS=${CFLAGS=}
+
+AC_LANG(C)
+AC_PROG_CC
+
+# APR
+AC_ARG_VAR([APRCONFIG], [apr-1-config tool with path])
+if test -z "$APRCONFIG"; then
+	AC_PATH_PROG(apr_config, [apr-1-config])
+else
+	apr_config=$APRCONFIG
+fi
+if test "x$apr_config" = "x"; then
+    AC_MSG_ERROR([apr library not found])
+fi
+APR_LIBS=`$apr_config --link-ld --libs`
+APR_CFLAGS=`$apr_config --cppflags`
+CFLAGS="$CFLAGS $APR_CFLAGS"
+LIBS="$LIBS $APR_LIBS"
+APR_LDFLAGS=`$apr_config --ldflags`
+LDFLAGS="$LDFLAGS $APR_LDFLAGS"
+APR_INCLUDES=`$apr_config --includes`
+INCLUDES="$INCLUDES $APR_INCLUDES"
+
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_LIBTOOL_WIN32_DLL
+AC_PROG_LIBTOOL
+AC_PROG_YACC
+AC_PROG_LEX
+
+# ANDROID
+AC_MSG_CHECKING([for an Android system])
+AC_PREPROC_IFELSE([AC_LANG_PROGRAM([[#ifndef __ANDROID__
+#error __ANDROID__ not defined
+#endif
+]],[[;]])], [HAVE_ANDROID="yes"; AC_MSG_RESULT([yes])], [AC_MSG_RESULT([no])])
+AM_CONDITIONAL(HAVE_ANDROID, test x$HAVE_ANDROID != x)
+
+AC_CHECK_PROGS([OPENSSL], [openssl], [NOTFOUND], [])
+if test "x$OPENSSL" = "xNOTFOUND"; then
+   AC_MSG_WARN([openssl binary not found])
+fi
+
+# PCRE
+AC_ARG_VAR([PCRECONFIG], [pcre-config tool with path])
+if test -z "$PCRECONFIG"; then
+	AC_PATH_PROG(pcre_config, [pcre-config])
+else
+	pcre_config=$PCRECONFIG
+fi
+
+if test "x$pcre_config" = "x"; then
+    AC_MSG_ERROR([pcre library not found])
+fi
+PCRE_LIBS=`$pcre_config --libs`
+PCRE_CFLAGS=`$pcre_config --cflags`
+
+#case $host in
+#       i686*mingw*)
+#       # APR is compiled with stdcall under 32 bit mingw so the symbol names are mangled in the dlls and conftest.c fails.
+#       # see http://stackoverflow.com/questions/33107673/ac-check-lib-with-msys2
+#       # This could be tested with AC_LINK_IFELSE() instead but we assume that apr is up-to-date
+#       ;;
+#       *)
+	  AC_CHECK_LIB([apr-1], [apr_socket_create], [HAVELIBAPR=1], [AC_MSG_ERROR([libapr-1 not found])])
+	  AC_CHECK_FUNCS(apr_pollset_wakeup apr_sockaddr_ip_getbuf apr_file_sync apr_file_link apr_pool_create_unmanaged_ex, [], [AC_MSG_WARN([libapr-1 1.4.0 or greater is recommended])])
+#       ;;
+#esac
+
+# DBI
+AC_CHECK_LIB([dbi], [dbi_initialize], [LIBDBI="-ldbi"], [AC_MSG_WARN([libdbi not found - not building dbi modules])])
+if ! test "x$LIBDBI" = "x"; then
+   AC_CHECK_HEADERS(dbi/dbi.h, , AC_MSG_ERROR([please install header files for libdbi]))
+#    AC_CHECK_LIB([dbi], [dbi_initialize_r], [HAVE_DBI_INITIALIZE_R=1], [AC_MSG_WARN([dbi_initialize_r not found])])
+    SAVED_LIBS=$LIBS
+    LIBS="$LIBDBI"
+    AC_CHECK_FUNCS(dbi_initialize_r)
+    LIBS=$SAVED_LIBS
+fi
+AM_CONDITIONAL([HAVE_LIBDBI], [test x$LIBDBI != x])
+
+AC_HEADER_STDC
+AC_CHECK_HEADERS(syslog.h)
+AC_CHECK_HEADERS(pcre.h, , AC_MSG_ERROR([please install pcre-dev]))
+AC_CHECK_DECLS([PCRE_ERROR_BADUTF8, PCRE_ERROR_BADUTF8_OFFSET], [], [AC_MSG_ERROR([pcre 4.5 or greater is required!])], [#include <pcre.h>])
+
+AC_CHECK_HEADERS(openssl/evp.h,,[AC_MSG_ERROR(openssl headers not found)])
+
+SAVED_LIBS=$LIBS
+LIBSSL="-lcrypto -lssl"
+LIBS="$LIBS $LIBSSL"
+AC_CHECK_LIB([crypto], [EVP_CIPHER_CTX_init], , [AC_MSG_ERROR([libcrypto not found])], [-L/usr/local/lib])
+AC_CHECK_LIB([ssl], [SSL_library_init], , [AC_MSG_ERROR([libssl not found])], [-L/usr/local/lib])
+AC_CHECK_FUNCS(EVP_md5 EVP_sha1 EVP_sha256 EVP_sha512 EVP_ripemd160)
+LIBS=$SAVED_LIBS
+
+AC_CHECK_FUNCS(klogctl, , [AC_MSG_WARN([klogctl system call not found, this is required by im_kernel on linux])])
+AC_CHECK_HEADERS(sys/klog.h)
+AC_CHECK_HEADERS(grp.h)
+AC_CHECK_FUNCS(getgrouplist setgroups)
+
+# Expat for XCC/pm_pattern and xml_xml
+AC_CHECK_LIB([expat], [XML_Parse], [LIBEXPAT="-lexpat"],
+	[AC_MSG_ERROR([the expat library is required for the pm_pattern module])])
+
+AC_CHECK_HEADERS(pcre.h, , AC_MSG_ERROR([please install pcre-dev]))
+
+AC_CHECK_HEADER(zlib.h,
+                AC_CHECK_LIB([z], [deflate], [LIBZLIB="-lz"],
+	                     [AC_MSG_WARN([the zlib library was not found and xm_gelf will not be built])]),
+                AC_MSG_WARN([zlib.h header not found and xm_gelf will not be built]); LIBZLIB="")
+AM_CONDITIONAL([HAVE_ZLIB], [test x$LIBZLIB != x])
+
+
+# Linux-specific capability tests
+case $host in
+       *linux*)
+	 # prctl is needed for capabilities
+         AC_CHECK_HEADERS(sys/prctl.h)
+	 AC_CHECK_FUNCS(prctl setpflags)
+	 if test "x$ac_cv_enable_capability" != "xno"; then
+   	    AC_CHECK_LIB([cap], [cap_from_name], [CAPABILITY=yes; LIBCAP="-lcap"],
+                [if test "x$ac_cv_enable_capability" = "xyes"; then
+                    AC_MSG_ERROR([no linux capability (libcap2) support found.])
+                 else
+                    AC_MSG_WARN([no linux capability (libcap2) support found, will be disabled.])
+                 fi]
+               )
+	 fi
+	 if test "x$CAPABILITY" = "xyes"; then
+   	    AC_CHECK_HEADERS(sys/capability.h, [CAPABILITY=yes],
+                [if test "x$ac_cv_enable_capability" = "xyes"; then
+                    AC_MSG_ERROR([Header files missing for capability support.])
+                 else
+                    AC_MSG_WARN([Header files missing for capability support])
+                    CAPABILITY=yes;
+                 fi]
+               )
+	 fi
+       ;;
+esac
+
+AC_CHECK_HEADERS(winevt.h)
+
+# backtrace
+AC_CHECK_HEADERS(execinfo.h)
+AC_CHECK_FUNCS(backtrace_symbols, [], [])
+
+# iconv
+AC_CHECK_FUNCS(iconv_open, HAVE_ICONV=yes, [])
+if test "x$HAVE_ICONV" = "xyes"; then
+     AC_CHECK_HEADERS(langinfo.h, [], AC_MSG_WARN([langinfo.h not found]))
+     AC_CHECK_FUNCS([nl_langinfo], [], [AC_MSG_WARN([nl_langinfo not found])])
+else
+    AC_CHECK_LIB([iconv], [libiconv_open], [HAVE_ICONV=yes], [AC_MSG_WARN([no iconv found, will not build xm_charconv])])
+        if test "x$HAVE_ICONV" = "xyes"; then
+    	   LIBICONV="-liconv"
+    	   SAVED_LIBS=$LIBS
+    	   LIBS="$LIBS $LIBICONV"
+    	   AC_CHECK_HEADERS(langinfo.h, 
+                     AC_CHECK_FUNCS([nl_langinfo], [], [AC_MSG_ERROR([nl_langinfo not found in your libiconv])]), 
+                     AC_CHECK_FUNCS([locale_charset], [], [AC_MSG_ERROR([no langinfo.h nor locale_charset found in libiconv])]))
+    	   LIBS=$SAVED_LIBS
+        fi
+fi
+AM_CONDITIONAL([HAVE_ICONV], [test x$HAVE_ICONV != x])
+
+# for date/time conversion
+AC_CHECK_MEMBERS([struct tm.tm_gmtoff, struct tm.__tm_gmtoff],,,[
+#include <sys/types.h>
+#include <time.h>])
+
+# strptime is only available on unix, we our own where it's not available
+AC_CHECK_FUNCS(strptime, , [AC_MSG_WARN([using own strptime()])])
+
+# xm_file has these
+AC_CHECK_FUNCS(chown chmod)
+
+# Unix Domain Sockets
+AC_CHECK_DECLS(AF_UNIX, [HAVE_AF_UNIX=1], [], [#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+])
+AM_CONDITIONAL([HAVE_AF_UNIX], [test x$HAVE_AF_UNIX != x])
+
+# Perl and xm_perl
+AC_ENABLE_FEATURE([xm_perl], ENABLE, yes,
+  [build the xm_perl module],
+  [yes|no) ;;])
+
+if test "x$ac_cv_enable_xm_perl" = "xyes"; then
+   AC_CHECK_PROGS([PERL], [perl], [NOTFOUND], [])
+   if test "x$PERL" = "xNOTFOUND"; then
+      AC_MSG_WARN([perl binary not found])
+   else
+      PERL_CFLAGS=`perl -MExtUtils::Embed -e ccopts`
+      PERL_LIBS=`perl -MExtUtils::Embed -e ldopts`
+      SAVED_LIBS=$LIBS
+      SAVED_CFLAGS=$CFLAGS
+      LIBS="$LIBS $PERL_LIBS"
+      CFLAGS="$CFLAGS $PERL_CFLAGS"
+      AC_CHECK_FUNCS([perl_parse], [HAVE_PERL=yes], [AC_MSG_WARN([perl cannot be embedded, not building xm_perl])])
+      LIBS=$SAVED_LIBS
+      CFLAGS=$SAVED_CFLAGS
+   fi
+fi
+AM_CONDITIONAL([HAVE_PERL], [test x$HAVE_PERL != x])
+
+
+AM_CONDITIONAL([WIN32], [test "x$WIN32" == "x1"])
+
+AC_ARG_WITH(moduledir,
+  [  --with-moduledir=DIR    path to installed modules],
+  [ NX_MODULEDIR="$withval"],
+  [ NX_MODULEDIR="${libexecdir}/nxlog/modules"]
+  )
+
+AC_ARG_WITH(cachedir,
+  [  --with-cachedir=DIR     directory to store cache files],
+  [ NX_CACHEDIR="$withval"],
+  [ NX_CACHEDIR="${localstatedir}/spool/nxlog"]
+  )
+
+AC_ARG_WITH(configfile,
+  [  --with-configfile=FILE   default config file to use],
+  [ NX_CONFIGFILE="$withval"],
+  [ NX_CONFIGFILE="${sysconfdir}/nxlog/nxlog.conf"]
+  )
+
+AC_ARG_WITH(pidfile,
+  [  --with-pidfile=FILE   default pid file to use],
+  [ NX_PIDFILE="$withval"],
+  [ NX_PIDFILE="${localstatedir}/run/nxlog/nxlog.pid"]
+  )
+
+dnl documentation
+AC_ENABLE_FEATURE([documentation], ENABLE, no,
+  [re-build the documentation],
+  [yes|no) ;;])
+AM_CONDITIONAL(BUILD_DOCUMENTATION, [test x$ac_cv_enable_documentation != xno])
+
+
+# Automake 1.11 doesn't have serial tests
+#AM_CONDITIONAL(HAVE_SERIAL_TESTS, [test $am__api_version != 1.11])
+
+
+# xm_wtmp
+case $host in
+       *linux*)
+	   BUILD_XM_WTMP=1
+	;;
+       *)
+	   BUILD_XM_WTMP=0
+	;;
+esac;
+if test "x$BUILD_XM_WTMP" = "x1"; then
+   AC_CHECK_HEADERS(utmp.h, [], [BUILD_XM_WTMP=0; AC_MSG_WARN([utmp.h not found, not building xm_wtmp])])
+fi
+AM_CONDITIONAL([BUILD_XM_WTMP], [test x$BUILD_XM_WTMP = x1])
+
+#################################
+# C extensions.
+#################################
+
+# C flags
+AC_CACHE_CHECK([whether ${CC-cc} accepts -Werror], ac_cv_c_option_werror,
+    [saved_CFLAGS="$CFLAGS" CFLAGS="-Werror"
+	AC_TRY_COMPILE(, , ac_cv_c_option_werror=yes, ac_c_option_werror=no)
+	CFLAGS="$saved_CFLAGS"])
+
+AC_C_ADD_FLAG(pipe, -pipe)
+AC_C_ADD_FLAG(w, -W)
+AC_C_ADD_FLAG(wall, -Wall)
+AC_C_ADD_FLAG(wshadow, -Wshadow)
+AC_C_ADD_FLAG(wno_address, -Wno-address)
+#AC_C_ADD_FLAG(wunreachable_code, -Wunreachable-code)
+AC_C_ADD_FLAG(wcast_qual, -Wcast-qual)
+AC_C_ADD_FLAG(wbad_function_cast, -Wbad-function-cast)
+AC_C_ADD_FLAG(wsign_compare, -Wsign-compare)
+AC_C_ADD_FLAG(wconversion, -Wconversion)
+AC_C_ADD_FLAG(funsigned_char, -funsigned-char)
+AC_C_ADD_FLAG(werror_implicit_function_declaration, -Werror-implicit-function-declaration)
+AC_C_ADD_FLAG(wswitch_default, -Wswitch-default)
+AC_C_ADD_FLAG(fstrict_aliasing, -fstrict-aliasing)
+AC_C_ADD_FLAG(wpointer_arith, -Wpointer-arith)
+AC_C_ADD_FLAG(wcast_align, -Wcast-align)
+AC_C_ADD_FLAG(wwrite_strings, -Wwrite-strings)
+AC_C_ADD_FLAG(wmissing_noreturn, -Wmissing-noreturn)
+AC_C_ADD_FLAG(wmissing_format_attribute, -Wmissing-format-attribute)
+AC_C_ADD_FLAG(wformat, -Wformat)
+AC_C_ADD_FLAG(wextra, -Wextra)
+AC_C_ADD_FLAG(werror_format_security, -Werror=format-security)
+
+#AC_C_ADD_FLAG(fsanitize_thread, -fsanitize=thread)
+#AC_C_ADD_FLAG(fpie, -fPIE)
+#AC_C_ADD_FLAG(pie, -pie)
+
+#TODO: this fails with pm_pattern because the xcc generated code has such an error
+#AC_C_ADD_FLAG(werror_uninitialized, -Werror=uninitialized)
+
+AC_C_ADD_FLAG(rdynamic, -rdynamic)
+
+
+case $host in
+       *ibm-aix*)
+        # Compilation breaks with largefile support on on AIX
+       ;;
+       *)
+	 AC_SYS_LARGEFILE
+       ;;
+esac
+
+if test "x$lt_cv_prog_gnu_ld" = "xyes"; then
+   AC_C_ADD_FLAG(g, -ggdb3 -g3)
+else
+   AC_C_ADD_FLAG(g, -gstabs+ -ggdb3 -g3)
+fi		
+
+#FIXME: optimization AC_C_ADD_FLAG(o, -O3 -O2 -O)
+
+
+
+#################################
+# Output.
+#################################
+
+NXLOG_VERSION_STRING="${PACKAGE_VERSION}"
+AC_DEFINE_UNQUOTED(VERSION_STRING, "$NXLOG_VERSION_STRING", [version string])
+AC_SUBST(VERSION)
+AC_SUBST(INCLUDES)
+AC_SUBST(DEFS)
+
+CLEANFILES='*~'
+AC_SUBST(CLEANFILES)
+MAINTAINERCLEANFILES=Makefile.in
+AC_SUBST(MAINTAINERCLEANFILES)
+
+AC_SUBST(VERSION)
+#AC_SUBST(PROJECT_NUMBER)
+#AC_SUBST(OUTPUT_DIRECTORY)
+#AC_SUBST(OUTPUT_LANGUAGE)
+AC_SUBST(APR_LIBS)
+AC_SUBST(APR_CFLAGS)
+AC_SUBST(PCRE_LIBS)
+AC_SUBST(PCRE_CFLAGS)
+AC_SUBST(PERL_LIBS)
+AC_SUBST(PERL_CFLAGS)
+AC_SUBST(LIBDBI)
+AC_SUBST(LIBCAP)
+AC_SUBST(NX_MODULEDIR)
+AC_SUBST(NX_CACHEDIR)
+AC_SUBST(NX_PIDFILE)
+AC_SUBST(NX_CONFIGFILE)
+AC_SUBST(LIBNX)
+AC_SUBST(LIBSSL)
+AC_SUBST(LIBICONV)
+AC_SUBST(LIBEXPAT)
+AC_SUBST(LIBZLIB)
+AC_SUBST(WIN32)
+
+AC_OUTPUT(Makefile
+	doc/Makefile
+	   doc/reference-manual/Makefile
+	      doc/reference-manual/config-examples/Makefile
+	      doc/reference-manual/en/Makefile
+	      doc/reference-manual/hu/Makefile
+	test/Makefile
+	   test/common/Makefile
+	   test/coresrc/Makefile
+	src/Makefile
+	   src/common/Makefile
+	   src/core/Makefile
+	   src/modules/Makefile
+	      src/modules/input/Makefile
+	        src/modules/input/file/Makefile
+	        src/modules/input/uds/Makefile
+	        src/modules/input/kernel/Makefile
+	        src/modules/input/udp/Makefile
+	        src/modules/input/tcp/Makefile
+	        src/modules/input/ssl/Makefile
+	        src/modules/input/testgen/Makefile
+	        src/modules/input/null/Makefile
+	        src/modules/input/mark/Makefile
+	        src/modules/input/internal/Makefile
+	        src/modules/input/dbi/Makefile
+	        src/modules/input/exec/Makefile
+	      src/modules/processor/Makefile
+	        src/modules/processor/null/Makefile
+	        src/modules/processor/filter/Makefile
+	        src/modules/processor/transformer/Makefile
+	        src/modules/processor/norepeat/Makefile
+	        src/modules/processor/buffer/Makefile
+	        src/modules/processor/blocker/Makefile
+	        src/modules/processor/pattern/Makefile
+	        src/modules/processor/evcorr/Makefile
+	      src/modules/output/Makefile
+	        src/modules/output/file/Makefile
+	        src/modules/output/udp/Makefile
+	        src/modules/output/tcp/Makefile
+	        src/modules/output/ssl/Makefile
+	        src/modules/output/null/Makefile
+	        src/modules/output/dbi/Makefile
+	        src/modules/output/blocker/Makefile
+	        src/modules/output/uds/Makefile
+	        src/modules/output/exec/Makefile
+	        src/modules/output/http/Makefile
+	      src/modules/extension/Makefile
+	        src/modules/extension/syslog/Makefile
+	        src/modules/extension/exec/Makefile
+	        src/modules/extension/csv/Makefile
+	        src/modules/extension/kvp/Makefile
+	        src/modules/extension/charconv/Makefile
+	        src/modules/extension/json/Makefile
+	            src/modules/extension/json/yajl/Makefile
+	        src/modules/extension/xml/Makefile
+	        src/modules/extension/gelf/Makefile
+	        src/modules/extension/fileop/Makefile
+	        src/modules/extension/multiline/Makefile
+	        src/modules/extension/perl/Makefile
+			src/modules/extension/wtmp/Makefile
+	   src/utils/Makefile
+	)
+
+#echo ----------------------------------------------------------
+#echo Shared: ${BUILD_SHARED_LIBS}
+#echo ----------------------------------------------------------
+echo
+echo "${PACKAGE}-${NXLOG_VERSION_STRING} configured successfully"
+echo "type \`${MAKE-make}' and \`${MAKE-make} install'"
+echo
+echo

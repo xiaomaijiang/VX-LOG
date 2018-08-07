@@ -1,0 +1,32 @@
+[[pm_blocker_funcs]]
+===== Functions
+
+The following functions are exported by pm_blocker.
+
+[[pm_blocker_func_is_blocking]]
+<<lang_type_boolean,boolean>> `is_blocking()`::
++
+--
+
+Return TRUE if the module is currently blocking the data flow, FALSE
+otherwise.
+     
+--
+
+
+[[pm_blocker_procs]]
+===== Procedures
+
+The following procedures are exported by pm_blocker.
+
+[[pm_blocker_proc_block]]
+`block(<<lang_type_boolean,boolean>> mode);`::
++
+--
+
+When _mode_ is TRUE, the module will block. A `block(FALSE)` should be
+called from a Schedule block or another module, it might not get
+invoked if the queue is already full.
+     
+--
+

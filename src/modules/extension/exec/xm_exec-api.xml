@@ -1,0 +1,55 @@
+<declarations>
+ <module>xm_exec</module>
+ <include>../../../common/expr.h</include>
+ <include>../../../common/module.h</include>
+
+ <procedure>
+   <name>exec</name>
+   <type>global</type>
+   <cb>nx_expr_proc__exec</cb>
+   <arg>
+     <name>command</name>
+     <type>string</type>
+     <access>r</access>
+   </arg>
+   <arg>
+     <name>args</name>
+     <type>varargs</type>
+     <access>r</access>
+   </arg>
+   <description>
+     <en>
+Execute _command_, passing it the supplied arguments, and wait for it
+to terminate. The command is executed in the caller module's
+context. Note that the module calling this procedure will block until
+the process terminates. Use the
+&lt;&lt;xm_exec_proc_exec_async,exec_async()&gt;&gt; procedure to
+avoid this problem. All output written to standard output and standard
+error by the spawned process is discarded.
+     </en>
+   </description>
+ </procedure>
+
+ <procedure>
+   <name>exec_async</name>
+   <type>global</type>
+   <cb>nx_expr_proc__exec_async</cb>
+   <arg>
+     <name>command</name>
+     <type>string</type>
+     <access>r</access>
+   </arg>
+   <arg>
+    <name>args</name>
+    <type>varargs</type>
+    <access>r</access>
+   </arg>
+   <description>
+     <en>
+This procedure executes the command passing it the supplied arguments
+and does not wait for it to terminate.
+     </en>
+   </description>
+ </procedure>
+
+</declarations>

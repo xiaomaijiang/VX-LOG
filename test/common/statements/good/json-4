@@ -1,0 +1,7 @@
+$raw_event = '{"TestField":"testvalue", "Array":[1,2,3]}';
+parse_json();
+if not defined $TestField $success = FALSE;
+if $TestField != 'testvalue' $success = FALSE;
+if not defined $Array $success = FALSE;
+if $Array != '[1,2,3]' $success = FALSE;
+if not defined $success $success = TRUE;

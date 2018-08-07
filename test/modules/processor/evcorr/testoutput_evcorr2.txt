@@ -1,0 +1,20 @@
+Not simple
+suppressing..
+got simple
+pair-first - now look for pair-second
+thresholded1
+thresholded2
+got simple
+got thresholded
+suppressed2 - suppressed and logged as is
+got pair
+suppressed3 - suppressed and logged as is
+pair-first
+absence-trigger
+absence-required - will not log 'got absence'
+absence-trigger
+pair-second - will not log 'got pair' because it is over the interval
+absence-required - will log an additional 'absence-required not received within 10 secs'
+rewritten
+rewritten
+'absence-required' not received within 10 secs

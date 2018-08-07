@@ -1,0 +1,30 @@
+[[xm_exec_procs]]
+===== Procedures
+
+The following procedures are exported by xm_exec.
+
+[[xm_exec_proc_exec]]
+`exec(<<lang_type_string,string>> command, <<lang_type_varargs,varargs>> args);`::
++
+--
+
+Execute _command_, passing it the supplied arguments, and wait for it
+to terminate. The command is executed in the caller module's
+context. Note that the module calling this procedure will block until
+the process terminates. Use the
+<<xm_exec_proc_exec_async,exec_async()>> procedure to
+avoid this problem. All output written to standard output and standard
+error by the spawned process is discarded.
+     
+--
+
+[[xm_exec_proc_exec_async]]
+`exec_async(<<lang_type_string,string>> command, <<lang_type_varargs,varargs>> args);`::
++
+--
+
+This procedure executes the command passing it the supplied arguments
+and does not wait for it to terminate.
+     
+--
+

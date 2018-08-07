@@ -1,0 +1,6 @@
+Simple OK 2010-10-12 00:00:00
+Suppressed OK 2010-10-12 00:00:01
+Suppressed OK 2010-10-12 00:00:11
+Pair OK 2010-10-12 01:00:01
+Absence OK 2010-10-12 02:00:13
+Thresholded OK 2010-10-12 03:00:08

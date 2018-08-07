@@ -1,0 +1,14 @@
+$raw_event = '<?xml version="1.0" encoding="UTF-8"?>
+<p:event xmlns:p="http://nxlog.org">
+ <p:time>2001-12-31T12:00:00</p:time>
+ <p:uid>500</p:uid>
+ <p:username>john</p:username>
+</p:event>';
+parse_xml();
+if not defined $time $success = FALSE;
+if $time != "2001-12-31T12:00:00" $success = FALSE;
+if not defined $uid $success = FALSE;
+if $uid != "500" $success = FALSE;
+if not defined $username $success = FALSE;
+if $username != "john" $success = FALSE;
+if not defined $success $success = TRUE;

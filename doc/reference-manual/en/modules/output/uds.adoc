@@ -1,0 +1,37 @@
+[[om_uds]]
+==== UDS (om_uds)
+
+This module allows log messages to be sent to a Unix domain socket.
+Unix systems traditionally have a /dev/log or similar socket used by
+the system logger to accept messages. Applications use the syslog(3)
+system call to send messages to the system logger. {productName} can
+use this module to send log messages to another Syslog daemon via the
+socket.
+
+NOTE: This module supports SOCK_DGRAM type sockets only. SOCK_STREAM
+      type sockets may be supported in the future.
+
+[[om_uds_config]]
+===== Configuration
+
+The _om_uds_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[om_uds_config_uds]]
+UDS:: This specifies the path of the Unix domain socket. The default
+  is `/dev/log`.
+
+[[om_uds_config_examples]]
+===== Examples
+
+.Using the om_uds Module
+====
+This configuration reads log messages from a file, adds BSD Syslog
+headers with default fields, and writes the messages to socket.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../config-examples/om_uds.conf[lines=2..-1]
+----
+====

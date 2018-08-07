@@ -1,0 +1,19 @@
+$success = TRUE;
+
+$raw_event = "First line\nSecond line\nThird line";
+if $raw_event =~ s/Second line.*// {}
+
+if $raw_event != "First line\n\nThird line" {
+    $success = FALSE;
+    log_error($raw_event);
+}
+else $success = TRUE;
+
+$raw_event = "First line\nSecond line\nThird line";
+if $raw_event =~ s/Second line.*//gs {}
+
+if $raw_event != "First line\n" {
+    $success = FALSE;
+    log_error($raw_event);
+}
+else $success = TRUE;

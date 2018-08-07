@@ -1,0 +1,1 @@
+date="May 5 14:34:40 2009 MDT",fac=f_mail_filter,area=a_kmvfilter,type=t_mimevirus_reject,pri=p_major,pid=10174,ruid=0,euid=0,pgid=10174,logid=0,cmd=kmvfilter,domain=MMF1,edomain=MMF1,message_id=(null),srcip=66.74.184.9,mail_sender=<habuzeid6@…>,virus_name=W32/Netsky.c@MM!zip,reason="Message scan detected a Virus in msg Unknown, message being Discarded, and not quarantined"

@@ -1,0 +1,19 @@
+2010-01-01 00:00:00 Not simple
+2010-01-01 00:00:01 suppressed1 - Suppress kicks in, will log 'suppressing..'
+2010-01-01 00:00:10 simple1
+2010-01-01 00:00:12 pair-first - now look for pair-second
+2010-01-01 00:00:13 thresholded1
+2010-01-01 00:00:15 thresholded2
+2010-01-01 00:00:19 simple2
+2010-01-01 00:00:20 thresholded3 - will log 'got thresholded'
+2010-01-01 00:00:21 suppressed2 - suppressed and logged as is
+2010-01-01 00:00:22 pair-second - will log 'got pair'
+2010-01-01 00:00:23 suppressed3 - suppressed and logged as is
+2010-01-01 00:00:25 pair-first
+2010-01-01 00:00:26 absence-trigger
+2010-01-01 00:00:29 absence-required - will not log 'got absence'
+2010-01-01 00:00:46 absence-trigger
+2010-01-01 00:00:56 pair-second - will not log 'got pair' because it is over the interval
+2010-01-01 00:00:57 absence-required - will log an additional 'absence-required not received within 10 secs'
+2010-01-02 00:00:00 this will be rewritten 
+2010-01-02 00:00:10 this too

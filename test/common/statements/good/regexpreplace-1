@@ -1,0 +1,49 @@
+$success = TRUE;
+
+$subject = "--aa--";
+if $subject =~ s/a/123/g
+{
+   if $subject != "--123123--" $success = FALSE;
+}
+else $success = FALSE;
+
+
+$subject = "--aa--";
+if $subject =~ s/a/123/
+{
+   if $subject != "--123a--" $success = FALSE;
+}
+else $success = FALSE;
+
+
+$subject = "--123--";
+if $subject =~ s/123//
+{
+   if $subject != "----" $success = FALSE;
+}
+else $success = FALSE;
+
+$subject = "--123123123123123--";
+if $subject =~ s/123//g
+{
+   if $subject != "----" $success = FALSE;
+}
+else $success = FALSE;
+
+$subject = "--	 --";
+if $subject =~ s/\s/_/g
+{
+   if $subject != "--__--" $success = FALSE;
+}
+else $success = FALSE;
+
+$subject = "--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxaaaaaaaxaaaaaaaaaaaaaaaaa--";
+if $subject =~ s/a/bbbbbbbbbbbbbbbbbbb/g {}
+
+$subject = "TEST/";
+if $subject =~ s/TEST\//TEST/g
+{
+   if $subject != "TEST" $success = FALSE;
+}
+else $success = FALSE;
+log_info($subject);

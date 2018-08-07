@@ -1,0 +1,110 @@
+[[xm_perl]]
+==== Perl (xm_perl)
+
+// tag::about[]
+
+The http://perl.org[Perl programming language] is widely used for log
+processing and comes with a broad set of modules bundled or available
+from http://cpan.org[CPAN]. Code can be written more quickly in Perl
+than in C, and code execution is safer because exceptions (croak/die)
+are handled properly and will only result in an unfinished attempt at
+log processing rather than taking down the whole {productName}
+process.
+
+// end::about[]
+
+While the <<lang,{ProductName} language>> is already a powerful
+framework, it is not intended to be a fully featured programming
+language and does not provide lists, arrays, hashes and other features
+available in many high-level languages. With this module, Perl can be
+used to process event data via a built-in Perl interpreter. See also
+the <<im_perl,im_perl>> and <<om_perl,om_perl>> modules.
+
+The Perl interpreter is only loaded if the module is declared in the
+configuration. The module will parse the file specified in the
+<<xm_perl_config_perlcode,PerlCode>> directive when {productName}
+starts the module. This file should contain one or more methods
+which can be called from the <<config_module_exec,Exec>> directive of
+any module that will use Perl for log processing. See the
+<<xm_perl_config_examples,example>> below.
+
+To access event data, the Log::Nxlog module must be included, which provides
+the following methods.
+
+// tag::log_methods[]
+
+log_debug(msg):: Send the message _msg_ to the internal logger on
+  DEBUG log level. This method does the same as the
+  <<core_proc_log_debug,log_debug()>> procedure in {productName}.
+log_info(msg):: Send the message _msg_ to the internal logger on INFO
+  log level. This method does the same as the
+  <<core_proc_log_info,log_info()>> procedure in {productName}.
+log_warning(msg):: Send the message _msg_ to the internal logger on
+  WARNING log level. This method does the same as the
+  <<core_proc_log_warning,log_warning()>> procedure in {productName}.
+log_error(msg):: Send the message _msg_ to the internal logger on
+  ERROR log level. This method does the same as the
+  <<core_proc_log_error,log_error()>> procedure in {productName}.
+
+// end::log_methods[]
+
+delete_field(event, key):: Delete the value associated with the field
+  named _key_.
+field_names(event):: Return a list of the field names contained in the
+  event data. This method can be used to iterate over all of the
+  fields.
+field_type(event, key):: Return a string representing the type of the
+  value associated with the field named _key_.
+get_field(event, key):: Retrieve the value associated with the field
+  named _key_. This method returns a scalar value if the key exists
+  and the value is defined, otherwise it returns undef.
+set_field_boolean(event, key, value):: Set the boolean value in the
+  field named _key_.
+set_field_integer(event, key, value):: Set the integer value in the
+  field named _key_.
+set_field_string(event, key, value):: Set the string value in the
+  field named _key_.
+
+// tag::pod[]
+
+For the full {productName} Perl API, see the POD documentation in
+`Nxlog.pm`. The documentation can be read with `perldoc Log::Nxlog`.
+
+// end::pod[]
+
+[[xm_perl_config]]
+===== Configuration
+
+The _xm_perl_ module accepts the following directives in addition to the
+<<config_module_common,common module directives>>.
+
+[[xm_perl_config_perlcode]]
+PerlCode:: This mandatory directive expects a file containing valid
+  Perl code. This file is read and parsed by the Perl
+  interpreter. Methods defined in this file can be called with the
+  <<xm_perl_proc_call,call()>> procedure.
+
+include::../../apidoc-xm_perl.adoc[]
+
+[[xm_perl_config_examples]]
+===== Examples
+
+[[xm_perl_example1]]
+.Using the built-in Perl interpreter
+====
+In this example, logs are parsed as Syslog and then are passed to
+a Perl method which does a GeoIP lookup on the source address of the
+incoming message.
+
+.nxlog.conf
+[source,config]
+----
+include::../../../../../test/modules/extension/perl/xm_perl.conf[lines=9..-1]
+----
+
+.processlogs.pl
+[source,perl]
+----
+include::../../../../../test/modules/extension/perl/processlogs.pl[lines=4..-1]
+----
+====

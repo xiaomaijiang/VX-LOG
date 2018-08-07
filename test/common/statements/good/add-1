@@ -1,0 +1,11 @@
+$success = TRUE;
+if "" + '' != "" $success = FALSE;
+if 1 + 1 != 2 $success = FALSE;
+$time = 2010-01-01 00:00:00;
+if "test " + 2010-01-01 00:00:00 != "test 2010-01-01 00:00:00" $success = FALSE;
+if "" + TRUE != "TRUE" $success = FALSE;
+if "" + 42 != "42" $success = FALSE;
+if "" + undef != "" $success = FALSE;
+if undef + "" != "" $success = FALSE;
+if $undef + "" != "" $success = FALSE;
+

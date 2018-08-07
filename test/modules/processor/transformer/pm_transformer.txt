@@ -1,0 +1,23 @@
+REMOVE: tmp/output
+TRUNCATE: tmp/input
+RUNPROCESSOR: modules/processor/transformer/syslog2csv.conf
+COMPAREFILE: tmp/output modules/processor/transformer/csv.txt
+REMOVE: tmp/output
+
+REMOVE: tmp/output
+TRUNCATE: tmp/input
+RUNPROCESSOR: modules/processor/transformer/multi.conf
+COMPAREFILE: tmp/output modules/processor/transformer/csv.txt
+REMOVE: tmp/output
+
+
+#FIXME: need CSVOutputFieldTypes , otherwise this doesn't work because everything is parsed as strings
+#RUNPROCESSOR: modules/processor/transformer/csv2syslog.conf
+#COMPAREFILE: tmp/output modules/processor/transformer/syslogout.txt
+#REMOVE: tmp/output
+
+#FIXME ,"", vs ,,  undefined vs empty string??
+#RUNPROCESSOR: modules/processor/transformer/csv2csv.conf
+#COMPAREFILE: tmp/output modules/processor/transformer/csv2csv.txt
+#REMOVE: tmp/output
+
