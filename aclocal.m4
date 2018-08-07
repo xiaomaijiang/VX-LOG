@@ -8956,7 +8956,6 @@ m4_define([lt_dict_filter],
 
 # serial 4179 ltversion.m4
 # This file is part of GNU Libtool
-
 m4_define([LT_PACKAGE_VERSION], [2.4.2])
 m4_define([LT_PACKAGE_REVISION], [1.3337])
 

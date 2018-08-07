@@ -408,6 +408,7 @@ AC_OUTPUT(Makefile
 	        src/modules/input/internal/Makefile
 	        src/modules/input/dbi/Makefile
 	        src/modules/input/exec/Makefile
+			src/modules/input/kafka/Makefile
 	      src/modules/processor/Makefile
 	        src/modules/processor/null/Makefile
 	        src/modules/processor/filter/Makefile
