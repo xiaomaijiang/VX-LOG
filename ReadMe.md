@@ -35,5 +35,15 @@ Kafka Output
 	</Output>
 ```
 
+Kafka Input
+```
+<Input im_kafka>
+    Module  im_kafka
+	BrokerList  192.168.2.248:9092
+	Topic       test
+	Compression gzip
+    GroupId     vxlog
+</Input>
+```
 
 
