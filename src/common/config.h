@@ -26,10 +26,10 @@
 #define HAVE_CHOWN 1
 
 /* Define to 1 if you have the <dbi/dbi.h> header file. */
-/* #undef HAVE_DBI_DBI_H */
+#define HAVE_DBI_DBI_H 1
 
 /* Define to 1 if you have the `dbi_initialize_r' function. */
-/* #undef HAVE_DBI_INITIALIZE_R */
+#define HAVE_DBI_INITIALIZE_R 1
 
 /* Define to 1 if you have the declaration of `AF_UNIX', and to 0 if you
    don't. */
@@ -107,7 +107,7 @@
 #define HAVE_PCRE_H 1
 
 /* Define to 1 if you have the `perl_parse' function. */
-/* #undef HAVE_PERL_PARSE */
+#define HAVE_PERL_PARSE 1
 
 /* Define to 1 if you have the `prctl' function. */
 #define HAVE_PRCTL 1
@@ -143,7 +143,7 @@
 #define HAVE_SYSLOG_H 1
 
 /* Define to 1 if you have the <sys/capability.h> header file. */
-/* #undef HAVE_SYS_CAPABILITY_H */
+#define HAVE_SYS_CAPABILITY_H 1
 
 /* Define to 1 if you have the <sys/klog.h> header file. */
 #define HAVE_SYS_KLOG_H 1
@@ -179,7 +179,7 @@
 #define PACKAGE_NAME "nxlog-ce"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "nxlog-ce 2.10.14"
+#define PACKAGE_STRING "nxlog-ce 2.10.15"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "nxlog-ce"
@@ -188,16 +188,16 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.10.14"
+#define PACKAGE_VERSION "2.10.15"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "2.10.14"
+#define VERSION "2.10.15"
 
 /* version string */
-#define VERSION_STRING "2.10.14"
+#define VERSION_STRING "2.10.15"
 
 /* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
    `char[]'. */

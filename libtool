@@ -1,5 +1,5 @@
 #! /bin/bash
-# Generated automatically by config.status (nxlog-ce) 2.10.14
+# Generated automatically by config.status (nxlog-ce) 2.10.15
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -46,8 +46,8 @@ DLLTOOL="dlltool"
 OBJDUMP="objdump"
 
 # Which release of libtool.m4 was used?
-macro_version=2.4.6
-macro_revision=2.4.6
+macro_version=2.4.2
+macro_revision=1.3337
 
 # Whether or not to build shared libraries.
 build_libtool_libs=yes
