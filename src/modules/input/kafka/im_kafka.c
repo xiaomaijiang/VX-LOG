@@ -193,7 +193,7 @@ static void im_kafka_init(nx_module_t *module)
     }
     modconf->topics = rd_kafka_topic_partition_list_new(1);
     rd_kafka_poll_set_consumer(modconf->rk);
-    rd_kafka_topic_partition_list_add(modconf->topics, modconf->topic, 1);
+    rd_kafka_topic_partition_list_add(modconf->topics, modconf->topic, -1);
 
     rd_kafka_resp_err_t err;
     if ((err = rd_kafka_subscribe(modconf->rk, modconf->topics)))
