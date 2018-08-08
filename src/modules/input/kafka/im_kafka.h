@@ -10,6 +10,7 @@ typedef struct nx_im_kafka_conf_t
 	char *topic;
 	char *groupid;
 	char *compression;
+	int partition;
 	rd_kafka_topic_partition_list_t *topics;
 	rd_kafka_conf_t *kafka_conf;
 	rd_kafka_topic_conf_t *topic_conf;

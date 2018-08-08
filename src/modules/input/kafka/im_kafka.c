@@ -193,7 +193,7 @@ static void im_kafka_init(nx_module_t *module)
     }
     modconf->topics = rd_kafka_topic_partition_list_new(1);
     rd_kafka_poll_set_consumer(modconf->rk);
-    rd_kafka_topic_partition_list_add(modconf->topics, modconf->topic, -1);
+    rd_kafka_topic_partition_list_add(modconf->topics, modconf->topic, modconf->partition);
 
     rd_kafka_resp_err_t err;
     if ((err = rd_kafka_subscribe(modconf->rk, modconf->topics)))
@@ -232,6 +232,10 @@ static void im_kafka_config(nx_module_t *module)
         else if (strcasecmp(curr->directive, "compression") == 0)
         {
             modconf->compression = curr->args;
+        }
+        else if (strcasecmp(curr->directive, "partition") == 0)
+        {
+            modconf->partition = curr->args;
         }
         else if (strcasecmp(curr->directive, "groupid") == 0)
         {

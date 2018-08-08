@@ -43,6 +43,7 @@ Kafka Input
 	Topic       test
 	Compression gzip
     GroupId     vxlog
+	Partition   4    #default is 0
 </Input>
 ```
 
