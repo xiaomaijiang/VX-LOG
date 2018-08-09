@@ -20,7 +20,7 @@ Download and install librdkafka,and Compile VX-LOG
 	make
 	sudo make install
 ```
-###Config Sample
+### Config Sample
 
 Kafka Output
 
@@ -48,3 +48,7 @@ Kafka Input
 ```
 
 
+# Some Useful feature wait for implement
+
+* Multi SQL for Database Input
+* Fake Template for testgen Input
