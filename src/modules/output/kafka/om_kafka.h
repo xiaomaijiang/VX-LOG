@@ -12,11 +12,19 @@
 static void msg_delivered (rd_kafka_t *rk, void *payload, size_t len, int error_code, void *opaque, void *msg_opaque);
 static void io_err_handler(nx_module_t *module, nx_exception_t *e);
 
+typedef struct nx_om_kafka_option_t
+{
+    const char *name;
+    const char *value;
+} nx_om_kafka_option_t;
+
+
 typedef struct nx_om_kafka_conf_t {
 	char* brokerlist;
 	char* topic;
 	char* compression;
 	int partition;
+	apr_array_header_t *options;
 	rd_kafka_conf_t *kafka_conf;
 	rd_kafka_topic_conf_t *topic_conf;
 	rd_kafka_t *rk;
