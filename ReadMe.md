@@ -42,7 +42,7 @@ Kafka Input
 	BrokerList  192.168.2.248:9092
 	Topic       test
 	Compression gzip
-    GroupId     vxlog
+    Option group.id vxnlog
 	Partition   4    #default is 0
 </Input>
 ```

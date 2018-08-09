@@ -13,6 +13,38 @@
 
 #define NX_LOGMODULE NX_LOGMODULE_MODULE
 
+static boolean om_kafka_add_option(nx_module_t *module, char *optionstr)
+{
+	nx_om_kafka_option_t *option;
+	nx_om_kafka_conf_t *imconf;
+	char *ptr;
+
+	imconf = (nx_om_kafka_conf_t *)module->config;
+
+	for (ptr = optionstr; (*ptr != '\0') && (!apr_isspace(*ptr)); ptr++)
+		;
+	while (apr_isspace(*ptr))
+	{
+		*ptr = '\0';
+		ptr++;
+	}
+
+	if (*ptr == '\0')
+	{
+		return (FALSE);
+	}
+	log_debug("im_dbi option %s = %s", optionstr, ptr);
+
+	option = apr_pcalloc(module->pool, sizeof(nx_om_kafka_option_t));
+	option->name = optionstr;
+	option->value = ptr;
+
+	*((nx_om_kafka_option_t **)apr_array_push(imconf->options)) = option;
+
+	return (TRUE);
+}
+
+
 static void om_kafka_start(nx_module_t *module)
 {
 	log_debug("Kafka module start entrypoint");
@@ -73,44 +105,15 @@ static void om_kafka_config(nx_module_t *module)
 	}
 }
 
-static boolean om_kafka_add_option(nx_module_t *module, char *optionstr)
-{
-	nx_om_kafka_option_t *option;
-	nx_om_kafka_conf_t *imconf;
-	char *ptr;
-
-	imconf = (nx_om_kafka_conf_t *)module->config;
-
-	for (ptr = optionstr; (*ptr != '\0') && (!apr_isspace(*ptr)); ptr++)
-		;
-	while (apr_isspace(*ptr))
-	{
-		*ptr = '\0';
-		ptr++;
-	}
-
-	if (*ptr == '\0')
-	{
-		return (FALSE);
-	}
-	log_debug("im_dbi option %s = %s", optionstr, ptr);
-
-	option = apr_pcalloc(module->pool, sizeof(nx_om_kafka_option_t));
-	option->name = optionstr;
-	option->value = ptr;
-
-	*((nx_om_kafka_option_t **)apr_array_push(imconf->options)) = option;
-
-	return (TRUE);
-}
 
 static void om_kafka_init(nx_module_t *module)
 {
 	log_debug("Kafka module init entrypoint");
 	char errstr[512];
+	int i;
 	nx_om_kafka_conf_t *modconf;
 	modconf = (nx_om_kafka_conf_t *)module->config;
-
+	nx_om_kafka_option_t *option;
 	rd_kafka_conf_t *conf;
 	rd_kafka_topic_conf_t *topic_conf;
 	/* Kafka configuration */

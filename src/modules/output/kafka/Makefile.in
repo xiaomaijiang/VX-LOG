@@ -130,8 +130,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(om_kafkadir)"
 LTLIBRARIES = $(om_kafka_LTLIBRARIES)
 om_kafka_la_LIBADD =
-am__om_kafka_la_SOURCES_DIST = om_kafka.c om_kafka.h
-@HAVE_LIBKAFKA_TRUE@am_om_kafka_la_OBJECTS = om_kafka.lo
+am_om_kafka_la_OBJECTS = om_kafka.lo
 om_kafka_la_OBJECTS = $(am_om_kafka_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -140,7 +139,6 @@ am__v_lt_1 =
 om_kafka_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(om_kafka_la_LDFLAGS) $(LDFLAGS) -o $@
-@HAVE_LIBKAFKA_TRUE@am_om_kafka_la_rpath = -rpath $(om_kafkadir)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -176,7 +174,7 @@ am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(om_kafka_la_SOURCES)
-DIST_SOURCES = $(am__om_kafka_la_SOURCES_DIST)
+DIST_SOURCES = $(om_kafka_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -356,10 +354,10 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-@HAVE_LIBKAFKA_TRUE@om_kafka_LTLIBRARIES = om_kafka.la
-@HAVE_LIBKAFKA_TRUE@om_kafka_la_SOURCES = om_kafka.c om_kafka.h
-@HAVE_LIBKAFKA_TRUE@om_kafka_la_LDFLAGS = -module -no-undefined -avoid-version
-@HAVE_LIBKAFKA_TRUE@om_kafkadir = $(NX_MODULEDIR)/output
+om_kafka_LTLIBRARIES = om_kafka.la
+om_kafka_la_SOURCES = om_kafka.c om_kafka.h
+om_kafka_la_LDFLAGS = -module -no-undefined -avoid-version
+om_kafkadir = $(NX_MODULEDIR)/output
 all: all-am
 
 .SUFFIXES:
@@ -430,7 +428,7 @@ clean-om_kafkaLTLIBRARIES:
 	}
 
 om_kafka.la: $(om_kafka_la_OBJECTS) $(om_kafka_la_DEPENDENCIES) $(EXTRA_om_kafka_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(om_kafka_la_LINK) $(am_om_kafka_la_rpath) $(om_kafka_la_OBJECTS) $(om_kafka_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(om_kafka_la_LINK) -rpath $(om_kafkadir) $(om_kafka_la_OBJECTS) $(om_kafka_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

@@ -27,6 +27,7 @@ uname -v = #31-Ubuntu SMP Tue Jul 17 15:39:52 UTC 2018
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
+PATH: /home/kira/.local/bin
 PATH: /usr/local/sbin
 PATH: /usr/local/bin
 PATH: /usr/sbin
@@ -118,35 +119,35 @@ gcc: fatal error: no input files
 compilation terminated.
 configure:3585: $? = 1
 configure:3605: checking whether the C compiler works
-configure:3627: gcc    conftest.c  >&5
+configure:3627: gcc -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  >&5
 configure:3631: $? = 0
 configure:3679: result: yes
 configure:3682: checking for C compiler default output file name
 configure:3684: result: a.out
 configure:3690: checking for suffix of executables
-configure:3697: gcc -o conftest    conftest.c  >&5
+configure:3697: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  >&5
 configure:3701: $? = 0
 configure:3723: result: 
 configure:3745: checking whether we are cross compiling
-configure:3753: gcc -o conftest    conftest.c  >&5
+configure:3753: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  >&5
 configure:3757: $? = 0
 configure:3764: ./conftest
 configure:3768: $? = 0
 configure:3783: result: no
 configure:3788: checking for suffix of object files
-configure:3810: gcc -c   conftest.c >&5
+configure:3810: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:3814: $? = 0
 configure:3835: result: o
 configure:3839: checking whether we are using the GNU C compiler
-configure:3858: gcc -c   conftest.c >&5
+configure:3858: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:3858: $? = 0
 configure:3867: result: yes
 configure:3876: checking whether gcc accepts -g
-configure:3896: gcc -c -g  conftest.c >&5
+configure:3896: gcc -c -g -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:3896: $? = 0
 configure:3937: result: yes
 configure:3954: checking for gcc option to accept ISO C89
-configure:4017: gcc  -c   conftest.c >&5
+configure:4017: gcc  -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:4017: $? = 0
 configure:4030: result: none needed
 configure:4055: checking whether gcc understands -c and -o together
@@ -181,7 +182,7 @@ configure:5166: result: yes
 configure:5178: checking for BSD- or MS-compatible name lister (nm)
 configure:5232: result: /usr/bin/nm -B
 configure:5362: checking the name lister (/usr/bin/nm -B) interface
-configure:5369: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:5369: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:5372: /usr/bin/nm -B "conftest.o"
 configure:5375: output
 0000000000000000 B some_variable
@@ -206,7 +207,7 @@ configure:6206: checking for ar
 configure:6222: found /usr/bin/ar
 configure:6233: result: ar
 configure:6270: checking for archiver @FILE support
-configure:6287: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:6287: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:6287: $? = 0
 configure:6290: ar cru libconftest.a @conftest.lst >&5
 ar: `u' modifier ignored since `D' is the default (see `U')
@@ -223,11 +224,11 @@ configure:6470: checking for ranlib
 configure:6486: found /usr/bin/ranlib
 configure:6497: result: ranlib
 configure:6599: checking command to parse /usr/bin/nm -B output from gcc object
-configure:6752: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:6752: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:6755: $? = 0
 configure:6759: /usr/bin/nm -B conftest.o \| sed -n -e 's/^.*[ ]\([ABCDGIRSTW][ABCDGIRSTW]*\)[ ][ ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p' | sed '/ __gnu_lto/d' \> conftest.nm
 configure:6762: $? = 0
-configure:6828: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c conftstm.o >&5
+configure:6828: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c conftstm.o >&5
 configure:6831: $? = 0
 configure:6869: result: ok
 configure:6916: checking for sysroot
@@ -236,7 +237,7 @@ configure:6953: checking for a working dd
 configure:6991: result: /bin/dd
 configure:6995: checking how to truncate binary pipes
 configure:7010: result: /bin/dd bs=4096 count=1
-configure:7146: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:7146: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:7149: $? = 0
 configure:7339: checking for mt
 configure:7355: found /bin/mt
@@ -245,9 +246,9 @@ configure:7389: checking if mt is a manifest tool
 configure:7395: mt '-?'
 configure:7403: result: no
 configure:8080: checking how to run the C preprocessor
-configure:8111: gcc -E  conftest.c
+configure:8111: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:8111: $? = 0
-configure:8125: gcc -E  conftest.c
+configure:8125: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 conftest.c:11:10: fatal error: ac_nonexistent.h: No such file or directory
  #include <ac_nonexistent.h>
           ^~~~~~~~~~~~~~~~~~
@@ -266,9 +267,9 @@ configure: failed program was:
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
 configure:8150: result: gcc -E
-configure:8170: gcc -E  conftest.c
+configure:8170: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:8170: $? = 0
-configure:8184: gcc -E  conftest.c
+configure:8184: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 conftest.c:11:10: fatal error: ac_nonexistent.h: No such file or directory
  #include <ac_nonexistent.h>
           ^~~~~~~~~~~~~~~~~~
@@ -287,70 +288,70 @@ configure: failed program was:
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
 configure:8213: checking for ANSI C header files
-configure:8233: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8233: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8233: $? = 0
-configure:8306: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:8306: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:8306: $? = 0
 configure:8306: ./conftest
 configure:8306: $? = 0
 configure:8317: result: yes
 configure:8330: checking for sys/types.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for sys/stat.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for stdlib.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for string.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for memory.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for strings.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for inttypes.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for stdint.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8330: checking for unistd.h
-configure:8330: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8330: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8330: $? = 0
 configure:8330: result: yes
 configure:8344: checking for dlfcn.h
-configure:8344: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:8344: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:8344: $? = 0
 configure:8344: result: yes
 configure:8598: checking for objdir
 configure:8613: result: .libs
 configure:8873: checking if gcc supports -fno-rtti -fno-exceptions
-configure:8891: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  -fno-rtti -fno-exceptions conftest.c >&5
+configure:8891: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -fno-rtti -fno-exceptions conftest.c >&5
 cc1: warning: command line option '-fno-rtti' is valid for C++/ObjC++ but not for C
 configure:8895: $? = 0
 configure:8908: result: no
 configure:9266: checking for gcc option to produce PIC
 configure:9273: result: -fPIC -DPIC
 configure:9281: checking if gcc PIC flag -fPIC -DPIC works
-configure:9299: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  -fPIC -DPIC -DPIC conftest.c >&5
+configure:9299: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -DPIC -DPIC conftest.c >&5
 configure:9303: $? = 0
 configure:9316: result: yes
 configure:9345: checking if gcc static flag -static works
 configure:9373: result: yes
 configure:9388: checking if gcc supports -c -o file.o
-configure:9409: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  -o out/conftest2.o conftest.c >&5
+configure:9409: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -o out/conftest2.o conftest.c >&5
 configure:9413: $? = 0
 configure:9435: result: yes
 configure:9443: checking if gcc supports -c -o file.o
@@ -358,13 +359,13 @@ configure:9490: result: yes
 configure:9523: checking whether the gcc linker (/usr/bin/x86_64-linux-gnu-ld -m elf_x86_64) supports shared libraries
 configure:10786: result: yes
 configure:10823: checking whether -lc should be explicitly linked in
-configure:10831: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:10831: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:10834: $? = 0
 configure:10849: gcc -shared  -fPIC -DPIC conftest.o  -v -Wl,-soname -Wl,conftest -o conftest 2\>\&1 \| /bin/grep  -lc  \>/dev/null 2\>\&1
 configure:10852: $? = 0
 configure:10866: result: no
 configure:11026: checking dynamic linker characteristics
-configure:11607: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     -Wl,-rpath -Wl,/foo conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:11607: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   -Wl,-rpath -Wl,/foo conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:11607: $? = 0
 configure:11856: result: GNU/Linux ld.so
 configure:11978: checking how to hardcode library paths into programs
@@ -386,7 +387,7 @@ configure:12742: result: no
 configure:12712: checking for lex
 configure:12742: result: no
 configure:12869: checking for an Android system
-configure:12885: gcc -E  conftest.c
+configure:12885: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 conftest.c:24:2: error: #error __ANDROID__ not defined
  #error __ANDROID__ not defined
   ^~~~~
@@ -429,58 +430,61 @@ configure:12889: result: no
 configure:12906: checking for openssl
 configure:12922: found /usr/bin/openssl
 configure:12933: result: openssl
+configure:12955: checking for pcre-config
+configure:12973: found /usr/local/bin/pcre-config
+configure:12985: result: /usr/local/bin/pcre-config
 configure:13010: checking for apr_socket_create in -lapr-1
-configure:13035: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lapr-1    -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13035: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lapr-1    -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13035: $? = 0
 configure:13044: result: yes
 configure:13055: checking for apr_pollset_wakeup
-configure:13055: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13055: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13055: $? = 0
 configure:13055: result: yes
 configure:13055: checking for apr_sockaddr_ip_getbuf
-configure:13055: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13055: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13055: $? = 0
 configure:13055: result: yes
 configure:13055: checking for apr_file_sync
-configure:13055: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13055: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13055: $? = 0
 configure:13055: result: yes
 configure:13055: checking for apr_file_link
-configure:13055: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13055: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13055: $? = 0
 configure:13055: result: yes
 configure:13055: checking for apr_pool_create_unmanaged_ex
-configure:13055: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13055: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13055: $? = 0
 configure:13055: result: yes
 configure:13071: checking for dbi_initialize in -ldbi
-configure:13096: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -ldbi    -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13096: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -ldbi    -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13096: $? = 0
 configure:13105: result: yes
 configure:13117: checking dbi/dbi.h usability
-configure:13117: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13117: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13117: $? = 0
 configure:13117: result: yes
 configure:13117: checking dbi/dbi.h presence
-configure:13117: gcc -E  conftest.c
+configure:13117: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13117: $? = 0
 configure:13117: result: yes
 configure:13117: checking for dbi/dbi.h
 configure:13117: result: yes
 configure:13134: checking for dbi_initialize_r
-configure:13134: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -ldbi >&5
+configure:13134: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -ldbi >&5
 configure:13134: $? = 0
 configure:13134: result: yes
 configure:13155: checking for rd_kafka_conf_new in -lrdkafka
-configure:13180: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lrdkafka    -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
+configure:13180: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lrdkafka    -L/usr/lib/x86_64-linux-gnu -lapr-1  >&5
 configure:13180: $? = 0
 configure:13189: result: yes
 configure:13201: checking librdkafka/rdkafka.h usability
-configure:13201: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13201: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13201: $? = 0
 configure:13201: result: yes
 configure:13201: checking librdkafka/rdkafka.h presence
-configure:13201: gcc -E  conftest.c
+configure:13201: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13201: $? = 0
 configure:13201: result: yes
 configure:13201: checking for librdkafka/rdkafka.h
@@ -488,141 +492,141 @@ configure:13201: result: yes
 configure:13225: checking for ANSI C header files
 configure:13329: result: yes
 configure:13339: checking syslog.h usability
-configure:13339: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13339: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13339: $? = 0
 configure:13339: result: yes
 configure:13339: checking syslog.h presence
-configure:13339: gcc -E  conftest.c
+configure:13339: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13339: $? = 0
 configure:13339: result: yes
 configure:13339: checking for syslog.h
 configure:13339: result: yes
 configure:13351: checking pcre.h usability
-configure:13351: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13351: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13351: $? = 0
 configure:13351: result: yes
 configure:13351: checking pcre.h presence
-configure:13351: gcc -E  conftest.c
+configure:13351: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13351: $? = 0
 configure:13351: result: yes
 configure:13351: checking for pcre.h
 configure:13351: result: yes
 configure:13363: checking whether PCRE_ERROR_BADUTF8 is declared
-configure:13363: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13363: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13363: $? = 0
 configure:13363: result: yes
 configure:13379: checking whether PCRE_ERROR_BADUTF8_OFFSET is declared
-configure:13379: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13379: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13379: $? = 0
 configure:13379: result: yes
 configure:13399: checking openssl/evp.h usability
-configure:13399: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13399: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13399: $? = 0
 configure:13399: result: yes
 configure:13399: checking openssl/evp.h presence
-configure:13399: gcc -E  conftest.c
+configure:13399: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13399: $? = 0
 configure:13399: result: yes
 configure:13399: checking for openssl/evp.h
 configure:13399: result: yes
 configure:13415: checking for EVP_CIPHER_CTX_init in -lcrypto
-configure:13440: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lcrypto -L/usr/local/lib   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13440: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lcrypto -L/usr/local/lib   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13440: $? = 0
 configure:13449: result: yes
 configure:13462: checking for SSL_library_init in -lssl
-configure:13487: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lssl -L/usr/local/lib -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13487: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lssl -L/usr/local/lib -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13487: $? = 0
 configure:13496: result: yes
 configure:13512: checking for EVP_md5
-configure:13512: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13512: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13512: $? = 0
 configure:13512: result: yes
 configure:13512: checking for EVP_sha1
-configure:13512: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13512: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13512: $? = 0
 configure:13512: result: yes
 configure:13512: checking for EVP_sha256
-configure:13512: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13512: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13512: $? = 0
 configure:13512: result: yes
 configure:13512: checking for EVP_sha512
-configure:13512: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13512: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13512: $? = 0
 configure:13512: result: yes
 configure:13512: checking for EVP_ripemd160
-configure:13512: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
+configure:13512: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lssl -lcrypto   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -lcrypto -lssl >&5
 configure:13512: $? = 0
 configure:13512: result: yes
 configure:13525: checking for klogctl
-configure:13525: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13525: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13525: $? = 0
 configure:13525: result: yes
 configure:13539: checking sys/klog.h usability
-configure:13539: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13539: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13539: $? = 0
 configure:13539: result: yes
 configure:13539: checking sys/klog.h presence
-configure:13539: gcc -E  conftest.c
+configure:13539: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13539: $? = 0
 configure:13539: result: yes
 configure:13539: checking for sys/klog.h
 configure:13539: result: yes
 configure:13551: checking grp.h usability
-configure:13551: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13551: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13551: $? = 0
 configure:13551: result: yes
 configure:13551: checking grp.h presence
-configure:13551: gcc -E  conftest.c
+configure:13551: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13551: $? = 0
 configure:13551: result: yes
 configure:13551: checking for grp.h
 configure:13551: result: yes
 configure:13564: checking for getgrouplist
-configure:13564: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13564: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13564: $? = 0
 configure:13564: result: yes
 configure:13564: checking for setgroups
-configure:13564: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13564: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13564: $? = 0
 configure:13564: result: yes
 configure:13575: checking for XML_Parse in -lexpat
-configure:13600: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lexpat    -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13600: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lexpat    -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13600: $? = 0
 configure:13609: result: yes
 configure:13620: checking for pcre.h
 configure:13620: result: yes
 configure:13633: checking zlib.h usability
-configure:13633: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13633: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13633: $? = 0
 configure:13633: result: yes
 configure:13633: checking zlib.h presence
-configure:13633: gcc -E  conftest.c
+configure:13633: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13633: $? = 0
 configure:13633: result: yes
 configure:13633: checking for zlib.h
 configure:13633: result: yes
 configure:13635: checking for deflate in -lz
-configure:13660: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lz    -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13660: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lz    -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13660: $? = 0
 configure:13669: result: yes
 configure:13700: checking sys/prctl.h usability
-configure:13700: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13700: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13700: $? = 0
 configure:13700: result: yes
 configure:13700: checking sys/prctl.h presence
-configure:13700: gcc -E  conftest.c
+configure:13700: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13700: $? = 0
 configure:13700: result: yes
 configure:13700: checking for sys/prctl.h
 configure:13700: result: yes
 configure:13713: checking for prctl
-configure:13713: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13713: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13713: $? = 0
 configure:13713: result: yes
 configure:13713: checking for setpflags
-configure:13713: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
-/tmp/ccGqvbEb.o: In function `main':
-conftest.c:(.text+0xa): undefined reference to `setpflags'
+configure:13713: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+/tmp/ccOVtUwZ.o: In function `main':
+./conftest.c:86: undefined reference to `setpflags'
 collect2: error: ld returned 1 exit status
 configure:13713: $? = 1
 configure: failed program was:
@@ -717,21 +721,21 @@ configure: failed program was:
 | }
 configure:13713: result: no
 configure:13723: checking for cap_from_name in -lcap
-configure:13748: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c -lcap    -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13748: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c -lcap    -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13748: $? = 0
 configure:13757: result: yes
 configure:13775: checking sys/capability.h usability
-configure:13775: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13775: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13775: $? = 0
 configure:13775: result: yes
 configure:13775: checking sys/capability.h presence
-configure:13775: gcc -E  conftest.c
+configure:13775: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13775: $? = 0
 configure:13775: result: yes
 configure:13775: checking for sys/capability.h
 configure:13775: result: yes
 configure:13800: checking winevt.h usability
-configure:13800: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13800: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 conftest.c:86:10: fatal error: winevt.h: No such file or directory
  #include <winevt.h>
           ^~~~~~~~~~
@@ -826,7 +830,7 @@ configure: failed program was:
 | #include <winevt.h>
 configure:13800: result: no
 configure:13800: checking winevt.h presence
-configure:13800: gcc -E  conftest.c
+configure:13800: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 conftest.c:53:10: fatal error: winevt.h: No such file or directory
  #include <winevt.h>
           ^~~~~~~~~~
@@ -890,43 +894,43 @@ configure:13800: result: no
 configure:13800: checking for winevt.h
 configure:13800: result: no
 configure:13814: checking execinfo.h usability
-configure:13814: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13814: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13814: $? = 0
 configure:13814: result: yes
 configure:13814: checking execinfo.h presence
-configure:13814: gcc -E  conftest.c
+configure:13814: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13814: $? = 0
 configure:13814: result: yes
 configure:13814: checking for execinfo.h
 configure:13814: result: yes
 configure:13826: checking for backtrace_symbols
-configure:13826: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13826: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13826: $? = 0
 configure:13826: result: yes
 configure:13839: checking for iconv_open
-configure:13839: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13839: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13839: $? = 0
 configure:13839: result: yes
 configure:13851: checking langinfo.h usability
-configure:13851: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13851: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13851: $? = 0
 configure:13851: result: yes
 configure:13851: checking langinfo.h presence
-configure:13851: gcc -E  conftest.c
+configure:13851: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:13851: $? = 0
 configure:13851: result: yes
 configure:13851: checking for langinfo.h
 configure:13851: result: yes
 configure:13866: checking for nl_langinfo
-configure:13866: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:13866: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:13866: $? = 0
 configure:13866: result: yes
 configure:13977: checking for struct tm.tm_gmtoff
-configure:13977: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13977: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:13977: $? = 0
 configure:13977: result: yes
 configure:13989: checking for struct tm.__tm_gmtoff
-configure:13989: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13989: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:67:13: error: 'struct tm' has no member named '__tm_gmtoff'; did you mean 'tm_gmtoff'?
  if (ac_aggr.__tm_gmtoff)
@@ -1005,7 +1009,7 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:13989: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:13989: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:67:20: error: 'struct tm' has no member named '__tm_gmtoff'; did you mean 'tm_gmtoff'?
  if (sizeof ac_aggr.__tm_gmtoff)
@@ -1086,19 +1090,19 @@ configure: failed program was:
 | }
 configure:13989: result: no
 configure:14006: checking for strptime
-configure:14006: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:14006: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:14006: $? = 0
 configure:14006: result: yes
 configure:14023: checking for chown
-configure:14023: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:14023: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:14023: $? = 0
 configure:14023: result: yes
 configure:14023: checking for chmod
-configure:14023: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE     conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
+configure:14023: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
 configure:14023: $? = 0
 configure:14023: result: yes
 configure:14034: checking whether AF_UNIX is declared
-configure:14034: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:14034: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14034: $? = 0
 configure:14034: result: yes
 configure:14062: checking whether xm_perl is set/enabled
@@ -1107,121 +1111,121 @@ configure:14117: checking for perl
 configure:14133: found /usr/bin/perl
 configure:14144: result: perl
 configure:14168: checking for perl_parse
-configure:14168: gcc -o conftest    -DLINUX -D_REENTRANT -D_GNU_SOURCE  -D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fwrapv -fno-strict-aliasing -pipe -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/lib/x86_64-linux-gnu/perl/5.26/CORE      conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -Wl,-E  -fstack-protector-strong -L/usr/local/lib  -L/usr/lib/x86_64-linux-gnu/perl/5.26/CORE -lperl -ldl -lm -lpthread -lc -lcrypt >&5
+configure:14168: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE  -D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fwrapv -fno-strict-aliasing -pipe -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -I/usr/lib/x86_64-linux-gnu/perl/5.26/CORE  -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz -Wl,-E  -fstack-protector-strong -L/usr/local/lib  -L/usr/lib/x86_64-linux-gnu/perl/5.26/CORE -lperl -ldl -lm -lpthread -lc -lcrypt >&5
 configure:14168: $? = 0
 configure:14168: result: yes
 configure:14243: checking whether documentation is set/enabled
 configure:14285: result: no
 configure:14318: checking utmp.h usability
-configure:14318: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE  conftest.c >&5
+configure:14318: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14318: $? = 0
 configure:14318: result: yes
 configure:14318: checking utmp.h presence
-configure:14318: gcc -E  conftest.c
+configure:14318: gcc -E -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c
 configure:14318: $? = 0
 configure:14318: result: yes
 configure:14318: checking for utmp.h
 configure:14318: result: yes
 configure:14346: checking whether gcc accepts -Werror
-configure:14363: gcc -c -Werror  conftest.c >&5
+configure:14363: gcc -c -Werror -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14363: $? = 0
 configure:14371: result: yes
 configure:14374: checking whether gcc accepts -pipe
-configure:14400: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe  conftest.c >&5
+configure:14400: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14400: $? = 0
 configure:14408: result: -pipe
 configure:14413: checking whether gcc accepts -W
-configure:14439: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W  conftest.c >&5
+configure:14439: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14439: $? = 0
 configure:14447: result: -W
 configure:14452: checking whether gcc accepts -Wall
-configure:14478: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall  conftest.c >&5
+configure:14478: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14478: $? = 0
 configure:14486: result: -Wall
 configure:14491: checking whether gcc accepts -Wshadow
-configure:14517: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow  conftest.c >&5
+configure:14517: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14517: $? = 0
 configure:14525: result: -Wshadow
 configure:14530: checking whether gcc accepts -Wno-address
-configure:14556: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address  conftest.c >&5
+configure:14556: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14556: $? = 0
 configure:14564: result: -Wno-address
 configure:14570: checking whether gcc accepts -Wcast-qual
-configure:14596: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual  conftest.c >&5
+configure:14596: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14596: $? = 0
 configure:14604: result: -Wcast-qual
 configure:14609: checking whether gcc accepts -Wbad-function-cast
-configure:14635: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast  conftest.c >&5
+configure:14635: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14635: $? = 0
 configure:14643: result: -Wbad-function-cast
 configure:14648: checking whether gcc accepts -Wsign-compare
-configure:14674: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare  conftest.c >&5
+configure:14674: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14674: $? = 0
 configure:14682: result: -Wsign-compare
 configure:14687: checking whether gcc accepts -Wconversion
-configure:14713: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion  conftest.c >&5
+configure:14713: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14713: $? = 0
 configure:14721: result: -Wconversion
 configure:14726: checking whether gcc accepts -funsigned-char
-configure:14752: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char  conftest.c >&5
+configure:14752: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14752: $? = 0
 configure:14760: result: -funsigned-char
 configure:14765: checking whether gcc accepts -Werror-implicit-function-declaration
-configure:14791: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration  conftest.c >&5
+configure:14791: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14791: $? = 0
 configure:14799: result: -Werror-implicit-function-declaration
 configure:14804: checking whether gcc accepts -Wswitch-default
-configure:14830: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default  conftest.c >&5
+configure:14830: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14830: $? = 0
 configure:14838: result: -Wswitch-default
 configure:14843: checking whether gcc accepts -fstrict-aliasing
-configure:14869: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing  conftest.c >&5
+configure:14869: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14869: $? = 0
 configure:14877: result: -fstrict-aliasing
 configure:14882: checking whether gcc accepts -Wpointer-arith
-configure:14908: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith  conftest.c >&5
+configure:14908: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14908: $? = 0
 configure:14916: result: -Wpointer-arith
 configure:14921: checking whether gcc accepts -Wcast-align
-configure:14947: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align  conftest.c >&5
+configure:14947: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14947: $? = 0
 configure:14955: result: -Wcast-align
 configure:14960: checking whether gcc accepts -Wwrite-strings
-configure:14986: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings  conftest.c >&5
+configure:14986: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:14986: $? = 0
 configure:14994: result: -Wwrite-strings
 configure:14999: checking whether gcc accepts -Wmissing-noreturn
-configure:15025: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn  conftest.c >&5
+configure:15025: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15025: $? = 0
 configure:15033: result: -Wmissing-noreturn
 configure:15038: checking whether gcc accepts -Wmissing-format-attribute
-configure:15064: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute  conftest.c >&5
+configure:15064: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15064: $? = 0
 configure:15072: result: -Wmissing-format-attribute
 configure:15077: checking whether gcc accepts -Wformat
-configure:15103: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat  conftest.c >&5
+configure:15103: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15103: $? = 0
 configure:15111: result: -Wformat
 configure:15116: checking whether gcc accepts -Wextra
-configure:15142: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra  conftest.c >&5
+configure:15142: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15142: $? = 0
 configure:15150: result: -Wextra
 configure:15155: checking whether gcc accepts -Werror=format-security
-configure:15181: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security  conftest.c >&5
+configure:15181: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15181: $? = 0
 configure:15189: result: -Werror=format-security
 configure:15202: checking whether gcc accepts -rdynamic
-configure:15228: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic  conftest.c >&5
+configure:15228: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15228: $? = 0
 configure:15236: result: -rdynamic
 configure:15255: checking for special C compiler options needed for large files
 configure:15300: result: no
 configure:15306: checking for _FILE_OFFSET_BITS value needed for large files
-configure:15331: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic  conftest.c >&5
+configure:15331: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15331: $? = 0
 configure:15363: result: no
 configure:15452: checking whether gcc accepts -ggdb3 -g3
-configure:15478: gcc -c    -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -ggdb3  conftest.c >&5
+configure:15478: gcc -c -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -ggdb3 -Wdate-time -D_FORTIFY_SOURCE=2 conftest.c >&5
 configure:15478: $? = 0
 configure:15486: result: -ggdb3
 configure:15689: checking that generated files are newer than configure
@@ -1243,73 +1247,73 @@ generated by GNU Autoconf 2.69.  Invocation command line was
 
 on kira-Parallels-Virtual-Platform
 
-config.status:1250: creating Makefile
-config.status:1250: creating doc/Makefile
-config.status:1250: creating doc/reference-manual/Makefile
-config.status:1250: creating doc/reference-manual/config-examples/Makefile
-config.status:1250: creating doc/reference-manual/en/Makefile
-config.status:1250: creating doc/reference-manual/hu/Makefile
-config.status:1250: creating test/Makefile
-config.status:1250: creating test/common/Makefile
-config.status:1250: creating test/coresrc/Makefile
-config.status:1250: creating src/Makefile
-config.status:1250: creating src/common/Makefile
-config.status:1250: creating src/core/Makefile
-config.status:1250: creating src/modules/Makefile
-config.status:1250: creating src/modules/input/Makefile
-config.status:1250: creating src/modules/input/file/Makefile
-config.status:1250: creating src/modules/input/uds/Makefile
-config.status:1250: creating src/modules/input/kernel/Makefile
-config.status:1250: creating src/modules/input/udp/Makefile
-config.status:1250: creating src/modules/input/tcp/Makefile
-config.status:1250: creating src/modules/input/ssl/Makefile
-config.status:1250: creating src/modules/input/testgen/Makefile
-config.status:1250: creating src/modules/input/null/Makefile
-config.status:1250: creating src/modules/input/mark/Makefile
-config.status:1250: creating src/modules/input/internal/Makefile
-config.status:1250: creating src/modules/input/dbi/Makefile
-config.status:1250: creating src/modules/input/exec/Makefile
-config.status:1250: creating src/modules/input/kafka/Makefile
-config.status:1250: creating src/modules/processor/Makefile
-config.status:1250: creating src/modules/processor/null/Makefile
-config.status:1250: creating src/modules/processor/filter/Makefile
-config.status:1250: creating src/modules/processor/transformer/Makefile
-config.status:1250: creating src/modules/processor/norepeat/Makefile
-config.status:1250: creating src/modules/processor/buffer/Makefile
-config.status:1250: creating src/modules/processor/blocker/Makefile
-config.status:1250: creating src/modules/processor/pattern/Makefile
-config.status:1250: creating src/modules/processor/evcorr/Makefile
-config.status:1250: creating src/modules/output/Makefile
-config.status:1250: creating src/modules/output/file/Makefile
-config.status:1250: creating src/modules/output/udp/Makefile
-config.status:1250: creating src/modules/output/tcp/Makefile
-config.status:1250: creating src/modules/output/ssl/Makefile
-config.status:1250: creating src/modules/output/null/Makefile
-config.status:1250: creating src/modules/output/dbi/Makefile
-config.status:1250: creating src/modules/output/blocker/Makefile
-config.status:1250: creating src/modules/output/uds/Makefile
-config.status:1250: creating src/modules/output/exec/Makefile
-config.status:1250: creating src/modules/output/http/Makefile
-config.status:1250: creating src/modules/output/kafka/Makefile
-config.status:1250: creating src/modules/extension/Makefile
-config.status:1250: creating src/modules/extension/syslog/Makefile
-config.status:1250: creating src/modules/extension/exec/Makefile
-config.status:1250: creating src/modules/extension/csv/Makefile
-config.status:1250: creating src/modules/extension/kvp/Makefile
-config.status:1250: creating src/modules/extension/charconv/Makefile
-config.status:1250: creating src/modules/extension/json/Makefile
-config.status:1250: creating src/modules/extension/json/yajl/Makefile
-config.status:1250: creating src/modules/extension/xml/Makefile
-config.status:1250: creating src/modules/extension/gelf/Makefile
-config.status:1250: creating src/modules/extension/fileop/Makefile
-config.status:1250: creating src/modules/extension/multiline/Makefile
-config.status:1250: creating src/modules/extension/perl/Makefile
-config.status:1250: creating src/modules/extension/wtmp/Makefile
-config.status:1250: creating src/utils/Makefile
-config.status:1250: creating src/common/config.h
-config.status:1431: src/common/config.h is unchanged
-config.status:1479: executing depfiles commands
-config.status:1479: executing libtool commands
+config.status:1251: creating Makefile
+config.status:1251: creating doc/Makefile
+config.status:1251: creating doc/reference-manual/Makefile
+config.status:1251: creating doc/reference-manual/config-examples/Makefile
+config.status:1251: creating doc/reference-manual/en/Makefile
+config.status:1251: creating doc/reference-manual/hu/Makefile
+config.status:1251: creating test/Makefile
+config.status:1251: creating test/common/Makefile
+config.status:1251: creating test/coresrc/Makefile
+config.status:1251: creating src/Makefile
+config.status:1251: creating src/common/Makefile
+config.status:1251: creating src/core/Makefile
+config.status:1251: creating src/modules/Makefile
+config.status:1251: creating src/modules/input/Makefile
+config.status:1251: creating src/modules/input/file/Makefile
+config.status:1251: creating src/modules/input/uds/Makefile
+config.status:1251: creating src/modules/input/kernel/Makefile
+config.status:1251: creating src/modules/input/udp/Makefile
+config.status:1251: creating src/modules/input/tcp/Makefile
+config.status:1251: creating src/modules/input/ssl/Makefile
+config.status:1251: creating src/modules/input/testgen/Makefile
+config.status:1251: creating src/modules/input/null/Makefile
+config.status:1251: creating src/modules/input/mark/Makefile
+config.status:1251: creating src/modules/input/internal/Makefile
+config.status:1251: creating src/modules/input/dbi/Makefile
+config.status:1251: creating src/modules/input/exec/Makefile
+config.status:1251: creating src/modules/input/kafka/Makefile
+config.status:1251: creating src/modules/processor/Makefile
+config.status:1251: creating src/modules/processor/null/Makefile
+config.status:1251: creating src/modules/processor/filter/Makefile
+config.status:1251: creating src/modules/processor/transformer/Makefile
+config.status:1251: creating src/modules/processor/norepeat/Makefile
+config.status:1251: creating src/modules/processor/buffer/Makefile
+config.status:1251: creating src/modules/processor/blocker/Makefile
+config.status:1251: creating src/modules/processor/pattern/Makefile
+config.status:1251: creating src/modules/processor/evcorr/Makefile
+config.status:1251: creating src/modules/output/Makefile
+config.status:1251: creating src/modules/output/file/Makefile
+config.status:1251: creating src/modules/output/udp/Makefile
+config.status:1251: creating src/modules/output/tcp/Makefile
+config.status:1251: creating src/modules/output/ssl/Makefile
+config.status:1251: creating src/modules/output/null/Makefile
+config.status:1251: creating src/modules/output/dbi/Makefile
+config.status:1251: creating src/modules/output/blocker/Makefile
+config.status:1251: creating src/modules/output/uds/Makefile
+config.status:1251: creating src/modules/output/exec/Makefile
+config.status:1251: creating src/modules/output/http/Makefile
+config.status:1251: creating src/modules/output/kafka/Makefile
+config.status:1251: creating src/modules/extension/Makefile
+config.status:1251: creating src/modules/extension/syslog/Makefile
+config.status:1251: creating src/modules/extension/exec/Makefile
+config.status:1251: creating src/modules/extension/csv/Makefile
+config.status:1251: creating src/modules/extension/kvp/Makefile
+config.status:1251: creating src/modules/extension/charconv/Makefile
+config.status:1251: creating src/modules/extension/json/Makefile
+config.status:1251: creating src/modules/extension/json/yajl/Makefile
+config.status:1251: creating src/modules/extension/xml/Makefile
+config.status:1251: creating src/modules/extension/gelf/Makefile
+config.status:1251: creating src/modules/extension/fileop/Makefile
+config.status:1251: creating src/modules/extension/multiline/Makefile
+config.status:1251: creating src/modules/extension/perl/Makefile
+config.status:1251: creating src/modules/extension/wtmp/Makefile
+config.status:1251: creating src/utils/Makefile
+config.status:1251: creating src/common/config.h
+config.status:1432: src/common/config.h is unchanged
+config.status:1480: executing depfiles commands
+config.status:1480: executing libtool commands
 
 ## ---------------- ##
 ## Cache variables. ##
@@ -1347,20 +1351,20 @@ ac_cv_env_APRCONFIG_set=
 ac_cv_env_APRCONFIG_value=
 ac_cv_env_CC_set=
 ac_cv_env_CC_value=
-ac_cv_env_CFLAGS_set=
-ac_cv_env_CFLAGS_value=
-ac_cv_env_CPPFLAGS_set=
-ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value='-g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security'
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value='-Wdate-time -D_FORTIFY_SOURCE=2'
 ac_cv_env_CPP_set=
 ac_cv_env_CPP_value=
-ac_cv_env_LDFLAGS_set=
-ac_cv_env_LDFLAGS_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value='-Wl,-Bsymbolic-functions -Wl,-z,relro'
 ac_cv_env_LIBS_set=
 ac_cv_env_LIBS_value=
 ac_cv_env_LT_SYS_LIBRARY_PATH_set=
 ac_cv_env_LT_SYS_LIBRARY_PATH_value=
-ac_cv_env_PCRECONFIG_set=set
-ac_cv_env_PCRECONFIG_value=/usr/local/bin/pcre-config
+ac_cv_env_PCRECONFIG_set=
+ac_cv_env_PCRECONFIG_value=
 ac_cv_env_YACC_set=
 ac_cv_env_YACC_value=
 ac_cv_env_YFLAGS_set=
@@ -1442,6 +1446,7 @@ ac_cv_path_apr_config=/usr/bin/apr-1-config
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_lt_DD=/bin/dd
 ac_cv_path_mkdir=/bin/mkdir
+ac_cv_path_pcre_config=/usr/local/bin/pcre-config
 ac_cv_prog_AWK=mawk
 ac_cv_prog_CPP='gcc -E'
 ac_cv_prog_OPENSSL=openssl
@@ -1520,10 +1525,10 @@ BUILD_XM_WTMP_FALSE='#'
 BUILD_XM_WTMP_TRUE=''
 CC='gcc'
 CCDEPMODE='depmode=gcc3'
-CFLAGS='   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -ggdb3'
+CFLAGS='-g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -ggdb3'
 CLEANFILES='*~'
 CPP='gcc -E'
-CPPFLAGS=''
+CPPFLAGS='-Wdate-time -D_FORTIFY_SOURCE=2'
 CYGPATH_W='echo'
 DEFS='-DHAVE_CONFIG_H'
 DEPDIR='.deps'
@@ -1557,7 +1562,7 @@ INSTALL_PROGRAM='${INSTALL}'
 INSTALL_SCRIPT='${INSTALL}'
 INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
 LD='/usr/bin/x86_64-linux-gnu-ld -m elf_x86_64'
-LDFLAGS='  '
+LDFLAGS='-Wl,-Bsymbolic-functions -Wl,-z,relro  '
 LEX=':'
 LEXLIB=''
 LEX_OUTPUT_ROOT=''
@@ -1598,7 +1603,7 @@ PACKAGE_TARNAME='nxlog-ce'
 PACKAGE_URL=''
 PACKAGE_VERSION='2.10.16'
 PATH_SEPARATOR=':'
-PCRECONFIG='/usr/local/bin/pcre-config'
+PCRECONFIG=''
 PCRE_CFLAGS='-I/usr/local/include'
 PCRE_LIBS='-L/usr/local/lib -lpcre'
 PERL='perl'
