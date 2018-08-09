@@ -129,7 +129,8 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(om_kafkadir)"
 LTLIBRARIES = $(om_kafka_LTLIBRARIES)
-om_kafka_la_LIBADD =
+am__DEPENDENCIES_1 =
+om_kafka_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am_om_kafka_la_OBJECTS = om_kafka.lo
 om_kafka_la_OBJECTS = $(am_om_kafka_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -358,6 +359,7 @@ om_kafka_LTLIBRARIES = om_kafka.la
 om_kafka_la_SOURCES = om_kafka.c om_kafka.h
 om_kafka_la_LDFLAGS = -module -no-undefined -avoid-version
 om_kafkadir = $(NX_MODULEDIR)/output
+om_kafka_la_LIBADD = $(LIBKAFKA) $(LIBNX)
 all: all-am
 
 .SUFFIXES:

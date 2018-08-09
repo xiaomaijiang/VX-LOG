@@ -625,7 +625,7 @@ configure:13713: $? = 0
 configure:13713: result: yes
 configure:13713: checking for setpflags
 configure:13713: gcc -o conftest -g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro   conftest.c   -L/usr/lib/x86_64-linux-gnu -lapr-1  -lrdkafka -lrt -lz >&5
-/tmp/ccOVtUwZ.o: In function `main':
+/tmp/cc5REjtf.o: In function `main':
 ./conftest.c:86: undefined reference to `setpflags'
 collect2: error: ld returned 1 exit status
 configure:13713: $? = 1

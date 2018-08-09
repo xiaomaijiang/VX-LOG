@@ -66,6 +66,8 @@ static void om_kafka_config(nx_module_t *module)
 	curr = module->directives;
 	modconf = apr_pcalloc(module->pool, sizeof(nx_om_kafka_conf_t));
 	module->config = modconf;
+	modconf->options = apr_array_make(module->pool, 5, sizeof(const nx_om_kafka_conf_t *));
+
 	modconf->partition = RD_KAFKA_PARTITION_UA;
 
 	while (curr != NULL)
