@@ -3,7 +3,7 @@
 #include "../../../common/error_debug.h"
 #include "../../../common/alloc.h"
 #include "im_kafka.h"
-
+#include <apr_lib.h>
 #include <librdkafka/rdkafka.h>
 
 #define NX_LOGMODULE NX_LOGMODULE_MODULE
@@ -15,7 +15,7 @@ static void im_kafka_add_poll_event(nx_module_t *module)
 {
     nx_event_t *event;
     nx_im_kafka_conf_t *imconf;
-    
+
     imconf = (nx_im_kafka_conf_t *)module->config;
     event = nx_event_new();
     imconf->event = event;
@@ -134,9 +134,10 @@ static void im_kafka_init(nx_module_t *module)
 {
     log_debug("Kafka module init entrypoint");
     char errstr[512];
+    int i;
     nx_im_kafka_conf_t *modconf;
     modconf = (nx_im_kafka_conf_t *)module->config;
-
+    nx_im_kafka_option_t *option;
     rd_kafka_conf_t *conf;
     rd_kafka_topic_conf_t *topic_conf;
 
@@ -157,6 +158,18 @@ static void im_kafka_init(nx_module_t *module)
         log_info("Kafka compression set to %s", modconf->compression);
     }
 
+    for (i = 0; i < modconf->options->nelts; i++)
+    {
+        option = ((nx_im_kafka_option_t **)modconf->options->elts)[i];
+        if (rd_kafka_conf_set(conf, option->name, option->value, errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK)
+        {
+            log_error("Unable to set Options %s=%s", option->name, option->value);
+        }
+        else
+        {
+            log_info("Kafka Options %s set to %s", option->name, option->value);
+        }
+    }
     if (rd_kafka_topic_conf_set(topic_conf, "offset.store.method",
                                 "broker",
                                 errstr, sizeof(errstr)) !=
@@ -164,15 +177,6 @@ static void im_kafka_init(nx_module_t *module)
     {
         fprintf(stderr, "%% %s\n", errstr);
         return -1;
-    }
-
-    if (rd_kafka_conf_set(conf, "group.id", modconf->groupid, errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK)
-    {
-        log_error("Unable to set groupid %s", modconf->groupid);
-    }
-    else
-    {
-        log_info("Kafka groupid set to %s", modconf->groupid);
     }
 
     rd_kafka_conf_set_default_topic_conf(conf, topic_conf);
@@ -208,6 +212,37 @@ static void im_kafka_init(nx_module_t *module)
     modconf->topic_conf = topic_conf;
 }
 
+static boolean im_kafka_add_option(nx_module_t *module, char *optionstr)
+{
+    nx_im_kafka_option_t *option;
+    nx_im_kafka_conf_t *imconf;
+    char *ptr;
+
+    imconf = (nx_im_kafka_conf_t *)module->config;
+
+    for (ptr = optionstr; (*ptr != '\0') && (!apr_isspace(*ptr)); ptr++)
+        ;
+    while (apr_isspace(*ptr))
+    {
+        *ptr = '\0';
+        ptr++;
+    }
+
+    if (*ptr == '\0')
+    {
+        return (FALSE);
+    }
+    log_debug("im_dbi option %s = %s", optionstr, ptr);
+
+    option = apr_pcalloc(module->pool, sizeof(nx_im_kafka_option_t));
+    option->name = optionstr;
+    option->value = ptr;
+
+    *((nx_im_kafka_option_t **)apr_array_push(imconf->options)) = option;
+
+    return (TRUE);
+}
+
 static void im_kafka_config(nx_module_t *module)
 {
     const nx_directive_t *volatile curr;
@@ -216,6 +251,9 @@ static void im_kafka_config(nx_module_t *module)
     curr = module->directives;
     modconf = apr_pcalloc(module->pool, sizeof(nx_im_kafka_conf_t));
     module->config = modconf;
+
+    modconf->options = apr_array_make(module->pool, 5, sizeof(const nx_im_kafka_conf_t *));
+
     while (curr != NULL)
     {
         if (nx_module_common_keyword(curr->directive) == TRUE)
@@ -237,13 +275,12 @@ static void im_kafka_config(nx_module_t *module)
         {
             modconf->partition = curr->args;
         }
-        else if (strcasecmp(curr->directive, "groupid") == 0)
+        else if (strcasecmp(curr->directive, "option") == 0)
         {
-            modconf->groupid = curr->args;
-        }
-        else
-        {
-            log_warn("Kafka input module ignored directive \"%s\" set to \"%s\"\n", curr->directive, curr->args);
+            if (im_kafka_add_option(module, curr->args) == FALSE)
+            {
+                nx_conf_error(curr, "invalid option %s", curr->args);
+            }
         }
         curr = curr->next;
     }

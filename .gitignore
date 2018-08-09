@@ -13,7 +13,7 @@ cache
 **/nxlog-processor
 **/nxlog-stmnt-verifier
 src/utils/stresstest
-
+testlog
 test/common/alloc-test
 test/common/configcache
 test/common/date
