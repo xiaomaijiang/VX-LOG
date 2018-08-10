@@ -8,6 +8,11 @@ VX-LOG is a data acquisition client based on Nxlog,and it will has some useful f
 
 line-number Info:line-number is a useful info when we collect data from file.we can use line-number info to do something like `search log arround n line`
 
+## Improve im_mark Info
+
+im_mark Input Module used to monitor agent status,But Nxlog provide info is not
+ enough,so VX-LOG add VX-LOG cpu usage and memory usage 
+ 
 ## Kafka Input&&Kafka Output
 
 Thanks `https://github.com/filipealmeida/nxlog-kafka-output-module` provide Kafka Output Module,VX-Log integrate nxlog-kafka-output-module default.

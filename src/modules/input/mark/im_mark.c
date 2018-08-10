@@ -11,7 +11,7 @@
 #include "../../../common/event.h"
 #include "../../../common/error_debug.h"
 #include "../../../common/date.h"
-
+#include <sigar.h>
 #include "im_mark.h"
 
 #define NX_LOGMODULE NX_LOGMODULE_MODULE
@@ -32,15 +32,15 @@ static void im_mark_read(nx_module_t *module)
 
     ASSERT(module != NULL);
 
-    imconf = (nx_im_mark_conf_t *) module->config;
+    imconf = (nx_im_mark_conf_t *)module->config;
     imconf->event = NULL;
 
-    if ( nx_module_get_status(module) != NX_MODULE_STATUS_RUNNING )
+    if (nx_module_get_status(module) != NX_MODULE_STATUS_RUNNING)
     {
-	log_debug("module %s not running, not reading any more data", module->name);
-	return;
+        log_debug("module %s not running, not reading any more data", module->name);
+        return;
     }
- 
+
     apr_snprintf(buf, sizeof(buf), "%s", imconf->mark);
 
     logdata = nx_logdata_new();
@@ -52,7 +52,7 @@ static void im_mark_read(nx_module_t *module)
     nx_logdata_set_datetime(logdata, "EventTime", now);
 
     hoststr = nx_get_hostname();
-    nx_string_append(logdata->raw_event, hoststr->buf, (int) hoststr->len);
+    nx_string_append(logdata->raw_event, hoststr->buf, (int)hoststr->len);
     nx_string_append(logdata->raw_event, " ", 1);
     val = nx_value_new(NX_VALUE_TYPE_STRING);
     val->string = nx_string_clone(hoststr);
@@ -66,6 +66,13 @@ static void im_mark_read(nx_module_t *module)
     nx_logdata_set_string(logdata, "Severity", nx_loglevel_to_string(NX_LOGLEVEL_INFO));
     nx_logdata_set_string(logdata, "SourceName", PACKAGE);
     nx_logdata_set_integer(logdata, "ProcessID", imconf->pid);
+
+    sigar_proc_mem_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_mem);
+    nx_logdata_set_integer(logdata, "MemoryUsage", imconf->proc_mem.resident);
+
+    sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
+    nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
+
     //nx_logdata_to_syslog_rfc3164(logdata);
     nx_module_add_logdata_input(module, NULL, logdata);
 
@@ -78,8 +85,6 @@ static void im_mark_read(nx_module_t *module)
     event->priority = module->priority;
     nx_event_add(event);
 }
-
-
 
 static void im_mark_config(nx_module_t *module)
 {
@@ -94,70 +99,69 @@ static void im_mark_config(nx_module_t *module)
     imconf = apr_pcalloc(module->pool, sizeof(nx_im_mark_conf_t));
     module->config = imconf;
 
-    while ( curr != NULL )
+    while (curr != NULL)
     {
-	if ( nx_module_common_keyword(curr->directive) == TRUE )
-	{
-	}
-	else if ( strcasecmp(curr->directive, "MarkInterval") == 0 )
-	{
-	    if ( imconf->mark_interval != 0 )
-	    {
-		nx_conf_error(curr, "MarkInterval is already defined");
-	    }
-	    for ( ptr = curr->args; *ptr != '\0'; ptr++ )
-	    {
-		if ( ! apr_isdigit(*ptr) )
-		{
-		    nx_conf_error(curr, "invalid MarkInterval '%s', digit expected", curr->args);
-		}
-	    }	    
-	    if ( sscanf(curr->args, "%u", &mark_interval) != 1 )
-	    {
-		nx_conf_error(curr, "invalid MarkInterval '%s'", curr->args);
-	    }
-	    imconf->mark_interval = (int) mark_interval;
-	}
-	else if ( strcasecmp(curr->directive, "Mark") == 0 )
-	{
-	    if ( imconf->mark != NULL )
-	    {
-		nx_conf_error(curr, "Mark is already defined");
-	    }
-	    imconf->mark = curr->args;
-	}
-	else
-	{
-	    nx_conf_error(curr, "invalid keyword: %s", curr->directive);
-	}
-	curr = curr->next;
+        if (nx_module_common_keyword(curr->directive) == TRUE)
+        {
+        }
+        else if (strcasecmp(curr->directive, "MarkInterval") == 0)
+        {
+            if (imconf->mark_interval != 0)
+            {
+                nx_conf_error(curr, "MarkInterval is already defined");
+            }
+            for (ptr = curr->args; *ptr != '\0'; ptr++)
+            {
+                if (!apr_isdigit(*ptr))
+                {
+                    nx_conf_error(curr, "invalid MarkInterval '%s', digit expected", curr->args);
+                }
+            }
+            if (sscanf(curr->args, "%u", &mark_interval) != 1)
+            {
+                nx_conf_error(curr, "invalid MarkInterval '%s'", curr->args);
+            }
+            imconf->mark_interval = (int)mark_interval;
+        }
+        else if (strcasecmp(curr->directive, "Mark") == 0)
+        {
+            if (imconf->mark != NULL)
+            {
+                nx_conf_error(curr, "Mark is already defined");
+            }
+            imconf->mark = curr->args;
+        }
+        else
+        {
+            nx_conf_error(curr, "invalid keyword: %s", curr->directive);
+        }
+        curr = curr->next;
     }
 
-    if ( imconf->mark_interval == 0 )
+    if (imconf->mark_interval == 0)
     {
-	imconf->mark_interval = IM_MARK_DEFAULT_MARK_INTERVAL;
+        imconf->mark_interval = IM_MARK_DEFAULT_MARK_INTERVAL;
     }
-    if ( imconf->mark == NULL )
+    if (imconf->mark == NULL)
     {
-	imconf->mark = IM_MARK_DEFAULT_MARK;
+        imconf->mark = IM_MARK_DEFAULT_MARK;
     }
 }
-
-
 
 static void im_mark_start(nx_module_t *module)
 {
     nx_im_mark_conf_t *imconf;
     nx_event_t *event;
- 
+
     ASSERT(module->config != NULL);
 
-    imconf = (nx_im_mark_conf_t *) module->config;
+    imconf = (nx_im_mark_conf_t *)module->config;
 
     log_debug("mark interval: %d", imconf->mark_interval);
-  
-    imconf->pid = (int) getpid();
 
+    imconf->pid = (int)getpid();
+    ASSERT(SIGAR_OK == sigar_open(&imconf->sigar));
+    imconf->sigar_pid=sigar_pid_get(imconf->sigar);
     ASSERT(imconf->event == NULL);
     event = nx_event_new();
     imconf->event = event;
@@ -169,25 +173,21 @@ static void im_mark_start(nx_module_t *module)
     nx_event_add(event);
 }
 
-
-
 static void im_mark_stop(nx_module_t *module)
 {
     nx_im_mark_conf_t *imconf;
 
     ASSERT(module != NULL);
     ASSERT(module->config != NULL);
-    imconf = (nx_im_mark_conf_t *) module->config;
+    imconf = (nx_im_mark_conf_t *)module->config;
 
-    if ( imconf->event != NULL )
+    if (imconf->event != NULL)
     {
-	nx_event_remove(imconf->event);
-	nx_event_free(imconf->event);
-	imconf->event = NULL;
+        nx_event_remove(imconf->event);
+        nx_event_free(imconf->event);
+        imconf->event = NULL;
     }
 }
-
-
 
 static void im_mark_pause(nx_module_t *module)
 {
@@ -196,17 +196,15 @@ static void im_mark_pause(nx_module_t *module)
     ASSERT(module != NULL);
     ASSERT(module->config != NULL);
 
-    imconf = (nx_im_mark_conf_t *) module->config;
+    imconf = (nx_im_mark_conf_t *)module->config;
 
-    if ( imconf->event != NULL )
+    if (imconf->event != NULL)
     {
-	nx_event_remove(imconf->event);
-	nx_event_free(imconf->event);
-	imconf->event = NULL;
+        nx_event_remove(imconf->event);
+        nx_event_free(imconf->event);
+        imconf->event = NULL;
     }
 }
-
-
 
 static void im_mark_resume(nx_module_t *module)
 {
@@ -216,13 +214,13 @@ static void im_mark_resume(nx_module_t *module)
     ASSERT(module != NULL);
     ASSERT(module->config != NULL);
 
-    imconf = (nx_im_mark_conf_t *) module->config;
+    imconf = (nx_im_mark_conf_t *)module->config;
 
-    if ( imconf->event != NULL )
+    if (imconf->event != NULL)
     {
-	nx_event_remove(imconf->event);
-	nx_event_free(imconf->event);
-	imconf->event = NULL;
+        nx_event_remove(imconf->event);
+        nx_event_free(imconf->event);
+        imconf->event = NULL;
     }
     event = nx_event_new();
     imconf->event = event;
@@ -233,37 +231,33 @@ static void im_mark_resume(nx_module_t *module)
     nx_event_add(event);
 }
 
-
-
 static void im_mark_event(nx_module_t *module, nx_event_t *event)
 {
     ASSERT(event != NULL);
 
-    switch ( event->type )
+    switch (event->type)
     {
-	case NX_EVENT_READ:
-	    im_mark_read(module);
-	    break;
-	default:
-	    nx_panic("invalid event type: %d", event->type);
+    case NX_EVENT_READ:
+        im_mark_read(module);
+        break;
+    default:
+        nx_panic("invalid event type: %d", event->type);
     }
 }
 
-
-
 NX_MODULE_DECLARATION nx_im_mark_module =
-{
-    NX_MODULE_API_VERSION,
-    NX_MODULE_TYPE_INPUT,
-    NULL,			// capabilities
-    im_mark_config,		// config
-    im_mark_start,		// start
-    im_mark_stop, 		// stop
-    im_mark_pause,		// pause
-    im_mark_resume,		// resume
-    NULL,			// init
-    NULL,			// shutdown
-    im_mark_event,		// event
-    NULL,			// info
-    NULL,			// exports
+    {
+        NX_MODULE_API_VERSION,
+        NX_MODULE_TYPE_INPUT,
+        NULL,           // capabilities
+        im_mark_config, // config
+        im_mark_start,  // start
+        im_mark_stop,   // stop
+        im_mark_pause,  // pause
+        im_mark_resume, // resume
+        NULL,           // init
+        NULL,           // shutdown
+        im_mark_event,  // event
+        NULL,           // info
+        NULL,           // exports
 };

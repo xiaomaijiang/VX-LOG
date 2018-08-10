@@ -118,6 +118,9 @@
 /* Define to 1 if you have the `setpflags' function. */
 /* #undef HAVE_SETPFLAGS */
 
+/* Define to 1 if you have the <sigar.h> header file. */
+#define HAVE_SIGAR_H 1
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
 
@@ -179,7 +182,7 @@
 #define PACKAGE_NAME "nxlog-ce"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "nxlog-ce 2.10.16"
+#define PACKAGE_STRING "nxlog-ce 2.10.24"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "nxlog-ce"
@@ -188,16 +191,16 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.10.16"
+#define PACKAGE_VERSION "2.10.24"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "2.10.16"
+#define VERSION "2.10.24"
 
 /* version string */
-#define VERSION_STRING "2.10.16"
+#define VERSION_STRING "2.10.24"
 
 /* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
    `char[]'. */

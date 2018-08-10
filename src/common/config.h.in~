@@ -117,9 +117,6 @@
 /* Define to 1 if you have the `setpflags' function. */
 #undef HAVE_SETPFLAGS
 
-/* Define to 1 if you have the <sigar.h> header file. */
-#undef HAVE_SIGAR_H
-
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 

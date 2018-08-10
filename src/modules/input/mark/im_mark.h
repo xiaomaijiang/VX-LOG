@@ -16,6 +16,10 @@ typedef struct nx_im_mark_conf_t
     int		mark_interval;
     int		pid;
     nx_event_t *event;
+    sigar_t *sigar;
+    sigar_pid_t sigar_pid;
+    sigar_proc_mem_t proc_mem;
+    sigar_proc_cpu_t proc_cpu;
 } nx_im_mark_conf_t;
 
 
