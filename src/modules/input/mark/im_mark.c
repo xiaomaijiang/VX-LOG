@@ -161,6 +161,7 @@ static void im_mark_start(nx_module_t *module)
 
     imconf->pid = (int)getpid();
     ASSERT(SIGAR_OK == sigar_open(&imconf->sigar));
+    atexit(sigar_close(imconf->sigar));
     imconf->sigar_pid=sigar_pid_get(imconf->sigar);
     ASSERT(imconf->event == NULL);
     event = nx_event_new();
