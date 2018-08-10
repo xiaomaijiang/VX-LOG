@@ -20,6 +20,11 @@ git clone --depth=1 https://github.com/hyperic/sigar.git
 im_mark Input Module used to monitor agent status,But Nxlog provide info is not
  enough,so VX-LOG add VX-LOG cpu usage and memory usage 
 
+|Fields|Desc|
+|----|----|
+|MemoryUsage|VX-LOG Memory Usage|
+|CpuUsage|VX-LOG Cpu Usage| 
+
 ## Kafka Input&&Kafka Output
 
 Thanks `https://github.com/filipealmeida/nxlog-kafka-output-module` provide Kafka Output Module,VX-Log integrate nxlog-kafka-output-module default.
