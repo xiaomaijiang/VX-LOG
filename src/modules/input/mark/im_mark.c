@@ -73,6 +73,8 @@ static void im_mark_read(nx_module_t *module)
     sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
     nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
 
+    nx_logdata_set_string(logdata,"SystemName",imconf->sys_info.name);
+    nx_logdata_set_string(logdata,"SystemVersion",imconf->sys_info.version);
     //nx_logdata_to_syslog_rfc3164(logdata);
     nx_module_add_logdata_input(module, NULL, logdata);
 
@@ -163,6 +165,9 @@ static void im_mark_start(nx_module_t *module)
     ASSERT(SIGAR_OK == sigar_open(&imconf->sigar));
     atexit(sigar_close(imconf->sigar));
     imconf->sigar_pid=sigar_pid_get(imconf->sigar);
+
+    sigar_sys_info_get(imconf->sigar,&imconf->sys_info);
+
     ASSERT(imconf->event == NULL);
     event = nx_event_new();
     imconf->event = event;

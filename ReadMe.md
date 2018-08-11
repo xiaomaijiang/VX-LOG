@@ -24,6 +24,8 @@ im_mark Input Module used to monitor agent status,But Nxlog provide info is not
 |----|----|
 |MemoryUsage|VX-LOG Memory Usage|
 |CpuUsage|VX-LOG Cpu Usage| 
+|SystemName|Current System Name|
+|SystemVersion|Current System Version|
 
 ## Kafka Input&&Kafka Output
 

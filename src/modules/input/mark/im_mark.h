@@ -20,6 +20,7 @@ typedef struct nx_im_mark_conf_t
     sigar_pid_t sigar_pid;
     sigar_proc_mem_t proc_mem;
     sigar_proc_cpu_t proc_cpu;
+    sigar_sys_info_t sys_info;
 } nx_im_mark_conf_t;
 
 
