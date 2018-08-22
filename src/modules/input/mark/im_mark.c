@@ -21,6 +21,7 @@
 
 static void im_mark_read(nx_module_t *module)
 {
+    nx_exception_t e;
     nx_im_mark_conf_t *imconf;
     nx_logdata_t *logdata;
     nx_event_t *event;
@@ -67,14 +68,28 @@ static void im_mark_read(nx_module_t *module)
     nx_logdata_set_string(logdata, "SourceName", PACKAGE);
     nx_logdata_set_integer(logdata, "ProcessID", imconf->pid);
 
-    sigar_proc_mem_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_mem);
-    nx_logdata_set_integer(logdata, "MemoryUsage", imconf->proc_mem.resident);
+    try
+    {
+        sigar_proc_mem_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_mem);
+        nx_logdata_set_integer(logdata, "MemoryUsage", imconf->proc_mem.resident);
+    }
+    catch (e)
+    {
+        nx_logdata_set_integer(logdata, "MemoryUsage", 0);
+    }
 
-    sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
-    nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
-
-    nx_logdata_set_string(logdata,"SystemName",imconf->sys_info.name);
-    nx_logdata_set_string(logdata,"SystemVersion",imconf->sys_info.version);
+    try
+    {
+        sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
+        nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
+    }
+    catch (e)
+    {
+        nx_logdata_set_integer(logdata, "CpuUsage", 0);
+    }
+    
+    nx_logdata_set_string(logdata, "SystemName", imconf->sys_info.name);
+    nx_logdata_set_string(logdata, "SystemVersion", imconf->sys_info.version);
     //nx_logdata_to_syslog_rfc3164(logdata);
     nx_module_add_logdata_input(module, NULL, logdata);
 
@@ -164,9 +179,9 @@ static void im_mark_start(nx_module_t *module)
     imconf->pid = (int)getpid();
     ASSERT(SIGAR_OK == sigar_open(&imconf->sigar));
     atexit(sigar_close(imconf->sigar));
-    imconf->sigar_pid=sigar_pid_get(imconf->sigar);
+    imconf->sigar_pid = sigar_pid_get(imconf->sigar);
 
-    sigar_sys_info_get(imconf->sigar,&imconf->sys_info);
+    sigar_sys_info_get(imconf->sigar, &imconf->sys_info);
 
     ASSERT(imconf->event == NULL);
     event = nx_event_new();
