@@ -73,7 +73,7 @@ static void im_mark_read(nx_module_t *module)
     sigar_proc_cpu_t proc_cpu;
     sigar_sys_info_t sys_info;
 
-    ASSERT(SIGAR_OK == sigar_open(sigar));
+    ASSERT(SIGAR_OK == sigar_open(&sigar));
     sigar_pid = sigar_pid_get(sigar);
     sigar_sys_info_get(sigar, &sys_info);
 
@@ -181,7 +181,7 @@ static void im_mark_start(nx_module_t *module)
     event->module = module;
     event->type = NX_EVENT_READ;
     event->delayed = TRUE;
-    event->time = apr_time_now() + APR_USEC_PER_SEC * imconf->mark_interval * 60;
+    event->time = apr_time_now() + APR_USEC_PER_SEC * imconf->mark_interval * 1;
     event->priority = module->priority;
     nx_event_add(event);
 }
