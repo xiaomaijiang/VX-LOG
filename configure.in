@@ -29,7 +29,7 @@ if test "x$apr_config" = "x"; then
 fi
 APR_LIBS=`$apr_config --link-ld --libs`
 APR_CFLAGS=`$apr_config --cppflags`
-CFLAGS="$CFLAGS $APR_CFLAGS"
+CFLAGS="$CFLAGS $APR_CFLAGS -g"
 LIBS="$LIBS $APR_LIBS"
 APR_LDFLAGS=`$apr_config --ldflags`
 LDFLAGS="$LDFLAGS $APR_LDFLAGS -lsigar"

@@ -1,5 +1,5 @@
 #! /bin/bash
-# Generated automatically by config.status (nxlog-ce) 2.10.30
+# Generated automatically by config.status (nxlog-ce) 2.10.32
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -167,7 +167,7 @@ lock_old_archive_extraction=no
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -ggdb3"
+LTCFLAGS="-g -O2 -fdebug-prefix-map=/home/kira/codes/C/nxlog=. -fstack-protector-strong -Wformat -Werror=format-security   -DLINUX -D_REENTRANT -D_GNU_SOURCE -g -pipe -W -Wall -Wshadow -Wno-address -Wcast-qual -Wbad-function-cast -Wsign-compare -Wconversion -funsigned-char -Werror-implicit-function-declaration -Wswitch-default -fstrict-aliasing -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wformat -Wextra -Werror=format-security -rdynamic -ggdb3"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 \\2 \\2/p' | sed '/ __gnu_lto/d'"
