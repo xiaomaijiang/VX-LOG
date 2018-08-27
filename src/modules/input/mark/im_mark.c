@@ -78,15 +78,15 @@ static void im_mark_read(nx_module_t *module)
         nx_logdata_set_integer(logdata, "MemoryUsage", 0);
     }
 
-    try
-    {
-        sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
-        nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
-    }
-    catch (e)
-    {
-        nx_logdata_set_integer(logdata, "CpuUsage", 0);
-    }
+    // try
+    // {
+    //     sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
+    //     nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
+    // }
+    // catch (e)
+    // {
+    //     nx_logdata_set_integer(logdata, "CpuUsage", 0);
+    // }
     
     nx_logdata_set_string(logdata, "SystemName", imconf->sys_info.name);
     nx_logdata_set_string(logdata, "SystemVersion", imconf->sys_info.version);
