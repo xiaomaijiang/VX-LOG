@@ -23,6 +23,7 @@ void nx_logdata_free(nx_logdata_t *logdata)
 	field = NX_DLIST_FIRST(&(logdata->fields));
 	while (field != NULL)
 	{
+		log_info("Free %s:%s", field->key, field->value);
 		free(field->key);
 		nx_value_free(field->value);
 		tmpfield = field;
