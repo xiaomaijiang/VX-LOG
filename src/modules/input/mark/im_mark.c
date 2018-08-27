@@ -66,30 +66,22 @@ static void im_mark_read(nx_module_t *module)
     nx_logdata_set_integer(logdata, "SeverityValue", NX_LOGLEVEL_INFO);
     nx_logdata_set_string(logdata, "Severity", nx_loglevel_to_string(NX_LOGLEVEL_INFO));
     nx_logdata_set_string(logdata, "SourceName", PACKAGE);
+
     nx_logdata_set_integer(logdata, "ProcessID", imconf->pid);
 
-    try
-    {
-        sigar_proc_mem_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_mem);
-        nx_logdata_set_integer(logdata, "MemoryUsage", imconf->proc_mem.resident);
-    }
-    catch (e)
-    {
-        nx_logdata_set_integer(logdata, "MemoryUsage", 0);
-    }
-    nx_logdata_set_integer(logdata, "DebugInfo", 1);
-    try
-    {
-        sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
-        nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
-    }
-    catch (e)
-    {
-        nx_logdata_set_integer(logdata, "CpuUsage", 0);
-    }
+    sigar_proc_mem_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_mem);
 
-    nx_logdata_set_string(logdata, "SystemName", imconf->sys_info.name);
-    nx_logdata_set_string(logdata, "SystemVersion", imconf->sys_info.version);
+    sigar_uint64_t memory_usage = imconf->proc_mem.resident;
+    nx_logdata_set_integer(logdata, "MemoryUsage", memory_usage);
+
+    sigar_proc_cpu_get(imconf->sigar, imconf->sigar_pid, &imconf->proc_cpu);
+    nx_logdata_set_integer(logdata, "CpuUsage", imconf->proc_cpu.percent);
+
+    const char *system_name = imconf->sys_info.name;
+    nx_logdata_set_string(logdata, "SystemName", system_name);
+
+    const char *system_version = imconf->sys_info.version;
+    nx_logdata_set_string(logdata, "SystemVersion", system_version);
     //nx_logdata_to_syslog_rfc3164(logdata);
     nx_module_add_logdata_input(module, NULL, logdata);
 
