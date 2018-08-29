@@ -26,10 +26,10 @@
 #define HAVE_CHOWN 1
 
 /* Define to 1 if you have the <dbi/dbi.h> header file. */
-#define HAVE_DBI_DBI_H 1
+/* #undef HAVE_DBI_DBI_H */
 
 /* Define to 1 if you have the `dbi_initialize_r' function. */
-#define HAVE_DBI_INITIALIZE_R 1
+/* #undef HAVE_DBI_INITIALIZE_R */
 
 /* Define to 1 if you have the declaration of `AF_UNIX', and to 0 if you
    don't. */
@@ -86,7 +86,7 @@
 #define HAVE_LIBCRYPTO 1
 
 /* Define to 1 if you have the <librdkafka/rdkafka.h> header file. */
-#define HAVE_LIBRDKAFKA_RDKAFKA_H 1
+/* #undef HAVE_LIBRDKAFKA_RDKAFKA_H */
 
 /* Define to 1 if you have the `ssl' library (-lssl). */
 #define HAVE_LIBSSL 1
@@ -107,7 +107,7 @@
 #define HAVE_PCRE_H 1
 
 /* Define to 1 if you have the `perl_parse' function. */
-#define HAVE_PERL_PARSE 1
+/* #undef HAVE_PERL_PARSE */
 
 /* Define to 1 if you have the `prctl' function. */
 #define HAVE_PRCTL 1
@@ -146,7 +146,7 @@
 #define HAVE_SYSLOG_H 1
 
 /* Define to 1 if you have the <sys/capability.h> header file. */
-#define HAVE_SYS_CAPABILITY_H 1
+/* #undef HAVE_SYS_CAPABILITY_H */
 
 /* Define to 1 if you have the <sys/klog.h> header file. */
 #define HAVE_SYS_KLOG_H 1
@@ -182,7 +182,7 @@
 #define PACKAGE_NAME "nxlog-ce"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "nxlog-ce 2.10.32"
+#define PACKAGE_STRING "nxlog-ce 2.10.39"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "nxlog-ce"
@@ -191,16 +191,16 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.10.32"
+#define PACKAGE_VERSION "2.10.39"
 
 /* Define to 1 if you have the ANSI C header files. */
-#define STDC_HEADERS 1
+/* #undef STDC_HEADERS */
 
 /* Version number of package */
-#define VERSION "2.10.32"
+#define VERSION "2.10.39"
 
 /* version string */
-#define VERSION_STRING "2.10.32"
+#define VERSION_STRING "2.10.39"
 
 /* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
    `char[]'. */

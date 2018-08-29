@@ -4,7 +4,7 @@
  * Website: http://nxlog.org
  * Author: Botond Botyanszki <botond.botyanszki@nxlog.org>
  */
-
+#include "../../../common/config.h"
 #include <unistd.h>
 #include <apr_lib.h>
 #include "../../../common/module.h"
@@ -85,6 +85,7 @@ static void im_mark_read(nx_module_t *module)
 
     nx_logdata_set_string(logdata, "SystemName", sys_info.name);
     nx_logdata_set_string(logdata, "SystemVersion", sys_info.version);
+    nx_logdata_set_string(logdata, "VxLogVersion", VERSION_STRING);
     //nx_logdata_to_syslog_rfc3164(logdata);
     nx_module_add_logdata_input(module, NULL, logdata);
 
