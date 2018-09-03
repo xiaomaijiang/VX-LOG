@@ -59,6 +59,7 @@ static void im_file_input_close(nx_module_t *module, nx_im_file_input_t *file)
 		if ((logdata = file->input->inputfunc->flush(file->input,
 													 file->input->inputfunc->data)) != NULL)
 		{
+			im_file_linenumber_recorder(imconf, logdata);
 			nx_module_add_logdata_input(module, file->input, logdata);
 		}
 	}
