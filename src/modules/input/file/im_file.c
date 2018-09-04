@@ -59,10 +59,12 @@ static void im_file_input_close(nx_module_t *module, nx_im_file_input_t *file)
 		if ((logdata = file->input->inputfunc->flush(file->input,
 													 file->input->inputfunc->data)) != NULL)
 		{
-			if (imconf->currsrc == file)
+			if (file->current_line_number >= MAX_LINENUMBER_SIZE)
 			{
-				im_file_linenumber_recorder(imconf, logdata);
+				file->current_line_number = 0;
 			}
+			file->current_line_number = file->current_line_number + 1;
+			nx_logdata_set_integer(logdata, "LineNumber", file->current_line_number);
 			nx_module_add_logdata_input(module, file->input, logdata);
 		}
 	}
