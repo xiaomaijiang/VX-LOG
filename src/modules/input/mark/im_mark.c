@@ -81,7 +81,7 @@ static void im_mark_read(nx_module_t *module)
     nx_logdata_set_integer(logdata, "MemoryUsage", proc_mem.resident);
 
     sigar_proc_cpu_get(sigar, sigar_pid, &proc_cpu);
-    nx_logdata_set_integer(logdata, "CpuUsage", proc_cpu.percent);
+    nx_logdata_set_string(logdata, "CpuUsage", apr_psprintf(module->pool,"%d",proc_cpu.percent));
 
     nx_logdata_set_string(logdata, "SystemName", sys_info.name);
     nx_logdata_set_string(logdata, "SystemVersion", sys_info.version);
