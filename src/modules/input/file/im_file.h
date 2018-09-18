@@ -28,6 +28,7 @@ typedef struct nx_im_file_input_t
     int			num_eof;///< The number of EOFs since the last successful read
     apr_time_t		blacklist_until; ///< ignore this file until this time
     int			blacklist_interval; ///< seconds to blacklist the file, increased on failure
+    int64_t     current_line_number;///< current file linenumber
 } nx_im_file_input_t;
 
 
