@@ -53,7 +53,11 @@ static void im_file_input_close(nx_module_t *module, nx_im_file_input_t *file) {
         nx_logdata_t *logdata;
         if ((logdata = file->input->inputfunc->flush(file->input,
                                                      file->input->inputfunc->data)) != NULL) {
-            im_file_linenumber_recorder(imconf, logdata);
+            if (file->current_line_number >= MAX_LINENUMBER_SIZE) {
+                file->current_line_number = 0;
+            }
+            file->current_line_number = file->current_line_number + 1;
+            nx_logdata_set_integer(logdata, "LineNumber", file->current_line_number);
             nx_module_add_logdata_input(module, file->input, logdata);
         }
     }
@@ -303,7 +307,7 @@ static boolean im_file_input_open(nx_module_t *module,
                 } else {
                     log_debug("file %s already opened", (*file)->name);
                 }
-            } catch (e) {
+            }catch (e) {
         if (APR_STATUS_IS_ENOENT(e.code)) {
             if ((existed == TRUE) || (imconf->filename_const == FALSE) || (apr_fnmatch_test(imconf->filename) == 0)) {
                 if (existed != TRUE) {
@@ -460,7 +464,7 @@ static boolean im_file_check_file(nx_module_t *module,
                     im_file_input_check_close(module);
                     im_file_input_open(module, file, FALSE, TRUE);
                 }
-            } catch (e) {
+            }catch (e) {
         if (APR_STATUS_IS_ENOENT(e.code)) {
             if (((*file)->blacklist_until != 0) && (apr_fnmatch_test(imconf->filename) == 0)) {
                 log_warn("input file does not exist: %s", fname);
@@ -614,8 +618,8 @@ static boolean im_file_add_file(nx_module_t *module,
 
 
     if (file == NULL) { // not found, add it
-        pool = nx_pool_create_core();
         log_debug("adding file: %s", fname);
+        pool = nx_pool_create_core();
 
         if (imconf->savepos == TRUE) {
             if (nx_config_cache_get_int(module->name, fname, &savedpos) == TRUE) {
@@ -627,7 +631,8 @@ static boolean im_file_add_file(nx_module_t *module,
             log_debug("module %s read saved position %ld for %s", module->name,
                       (long int) filepos, fname);
 
-            nx_config_cache_get_int(module->name, apr_pstrcat(pool, fname, "Count", NULL), &linenumber);
+            if (nx_config_cache_get_int(module->name, apr_pstrcat(pool, fname, "Count", NULL), &linenumber) == TRUE) {
+            }
         }
 
         file = apr_pcalloc(pool, sizeof(nx_im_file_input_t));
@@ -760,7 +765,7 @@ static boolean im_file_glob_dir(nx_module_t *module,
                         log_debug("skipping unsupported/unknown file type %s", finfo.name);
                     }
                 }
-            } catch (e) {
+            }catch (e) {
         apr_dir_close(dir);
         rethrow(e);
     }
@@ -810,7 +815,7 @@ static boolean im_file_check_new(nx_module_t *module, boolean readfromlast) {
                 } else { // not a wildcarded name
                     im_file_add_file(module, imconf->filename, imconf->readfromlast, TRUE);
                 }
-            } catch (e) {
+            }catch (e) {
         if (pool != NULL) {
             apr_pool_destroy(pool);
         }
@@ -1069,7 +1074,7 @@ static void im_file_config(nx_module_t *module) {
                                         sizeof(imconf->filename));
                             imconf->filename_const = TRUE;
                         }
-                    } catch (e) {
+                    }catch (e) {
                 log_exception(e);
                 nx_conf_error(curr, "invalid expression in 'File', string type required");
             }
