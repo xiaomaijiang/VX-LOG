@@ -29,6 +29,7 @@ typedef struct nx_im_file_input_t
     apr_time_t		blacklist_until; ///< ignore this file until this time
     int			blacklist_interval; ///< seconds to blacklist the file, increased on failure
     int64_t     current_line_number;///< current file linenumber
+    char *line_number_key_name;
 } nx_im_file_input_t;
 
 
@@ -60,7 +61,7 @@ typedef struct nx_im_file_conf_t
     boolean		warned_no_input_files;
     boolean		warned_no_directory;
     apr_time_t		lastcheck;	///< time of last check for new data in closed files
-    
+
 } nx_im_file_conf_t;
 
 
